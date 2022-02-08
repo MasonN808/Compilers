@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22c76b3e-8be4-4dc3-9ac8-8f8558461e87" name="Default Changelist" comment="Initialize other projects">
-      <change afterPath="$PROJECT_DIR$/Compilers/src/MasonCompiler.java" afterDir="false" />
+    <list default="true" id="22c76b3e-8be4-4dc3-9ac8-8f8558461e87" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compilers/src/MasonCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compilers/src/Compiler808.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,12 +78,20 @@
       <option name="project" value="LOCAL" />
       <updated>1643044957979</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Initialize MasonCompiler">
+      <created>1643338915797</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1643338915797</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit: remote is linked to local" />
     <MESSAGE value="Initialize other projects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialize other projects" />
+    <MESSAGE value="Initialize MasonCompiler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initialize MasonCompiler" />
   </component>
 </project>

@@ -1,4 +1,4 @@
-public class MasonCompiler {
+public class Compiler808 {
     static void main() {
 
     }
