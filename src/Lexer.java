@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Lexer {
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar{
@@ -7,11 +11,17 @@ public class Lexer {
         BOOL, ADDITION_OP
     }
 
-    public Token[] get_token_stream(String s){
-        Token[] token_stream = {}; // Initialize the token_stream which what will be given to the parser
+    public ArrayList<Token> get_token_stream(String s){
+        ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
         int i = 0; // Initialize index
         while(i < s.length()){
-            current_char = s.charAt(i);
+            char current_char = s.charAt(i);
+            switch (current_char){
+                case ('$'): Token token = new Token(Grammar.EOP, "$");
+                            token_stream = Arrays.copyOf(token_stream, token_stream.length + 1); //extends memory
+                            token_stream.
+                            break;
+            }
         }
     }
 }

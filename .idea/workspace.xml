@@ -86,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644294134878</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)">
+      <created>1644295025336</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1644295025336</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -106,6 +113,7 @@
     <MESSAGE value="Added tokens for the Lexer" />
     <MESSAGE value="Added Token Class for storage later when finding tokens in source code." />
     <MESSAGE value="Added constructor for token class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added constructor for token class" />
+    <MESSAGE value="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)" />
   </component>
 </project>
