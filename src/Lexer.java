@@ -7,7 +7,11 @@ public class Lexer {
         BOOL, ADDITION_OP
     }
 
-    public void get_token(){
-
+    public Token[] get_token_stream(String s){
+        Token[] token_stream = {}; // Initialize the token_stream which what will be given to the parser
+        int i = 0; // Initialize index
+        while(i < s.length()){
+            current_char = s.charAt(i);
+        }
     }
 }
