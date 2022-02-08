@@ -121,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644362082428</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added tokens that use regular expressions in default of switch{}">
+      <created>1644363505849</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1644363505849</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +153,7 @@
     <MESSAGE value="Added more cases and attempting to implement longest match and rule order" />
     <MESSAGE value="Added current string variable to compare the current string to tokens" />
     <MESSAGE value="Added more tokens with comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more tokens with comments" />
+    <MESSAGE value="Added tokens that use regular expressions in default of switch{}" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tokens that use regular expressions in default of switch{}" />
   </component>
 </project>

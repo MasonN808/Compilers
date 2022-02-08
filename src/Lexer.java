@@ -1,7 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
+/**
+ * <h1>Lexical Analysis (Part 1)</h1>
+ * We design a lexical analyzer ( or scanner, lexer, ...) to produce a stream
+ * of tokens to be fed to the parser (Part 2)
+ * <p>
+ * <b>Note:</b> Still in progress
+ *
+ * @author  Mason Nakamura
+ * @since   02-08-2022
+ */
 public class Lexer {
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
@@ -11,12 +20,28 @@ public class Lexer {
         BOOL, ADDITION_OP
     }
 
+    /**
+     * This method prints out various tokens depending on the token the lexer identifies
+     * @param token_stream The stream of tokens the lexer already identified
+     * @param token  The token the lexer identifies after longest match and rule order
+     * @param verbose A condition to allow the user to print more information on the lexer
+     */
     public static void add_token(ArrayList<Token> token_stream, Token token, boolean verbose) {
         if (verbose) {
             System.out.println("Lexer -------> found " + token.token_type + " [" + token.s + "] at "
                     + token.line_number + ", " + token.character_number);
         }
         token_stream.add(token);
+    }
+
+    /**
+     * This method uses our grammar to determine whether a string is identified as a token
+     * @param s The string to be tested
+     * @return boolean
+     */
+    public static boolean is_token(String s){
+
+        return false;
     }
 
     public ArrayList<Token> get_token_stream(String s, boolean verbose) {
@@ -44,6 +69,7 @@ public class Lexer {
                 case ("{") -> {
                     token = new Token(Grammar.L_BRACE, "{"); // BRACES
                     add_token(token_stream, token, verbose);
+                    last_index = current_index;
                 }
                 case ("}") -> {
                     token = new Token(Grammar.R_BRACE, "}");
@@ -124,6 +150,9 @@ public class Lexer {
                     if (current_string.matches("[0-9]")) {
                         token = new Token(Grammar.DIGIT, current_string); // CHAR
                         add_token(token_stream, token, verbose);
+                    }
+                    else{
+                        System.out.println("ERROR: NO TOKEN FOUND FOR"); //TODO: make this better if verbose==true
                     }
 
                 }
