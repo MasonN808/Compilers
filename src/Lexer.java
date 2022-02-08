@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Lexer {
@@ -26,6 +25,8 @@ public class Lexer {
             char current_char = s.charAt(i);
             Token token;
             switch (current_char){
+                // USE REGULAR EXPRESSIONS HERE FROM import java.util.regex.Matcher;
+                //import java.util.regex.Pattern;
                 case ('$'): token = new Token(Grammar.EOP, "$");
                             add_token(token_stream, token, verbose); //Add token to the token stream
                             break;
@@ -40,5 +41,6 @@ public class Lexer {
                             break;
             }
         }
+        return null;
     }
 }
