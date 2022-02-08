@@ -114,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644361423274</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added more tokens with comments">
+      <created>1644362082428</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1644362082428</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,6 +145,7 @@
     <MESSAGE value="Made a partial first case for token_streamer.  Also changed from array to arraylist since array is a fixed size which may cause problems later on." />
     <MESSAGE value="Added more cases and attempting to implement longest match and rule order" />
     <MESSAGE value="Added current string variable to compare the current string to tokens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added current string variable to compare the current string to tokens" />
+    <MESSAGE value="Added more tokens with comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more tokens with comments" />
   </component>
 </project>
