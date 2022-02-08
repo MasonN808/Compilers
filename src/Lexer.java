@@ -6,6 +6,7 @@ public class Lexer {
         R_PARENTH, CHAR, DIGIT, EQUALITY_OP, INEQUALITY_OP,
         BOOL, ADDITION_OP
     }
+
     public void get_token(){
 
     }
