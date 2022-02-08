@@ -1,65 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22c76b3e-8be4-4dc3-9ac8-8f8558461e87" name="Default Changelist" comment=".....">
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Compiler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compilers/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Compilers/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/Compiler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/Compiler808.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/src/Lexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compilers/src/Compiler808.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compilers/src/Lexer.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <excluded-from-favorite>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$/Compilers" source="master" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </excluded-from-favorite>
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="project1" />
-              </list>
-            </value>
-          </entry>
-          <entry type="REMOTE">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="origin/project1" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="project1" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Compilers" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="249YylZqtALHQKXJ1v6uJJqa6US" />
+  <component name="ProjectId" id="24oJdQLgUwk0mcnD8EjkPUHr46V" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -68,85 +32,28 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="jdk.selected.JAVA_MODULE" value="openjdk-17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mason\IdeaProjects\Compilers" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mason\IdeaProjects\Compilers_Local\src" />
+      <recent name="C:\Users\Mason\IdeaProjects\Compilers_Local" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Compiler" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Compiler" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="22c76b3e-8be4-4dc3-9ac8-8f8558461e87" name="Default Changelist" comment="" />
-      <created>1643044527774</created>
+      <changelist id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="" />
+      <created>1644291092254</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1643044527774</updated>
+      <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00001" summary="Initial commit: remote is linked to local">
-      <created>1643044753221</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1643044753221</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Initialize other projects">
-      <created>1643044957979</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1643044957979</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Initialize MasonCompiler">
-      <created>1643338915797</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1643338915797</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Rename">
-      <created>1644282504893</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1644282504893</updated>
-    </task>
-    <task id="LOCAL-00005" summary=".....">
-      <created>1644289184356</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1644289184356</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
     <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit: remote is linked to local" />
-    <MESSAGE value="Initialize other projects" />
-    <MESSAGE value="Initialize MasonCompiler" />
-    <MESSAGE value="Rename" />
-    <MESSAGE value="....." />
-    <option name="LAST_COMMIT_MESSAGE" value="....." />
   </component>
 </project>
