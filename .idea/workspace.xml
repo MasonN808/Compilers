@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644291864159</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Token Class for storage later when finding tokens in source code.">
+      <created>1644293805148</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1644293805148</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -91,6 +96,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Added tokens for the Lexer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tokens for the Lexer" />
+    <MESSAGE value="Added Token Class for storage later when finding tokens in source code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Token Class for storage later when finding tokens in source code." />
   </component>
 </project>
