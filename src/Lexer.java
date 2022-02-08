@@ -22,48 +22,50 @@ public class Lexer {
         ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
         int current_index = 0; // Initialize index
         int last_index;
+        StringBuilder current_string = "";
         boolean EOP_found = false;
         boolean close_quote_found = true; // to check if closed quote is found TODO: check this case """" -> is it two quotes or one quote?
         boolean L_parenth_found = false; // to check if left parenthesis is found
         boolean R_parenth_found = false; // to check if right parenthesis is found
         while(current_index < s.length() | EOP_found){
             char current_char = s.charAt(current_index);
-            Token token;
-            switch (current_char) {
+            current_string.append(current_char); // append the current character to the string we use to find a token
+            Token token; // initialize the token
+            switch (current_string.toString()) {
                 // USE REGULAR EXPRESSIONS HERE FROM import java.util.regex.Matcher;
                 //import java.util.regex.Pattern;
                 // Checking easiest tokens to identify without
-                case ('$') -> {
+                case ("$") -> {
                     token = new Token(Grammar.EOP, "$");
                     add_token(token_stream, token, verbose); //Add token to the token stream
                     EOP_found = true;  // Found EOP so exit while
                 }
-                case ('{') -> {
+                case ("{") -> {
                     token = new Token(Grammar.L_BRACE, "{");
                 }
-                case ('}') -> {
+                case ("}") -> {
                     token = new Token(Grammar.R_BRACE, "}");
                     add_token(token_stream, token, verbose);
                 }
-                case ('"') -> {
+                case ("\"") -> {
                     token = new Token(Grammar.QUOTE, "\"");
                     add_token(token_stream, token, verbose);
                     close_quote_found = !close_quote_found;  // set close_quote_found to false
                 }
-                case ('+') -> {
+                case ("+") -> {
                     token = new Token(Grammar.ADDITION_OP, "+");
                     add_token(token_stream, token, verbose);
                 }
-                case ('=') -> {
+                case ("=") -> {
                     token = new Token(Grammar.ASSIGNMENT_OP, "=");
                     add_token(token_stream, token, verbose);
                 }
-                case ('(') -> {
+                case ("(") -> {
                     token = new Token(Grammar.L_PARENTH, "(");
                     L_parenth_found = true;
                     add_token(token_stream, token, verbose);
                 }
-                case (')') -> {
+                case (")") -> {
                     token = new Token(Grammar.R_PARENTH, ")");
                     R_parenth_found = true;
                     add_token(token_stream, token, verbose);

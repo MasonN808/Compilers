@@ -100,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644296002852</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added more cases and attempting to implement longest match and rule order">
+      <created>1644361028272</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1644361028272</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,6 +129,7 @@
     <MESSAGE value="Added constructor for token class" />
     <MESSAGE value="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)" />
     <MESSAGE value="Made a partial first case for token_streamer.  Also changed from array to arraylist since array is a fixed size which may cause problems later on." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made a partial first case for token_streamer.  Also changed from array to arraylist since array is a fixed size which may cause problems later on." />
+    <MESSAGE value="Added more cases and attempting to implement longest match and rule order" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more cases and attempting to implement longest match and rule order" />
   </component>
 </project>
