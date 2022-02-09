@@ -149,11 +149,12 @@ public class Lexer {
         boolean symbol;
         boolean digit;
         boolean character;
-        while (current_index < s.length() | EOP_found) {
-            char current_char = s.charAt(current_index);
-            current_string = current_string + current_char; // append the current character to the string we use to find a token
+        while (current_index < s.length() & !EOP_found) {
+            char current_char = s.charAt(current_index); // get the character from the current index of the string
+            current_string = current_string + current_char; // append the current character to the lexeme for longest match
             Token token; // initialize the token
             if (is_token(current_string)) {
+                last_index = current_index; // if there is a //TODO: CONTINUE HERE WORKING ON LONGEST MATCH AND RULE ORDER
                 Lexer.Grammar t_type = get_token(current_string).token_type;
                 if( t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL){
                     keyword = true;
