@@ -154,7 +154,7 @@ public class Lexer {
             current_string = current_string + current_char; // append the current character to the lexeme for longest match
             Token token; // initialize the token
             if (is_token(current_string)) {
-                last_index = current_index; // if there is a //TODO: CONTINUE HERE WORKING ON LONGEST MATCH AND RULE ORDER
+                last_index = current_index; // if there is a //TODO: CONTINUE HERE WORKING ON LONGEST MATCH AND RULE ORDER (2/8/2022)
                 Lexer.Grammar t_type = get_token(current_string).token_type;
                 if( t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL){
                     keyword = true;
