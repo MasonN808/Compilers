@@ -36,12 +36,26 @@ public class Lexer {
 
     /**
      * This method uses our grammar to determine whether a string is identified as a token
-     * @param s The string to be tested
+     * @param current_lexeme The lexeme to be tested
      * @return boolean
      */
-    public static boolean is_token(String s){
-
-        return false;
+    public static boolean is_token(String current_lexeme){
+        boolean isToken = false;
+        switch (current_lexeme) {
+            // USE REGULAR EXPRESSIONS HERE FROM import java.util.regex.Matcher;
+            //import java.util.regex.Pattern;
+            // Checking easiest tokens to identify without
+            case ("$"), ("{") , ("}"), ("\""), ("+"), ("="), ("=="), ("!="), ("("), (")"), // Check for a lot of different tokens
+                ("false"), ("true"), ("if"), ("while"), ("print"), ("int"), ("string"), ("boolean")-> {
+                isToken = true;
+            }
+            default -> { //since you can't use regex in switch{}, we put the many cases in default
+                if (current_lexeme.matches("[a-z]") | current_lexeme.matches("[0-9]")) { // Check if CHAR OR ID OR DIGIT
+                    isToken = true;
+                }
+            }
+        } // end switch
+        return isToken;
     }
 
     public ArrayList<Token> get_token_stream(String s, boolean verbose) {
@@ -49,7 +63,7 @@ public class Lexer {
         int current_index = 0; // Initialize index
         int last_index;
         String current_string = "";
-        boolean EOP_found = false;
+        boolean EOP_found = false; // TODO: move these variables out of scope/block
         boolean close_quote_found = true; // to check if closed quote is found TODO: check this case """" -> is it two quotes or one quote?
         boolean L_parenth_found = false; // to check if left parenthesis is found
         boolean R_parenth_found = false; // to check if right parenthesis is found
@@ -57,7 +71,7 @@ public class Lexer {
             char current_char = s.charAt(current_index);
             current_string = current_string + current_char; // append the current character to the string we use to find a token
             Token token; // initialize the token
-            switch (current_string.toString()) {
+            switch (current_string) {
                 // USE REGULAR EXPRESSIONS HERE FROM import java.util.regex.Matcher;
                 //import java.util.regex.Pattern;
                 // Checking easiest tokens to identify without
