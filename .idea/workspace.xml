@@ -149,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644371206367</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error">
+      <created>1644377297865</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1644377297865</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,6 +185,7 @@
     <MESSAGE value="-Added documentation comments&#10;-Initialized is_token to transfer the implementation of our grammar there instead of get_token_stream.  This will allow us to implement longest match and rule order in get_token_stream instead." />
     <MESSAGE value="-Finished is_token" />
     <MESSAGE value="-Moved many boolean variables out of block&#10;-Added some documentation for the methods&#10;-Embedded the switch{} in get_token_stream with an if statement for is_token&#10;-Currently working on longest match and rule order" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Moved many boolean variables out of block&#10;-Added some documentation for the methods&#10;-Embedded the switch{} in get_token_stream with an if statement for is_token&#10;-Currently working on longest match and rule order" />
+    <MESSAGE value="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error" />
   </component>
 </project>
