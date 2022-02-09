@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644364595421</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="-Finished is_token">
+      <created>1644365641369</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1644365641369</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,6 +169,7 @@
     <MESSAGE value="Added more tokens with comments" />
     <MESSAGE value="Added tokens that use regular expressions in default of switch{}" />
     <MESSAGE value="-Added documentation comments&#10;-Initialized is_token to transfer the implementation of our grammar there instead of get_token_stream.  This will allow us to implement longest match and rule order in get_token_stream instead." />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added documentation comments&#10;-Initialized is_token to transfer the implementation of our grammar there instead of get_token_stream.  This will allow us to implement longest match and rule order in get_token_stream instead." />
+    <MESSAGE value="-Finished is_token" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Finished is_token" />
   </component>
 </project>
