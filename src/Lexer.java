@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
  * @since   02-08-2022
  */
 public class Lexer {
-    public boolean EOP_found = false; // to check if EOP is found
-    public boolean close_quote_found = true; // to check if closed quote is found TODO: check this case """" -> is it two quotes or one quote?
-    public boolean L_parenth_found = false; // to check if left parenthesis is found
-    public boolean R_parenth_found = false; // to check if right parenthesis is found
+    public static boolean EOP_found = false; // to check if EOP is found
+    public static boolean close_quote_found = true; // to check if closed quote is found TODO: check this case """" -> is it two quotes or one quote?
+    public static boolean L_parenth_found = false; // to check if left parenthesis is found
+    public static boolean R_parenth_found = false; // to check if right parenthesis is found
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
         EOP, L_BRACE, R_BRACE, VARIABLE_TYPE, IF, WHILE,
@@ -46,9 +46,6 @@ public class Lexer {
     public static boolean is_token(String current_lexeme){
         boolean isToken = false;
         switch (current_lexeme) {
-            // USE REGULAR EXPRESSIONS HERE FROM import java.util.regex.Matcher;
-            //import java.util.regex.Pattern;
-            // Checking easiest tokens to identify without
             case ("$"), ("{") , ("}"), ("\""), ("+"), ("="), ("=="), ("!="), ("("), (")"), // Check for a lot of different tokens
                 ("false"), ("true"), ("if"), ("while"), ("print"), ("int"), ("string"), ("boolean")-> {
                 isToken = true;
@@ -61,6 +58,78 @@ public class Lexer {
         } // end switch
         return isToken;
     }
+
+    /**
+     * This method uses our grammar to return the token of the current lexeme if it exists
+     * @param current_lexeme The lexeme to be tested
+     * @return boolean
+     */
+    public static Token return_token(String current_lexeme){
+        Token token = null; // initialize the token
+        switch (current_lexeme) {
+            case ("$") -> {
+                token = new Token(Grammar.EOP, current_lexeme); // END OF PROGRAM (EOP)
+            }
+            case ("{") -> {
+                token = new Token(Grammar.L_BRACE, current_lexeme); // BRACES
+            }
+            case ("}") -> {
+                token = new Token(Grammar.R_BRACE, current_lexeme);
+            }
+            case ("\"") -> {
+                token = new Token(Grammar.QUOTE, current_lexeme); // QUOTE
+            }
+            case ("+") -> {
+                token = new Token(Grammar.ADDITION_OP, current_lexeme); // OPERATORS
+            }
+            case ("=") -> {
+                token = new Token(Grammar.ASSIGNMENT_OP, current_lexeme);
+            }
+            case ("==") -> {
+                token = new Token(Grammar.EQUALITY_OP, current_lexeme);
+            }
+            case ("!=") -> {
+                token = new Token(Grammar.INEQUALITY_OP, current_lexeme);
+            }
+            case ("(") -> {
+                token = new Token(Grammar.L_PARENTH, current_lexeme); // PARENTHESIS
+            }
+            case (")") -> {
+                token = new Token(Grammar.R_PARENTH, current_lexeme);
+            }
+            case ("false"), ("true") -> {
+                token = new Token(Grammar.BOOL, current_lexeme); // BOOL
+            }
+            case ("if") -> {
+                token = new Token(Grammar.IF, current_lexeme); // IF
+            }
+            case ("while") -> {
+                token = new Token(Grammar.WHILE, current_lexeme); // WHILE
+            }
+            case ("print") -> {
+                token = new Token(Grammar.PRINT, current_lexeme); // PRINT
+            }
+            case ("int"), ("string"), ("boolean") -> {
+                token = new Token(Grammar.VARIABLE_TYPE, current_lexeme); // VARIABLE TYPES
+            }
+            default -> { //since you can't use regex in switch{}, we put the many cases in default
+                if (current_lexeme.matches("[a-z]") & !close_quote_found) { // It is a CHAR if in quotes, else ID
+                    token = new Token(Grammar.CHAR, current_lexeme); // CHAR
+                }
+                if (current_lexeme.matches("[a-z]")) {
+                    token = new Token(Grammar.ID, current_lexeme); // CHAR
+                }
+                if (current_lexeme.matches("[0-9]")) {
+                    token = new Token(Grammar.DIGIT, current_lexeme); // CHAR
+                } else {
+                    System.out.println("ERROR: NO TOKEN FOUND FOR"); //TODO: make this better if verbose==true
+                }
+            }
+        } // end switch
+        return token;
+    }
+
+
     /**
      * This method returns the token stream in the form of an ArrayList<Token>
      * @param verbose A condition to allow the user to print extra information
@@ -77,86 +146,71 @@ public class Lexer {
             char current_char = s.charAt(current_index);
             current_string = current_string + current_char; // append the current character to the string we use to find a token
             Token token; // initialize the token
-            if (is_token(s)) {
+            if (is_token(current_string)) {
                 switch (current_string) {
-                    // USE REGULAR EXPRESSIONS HERE FROM import java.util.regex.Matcher;
-                    //import java.util.regex.Pattern;
-                    // Checking easiest tokens to identify without
-                    case ("$") -> { // TODO: maybe change the String s in Token() to current_string to be more general
-                        token = new Token(Grammar.EOP, "$"); // END OF PROGRAM (EOP)
+                    case ("$") -> {
+                        token = new Token(Grammar.EOP, current_string); // END OF PROGRAM (EOP)
                         add_token(token_stream, token, verbose); //Add token to the token stream
                         EOP_found = true;  // Found EOP so exit while
                     }
                     case ("{") -> {
-                        token = new Token(Grammar.L_BRACE, "{"); // BRACES
+                        token = new Token(Grammar.L_BRACE, current_string); // BRACES
                         add_token(token_stream, token, verbose);
                         last_index = current_index;
                     }
                     case ("}") -> {
-                        token = new Token(Grammar.R_BRACE, "}");
+                        token = new Token(Grammar.R_BRACE, current_string);
                         add_token(token_stream, token, verbose);
                     }
                     case ("\"") -> {
-                        token = new Token(Grammar.QUOTE, "\""); // QUOTE
+                        token = new Token(Grammar.QUOTE, current_string); // QUOTE
                         add_token(token_stream, token, verbose);
                         close_quote_found = !close_quote_found;  // set close_quote_found to false
                     }
                     case ("+") -> {
-                        token = new Token(Grammar.ADDITION_OP, "+"); // OPERATORS
+                        token = new Token(Grammar.ADDITION_OP, current_string); // OPERATORS
                         add_token(token_stream, token, verbose);
                     }
                     case ("=") -> {
-                        token = new Token(Grammar.ASSIGNMENT_OP, "=");
+                        token = new Token(Grammar.ASSIGNMENT_OP, current_string);
                         add_token(token_stream, token, verbose);
                     }
                     case ("==") -> {
-                        token = new Token(Grammar.EQUALITY_OP, "==");
+                        token = new Token(Grammar.EQUALITY_OP, current_string);
                         add_token(token_stream, token, verbose);
                     }
                     case ("!=") -> {
-                        token = new Token(Grammar.INEQUALITY_OP, "!=");
+                        token = new Token(Grammar.INEQUALITY_OP, current_string);
                         add_token(token_stream, token, verbose);
                     }
                     case ("(") -> {
-                        token = new Token(Grammar.L_PARENTH, "("); // PARENTHESIS
+                        token = new Token(Grammar.L_PARENTH, current_string); // PARENTHESIS
                         L_parenth_found = true;
                         add_token(token_stream, token, verbose);
                     }
                     case (")") -> {
-                        token = new Token(Grammar.R_PARENTH, ")");
+                        token = new Token(Grammar.R_PARENTH, current_string);
                         R_parenth_found = true;
                         add_token(token_stream, token, verbose);
                     }
-                    case ("false") -> {
-                        token = new Token(Grammar.BOOL, "false"); // BOOL
-                        add_token(token_stream, token, verbose);
-                    }
-                    case ("true") -> {
-                        token = new Token(Grammar.BOOL, "true");
+                    case ("false"), ("true") -> {
+                        token = new Token(Grammar.BOOL, current_string); // BOOL
                         add_token(token_stream, token, verbose);
                     }
                     case ("if") -> {
-                        token = new Token(Grammar.IF, "if"); // IF
+                        token = new Token(Grammar.IF, current_string); // IF
                         add_token(token_stream, token, verbose);
                     }
                     case ("while") -> {
-                        token = new Token(Grammar.WHILE, "while"); // WHILE
+                        token = new Token(Grammar.WHILE, current_string); // WHILE
                         add_token(token_stream, token, verbose);
                     }
                     case ("print") -> {
-                        token = new Token(Grammar.PRINT, "print"); // PRINT
+                        token = new Token(Grammar.PRINT, current_string); // PRINT
                         add_token(token_stream, token, verbose);
                     }
-                    case ("int") -> {
-                        token = new Token(Grammar.VARIABLE_TYPE, "int"); // VARIABLE TYPES
-                        add_token(token_stream, token, verbose);
-                    }
-                    case ("string") -> {
-                        token = new Token(Grammar.VARIABLE_TYPE, "string");
-                        add_token(token_stream, token, verbose);
-                    }
-                    case ("boolean") -> {
-                        token = new Token(Grammar.VARIABLE_TYPE, "boolean");
+                    case ("int"), ("string"), ("boolean") -> {
+                        token = new Token(Grammar.VARIABLE_TYPE, current_string); // VARIABLE TYPES
                         add_token(token_stream, token, verbose);
                     }
                     default -> { //since you can't use regex in switch{}, we put the many cases in default
@@ -174,7 +228,6 @@ public class Lexer {
                         } else {
                             System.out.println("ERROR: NO TOKEN FOUND FOR"); //TODO: make this better if verbose==true
                         }
-
                     }
                 } // end switch
             } // end if
