@@ -28,11 +28,13 @@ public class Compiler808 {
 //
         String content = new Scanner(inFile).useDelimiter("\\Z").next();
         System.out.println(content);
-
+        String smallerized_content = content.replaceAll("\\s+", ""); //remove line breaks, tabs, and spaces
+        System.out.println(smallerized_content);
 //        String[] source_file = words.clone();
 
-        Lexer lexer = new Lexer();
-//        lexer.get_token_stream(content, );
+//        Lexer lexer = new Lexer();
+//        lexer.get_token_stream(content, false, true);
+
 
     }
 }

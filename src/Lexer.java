@@ -136,7 +136,7 @@ public class Lexer {
      * @param s A string to test from the source code
      * @return boolean
      */
-    public ArrayList<Token> get_token_stream(String s, boolean verbose) {
+    public ArrayList<Token> get_token_stream(String s, boolean verbose, boolean output) {
         ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
         int current_index = 0; // Initialize index
         int last_index; // keep track of index of last token found and verified using longest match and rule order
@@ -144,37 +144,41 @@ public class Lexer {
 
         // RULE ORDER STARTS HERE
         // initialize general token booleans
-        boolean keyword;
-        boolean id;
-        boolean symbol;
-        boolean digit;
-        boolean character;
+        boolean keyword = false;
+        boolean id = false;
+        boolean symbol = false;
+        boolean digit = false;
+        boolean character = false;
         boolean prevt_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
         while (current_index < s.length() & !EOP_found) {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
-            current_string = current_string + current_char; // append the current character to the lexeme for longest match
+            current_string += current_char; // append the current character to the lexeme for longest match
             Token token; // initialize the token
             if (is_token(current_string)) {
-                    last_index = current_index; // if there is a //TODO: CONTINUE HERE WORKING ON LONGEST MATCH AND RULE ORDER (2/8/2022)
-                    Lexer.Grammar t_type = get_token(current_string).token_type;
-                    if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
-                        keyword = true;
-                    } else if (t_type == Grammar.ID) {
-                        id = true;
-                    } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP | t_type == Grammar.EOP) {
-                        symbol = true;
-                        add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
-                        break;
-                    } else if (t_type == Grammar.DIGIT) {
-                        digit = true;
-                        add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
-                        break;
-                    } else if (t_type == Grammar.CHAR) {
-                        character = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
-                    }
-                    if (true){
-
-                    }
+                Lexer.Grammar t_type = get_token(current_string).token_type;
+                if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
+                    keyword = true;
+                } else if (t_type == Grammar.ID) {
+                    id = true;
+                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP | t_type == Grammar.EOP) {
+                    symbol = true;
+                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
+                    break;
+                } else if (t_type == Grammar.DIGIT) {
+                    digit = true;
+                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
+                    break;
+                } else if (t_type == Grammar.CHAR) {
+                    character = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
+                }
+                if (keyword){
+                    last_index = current_index;
+                    add_token(token_stream, get_token(current_string), verbose);
+                }
+                if (keyword){
+                    last_index = current_index;
+                    add_token(token_stream, get_token(current_string), verbose);
+                }
 //                switch (current_string) {
 //                    case ("$") -> {
 //                        token = new Token(Grammar.EOP, current_string); // END OF PROGRAM (EOP)
@@ -259,6 +263,7 @@ public class Lexer {
 //                    }
 //                } // end switch
             } // end if
+            current_index += 1;
         } // end while
         return token_stream;
     } // end get_token_stream
