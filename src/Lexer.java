@@ -149,29 +149,32 @@ public class Lexer {
         boolean symbol;
         boolean digit;
         boolean character;
+        boolean prevt_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
         while (current_index < s.length() & !EOP_found) {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string = current_string + current_char; // append the current character to the lexeme for longest match
             Token token; // initialize the token
             if (is_token(current_string)) {
-                last_index = current_index; // if there is a //TODO: CONTINUE HERE WORKING ON LONGEST MATCH AND RULE ORDER (2/8/2022)
-                Lexer.Grammar t_type = get_token(current_string).token_type;
-                if( t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL){
-                    keyword = true;
-                }
-                else if (t_type == Grammar.ID){
-                    id = true;
-                }
-                else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP | t_type == Grammar.EOP){
-                    symbol = true;
-                }
-                else if (t_type == Grammar.DIGIT){
-                    digit = true;
-                }
-                else if (t_type == Grammar.CHAR){
-                    character = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
-                }
+                    last_index = current_index; // if there is a //TODO: CONTINUE HERE WORKING ON LONGEST MATCH AND RULE ORDER (2/8/2022)
+                    Lexer.Grammar t_type = get_token(current_string).token_type;
+                    if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
+                        keyword = true;
+                    } else if (t_type == Grammar.ID) {
+                        id = true;
+                    } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP | t_type == Grammar.EOP) {
+                        symbol = true;
+                        add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
+                        break;
+                    } else if (t_type == Grammar.DIGIT) {
+                        digit = true;
+                        add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
+                        break;
+                    } else if (t_type == Grammar.CHAR) {
+                        character = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
+                    }
+                    if (true){
 
+                    }
 //                switch (current_string) {
 //                    case ("$") -> {
 //                        token = new Token(Grammar.EOP, current_string); // END OF PROGRAM (EOP)
@@ -257,7 +260,7 @@ public class Lexer {
 //                } // end switch
             } // end if
         } // end while
-        return null;
+        return token_stream;
     } // end get_token_stream
 } // end class
 
