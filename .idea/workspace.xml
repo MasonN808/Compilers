@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +34,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -42,6 +44,20 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Compiler808" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Compiler808" />
+      <module name="Compilers_Local" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Compiler808" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -178,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644379531869</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="-Edited the rule order&#10;-Trying to get a file reader up and working (shouldn't be this difficult)">
+      <created>1644463492551</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1644463492551</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +234,7 @@
     <MESSAGE value="-Initialize implementation of rule order in get_token_stream()&#10;-Commented out a huge chunk of code with switch{} from get_token_stream.  Code similar to that of is_token() and get_token()" />
     <MESSAGE value="-Minor edits to while loop statement for validity&#10;-CONTINUE: longest match and rule order" />
     <MESSAGE value="-Marked TODO for where to continue" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Marked TODO for where to continue" />
+    <MESSAGE value="-Edited the rule order&#10;-Trying to get a file reader up and working (shouldn't be this difficult)" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Edited the rule order&#10;-Trying to get a file reader up and working (shouldn't be this difficult)" />
   </component>
 </project>
