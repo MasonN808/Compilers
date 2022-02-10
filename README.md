@@ -8,6 +8,15 @@
     |      _||  |_|  ||       ||    ___||   ||   |___ |    ___||    __  ||  | |  || |_|   ||  | |  |
     |     |_ |       || ||_|| ||   |    |   ||       ||   |___ |   |  | ||  |_|  ||       ||  |_|  |
     |_______||_______||_|   |_||___|    |___||_______||_______||___|  |_||_______||_______||_______|
+    
+# How to Run Script in Command Prompt
+
+Run the following:
+```
+> cd .....\Compilers_Local\src
+> javac Compiler808.java
+> java Compiler808 testcase.txt
+```
 
                                                                                                 
 
