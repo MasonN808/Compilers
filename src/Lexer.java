@@ -16,6 +16,10 @@ public class Lexer {
     public static boolean close_quote_found = true; // to check if closed quote is found TODO: check this case """" -> is it two quotes or one quote?
     public static boolean L_parenth_found = false; // to check if left parenthesis is found
     public static boolean R_parenth_found = false; // to check if right parenthesis is found
+
+    int current_index = 0; // Initialize index
+    int last_index; // keep track of index of last token found and verified using longest match and rule order
+
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
         EOP, L_BRACE, R_BRACE, VARIABLE_TYPE, IF, WHILE,
@@ -134,12 +138,10 @@ public class Lexer {
      * This method returns the token stream in the form of an ArrayList<Token>
      * @param verbose A condition to allow the user to print extra information
      * @param s A string to test from the source code
-     * @return boolean
+     * @return ArrayList
      */
     public ArrayList<Token> get_token_stream(String s, boolean verbose, boolean output) {
         ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
-        int current_index = 0; // Initialize index
-        int last_index; // keep track of index of last token found and verified using longest match and rule order
         String current_string = "";
 
         // RULE ORDER STARTS HERE
@@ -171,6 +173,7 @@ public class Lexer {
                 } else if (t_type == Grammar.CHAR) {
                     character = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
                 }
+                else System.out.println("ERROR: lexeme not recognized as a token");
                 if (keyword){
                     last_index = current_index;
                     add_token(token_stream, get_token(current_string), verbose);

@@ -207,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644518228905</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation">
+      <created>1644520616829</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1644520616829</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,6 +249,7 @@
     <MESSAGE value="-Marked TODO for where to continue" />
     <MESSAGE value="-Edited the rule order&#10;-Trying to get a file reader up and working (shouldn't be this difficult)" />
     <MESSAGE value="-Imported test1 txt file for testing the reader&#10;-Reader reads the imported file nicely!&#10;-Now working on the Lexer Class" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Imported test1 txt file for testing the reader&#10;-Reader reads the imported file nicely!&#10;-Now working on the Lexer Class" />
+    <MESSAGE value="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation" />
   </component>
 </project>
