@@ -18,7 +18,7 @@ public class Compiler808 {
         System.out.println(smallerized_content);
 
         Lexer lexer = new Lexer();
-        lexer.get_token_stream(content, false, true);
+        lexer.get_token_stream(content, true, true);
 
 
     }

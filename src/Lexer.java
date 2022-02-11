@@ -64,6 +64,11 @@ public class Lexer {
         return isToken;
     }
 
+    public static void lex_error(String not_lexeme, int line_number, int character_number){
+        System.out.println("Lexer [ERROR] -------> found unidentified token [" + not_lexeme + "] at "
+                + line_number + ", " + character_number);
+    }
+
     /**
      * This method uses our grammar to return the token of the current lexeme if it exists
      * @param current_lexeme The lexeme to be tested
@@ -163,8 +168,29 @@ public class Lexer {
         while (current_index < s.length() & !EOP_found) {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
-
             String str_current_char = String.valueOf(current_char);
+            //check for comments
+            if (str_current_char.equals("/")){
+                int temp_current_index = current_index;
+                temp_current_index += 1;
+                char temp_current_char = s.charAt(temp_current_index);
+                String temp_current_string = current_string;
+                temp_current_string += temp_current_char;
+                if (temp_current_string.equals("/*")){
+                    while(temp_current_index < s.length() - current_index & !String.valueOf(s.charAt(temp_current_index)).equals("*")){ //check for end comment
+                        temp_current_index += 1;
+                    }
+                    if (!String.valueOf(s.charAt(temp_current_index)).equals("*")){
+                        System.out.println("WARNING: unterminated comment");
+                    }
+                    else{
+                        current_index += temp_current_index + 2; // go to next character out of comment
+                    }
+                }
+                else{
+                    //TODO: LEX ERROR
+                }
+            }
             if (is_token(str_current_char)){ // Check if current character is a token
                 t_type = get_token(str_current_char).token_type;
                 if (t_type == Grammar.EOP){
@@ -181,13 +207,22 @@ public class Lexer {
                         add_token(token_stream, get_token(temp_current_string), verbose);
                         current_index = last_index; // reset index
                         current_index += 2; // 2 because we temporarily went ahead one index
+                        prev_token = null; // just in case
+                        current_token = null; // just in case
                         current_string = ""; // reset string
                     }
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index > 2){  // the boundary
                     current_index = last_index; // reset index
                     current_index += 1;
-                    add_token(token_stream, prev_token, verbose);
+                    if (prev_token == null){
+                        add_token(token_stream, current_token, verbose);
+                    }
+                    else{
+                        add_token(token_stream, prev_token, verbose);
+                    }
+                    prev_token = null; // just in case
+                    current_token = null; // just in case
                     current_string = ""; // reset string
                 }
             }
