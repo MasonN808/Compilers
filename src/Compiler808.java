@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -21,7 +23,7 @@ public class Compiler808 {
 //        String smallerized_content = content.replaceAll("[\\n\\t ]", "");
         System.out.println(smallerized_content);
         //TODO: get an array of lines of the code and run each line in the lexer CONTINUE HERE 2/11/2022
-        String[] lines = Files.readAllLines(Paths.get(path), encoding);
+//        String[] lines = Files.readAllLines(Paths.get(path), encoding);
         Lexer lexer = new Lexer();
         lexer.get_token_stream(content, true, true);
 

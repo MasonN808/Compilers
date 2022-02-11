@@ -169,6 +169,10 @@ public class Lexer {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
+            //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
+
+
+
             //check for comments
             if (str_current_char.equals("/")){
                 int temp_current_index = current_index;
@@ -226,6 +230,7 @@ public class Lexer {
                     current_string = ""; // reset string
                 }
             }
+
 
             if (is_token(current_string)) {
                  // get token type
