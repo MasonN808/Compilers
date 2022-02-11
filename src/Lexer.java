@@ -1,3 +1,4 @@
+import java.lang.reflect.AnnotatedType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -18,7 +19,7 @@ public class Lexer {
     public static boolean R_parenth_found = false; // to check if right parenthesis is found
 
     int current_index = 0; // Initialize index
-    int last_index; // keep track of index of last token found and verified using longest match and rule order
+    int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
 
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
@@ -151,37 +152,45 @@ public class Lexer {
         boolean symbol = false;
         boolean digit = false;
         boolean character = false;
-        boolean prevt_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
+        boolean[] rule_order = {keyword, id, symbol, digit, character}; //initialize rule order
+//        boolean[] rule_order2 = {keyword, id, symbol, digit, character};
+//        int first_order = -1;
+//        int second_order = -1;
+        boolean prevT_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
         while (current_index < s.length() & !EOP_found) {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
-            Token token; // initialize the token
+//            Token token; // initialize the token
             if (is_token(current_string)) {
-                Lexer.Grammar t_type = get_token(current_string).token_type;
-                if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
-                    keyword = true;
-                } else if (t_type == Grammar.ID) {
-                    id = true;
+                Lexer.Grammar t_type = get_token(current_string).token_type; // get token type
+                if (t_type == Grammar.ID) {
+                    rule_order[1] = true;
+                } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
+                    rule_order[0] = true;
+                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since they are uniquely registered in our grammar and are not subsets of any other lexemes in our grammar
+                    current_index = last_index;
                 } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP | t_type == Grammar.EOP) {
-                    symbol = true;
+                    rule_order[2] = true;
                     add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
-                    break;
+                    current_index = last_index;
                 } else if (t_type == Grammar.DIGIT) {
-                    digit = true;
+                    rule_order[3] = true;
                     add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
-                    break;
+                    current_index = last_index;
                 } else if (t_type == Grammar.CHAR) {
-                    character = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
+                    rule_order[4] = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
                 }
-                else System.out.println("ERROR: lexeme not recognized as a token");
-                if (keyword){
-                    last_index = current_index;
+                else System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
+                for (int i = 0; i < rule_order.length; i++){
+                    if(rule_order[i]){
+                        int first_element = i;
+                    }
+                }
+                if (id & keyword){
+                    last_index = current_index;// TODO: incorporate line number and character number in add_token() for log
                     add_token(token_stream, get_token(current_string), verbose);
                 }
-                if (keyword){
-                    last_index = current_index;
-                    add_token(token_stream, get_token(current_string), verbose);
-                }
+
 //                switch (current_string) {
 //                    case ("$") -> {
 //                        token = new Token(Grammar.EOP, current_string); // END OF PROGRAM (EOP)
