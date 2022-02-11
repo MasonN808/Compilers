@@ -220,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644541936047</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="-Created an arraylist implentation of rule order">
+      <created>1644543960395</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1644543960395</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -257,6 +264,7 @@
     <MESSAGE value="-Imported test1 txt file for testing the reader&#10;-Reader reads the imported file nicely!&#10;-Now working on the Lexer Class" />
     <MESSAGE value="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation" />
     <MESSAGE value="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global" />
+    <MESSAGE value="-Created an arraylist implentation of rule order" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Created an arraylist implentation of rule order" />
   </component>
 </project>

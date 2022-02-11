@@ -152,44 +152,76 @@ public class Lexer {
         boolean symbol = false;
         boolean digit = false;
         boolean character = false;
-        boolean[] rule_order = {keyword, id, symbol, digit, character}; //initialize rule order
+//        boolean[] rule_order = {keyword, id, symbol, digit, character}; //initialize rule order
 //        boolean[] rule_order2 = {keyword, id, symbol, digit, character};
-//        int first_order = -1;
-//        int second_order = -1;
-        boolean prevT_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
+        int[] rule_order = new int[2];
+        int k = 0;
+//        boolean prevT_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
+        Token prev_token;
+        Token current_token;
+        Lexer.Grammar t_type;
         while (current_index < s.length() & !EOP_found) {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
 //            Token token; // initialize the token
             if (is_token(current_string)) {
-                Lexer.Grammar t_type = get_token(current_string).token_type; // get token type
+                t_type = get_token(current_string).token_type; // get token type
+                current_token = get_token(current_string);
+                if (t_type == Grammar.EOP){
+                    EOP_found = true;
+                }
+                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index > 2){ // the boundary
+                    current_index = last_index; // reset index
+                    current_index += 1;
+                    current_string = ""; // reset string
+                }
+                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index < 2){
+                    current_index = last_index; // reset index
+                    current_index += 1;
+                    break;
+                }
                 if (t_type == Grammar.ID) {
-                    rule_order[1] = true;
+                    rule_order[k] = 1;
+                    k += 1;
                 } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
-                    rule_order[0] = true;
-                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since they are uniquely registered in our grammar and are not subsets of any other lexemes in our grammar
-                    current_index = last_index;
-                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP | t_type == Grammar.EOP) {
-                    rule_order[2] = true;
-                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
-                    current_index = last_index;
+                    rule_order[k] = 0;
+                    k += 1;
+//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since they are uniquely registered in our grammar and are not subsets of any other lexemes in our grammar
+//                    current_index = last_index;
+
+                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP) {
+                    rule_order[k] = 2;
+                    k += 1;
+//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
+//                    current_index = last_index;
+
                 } else if (t_type == Grammar.DIGIT) {
-                    rule_order[3] = true;
-                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
-                    current_index = last_index;
+                    rule_order[k] = 3;
+                    k += 1;
+//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
+//                    current_index = last_index;
+
                 } else if (t_type == Grammar.CHAR) {
-                    rule_order[4] = true;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
+                    rule_order[k] = 4;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
+                    k += 1;
                 }
                 else System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
-                for (int i = 0; i < rule_order.length; i++){
-                    if(rule_order[i]){
-                        int first_element = i;
-                    }
+//                for (int i = 0; i < rule_order.length; i++){
+//                    if(rule_order[i]){
+//                        int first_element = i;
+//                    }
+//                }
+                if (rule_order[0] > rule_order[1]) {
+                    rule_order[0] = rule_order[1];
+                    prev_token = current_token; // replace token pointer
                 }
-                if (id & keyword){
-                    last_index = current_index;// TODO: incorporate line number and character number in add_token() for log
-                    add_token(token_stream, get_token(current_string), verbose);
-                }
+                rule_order[1] = -1;
+
+
+//                if (id & keyword){
+//                    last_index = current_index;// TODO: incorporate line number and character number in add_token() for log
+//                    add_token(token_stream, get_token(current_string), verbose);
+//                }
 
 //                switch (current_string) {
 //                    case ("$") -> {
