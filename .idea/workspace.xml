@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -227,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644543960395</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="- LOTS of edits to rule order implementation">
+      <created>1644545789278</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1644545789278</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +271,7 @@
     <MESSAGE value="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation" />
     <MESSAGE value="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global" />
     <MESSAGE value="-Created an arraylist implentation of rule order" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Created an arraylist implentation of rule order" />
+    <MESSAGE value="- LOTS of edits to rule order implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="- LOTS of edits to rule order implementation" />
   </component>
 </project>

@@ -157,8 +157,8 @@ public class Lexer {
         int[] rule_order = new int[2];
         int k = 0;
 //        boolean prevT_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
-        Token prev_token;
-        Token current_token;
+        Token prev_token = null;
+        Token current_token = null;
         Lexer.Grammar t_type;
         while (current_index < s.length() & !EOP_found) {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
@@ -171,14 +171,29 @@ public class Lexer {
                     EOP_found = true;
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index > 2){ // the boundary
+                    if (prev_token != null){
+                        add_token(token_stream, prev_token, verbose); //TODO: could probably be better
+                    }
+                    else{
+                        add_token(token_stream, current_token, verbose);
+                    }
                     current_index = last_index; // reset index
                     current_index += 1;
                     current_string = ""; // reset string
                 }
-                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index < 2){
-                    current_index = last_index; // reset index
-                    current_index += 1;
-                    break;
+                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index < 2){  // CASE: for when the current character is an = sign and checking if next character is a == operator
+                    // Create temporary variables to check if its an assignment operator or an equality operator
+                    int temp_current_index = current_index;
+                    temp_current_index += 1;
+                    char temp_current_char = s.charAt(temp_current_index);
+                    String temp_current_string = current_string;
+                    temp_current_string += temp_current_char;
+                    if (get_token(temp_current_string).token_type == Grammar.EQUALITY_OP){
+                        add_token(token_stream, get_token(temp_current_string), verbose);
+                        current_index = last_index; // reset index
+                        current_index += 2; // 2 because we temporarily went ahead one index
+                        current_string = ""; // reset string
+                    }
                 }
                 if (t_type == Grammar.ID) {
                     rule_order[k] = 1;
