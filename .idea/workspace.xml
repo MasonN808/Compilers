@@ -233,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644545789278</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="- Added case to check if = operator token is actually a == operator token">
+      <created>1644546908180</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1644546908180</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -272,6 +279,7 @@
     <MESSAGE value="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global" />
     <MESSAGE value="-Created an arraylist implentation of rule order" />
     <MESSAGE value="- LOTS of edits to rule order implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="- LOTS of edits to rule order implementation" />
+    <MESSAGE value="- Added case to check if = operator token is actually a == operator token" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added case to check if = operator token is actually a == operator token" />
   </component>
 </project>

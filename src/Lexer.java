@@ -163,23 +163,12 @@ public class Lexer {
         while (current_index < s.length() & !EOP_found) {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
-//            Token token; // initialize the token
-            if (is_token(current_string)) {
-                t_type = get_token(current_string).token_type; // get token type
-                current_token = get_token(current_string);
+
+            String str_current_char = String.valueOf(current_char);
+            if (is_token(str_current_char)){ // Check if current character is a token
+                t_type = get_token(str_current_char).token_type;
                 if (t_type == Grammar.EOP){
                     EOP_found = true;
-                }
-                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index > 2){ // the boundary
-                    if (prev_token != null){
-                        add_token(token_stream, prev_token, verbose); //TODO: could probably be better
-                    }
-                    else{
-                        add_token(token_stream, current_token, verbose);
-                    }
-                    current_index = last_index; // reset index
-                    current_index += 1;
-                    current_string = ""; // reset string
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index < 2){  // CASE: for when the current character is an = sign and checking if next character is a == operator
                     // Create temporary variables to check if its an assignment operator or an equality operator
@@ -195,6 +184,19 @@ public class Lexer {
                         current_string = ""; // reset string
                     }
                 }
+                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index > 2){  // the boundary
+                    current_index = last_index; // reset index
+                    current_index += 1;
+                    add_token(token_stream, prev_token, verbose);
+                    current_string = ""; // reset string
+                }
+            }
+
+            if (is_token(current_string)) {
+                 // get token type
+                current_token = get_token(current_string);
+                t_type = get_token(current_string).token_type;
+
                 if (t_type == Grammar.ID) {
                     rule_order[k] = 1;
                     k += 1;
