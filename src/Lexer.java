@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.lang.reflect.AnnotatedType;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Lexer {
 
     int current_index = 0; // Initialize index
     int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
+    int current_line = 0;
 
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
@@ -166,33 +168,62 @@ public class Lexer {
         Token current_token = null;
         Lexer.Grammar t_type;
         while (current_index < s.length() & !EOP_found) {
+            System.out.println(current_index);
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
+
+            // case of current_char is line break
+            if (str_current_char.matches("[\\n]")){
+                System.out.println("Found next line:" + current_index);
+                current_index += 1;
+                current_line += 1;
+            }
+
+
             //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
-
-
-
+            if (str_current_char.matches("[ \\t\\n]+") & (prev_token != null | current_token != null)){
+                System.out.println("space, indent, or line break Here :" + current_index);
+                current_index += 1;
+                if (prev_token != null){
+                    add_token(token_stream, prev_token, verbose);
+                }
+                else {
+                    add_token(token_stream, current_token, verbose);
+                }
+                current_token = null;
+                prev_token = null;
+            }
             //check for comments
             if (str_current_char.equals("/")){
+//                System.out.println("DEBUG");
                 int temp_current_index = current_index;
                 temp_current_index += 1;
                 char temp_current_char = s.charAt(temp_current_index);
                 String temp_current_string = current_string;
                 temp_current_string += temp_current_char;
                 if (temp_current_string.equals("/*")){
-                    while(temp_current_index < s.length() - current_index & !String.valueOf(s.charAt(temp_current_index)).equals("*")){ //check for end comment
+                    System.out.println("Found begin comment: [ /* ] at " + current_line + ", " + current_index);
+                    while(temp_current_index < s.length() - current_index & !String.valueOf(s.charAt(temp_current_index + 1)).equals("*")){ //check for end comment
                         temp_current_index += 1;
                     }
-                    if (!String.valueOf(s.charAt(temp_current_index)).equals("*")){
-                        System.out.println("WARNING: unterminated comment");
+                    temp_current_string = "";
+                    temp_current_string += String.valueOf(s.charAt(temp_current_index + 1)) + s.charAt(temp_current_index + 2);
+                    if (temp_current_string.equals("*/")){
+                        current_index += temp_current_index; // go to next character out of comment
+                        System.out.println("Found end comment: [ */ ]  at " + current_line + ", " + current_index);
+//                        String t = String.valueOf(s.charAt(temp_current_index));
+//                        System.out.println(t);
+                    }
+                    else if (String.valueOf(s.charAt(temp_current_index + 1)).equals("*")){
+                        lex_error("*", current_line, temp_current_index);
                     }
                     else{
-                        current_index += temp_current_index + 2; // go to next character out of comment
+                        System.out.println("WARNING: possible unterminated comment");
                     }
                 }
                 else{
-                    //TODO: LEX ERROR
+                    lex_error("/", current_line, current_char); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
                 }
             }
             if (is_token(str_current_char)){ // Check if current character is a token
@@ -365,6 +396,8 @@ public class Lexer {
 //                } // end switch
             } // end if
             current_index += 1;
+//            assert current_token != null;
+//            System.out.println(current_token.s);
         } // end while
         return token_stream;
     } // end get_token_stream
