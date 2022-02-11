@@ -7,16 +7,21 @@ public class Compiler808 {
         String[] words = {};
 
         File inFile = null;
-        if (0 < args.length) {
-            inFile = new File(args[0]);
-        }
+//        if (0 < args.length) {
+//            inFile = new File(args[0]);
+//        }
 
-        assert inFile != null;
+        inFile = new File("src/test1");
+
+
+//        assert inFile != null;
         String content = new Scanner(inFile).useDelimiter("\\Z").next();
         System.out.println(content);
         String smallerized_content = content.replaceAll("\\s+", ""); //remove line breaks, tabs, and spaces
+//        String smallerized_content = content.replaceAll("[\\n\\t ]", "");
         System.out.println(smallerized_content);
-
+        //TODO: get an array of lines of the code and run each line in the lexer CONTINUE HERE 2/11/2022
+        String[] lines = Files.readAllLines(Paths.get(path), encoding);
         Lexer lexer = new Lexer();
         lexer.get_token_stream(content, true, true);
 

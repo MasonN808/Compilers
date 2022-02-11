@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
@@ -249,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644547804263</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="- Added lex error method&#10;- Added code to take care of comments">
+      <created>1644549054472</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1644549054472</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,7 +273,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactoring" />
     <MESSAGE value="Added tokens for the Lexer" />
     <MESSAGE value="Added Token Class for storage later when finding tokens in source code." />
     <MESSAGE value="Added constructor for token class" />
@@ -290,6 +297,7 @@
     <MESSAGE value="- LOTS of edits to rule order implementation" />
     <MESSAGE value="- Added case to check if = operator token is actually a == operator token" />
     <MESSAGE value="- Split the if into two if statements: one to handle the single character being scanned and the string being scanned." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Split the if into two if statements: one to handle the single character being scanned and the string being scanned." />
+    <MESSAGE value="- Added lex error method&#10;- Added code to take care of comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added lex error method&#10;- Added code to take care of comments" />
   </component>
 </project>
