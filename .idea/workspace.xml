@@ -277,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644630394572</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token">
+      <created>1644635369402</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1644635369402</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -293,7 +300,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)" />
     <MESSAGE value="Made a partial first case for token_streamer.  Also changed from array to arraylist since array is a fixed size which may cause problems later on." />
     <MESSAGE value="Added more cases and attempting to implement longest match and rule order" />
     <MESSAGE value="Added current string variable to compare the current string to tokens" />
@@ -318,6 +324,7 @@
     <MESSAGE value="- Added more cases for spaces, tabs, and line breaks&#10;- Added global variable line_number" />
     <MESSAGE value="- Added line number and character for Token class&#10;- Debugging Lexer (Specifically comments for indents, spaces, and line break case and none...) and refactoring" />
     <MESSAGE value="- Still Debugging&#10;- Able to find some symbols" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Still Debugging&#10;- Able to find some symbols" />
+    <MESSAGE value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
   </component>
 </project>

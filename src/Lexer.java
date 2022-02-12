@@ -23,6 +23,7 @@ public class Lexer {
     public static int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
     public static int current_line = 0;
     public Token current_token;
+    public boolean debug = false;
 
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
@@ -172,9 +173,9 @@ public class Lexer {
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
-
-            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
-
+            if(debug) {
+                System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
+            }
             // case of current_char is line break
             if (str_current_char.matches("[\\n]")){
                 System.out.println("Found next line:" + current_index);
@@ -195,8 +196,22 @@ public class Lexer {
                 current_token = null;
                 prev_token = null;
             }
+
+            // use comment delimiter "/" as a boundary
+            if (str_current_char.equals("/") & current_string.length() > 1) {
+                current_index = last_index; // reset index
+                if (prev_token == null){
+                    add_token(token_stream, current_token, verbose);
+                }
+                else{
+                    add_token(token_stream, prev_token, verbose);
+                }
+                current_index += current_token.s.length() - 1;
+                current_string = "";
+            }
+
             //check for comments
-            if (str_current_char.equals("/")){
+            if (str_current_char.equals("/") & current_string.length() == 1){
 //                System.out.println("DEBUG");
                 int temp_current_index = current_index;
                 temp_current_index += 1;
@@ -209,17 +224,25 @@ public class Lexer {
 //                System.out.println(temp_current_string);
                 if (temp_current_string.equals("/*")){
 //                    System.out.println("DEBUG");
-                    System.out.println("Found begin comment: [ /* ] at " + current_line + ", " + current_index);
+                    if(debug) {
+                        System.out.println("Found begin comment: [ /* ] at " + current_line + ", " + current_index);
+                    }
                     while(temp_current_index < s.length() & !String.valueOf(s.charAt(temp_current_index + 1)).equals("*")){ //check for end comment
                         temp_current_index += 1;
-                        System.out.print(s.charAt(temp_current_index)); // DEBUG comment
+                        if(debug){
+                            System.out.print(s.charAt(temp_current_index)); // DEBUG comment
+                        }
                     }
-                    System.out.println();
+                    if(debug) {
+                        System.out.println(); // DEBUG
+                    }
                     temp_current_string = "";
                     temp_current_string += String.valueOf(s.charAt(temp_current_index + 1)) + s.charAt(temp_current_index + 2);
                     if (temp_current_string.equals("*/")){
                         current_index += temp_current_index - current_index + 2; // go to next character out of comment
-                        System.out.println("Found end comment: [ */ ]  at " + current_line + ", " + current_index);
+                        if(debug) {
+                            System.out.println("Found end comment: [ */ ]  at " + current_line + ", " + current_index);
+                        }
                         current_string = "";
 //                        String t = String.valueOf(s.charAt(temp_current_index));
 //                        System.out.println(t);
@@ -233,6 +256,7 @@ public class Lexer {
 //                    temp_current_string = ""; // reset temp_current_string
                 }
                 else{
+                    System.out.println(s.charAt(temp_current_index));
                     lex_error("/", current_line, current_index); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
                 }
             }
