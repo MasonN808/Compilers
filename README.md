@@ -11,6 +11,8 @@
     
 # How to Run Script in Command Prompt
 
+Clone the repo into a directory named "Compilers_Local", then....
+
 Run the following:
 ```
 > cd .....\Compilers_Local\src
