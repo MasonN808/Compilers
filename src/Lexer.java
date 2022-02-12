@@ -41,7 +41,7 @@ public class Lexer {
      */
     public static void add_token(ArrayList<Token> token_stream, Token token, boolean verbose) {
         if (verbose) {
-            System.out.println("Lexer -------> found " + token.token_type + " [ " + token.s + " ] at "
+            System.out.println("Lexer -------> " + token.token_type + " [ " + token.s + " ] at "
                     + token.line_number + ", " + token.character_number);
         }
         token_stream.add(token);
@@ -69,7 +69,7 @@ public class Lexer {
     }
 
     public static void lex_error(String not_lexeme, int line_number, int character_number){
-        System.out.println("Lexer [ERROR] -------> found unidentified token [" + not_lexeme + "] at "
+        System.out.println("Lexer [ERROR] -------> unidentified token [" + not_lexeme + "] at "
                 + line_number + ", " + character_number);
     }
 
@@ -131,6 +131,7 @@ public class Lexer {
                     token = new Token(Grammar.CHAR, current_lexeme, current_line, current_index); // CHAR
                 }
                 else if (current_lexeme.matches("[a-z]")) {
+//                    System.out.println("quote_closed :" + close_quote_found); //DEBUGGING
                     token = new Token(Grammar.ID, current_lexeme, current_line, current_index); // CHAR
                 }
                 else if (current_lexeme.matches("[0-9]")) {
@@ -154,20 +155,11 @@ public class Lexer {
         ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
         String current_string = "";
 
-        // RULE ORDER STARTS HERE
-        // initialize general token booleans
-        boolean keyword = false;
-        boolean id = false;
-        boolean symbol = false;
-        boolean digit = false;
-        boolean character = false;
-//        boolean[] rule_order = {keyword, id, symbol, digit, character}; //initialize rule order
-//        boolean[] rule_order2 = {keyword, id, symbol, digit, character};
         int[] rule_order = new int[2];
         int k = 0;
-//        boolean prevT_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
+
         Token prev_token = null;
-//        Token current_token = null;
+
         Lexer.Grammar t_type;
         while (current_index < s.length() & !EOP_found) {
 //            System.out.println(current_index);
@@ -177,6 +169,14 @@ public class Lexer {
             if(debug) {
                 System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
             }
+            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
+
+            // account for spaces in quotes //TODO: make sure this works in unsmallerized txt file
+            if (str_current_char.equals(" ") & !close_quote_found & s.length() == 1){
+                Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
+                add_token(token_stream, token, verbose);
+            }
+
             // case of current_char is line break
             if (str_current_char.matches("[\\n]")){
                 System.out.println("Found next line:" + current_index);
@@ -198,12 +198,6 @@ public class Lexer {
                 current_token = null;
                 prev_token = null;
                 current_string = "";
-            }
-
-            // account for spaces in quotes //TODO: make sure this works in unsmallerized txt file
-            if (str_current_char.equals(" ") & !close_quote_found & s.length() == 1){
-                Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
-                add_token(token_stream, token, verbose);
             }
 
             // use comment delimiter "/" as a boundary
@@ -321,12 +315,28 @@ public class Lexer {
                         current_string = "";
                     }
                 }
-                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() == 1){
-//                    if (t_type == Grammar.QUOTE){
-//                        close_quote_found = !close_quote_found;
-//                    }
+
+//                 Does not register the current string is not of these types
+                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
+                    if (t_type == Grammar.QUOTE) {
+                        close_quote_found = !close_quote_found;
+                        System.out.println("------------------------");
+                    }
                     current_token = get_token(str_current_char);
                     add_token(token_stream, current_token, verbose);
+                    current_string = "";
+                }
+
+                // make these symbols boundaries for longest match algo
+                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() > 1){
+                    current_index = last_index; // reset index
+                    if (prev_token == null){
+                        add_token(token_stream, current_token, verbose);
+                    }
+                    else{
+                        add_token(token_stream, prev_token, verbose);
+                    }
+                    current_index += current_token.s.length() - 1;
                     current_string = "";
                 }
             }
@@ -359,7 +369,6 @@ public class Lexer {
 //                    current_index = last_index;
 
                 } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP) {
-//                    System.out.println("BDFLKJSDLKFJLKSDFJLKSDJF");
                     rule_order[k] = 2;
 //                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
 //                    current_index = last_index;
@@ -372,6 +381,8 @@ public class Lexer {
 //                    current_index = last_index;
 
                 } else if (t_type == Grammar.CHAR) {
+                    add_token(token_stream, current_token, verbose);
+                    current_string = "";
                     rule_order[k] = 4;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
                 }
                 else System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
