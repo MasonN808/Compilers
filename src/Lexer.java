@@ -314,6 +314,9 @@ public class Lexer {
                     }
                 }
                 if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() == 1){
+                    if (t_type == Grammar.QUOTE){
+                        close_quote_found = !close_quote_found; // Allows for characters in quotes to not be ID tokens & checks for spaces
+                    }
                     current_token = get_token(str_current_char);
                     add_token(token_stream, current_token, verbose);
                     current_string = "";
@@ -341,31 +344,13 @@ public class Lexer {
 
                 if (t_type == Grammar.ID) {
                     last_index = current_index; // set pointer to ID since ID might be keyword
-                    rule_order[k] = 1;
-                    k += 1;
-                } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
-                    rule_order[k] = 0;
-                    k += 1;
-//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since they are uniquely registered in our grammar and are not subsets of any other lexemes in our grammar
-//                    current_index = last_index;
-
-                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP) {
-                    rule_order[k] = 2;
-                    k += 1;
-//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
-//                    current_index = last_index;
 
                 } else if (t_type == Grammar.DIGIT) {
                     add_token(token_stream, current_token, verbose);
                     current_string = "";
-                    rule_order[k] = 3;
-                    k += 1;
-//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
-//                    current_index = last_index;
 
                 } else if (t_type == Grammar.CHAR) {
-                    rule_order[k] = 4;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
-                    k += 1;
+
                 }
                 else System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
 //                for (int i = 0; i < rule_order.length; i++){
