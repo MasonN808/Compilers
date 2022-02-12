@@ -23,7 +23,7 @@ public class Lexer {
     public static int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
     public static int current_line = 0;
     public Token current_token;
-    public boolean debug = false;
+    public boolean debug = false; // For debugging
 
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
@@ -170,6 +170,7 @@ public class Lexer {
 //        Token current_token = null;
         Lexer.Grammar t_type;
         while (current_index < s.length() & !EOP_found) {
+//            System.out.println(current_index);
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
@@ -256,7 +257,6 @@ public class Lexer {
 //                    temp_current_string = ""; // reset temp_current_string
                 }
                 else{
-                    System.out.println(s.charAt(temp_current_index));
                     lex_error("/", current_line, current_index); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
                 }
             }
@@ -266,7 +266,19 @@ public class Lexer {
 //                System.out.println("Found Token" + "[ " + get_token(str_current_char).s + " ] at: " + current_line + ", " + current_index); // DEBUGGING
                 t_type = get_token(str_current_char).token_type;
                 if (t_type == Grammar.EOP & current_string.length() == 1){
+                    add_token(token_stream, get_token(str_current_char), verbose);
                     EOP_found = true; // exit while loop
+                }
+                if (t_type == Grammar.EOP & current_string.length() > 1){
+                    current_index = last_index; // reset index
+                    if (prev_token == null){
+                        add_token(token_stream, current_token, verbose);
+                    }
+                    else{
+                        add_token(token_stream, prev_token, verbose);
+                    }
+                    current_index += current_token.s.length() - 1;
+                    current_string = "";
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() == 1){  // CASE: for when the current character is an = sign and checking if next character is a == operator
                     // Create temporary variables to check if its an assignment operator or an equality operator
@@ -280,12 +292,8 @@ public class Lexer {
                     if (is_token(temp_current_string)){ // make sure not null
                         if (get_token(temp_current_string).token_type == Grammar.EQUALITY_OP){
                             add_token(token_stream, get_token(temp_current_string), verbose);
-//                        current_index = last_index; // reset index
                             current_index += 1; // 1 because we temporarily went ahead one index
                             current_string = "";
-//                        prev_token = null; // just in case
-//                        current_token = null; // just in case
-//                        current_string = ""; // reset string
                         }
                     }else{// assumed that it is not inequality, thus we add = Token
                         add_token(token_stream, get_token(current_string), verbose);
@@ -294,7 +302,6 @@ public class Lexer {
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() > 1){  // the boundary
                     current_index = last_index; // reset index
-//                    current_index += 1;
                     if (prev_token == null){
                         add_token(token_stream, current_token, verbose);
                         current_index += current_token.s.length() - 1;
@@ -305,9 +312,6 @@ public class Lexer {
                         current_index += current_token.s.length() - 1; // do this to account for length of token for updated index
                         current_string = "";
                     }
-//                    prev_token = null; // just in case
-//                    current_token = null; // just in case
-//                    current_string = ""; // reset string
                 }
                 if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() == 1){
                     current_token = get_token(str_current_char);
