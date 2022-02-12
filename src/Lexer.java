@@ -182,6 +182,7 @@ public class Lexer {
                 System.out.println("Found next line:" + current_index);
                 current_index += 1;
                 current_line += 1;
+                current_string = "";
             }
 
             //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
@@ -196,6 +197,13 @@ public class Lexer {
                 }
                 current_token = null;
                 prev_token = null;
+                current_string = "";
+            }
+
+            // account for spaces in quotes //TODO: make sure this works in unsmallerized txt file
+            if (str_current_char.equals(" ") & !close_quote_found & s.length() == 1){
+                Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
+                add_token(token_stream, token, verbose);
             }
 
             // use comment delimiter "/" as a boundary
@@ -314,9 +322,9 @@ public class Lexer {
                     }
                 }
                 if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() == 1){
-                    if (t_type == Grammar.QUOTE){
-                        close_quote_found = !close_quote_found; // Allows for characters in quotes to not be ID tokens & checks for spaces
-                    }
+//                    if (t_type == Grammar.QUOTE){
+//                        close_quote_found = !close_quote_found;
+//                    }
                     current_token = get_token(str_current_char);
                     add_token(token_stream, current_token, verbose);
                     current_string = "";
@@ -344,13 +352,27 @@ public class Lexer {
 
                 if (t_type == Grammar.ID) {
                     last_index = current_index; // set pointer to ID since ID might be keyword
+                    rule_order[k] = 1;
+                } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
+                    rule_order[k] = 0;
+//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since they are uniquely registered in our grammar and are not subsets of any other lexemes in our grammar
+//                    current_index = last_index;
+
+                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP) {
+//                    System.out.println("BDFLKJSDLKFJLKSDFJLKSDJF");
+                    rule_order[k] = 2;
+//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are uniquely registered in our grammar
+//                    current_index = last_index;
 
                 } else if (t_type == Grammar.DIGIT) {
                     add_token(token_stream, current_token, verbose);
                     current_string = "";
+                    rule_order[k] = 3;
+//                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
+//                    current_index = last_index;
 
                 } else if (t_type == Grammar.CHAR) {
-
+                    rule_order[k] = 4;// TODO: make sure character is registered instead of ID. That is, characters are in quotes.
                 }
                 else System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
 //                for (int i = 0; i < rule_order.length; i++){
