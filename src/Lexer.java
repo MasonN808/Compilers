@@ -22,6 +22,7 @@ public class Lexer {
     public static int current_index = 0; // Initialize index
     public static int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
     public static int current_line = 0;
+    public Token current_token;
 
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
@@ -39,7 +40,7 @@ public class Lexer {
      */
     public static void add_token(ArrayList<Token> token_stream, Token token, boolean verbose) {
         if (verbose) {
-            System.out.println("Lexer -------> found " + token.token_type + " [" + token.s + "] at "
+            System.out.println("Lexer -------> found " + token.token_type + " [ " + token.s + " ] at "
                     + token.line_number + ", " + token.character_number);
         }
         token_stream.add(token);
@@ -165,13 +166,14 @@ public class Lexer {
         int k = 0;
 //        boolean prevT_geq_cur = true; // boolean to see if previous token is greater than the current token based on rule order
         Token prev_token = null;
-        Token current_token = null;
+//        Token current_token = null;
         Lexer.Grammar t_type;
         while (current_index < s.length() & !EOP_found) {
-            System.out.println(current_index);
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
+
+            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
 
             // case of current_char is line break
             if (str_current_char.matches("[\\n]")){
@@ -179,7 +181,6 @@ public class Lexer {
                 current_index += 1;
                 current_line += 1;
             }
-
 
             //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
             if (str_current_char.matches("[ \\t\\n]+") & (prev_token != null | current_token != null)){
@@ -200,12 +201,12 @@ public class Lexer {
                 int temp_current_index = current_index;
                 temp_current_index += 1;
                 char temp_current_char = s.charAt(temp_current_index);
-                System.out.println("current_string " + current_string);
-                System.out.println("temp_current_char " + temp_current_char);
+//                System.out.println("current_string " + current_string);
+//                System.out.println("temp_current_char " + temp_current_char);
 
                 String temp_current_string = current_string;
                 temp_current_string += temp_current_char;
-                System.out.println(temp_current_string);
+//                System.out.println(temp_current_string);
                 if (temp_current_string.equals("/*")){
 //                    System.out.println("DEBUG");
                     System.out.println("Found begin comment: [ /* ] at " + current_line + ", " + current_index);
@@ -233,6 +234,8 @@ public class Lexer {
                     lex_error("/", current_line, current_index); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
                 }
             }
+
+            // check if current_char is symbol
             if (is_token(str_current_char)){ // Check if current character is a token
                 System.out.println("Found Token" + "[ " + get_token(str_current_char).s + " ] at: " + current_line + ", " + current_index);
                 t_type = get_token(str_current_char).token_type;
@@ -268,11 +271,11 @@ public class Lexer {
 //                    current_token = null; // just in case
 //                    current_string = ""; // reset string
                 }
-//                if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH ){
-//                    current_token = get_token(str_current_char);
-//                    add_token(token_stream, current_token, verbose);
-////                    current_index += 1;
-//                }
+                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH) & current_string.length() == 1){
+                    current_token = get_token(str_current_char);
+                    add_token(token_stream, current_token, verbose);
+                    current_string = "";
+                }
             }
 
 
