@@ -270,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644629448511</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="- Still Debugging&#10;- Able to find some symbols">
+      <created>1644630394572</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1644630394572</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -286,7 +293,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added constructor for token class" />
     <MESSAGE value="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)" />
     <MESSAGE value="Made a partial first case for token_streamer.  Also changed from array to arraylist since array is a fixed size which may cause problems later on." />
     <MESSAGE value="Added more cases and attempting to implement longest match and rule order" />
@@ -311,6 +317,7 @@
     <MESSAGE value="- Added lex error method&#10;- Added code to take care of comments" />
     <MESSAGE value="- Added more cases for spaces, tabs, and line breaks&#10;- Added global variable line_number" />
     <MESSAGE value="- Added line number and character for Token class&#10;- Debugging Lexer (Specifically comments for indents, spaces, and line break case and none...) and refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added line number and character for Token class&#10;- Debugging Lexer (Specifically comments for indents, spaces, and line break case and none...) and refactoring" />
+    <MESSAGE value="- Still Debugging&#10;- Able to find some symbols" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Still Debugging&#10;- Able to find some symbols" />
   </component>
 </project>

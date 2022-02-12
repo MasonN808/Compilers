@@ -210,13 +210,15 @@ public class Lexer {
                 if (temp_current_string.equals("/*")){
 //                    System.out.println("DEBUG");
                     System.out.println("Found begin comment: [ /* ] at " + current_line + ", " + current_index);
-                    while(temp_current_index < s.length() - current_index & !String.valueOf(s.charAt(temp_current_index + 1)).equals("*")){ //check for end comment
+                    while(temp_current_index < s.length() & !String.valueOf(s.charAt(temp_current_index + 1)).equals("*")){ //check for end comment
                         temp_current_index += 1;
+                        System.out.print(s.charAt(temp_current_index)); // DEBUG comment
                     }
+                    System.out.println();
                     temp_current_string = "";
                     temp_current_string += String.valueOf(s.charAt(temp_current_index + 1)) + s.charAt(temp_current_index + 2);
                     if (temp_current_string.equals("*/")){
-                        current_index += temp_current_index + 2; // go to next character out of comment
+                        current_index += temp_current_index - current_index + 2; // go to next character out of comment
                         System.out.println("Found end comment: [ */ ]  at " + current_line + ", " + current_index);
                         current_string = "";
 //                        String t = String.valueOf(s.charAt(temp_current_index));
@@ -237,47 +239,72 @@ public class Lexer {
 
             // check if current_char is symbol
             if (is_token(str_current_char)){ // Check if current character is a token
-                System.out.println("Found Token" + "[ " + get_token(str_current_char).s + " ] at: " + current_line + ", " + current_index);
+//                System.out.println("Found Token" + "[ " + get_token(str_current_char).s + " ] at: " + current_line + ", " + current_index); // DEBUGGING
                 t_type = get_token(str_current_char).token_type;
-                if (t_type == Grammar.EOP){
+                if (t_type == Grammar.EOP & current_string.length() == 1){
                     EOP_found = true; // exit while loop
                 }
-                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index < 2){  // CASE: for when the current character is an = sign and checking if next character is a == operator
+                if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() == 1){  // CASE: for when the current character is an = sign and checking if next character is a == operator
                     // Create temporary variables to check if its an assignment operator or an equality operator
-                    int temp_current_index = current_index;
+                    int temp_current_index = current_index; //TODO: make this a method to smallerize code
                     temp_current_index += 1;
                     char temp_current_char = s.charAt(temp_current_index);
+//                    System.out.println(temp_current_char); //DEBUG
                     String temp_current_string = current_string;
                     temp_current_string += temp_current_char;
-                    if (get_token(temp_current_string).token_type == Grammar.EQUALITY_OP){
-                        add_token(token_stream, get_token(temp_current_string), verbose);
-                        current_index = last_index; // reset index
-                        current_index += 2; // 2 because we temporarily went ahead one index
+//                    System.out.println(temp_current_string); //DEBUG
+                    if (is_token(temp_current_string)){ // make sure not null
+                        if (get_token(temp_current_string).token_type == Grammar.EQUALITY_OP){
+                            add_token(token_stream, get_token(temp_current_string), verbose);
+//                        current_index = last_index; // reset index
+                            current_index += 1; // 1 because we temporarily went ahead one index
+                            current_string = "";
 //                        prev_token = null; // just in case
 //                        current_token = null; // just in case
 //                        current_string = ""; // reset string
+                        }
+                    }else{// assumed that it is not inequality, thus we add = Token
+                        add_token(token_stream, get_token(current_string), verbose);
+                        current_string = "";
                     }
                 }
-                if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index > 2){  // the boundary
+                if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() > 1){  // the boundary
                     current_index = last_index; // reset index
-                    current_index += 1;
+//                    current_index += 1;
                     if (prev_token == null){
                         add_token(token_stream, current_token, verbose);
+                        current_index += current_token.s.length() - 1;
+                        current_string = "";
                     }
                     else{
                         add_token(token_stream, prev_token, verbose);
+                        current_index += current_token.s.length() - 1; // do this to account for length of token for updated index
+                        current_string = "";
                     }
 //                    prev_token = null; // just in case
 //                    current_token = null; // just in case
 //                    current_string = ""; // reset string
                 }
-                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH) & current_string.length() == 1){
+                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() == 1){
                     current_token = get_token(str_current_char);
                     add_token(token_stream, current_token, verbose);
                     current_string = "";
                 }
             }
 
+            // Check for inequality operator of current string
+            if(current_string.equals("!")){
+                int temp_current_index = current_index;
+                temp_current_index += 1;
+                char temp_current_char = s.charAt(temp_current_index);
+                String temp_current_string = current_string;
+                temp_current_string += temp_current_char;
+                if (get_token(temp_current_string).token_type == Grammar.INEQUALITY_OP){
+                    add_token(token_stream, get_token(temp_current_string), verbose);
+                    current_index += 1; // 1 because we temporarily went ahead one index
+                    current_string = "";
+                }
+            }
 
             if (is_token(current_string)) {
                  // get token type
@@ -285,6 +312,7 @@ public class Lexer {
                 t_type = get_token(current_string).token_type;
 
                 if (t_type == Grammar.ID) {
+                    last_index = current_index; // set pointer to ID since ID might be keyword
                     rule_order[k] = 1;
                     k += 1;
                 } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL) {
@@ -300,6 +328,8 @@ public class Lexer {
 //                    current_index = last_index;
 
                 } else if (t_type == Grammar.DIGIT) {
+                    add_token(token_stream, current_token, verbose);
+                    current_string = "";
                     rule_order[k] = 3;
                     k += 1;
 //                    add_token(token_stream, get_token(current_string), verbose); // we can add the token since there are no digits in other tokens registered in our grammar
@@ -321,6 +351,7 @@ public class Lexer {
                 }
                 rule_order[1] = -1;
             } // end if
+            k = 0;
             current_index += 1;
 //            assert current_token != null;
 //            System.out.println(current_token.s);
