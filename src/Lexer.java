@@ -19,9 +19,9 @@ public class Lexer {
     public static boolean L_parenth_found = false; // to check if left parenthesis is found
     public static boolean R_parenth_found = false; // to check if right parenthesis is found
 
-    int current_index = 0; // Initialize index
-    int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
-    int current_line = 0;
+    public static int current_index = 0; // Initialize index
+    public static int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
+    public static int current_line = 0;
 
     // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
     public static enum Grammar {
@@ -80,61 +80,61 @@ public class Lexer {
         Token token = null; // initialize the token
         switch (current_lexeme) {
             case ("$") -> {
-                token = new Token(Grammar.EOP, current_lexeme); // END OF PROGRAM (EOP)
+                token = new Token(Grammar.EOP, current_lexeme, current_line, current_index); // END OF PROGRAM (EOP)
             }
             case ("{") -> {
-                token = new Token(Grammar.L_BRACE, current_lexeme); // BRACES
+                token = new Token(Grammar.L_BRACE, current_lexeme, current_line, current_index); // BRACES
             }
             case ("}") -> {
-                token = new Token(Grammar.R_BRACE, current_lexeme);
+                token = new Token(Grammar.R_BRACE, current_lexeme, current_line, current_index);
             }
             case ("\"") -> {
-                token = new Token(Grammar.QUOTE, current_lexeme); // QUOTE
+                token = new Token(Grammar.QUOTE, current_lexeme, current_line, current_index); // QUOTE
             }
             case ("+") -> {
-                token = new Token(Grammar.ADDITION_OP, current_lexeme); // OPERATORS
+                token = new Token(Grammar.ADDITION_OP, current_lexeme, current_line, current_index); // OPERATORS
             }
             case ("=") -> {
-                token = new Token(Grammar.ASSIGNMENT_OP, current_lexeme);
+                token = new Token(Grammar.ASSIGNMENT_OP, current_lexeme, current_line, current_index);
             }
             case ("==") -> {
-                token = new Token(Grammar.EQUALITY_OP, current_lexeme);
+                token = new Token(Grammar.EQUALITY_OP, current_lexeme, current_line, current_index);
             }
             case ("!=") -> {
-                token = new Token(Grammar.INEQUALITY_OP, current_lexeme);
+                token = new Token(Grammar.INEQUALITY_OP, current_lexeme, current_line, current_index);
             }
             case ("(") -> {
-                token = new Token(Grammar.L_PARENTH, current_lexeme); // PARENTHESIS
+                token = new Token(Grammar.L_PARENTH, current_lexeme, current_line, current_index); // PARENTHESIS
             }
             case (")") -> {
-                token = new Token(Grammar.R_PARENTH, current_lexeme);
+                token = new Token(Grammar.R_PARENTH, current_lexeme, current_line, current_index);
             }
             case ("false"), ("true") -> {
-                token = new Token(Grammar.BOOL, current_lexeme); // BOOL
+                token = new Token(Grammar.BOOL, current_lexeme, current_line, current_index); // BOOL
             }
             case ("if") -> {
-                token = new Token(Grammar.IF, current_lexeme); // IF
+                token = new Token(Grammar.IF, current_lexeme, current_line, current_index); // IF
             }
             case ("while") -> {
-                token = new Token(Grammar.WHILE, current_lexeme); // WHILE
+                token = new Token(Grammar.WHILE, current_lexeme, current_line, current_index); // WHILE
             }
             case ("print") -> {
-                token = new Token(Grammar.PRINT, current_lexeme); // PRINT
+                token = new Token(Grammar.PRINT, current_lexeme, current_line, current_index); // PRINT
             }
             case ("int"), ("string"), ("boolean") -> {
-                token = new Token(Grammar.VARIABLE_TYPE, current_lexeme); // VARIABLE TYPES
+                token = new Token(Grammar.VARIABLE_TYPE, current_lexeme, current_line, current_index); // VARIABLE TYPES
             }
             default -> { //since you can't use regex in switch{}, we put the many cases in default
                 if (current_lexeme.matches("[a-z]") & !close_quote_found) { // It is a CHAR if in quotes, else ID
-                    token = new Token(Grammar.CHAR, current_lexeme); // CHAR
+                    token = new Token(Grammar.CHAR, current_lexeme, current_line, current_index); // CHAR
                 }
-                if (current_lexeme.matches("[a-z]")) {
-                    token = new Token(Grammar.ID, current_lexeme); // CHAR
+                else if (current_lexeme.matches("[a-z]")) {
+                    token = new Token(Grammar.ID, current_lexeme, current_line, current_index); // CHAR
                 }
-                if (current_lexeme.matches("[0-9]")) {
-                    token = new Token(Grammar.DIGIT, current_lexeme); // CHAR
+                else if (current_lexeme.matches("[0-9]")) {
+                    token = new Token(Grammar.DIGIT, current_lexeme, current_line, current_index); // CHAR
                 } else {
-                    System.out.println("ERROR: NO TOKEN FOUND FOR"); //TODO: make this better if verbose==true
+                    System.out.println("ERROR: NO TOKEN FOUND FOR " + current_line + ", " + current_index); //TODO: make this better if verbose==true
                 }
             }
         } // end switch
@@ -183,7 +183,7 @@ public class Lexer {
 
             //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
             if (str_current_char.matches("[ \\t\\n]+") & (prev_token != null | current_token != null)){
-                System.out.println("space, indent, or line break Here :" + current_index);
+                System.out.println("space, indent, or line break Here :"  + current_line + ", " + current_index);
                 current_index += 1;
                 if (prev_token != null){
                     add_token(token_stream, prev_token, verbose);
@@ -200,9 +200,14 @@ public class Lexer {
                 int temp_current_index = current_index;
                 temp_current_index += 1;
                 char temp_current_char = s.charAt(temp_current_index);
+                System.out.println("current_string " + current_string);
+                System.out.println("temp_current_char " + temp_current_char);
+
                 String temp_current_string = current_string;
                 temp_current_string += temp_current_char;
+                System.out.println(temp_current_string);
                 if (temp_current_string.equals("/*")){
+//                    System.out.println("DEBUG");
                     System.out.println("Found begin comment: [ /* ] at " + current_line + ", " + current_index);
                     while(temp_current_index < s.length() - current_index & !String.valueOf(s.charAt(temp_current_index + 1)).equals("*")){ //check for end comment
                         temp_current_index += 1;
@@ -210,8 +215,9 @@ public class Lexer {
                     temp_current_string = "";
                     temp_current_string += String.valueOf(s.charAt(temp_current_index + 1)) + s.charAt(temp_current_index + 2);
                     if (temp_current_string.equals("*/")){
-                        current_index += temp_current_index; // go to next character out of comment
+                        current_index += temp_current_index + 2; // go to next character out of comment
                         System.out.println("Found end comment: [ */ ]  at " + current_line + ", " + current_index);
+                        current_string = "";
 //                        String t = String.valueOf(s.charAt(temp_current_index));
 //                        System.out.println(t);
                     }
@@ -221,15 +227,17 @@ public class Lexer {
                     else{
                         System.out.println("WARNING: possible unterminated comment");
                     }
+//                    temp_current_string = ""; // reset temp_current_string
                 }
                 else{
-                    lex_error("/", current_line, current_char); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
+                    lex_error("/", current_line, current_index); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
                 }
             }
             if (is_token(str_current_char)){ // Check if current character is a token
+                System.out.println("Found Token" + "[ " + get_token(str_current_char).s + " ] at: " + current_line + ", " + current_index);
                 t_type = get_token(str_current_char).token_type;
                 if (t_type == Grammar.EOP){
-                    EOP_found = true;
+                    EOP_found = true; // exit while loop
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index < 2){  // CASE: for when the current character is an = sign and checking if next character is a == operator
                     // Create temporary variables to check if its an assignment operator or an equality operator
@@ -242,9 +250,9 @@ public class Lexer {
                         add_token(token_stream, get_token(temp_current_string), verbose);
                         current_index = last_index; // reset index
                         current_index += 2; // 2 because we temporarily went ahead one index
-                        prev_token = null; // just in case
-                        current_token = null; // just in case
-                        current_string = ""; // reset string
+//                        prev_token = null; // just in case
+//                        current_token = null; // just in case
+//                        current_string = ""; // reset string
                     }
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & last_index-current_index > 2){  // the boundary
@@ -256,10 +264,15 @@ public class Lexer {
                     else{
                         add_token(token_stream, prev_token, verbose);
                     }
-                    prev_token = null; // just in case
-                    current_token = null; // just in case
-                    current_string = ""; // reset string
+//                    prev_token = null; // just in case
+//                    current_token = null; // just in case
+//                    current_string = ""; // reset string
                 }
+//                if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH ){
+//                    current_token = get_token(str_current_char);
+//                    add_token(token_stream, current_token, verbose);
+////                    current_index += 1;
+//                }
             }
 
 
@@ -304,96 +317,6 @@ public class Lexer {
                     prev_token = current_token; // replace token pointer
                 }
                 rule_order[1] = -1;
-
-
-//                if (id & keyword){
-//                    last_index = current_index;// TODO: incorporate line number and character number in add_token() for log
-//                    add_token(token_stream, get_token(current_string), verbose);
-//                }
-
-//                switch (current_string) {
-//                    case ("$") -> {
-//                        token = new Token(Grammar.EOP, current_string); // END OF PROGRAM (EOP)
-//                        add_token(token_stream, token, verbose); //Add token to the token stream
-//                        EOP_found = true;  // Found EOP so exit while
-//                    }
-//                    case ("{") -> {
-//                        token = new Token(Grammar.L_BRACE, current_string); // BRACES
-//                        add_token(token_stream, token, verbose);
-//                        last_index = current_index;
-//                    }
-//                    case ("}") -> {
-//                        token = new Token(Grammar.R_BRACE, current_string);
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("\"") -> {
-//                        token = new Token(Grammar.QUOTE, current_string); // QUOTE
-//                        add_token(token_stream, token, verbose);
-//                        close_quote_found = !close_quote_found;  // set close_quote_found to false
-//                    }
-//                    case ("+") -> {
-//                        token = new Token(Grammar.ADDITION_OP, current_string); // OPERATORS
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("=") -> {
-//                        token = new Token(Grammar.ASSIGNMENT_OP, current_string);
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("==") -> {
-//                        token = new Token(Grammar.EQUALITY_OP, current_string);
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("!=") -> {
-//                        token = new Token(Grammar.INEQUALITY_OP, current_string);
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("(") -> {
-//                        token = new Token(Grammar.L_PARENTH, current_string); // PARENTHESIS
-//                        L_parenth_found = true;
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case (")") -> {
-//                        token = new Token(Grammar.R_PARENTH, current_string);
-//                        R_parenth_found = true;
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("false"), ("true") -> {
-//                        token = new Token(Grammar.BOOL, current_string); // BOOL
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("if") -> {
-//                        token = new Token(Grammar.IF, current_string); // IF
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("while") -> {
-//                        token = new Token(Grammar.WHILE, current_string); // WHILE
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("print") -> {
-//                        token = new Token(Grammar.PRINT, current_string); // PRINT
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    case ("int"), ("string"), ("boolean") -> {
-//                        token = new Token(Grammar.VARIABLE_TYPE, current_string); // VARIABLE TYPES
-//                        add_token(token_stream, token, verbose);
-//                    }
-//                    default -> { //since you can't use regex in switch{}, we put the many cases in default
-//                        if (current_string.matches("[a-z]") & !close_quote_found) { // It is a CHAR if in quotes, else ID
-//                            token = new Token(Grammar.CHAR, current_string); // CHAR
-//                            add_token(token_stream, token, verbose);
-//                        }
-//                        if (current_string.matches("[a-z]")) {
-//                            token = new Token(Grammar.ID, current_string); // CHAR
-//                            add_token(token_stream, token, verbose);
-//                        }
-//                        if (current_string.matches("[0-9]")) {
-//                            token = new Token(Grammar.DIGIT, current_string); // CHAR
-//                            add_token(token_stream, token, verbose);
-//                        } else {
-//                            System.out.println("ERROR: NO TOKEN FOUND FOR"); //TODO: make this better if verbose==true
-//                        }
-//                    }
-//                } // end switch
             } // end if
             current_index += 1;
 //            assert current_token != null;

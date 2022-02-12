@@ -25,7 +25,10 @@ public class Compiler808 {
         //TODO: get an array of lines of the code and run each line in the lexer CONTINUE HERE 2/11/2022
 //        String[] lines = Files.readAllLines(Paths.get(path), encoding);
         Lexer lexer = new Lexer();
-        lexer.get_token_stream(content, true, true);
+//        System.out.println(Lexer.is_token("{"));
+        lexer.get_token_stream(smallerized_content, true, true);
+//        lexer.get_token_stream(content, true, true);
+
 
 
     }
