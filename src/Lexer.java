@@ -371,6 +371,23 @@ public class Lexer {
                         }
 
                     }
+
+                    if (t_type == Grammar.L_PARENTH){
+                        num_extra_parenth_found += 1;
+//                        L_brace_found = true;
+                    }
+                    else if (t_type == Grammar.R_PARENTH){
+                        num_extra_parenth_found -= 1;
+//                        if (!L_brace_found){
+//                            System.out.println("Lexer [WARNING]: -------> Missing L_BRACE with R_BRACE at " + current_line + ", " + printed_current_index);
+//                        }
+                        // case b
+                        if (num_extra_parenth_found < 0){
+                            System.out.println("Lexer [WARNING]: -------> Missing L_PARENTH with R_PARENTH at " + current_line + ", " + printed_current_index);
+                        }
+
+                    }
+
                     current_token = get_token(str_current_char);
                     add_token(token_stream, current_token, verbose);
                     printed_current_index += 1;
@@ -463,6 +480,10 @@ public class Lexer {
                 // print errors
                 if (num_extra_brace_found > 0){
                     System.out.println("Lexer [WARNING]: -------> Missing R_BRACE");
+                }
+
+                if (num_extra_parenth_found > 0){
+                    System.out.println("Lexer [WARNING]: -------> Missing R_PARENTH");
                 }
 
                 if (num_errors > 1){
