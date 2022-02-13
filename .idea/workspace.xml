@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data">
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -312,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644639985148</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data">
+      <created>1644709044868</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1644709044868</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,7 +336,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added documentation comments&#10;-Initialized is_token to transfer the implementation of our grammar there instead of get_token_stream.  This will allow us to implement longest match and rule order in get_token_stream instead." />
     <MESSAGE value="-Finished is_token" />
     <MESSAGE value="-Moved many boolean variables out of block&#10;-Added some documentation for the methods&#10;-Embedded the switch{} in get_token_stream with an if statement for is_token&#10;-Currently working on longest match and rule order" />
     <MESSAGE value="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error" />
@@ -353,6 +360,7 @@
     <MESSAGE value="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo.&#10;- Some deletion of comments" />
     <MESSAGE value="- Deleted a lot of unnecessary code" />
     <MESSAGE value="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data" />
-    <option name="LAST_COMMIT_MESSAGE" value="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data" />
+    <MESSAGE value="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data" />
+    <option name="LAST_COMMIT_MESSAGE" value="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data" />
   </component>
 </project>

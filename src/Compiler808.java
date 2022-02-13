@@ -21,7 +21,7 @@ public class Compiler808 {
         System.out.println(content);
         String smallerized_content = content.replaceAll("\\s+", ""); //remove line breaks, tabs, and spaces
 //        String smallerized_content = content.replaceAll("[\\n\\t ]", "");
-        System.out.println(smallerized_content); //TODO: move this to lexer to keep track of line number
+//        System.out.println(smallerized_content); //TODO: move this to lexer to keep track of line number
         //TODO: get an array of lines of the code and run each line in the lexer CONTINUE HERE 2/11/2022
 //        String[] lines = Files.readAllLines(Paths.get(path), encoding);
         Lexer lexer = new Lexer();
