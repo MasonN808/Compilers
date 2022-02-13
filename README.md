@@ -11,7 +11,7 @@
     
 # How to Run Script in Command Prompt
 
-Clone the repo into a directory named "Compilers_Local", then....
+Clone the repo into a directory named "Compilers_Local" and insert your test case/source code as a .txt file in the subdirectory \Compilers_Local\src, then....
 
 Run the following:
 ```
