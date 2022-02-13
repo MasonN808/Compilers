@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test1" beforeDir="false" afterPath="$PROJECT_DIR$/src/test1" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644773488093</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="- Accounted for cases regarding L_PARENTH and R_PARENTH">
+      <created>1644773680786</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1644773680786</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -390,7 +399,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation" />
     <MESSAGE value="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global" />
     <MESSAGE value="-Created an arraylist implentation of rule order" />
     <MESSAGE value="- LOTS of edits to rule order implementation" />
@@ -415,7 +423,8 @@
     <MESSAGE value="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts" />
     <MESSAGE value="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next" />
     <MESSAGE value="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis" />
+    <MESSAGE value="- Accounted for cases regarding L_PARENTH and R_PARENTH" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Accounted for cases regarding L_PARENTH and R_PARENTH" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

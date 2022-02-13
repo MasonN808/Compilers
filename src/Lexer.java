@@ -14,11 +14,13 @@ public class Lexer {
     public static boolean close_quote_found = true; // to check if closed quote is found
     public static int num_extra_parenth_found = 0;
     public static int num_extra_brace_found = 0;
+    public static int num_extra_comment_found = 0;
 
     public boolean L_brace_found = false;
     public boolean L_parenth_found = false;
 
     public static int num_errors = 0;
+    public static int num_warnings = 0;
     public static int program_num = 0;
 
     public static int current_index = 0; // Initialize index
@@ -248,6 +250,7 @@ public class Lexer {
                 temp_current_string += temp_current_char;
 //                System.out.println(temp_current_string);
                 if (temp_current_string.equals("/*")){
+                    num_extra_comment_found += 1;
 //                    System.out.println("DEBUG");
                     if(debug) {
                         System.out.println("Found begin comment: [ /* ] at " + current_line + ", " + current_index);
@@ -264,25 +267,23 @@ public class Lexer {
                     temp_current_string = "";
                     temp_current_string += String.valueOf(s.charAt(temp_current_index + 1)) + s.charAt(temp_current_index + 2);
                     if (temp_current_string.equals("*/")){
+                        num_extra_comment_found -= 1;
+                        printed_current_index += temp_current_index - current_index + 3;
                         current_index += temp_current_index - current_index + 2; // go to next character out of comment
-                        printed_current_index += temp_current_index - printed_current_index + 3;
                         if(debug) {
                             System.out.println("Found end comment: [ */ ]  at " + current_line + ", " + current_index);
                         }
                         current_string = "";
-//                        String t = String.valueOf(s.charAt(temp_current_index));
-//                        System.out.println(t);
                     }
-                    else if (String.valueOf(s.charAt(temp_current_index + 1)).equals("*")){
-                        lex_error("*", current_line, temp_current_index);
-                    }
+
                     else{
-                        System.out.println("WARNING: possible unterminated comment");
+                        // For unterminated comments
+                        System.out.println("Lexer [WARNING]: -------> Unterminated comment");
+                        num_warnings += 1;
                     }
-//                    temp_current_string = ""; // reset temp_current_string
                 }
                 else{
-                    lex_error("/", current_line, current_index); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
+                    lex_error("/", current_line, printed_current_index); //TODO: implement line number and character number EVERYWHERE NOT JUST HERE
                 }
             }
 
@@ -352,7 +353,6 @@ public class Lexer {
                 else if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
                     if (t_type == Grammar.QUOTE) {
                         close_quote_found = !close_quote_found; // TODO: check for unterminated quote
-//                        System.out.println("------------------------");
                     }
                     // Case a: unequal number of L_BRACE and R_BRACE
                     // Case b: R_BRACE with no previous L_BRACE
@@ -368,6 +368,7 @@ public class Lexer {
                         // case b
                         if (num_extra_brace_found < 0){
                             System.out.println("Lexer [WARNING]: -------> Missing L_BRACE with R_BRACE at " + current_line + ", " + printed_current_index);
+                            num_warnings += 1;
                         }
 
                     }
@@ -384,6 +385,7 @@ public class Lexer {
                         // case b
                         if (num_extra_parenth_found < 0){
                             System.out.println("Lexer [WARNING]: -------> Missing L_PARENTH with R_PARENTH at " + current_line + ", " + printed_current_index);
+                            num_warnings += 1;
                         }
 
                     }
@@ -477,20 +479,29 @@ public class Lexer {
 
             // If EOP found for program, go to next if it exists
             if (EOP_found & current_index <= s.length() - 1){ // This assumes that there are no characters after $
-                // print errors
-                if (num_extra_brace_found > 0){
-                    System.out.println("Lexer [WARNING]: -------> Missing R_BRACE");
-                }
+                // print errors and warnings
+                if (verbose & num_errors == 0) {
+                    if (num_extra_brace_found > 0) {
+                        System.out.println("Lexer [WARNING]: -------> Missing R_BRACE");
+                        num_warnings += 1;
+                    }
 
-                if (num_extra_parenth_found > 0){
-                    System.out.println("Lexer [WARNING]: -------> Missing R_PARENTH");
+                    if (num_extra_parenth_found > 0) {
+                        System.out.println("Lexer [WARNING]: -------> Missing R_PARENTH");
+                        num_warnings += 1;
+                    }
+
+                    if (!close_quote_found) {
+                        System.out.println("Lexer [WARNING]: -------> Missing possible QUOTE");
+                        num_warnings += 1;
+                    }
                 }
 
                 if (num_errors > 1){
-                    System.out.println("Lexer -------> Lex terminated with " + num_errors + " errors");
+                    System.out.println("Lexer -------> Lex terminated with " + num_errors + " errors and " + num_warnings + " warnings");
                 }
                 else{
-                    System.out.println("Lexer -------> Lex finished with " + num_errors + " errors");
+                    System.out.println("Lexer -------> Lex finished with " + num_errors + " errors and " + num_warnings + " warnings");
                 }
                 System.out.println("------------------------------------------------------------");
 
@@ -502,9 +513,10 @@ public class Lexer {
                 // reset pointers
                 printed_current_index = 0;
                 printed_last_index = 0;
-                current_line = 1;
+                current_line = 0;
                 EOP_found = false;
                 num_errors = 0;
+                num_warnings = 0;
                 num_extra_brace_found = 0;
                 num_extra_parenth_found = 0;
                 L_brace_found = false;
@@ -515,7 +527,7 @@ public class Lexer {
             else if (EOP_found){
                 break;
             }
-
+//TODO FIX LINE NUMBERS AND CHAR NUMBERS
             // Check if end of EOP is in program
             else if (!EOP_found & current_index >= s.length() - 1){
                 System.out.println("Lexer [WARNING]: -------> End of Program Token not found" );
