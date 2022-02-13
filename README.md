@@ -17,7 +17,14 @@ Run the following:
 ```
 > cd .....\Compilers_Local\src
 > javac Compiler808.java
-> java Compiler808 testcase.txt
+```
+For verbose mode run
+```
+> java Compiler808 TESTCASE.txt verbose
+```
+else
+```
+> java Compiler808 TESTCASE.txt
 ```
 
                                                                                                 
