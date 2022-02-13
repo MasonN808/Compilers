@@ -9,11 +9,15 @@ public class Compiler808 {
         String[] words = {};
 
         File inFile = null;
-//        if (0 < args.length) {
-//            inFile = new File(args[0]);
-//        }
+        boolean is_verbose = false;
+        if (0 < args.length) {
+            inFile = new File(args[0]);
+            if (args[1].equals("verbose")){
+                is_verbose = true;
+            }
+        }
 
-        inFile = new File("src/test1");
+//        inFile = new File("src/test1");
 
 
 //        assert inFile != null;
@@ -26,7 +30,7 @@ public class Compiler808 {
 //        String[] lines = Files.readAllLines(Paths.get(path), encoding);
         Lexer lexer = new Lexer();
 //        System.out.println(Lexer.is_token("{"));
-        lexer.get_token_stream(content, true, true);
+        lexer.get_token_stream(content, is_verbose, true);
 //        lexer.get_token_stream(smallerized_content, true, true);
 
 

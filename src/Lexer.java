@@ -16,6 +16,7 @@ public class Lexer {
     public static boolean close_block_found = true;
 
     public static int num_errors = 0;
+    public static int program_num = 0;
 
     public static int current_index = 0; // Initialize index
     public static int printed_last_index = 0; // The index to be printed
@@ -69,6 +70,7 @@ public class Lexer {
     public static void lex_error(String not_lexeme, int line_number, int character_number){
         System.out.println("Lexer [ERROR] -------> unidentified token [" + not_lexeme + "] at "
                 + line_number + ", " + character_number);
+        num_errors += 1;
     }
 
     /**
@@ -124,8 +126,10 @@ public class Lexer {
         String current_string = "";
 
         Token prev_token = null;
-
         Lexer.Grammar t_type;
+
+        System.out.println("------------------------------------------------------------");
+        System.out.println("LEXING PROGRAM " + program_num);
         while (current_index < s.length() & !EOP_found) {
 //            System.out.println(current_index);
             char current_char = s.charAt(current_index); // get the character from the current index of the string
@@ -285,12 +289,11 @@ public class Lexer {
                 t_type = get_token(str_current_char).token_type;
                 if (t_type == Grammar.EOP & current_string.length() == 1){
                     add_token(token_stream, get_token(str_current_char), verbose);
-                    System.out.println("Lexer -------> Lex finished with " + num_errors + " errors");
                     printed_current_index += 1;
                     EOP_found = true;
                     current_string = "";
                 }
-                if (t_type == Grammar.EOP & current_string.length() > 1){
+                else if (t_type == Grammar.EOP & current_string.length() > 1){
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
@@ -303,7 +306,7 @@ public class Lexer {
                     printed_current_index += current_token.s.length();
                     current_string = "";
                 }
-                if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() == 1){  // CASE: for when the current character is an = sign and checking if next character is a == operator
+                else if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() == 1){  // CASE: for when the current character is an = sign and checking if next character is a == operator
                     // Create temporary variables to check if its an assignment operator or an equality operator
                     int temp_current_index = current_index; //TODO: make this a method to smallerize code
                     temp_current_index += 1;
@@ -325,7 +328,7 @@ public class Lexer {
                         current_string = "";
                     }
                 }
-                if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() > 1){  // the boundary
+                else if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() > 1){  // the boundary
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
@@ -343,7 +346,7 @@ public class Lexer {
                 }
 
 //                 Does not register the current string is not of these types
-                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
+                else if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
                     if (t_type == Grammar.QUOTE) {
                         close_quote_found = !close_quote_found; // TODO: check for unterminated quote
 //                        System.out.println("------------------------");
@@ -355,7 +358,7 @@ public class Lexer {
                 }
 
                 // make these symbols boundaries for longest match algo
-                if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() > 1){
+                else if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() > 1){
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
@@ -370,7 +373,21 @@ public class Lexer {
                     printed_current_index += current_token.s.length();
                     current_string = "";
                 }
+
             }
+            else if (!str_current_char.equals("/") & !str_current_char.matches("[\\t]") & !str_current_char.matches("[\r\n]") & !str_current_char.matches("[ ]") & !str_current_char.matches("[!]")){
+                lex_error(str_current_char, current_line, printed_current_index);
+                String temp_char = "";
+                temp_char += s.charAt(current_index);
+                while(!temp_char.equals("$")){
+                    temp_char = "";
+                    current_index += 1;
+                    temp_char += s.charAt(current_index);
+                }
+                current_string = "";
+                EOP_found = true; // go to next program
+            }
+
 
             // Check for inequality operator of current string
             if(current_string.equals("!")){
@@ -422,15 +439,27 @@ public class Lexer {
             }
 
 
-            if (EOP_found & current_index <= s.length() - 1){
-                System.out.println("--------------------------------------------------");
-                System.out.println();
+            if (EOP_found & current_index <= s.length() - 1){ // This assumes that there are no characters after $
+                // print errors
+                if (num_errors > 1){
+                    System.out.println("Lexer -------> Lex terminated with " + num_errors + " errors");
+                }
+                else{
+                    System.out.println("Lexer -------> Lex finished with " + num_errors + " errors");
+                }
+                System.out.println("------------------------------------------------------------");
+
+                program_num += 1;
+                if (current_index < s.length() - 1){
+                    System.out.println("LEXING PROGRAM " + program_num);
+                }
 
                 // reset pointers
                 printed_current_index = 0;
                 printed_last_index = 0;
                 current_line = 1;
                 EOP_found = false;
+                num_errors = 0;
             }
 
             else if (EOP_found){
