@@ -12,8 +12,11 @@ import java.util.ArrayList;
 public class Lexer {
     public static boolean EOP_found = false; // to check if EOP is found
     public static boolean close_quote_found = true; // to check if closed quote is found
-    public static boolean close_parenth_found = true;
-    public static boolean close_block_found = true;
+    public static int num_extra_parenth_found = 0;
+    public static int num_extra_brace_found = 0;
+
+    public boolean L_brace_found = false;
+    public boolean L_parenth_found = false;
 
     public static int num_errors = 0;
     public static int program_num = 0;
@@ -351,6 +354,23 @@ public class Lexer {
                         close_quote_found = !close_quote_found; // TODO: check for unterminated quote
 //                        System.out.println("------------------------");
                     }
+                    // Case a: unequal number of L_BRACE and R_BRACE
+                    // Case b: R_BRACE with no previous L_BRACE
+                    if (t_type == Grammar.L_BRACE){
+                        num_extra_brace_found += 1;
+//                        L_brace_found = true;
+                    }
+                    else if (t_type == Grammar.R_BRACE){
+                        num_extra_brace_found -= 1;
+//                        if (!L_brace_found){
+//                            System.out.println("Lexer [WARNING]: -------> Missing L_BRACE with R_BRACE at " + current_line + ", " + printed_current_index);
+//                        }
+                        // case b
+                        if (num_extra_brace_found < 0){
+                            System.out.println("Lexer [WARNING]: -------> Missing L_BRACE with R_BRACE at " + current_line + ", " + printed_current_index);
+                        }
+
+                    }
                     current_token = get_token(str_current_char);
                     add_token(token_stream, current_token, verbose);
                     printed_current_index += 1;
@@ -438,9 +458,13 @@ public class Lexer {
 
             }
 
-
+            // If EOP found for program, go to next if it exists
             if (EOP_found & current_index <= s.length() - 1){ // This assumes that there are no characters after $
                 // print errors
+                if (num_extra_brace_found > 0){
+                    System.out.println("Lexer [WARNING]: -------> Missing R_BRACE");
+                }
+
                 if (num_errors > 1){
                     System.out.println("Lexer -------> Lex terminated with " + num_errors + " errors");
                 }
@@ -460,10 +484,20 @@ public class Lexer {
                 current_line = 1;
                 EOP_found = false;
                 num_errors = 0;
+                num_extra_brace_found = 0;
+                num_extra_parenth_found = 0;
+                L_brace_found = false;
+                L_parenth_found = false;
             }
 
+            // Break if final EOP is found
             else if (EOP_found){
                 break;
+            }
+
+            // Check if end of EOP is in program
+            else if (!EOP_found & current_index >= s.length() - 1){
+                System.out.println("Lexer [WARNING]: -------> End of Program Token not found" );
             }
 
             current_index += 1;

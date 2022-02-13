@@ -16,7 +16,7 @@ public class Compiler808 {
 //                is_verbose = true;
 //            }
 //        }
-//        is_verbose = true;
+        is_verbose = true;
         inFile = new File("src/test1");
 
 
