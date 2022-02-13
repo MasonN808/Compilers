@@ -527,7 +527,7 @@ public class Lexer {
             else if (EOP_found){
                 break;
             }
-//TODO FIX LINE NUMBERS AND CHAR NUMBERS
+
             // Check if end of EOP is in program
             else if (!EOP_found & current_index >= s.length() - 1){
                 System.out.println("Lexer [WARNING]: -------> End of Program Token not found" );
