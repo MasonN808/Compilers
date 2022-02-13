@@ -19,7 +19,7 @@ public class Lexer {
     public static int printed_last_index = 0; // The index to be printed
     public static int printed_current_index = 0; // The index to be printed
     public static int last_index = 0; // keep track of index of last token found and verified using longest match and rule order
-    public static int current_line = 0;
+    public static int current_line = 1;
     public Token current_token;
     public boolean debug = false; // For debugging
 
@@ -165,23 +165,26 @@ public class Lexer {
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
             if(debug) {
-                System.out.println("Current_String: " + str_current_char.matches("[\\n]") + " at " + current_line + ", " + current_index);  // DEBUGGING
+                System.out.println("Current_String: [" + str_current_char + "] at " + current_line + ", " + current_index);  // DEBUGGING
             }
 //            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
 //            System.out.println("size of current string: " +  current_string.length());
             // account for spaces in quotes //TODO: make sure this works in unsmallerized txt file
-            if (str_current_char.equals(" ") & !close_quote_found & s.length() == 1){
+
+            if (str_current_char.equals(" ") & !close_quote_found & current_string.length() == 1){
                 Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
                 add_token(token_stream, token, verbose);
                 printed_current_index += 1;
             }
 
-            if (str_current_char.matches("[ ]") & s.length() == 1){
+            if (str_current_char.matches("[ ]") & current_string.length() == 1){
+
 //                System.out.println("Found space:" + current_line + ", " + current_index);
 //                current_index += 4; // since tab is 5 characters (maybe not)
                 printed_current_index += 1;
                 current_string = "";
-            } else if (str_current_char.matches("[ ]") & s.length() > 1){
+            } else if (str_current_char.matches("[ ]") & current_string.length() > 1){
+//                System.out.println("Found space");
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){
@@ -196,31 +199,28 @@ public class Lexer {
             }
 
             // case of current_char is line break
-            if (str_current_char.matches("[\\n]") & s.length() == 1) { //TODO: seperate current_index and the printed index since they don't match
-//                System.out.println("Found line break:" + current_line + ", " + current_index);
-//                current_index += 1;
+
+
+            if (str_current_char.matches("[\r\n]") & current_string.length() == 1) { //TODO: seperate current_index and the printed index since they don't match
                 current_line += 1;
                 printed_current_index = 0;
+                current_index += 1;
                 current_string = "";
-            } else if (str_current_char.matches("[\\n]") & s.length() > 1){
-                current_index = last_index; // reset index
-                printed_current_index = printed_last_index;
-                if (prev_token == null){
-                    add_token(token_stream, current_token, verbose);
-                }
-                else{
-                    add_token(token_stream, prev_token, verbose);
-                }
-                current_index += current_token.s.length() - 1;
-                printed_current_index += current_token.s.length();
-                current_string = "";
+//                System.out.println(temp_current_string);
+//                System.out.println("Found line break:" + current_line + ", " + current_index);
+//                current_index += 1;
+//                } else {
+//                    System.out.println("[ERROR] Carriage return found without line feed");
+//                }
             }
 
-            if (str_current_char.matches("[\\t]") & s.length() == 1){
+
+
+            if (str_current_char.matches("[\\t]") & current_string.length() == 1){
 //                System.out.println("Found tab:" + current_line + ", " + current_index);
                 printed_current_index += 5; // since tab is 5 characters (maybe not)\
                 current_string = "";
-            } else if (str_current_char.matches("[\\t]") & s.length() > 1){
+            } else if (str_current_char.matches("[\\t]") & current_string.length() > 1){
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){

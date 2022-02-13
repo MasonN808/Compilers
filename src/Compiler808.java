@@ -26,8 +26,8 @@ public class Compiler808 {
 //        String[] lines = Files.readAllLines(Paths.get(path), encoding);
         Lexer lexer = new Lexer();
 //        System.out.println(Lexer.is_token("{"));
-//        lexer.get_token_stream(content, true, true);
-        lexer.get_token_stream(smallerized_content, true, true);
+        lexer.get_token_stream(content, true, true);
+//        lexer.get_token_stream(smallerized_content, true, true);
 
 
 
