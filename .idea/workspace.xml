@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test1" beforeDir="false" afterPath="$PROJECT_DIR$/src/test1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test2" beforeDir="false" afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -383,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644773680786</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="- Added number of warnings&#10;- Made edits to unterminated comments">
+      <created>1644781733927</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1644781733927</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -399,7 +407,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global" />
     <MESSAGE value="-Created an arraylist implentation of rule order" />
     <MESSAGE value="- LOTS of edits to rule order implementation" />
     <MESSAGE value="- Added case to check if = operator token is actually a == operator token" />
@@ -424,7 +431,8 @@
     <MESSAGE value="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next" />
     <MESSAGE value="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis" />
     <MESSAGE value="- Accounted for cases regarding L_PARENTH and R_PARENTH" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Accounted for cases regarding L_PARENTH and R_PARENTH" />
+    <MESSAGE value="- Added number of warnings&#10;- Made edits to unterminated comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added number of warnings&#10;- Made edits to unterminated comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

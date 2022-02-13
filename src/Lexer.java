@@ -126,7 +126,7 @@ public class Lexer {
      * @param s A string to test from the source code
      * @return ArrayList
      */
-    public ArrayList<Token> get_token_stream(String s, boolean verbose, boolean output) {
+    public ArrayList<Token> get_token_stream(String s, boolean verbose) {
         ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
         String current_string = "";
 
@@ -497,7 +497,7 @@ public class Lexer {
                     }
                 }
 
-                if (num_errors > 1){
+                if (num_errors > 0){
                     System.out.println("Lexer -------> Lex terminated with " + num_errors + " errors and " + num_warnings + " warnings");
                 }
                 else{
