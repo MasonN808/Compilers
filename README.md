@@ -26,7 +26,7 @@ else
 ```
 > java Compiler808 TESTCASE.txt
 ```
-Note: Do not put in the extension, .txt, into the command line (i.e., should be java Compiler808 TESTCASE ......)
+Note: Do not put in the extension, .txt, into the command line (i.e., should be > java Compiler808 TESTCASE ......)
 
                                                                                                 
 
