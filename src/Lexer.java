@@ -123,9 +123,6 @@ public class Lexer {
         ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
         String current_string = "";
 
-        int[] rule_order = new int[2];
-        int k = 0;
-
         Token prev_token = null;
 
         Lexer.Grammar t_type;
@@ -398,45 +395,38 @@ public class Lexer {
                 if (t_type == Grammar.ID) {
                     last_index = current_index; // set pointer to ID since ID might be keyword
                     printed_last_index = printed_current_index;
-                    rule_order[k] = 1;
-                } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL | t_type == Grammar.EOP) {
-                    rule_order[k] = 0;
 
-                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP) {
-                    rule_order[k] = 2;
+//                } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL | t_type == Grammar.EOP) {
+//
+//
+//                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP) {
+//
 
                 } else if (t_type == Grammar.DIGIT) {
                     add_token(token_stream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
-                    rule_order[k] = 3;
+
 
                 } else if (t_type == Grammar.CHAR) {
                     add_token(token_stream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
-                    rule_order[k] = 4;
-                }
-                else{
-                    System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
-                    System.out.println("LEXEME: " + current_string);
-                }
 
-                if (rule_order[0] > rule_order[1]) {
-                    rule_order[0] = rule_order[1];
-                    prev_token = current_token; // replace token pointer
                 }
-                rule_order[1] = -1;
+//                else{
+//                    System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
+//                    System.out.println("LEXEME: " + current_string);
+//                }
+
             }
 
-//            System.out.println(s.length() + ", " + current_index);
-//            int temp_current_index = current_index;
-//            temp_current_index += 1;
-//            char temp_current_char = s.charAt(temp_current_index);
-//            String temp_current_string = "";
-//            temp_current_string += temp_current_char;
+
             if (EOP_found & current_index <= s.length() - 1){
                 System.out.println("--------------------------------------------------");
+                System.out.println();
+
+                // reset pointers
                 printed_current_index = 0;
                 printed_last_index = 0;
                 current_line = 1;
@@ -447,7 +437,6 @@ public class Lexer {
                 break;
             }
 
-            k = 0;
             current_index += 1;
         }
         return token_stream;
