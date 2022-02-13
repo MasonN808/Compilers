@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test1" beforeDir="false" afterPath="$PROJECT_DIR$/src/test1" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -356,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644729721565</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts">
+      <created>1644733089989</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1644733089989</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,7 +377,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Marked TODO for where to continue" />
     <MESSAGE value="-Edited the rule order&#10;-Trying to get a file reader up and working (shouldn't be this difficult)" />
     <MESSAGE value="-Imported test1 txt file for testing the reader&#10;-Reader reads the imported file nicely!&#10;-Now working on the Lexer Class" />
     <MESSAGE value="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation" />
@@ -397,7 +401,8 @@
     <MESSAGE value="- LEXICAL ANALYSIS WORKS FOR BIGGER DATA AND SMALLERIST DATA" />
     <MESSAGE value="- Lexer now works when multiple programs are in one .txt file" />
     <MESSAGE value="- Refactored many comments and rule order array" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Refactored many comments and rule order array" />
+    <MESSAGE value="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

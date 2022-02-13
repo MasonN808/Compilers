@@ -10,14 +10,14 @@ public class Compiler808 {
 
         File inFile = null;
         boolean is_verbose = false;
-        if (0 < args.length) {
-            inFile = new File(args[0]);
-            if (args[1].equals("verbose")){
-                is_verbose = true;
-            }
-        }
-
-//        inFile = new File("src/test1");
+//        if (0 < args.length) {
+//            inFile = new File(args[0]);
+//            if (args[1].equals("verbose")){
+//                is_verbose = true;
+//            }
+//        }
+//        is_verbose = true;
+        inFile = new File("src/test1");
 
 
 //        assert inFile != null;
@@ -25,8 +25,7 @@ public class Compiler808 {
         System.out.println(content);
         String smallerized_content = content.replaceAll("\\s+", ""); //remove line breaks, tabs, and spaces
 //        String smallerized_content = content.replaceAll("[\\n\\t ]", "");
-//        System.out.println(smallerized_content); //TODO: move this to lexer to keep track of line number
-        //TODO: get an array of lines of the code and run each line in the lexer CONTINUE HERE 2/11/2022
+//        System.out.println(smallerized_content);
 //        String[] lines = Files.readAllLines(Paths.get(path), encoding);
         Lexer lexer = new Lexer();
 //        System.out.println(Lexer.is_token("{"));
