@@ -80,62 +80,62 @@ public class Lexer {
         Token token = null; // initialize the token
         switch (current_lexeme) {
             case ("$") -> {
-                token = new Token(Grammar.EOP, current_lexeme, current_line, current_index); // END OF PROGRAM (EOP)
+                token = new Token(Grammar.EOP, current_lexeme, current_line, printed_current_index); // END OF PROGRAM (EOP)
             }
             case ("{") -> {
-                token = new Token(Grammar.L_BRACE, current_lexeme, current_line, current_index); // BRACES
+                token = new Token(Grammar.L_BRACE, current_lexeme, current_line, printed_current_index); // BRACES
             }
             case ("}") -> {
-                token = new Token(Grammar.R_BRACE, current_lexeme, current_line, current_index);
+                token = new Token(Grammar.R_BRACE, current_lexeme, current_line, printed_current_index);
             }
             case ("\"") -> {
-                token = new Token(Grammar.QUOTE, current_lexeme, current_line, current_index); // QUOTE
+                token = new Token(Grammar.QUOTE, current_lexeme, current_line, printed_current_index); // QUOTE
             }
             case ("+") -> {
-                token = new Token(Grammar.ADDITION_OP, current_lexeme, current_line, current_index); // OPERATORS
+                token = new Token(Grammar.ADDITION_OP, current_lexeme, current_line, printed_current_index); // OPERATORS
             }
             case ("=") -> {
-                token = new Token(Grammar.ASSIGNMENT_OP, current_lexeme, current_line, current_index);
+                token = new Token(Grammar.ASSIGNMENT_OP, current_lexeme, current_line, printed_current_index);
             }
             case ("==") -> {
-                token = new Token(Grammar.EQUALITY_OP, current_lexeme, current_line, current_index);
+                token = new Token(Grammar.EQUALITY_OP, current_lexeme, current_line, printed_current_index);
             }
             case ("!=") -> {
-                token = new Token(Grammar.INEQUALITY_OP, current_lexeme, current_line, current_index);
+                token = new Token(Grammar.INEQUALITY_OP, current_lexeme, current_line, printed_current_index);
             }
             case ("(") -> {
-                token = new Token(Grammar.L_PARENTH, current_lexeme, current_line, current_index); // PARENTHESIS
+                token = new Token(Grammar.L_PARENTH, current_lexeme, current_line, printed_current_index); // PARENTHESIS
             }
             case (")") -> {
-                token = new Token(Grammar.R_PARENTH, current_lexeme, current_line, current_index);
+                token = new Token(Grammar.R_PARENTH, current_lexeme, current_line, printed_current_index);
             }
             case ("false"), ("true") -> {
-                token = new Token(Grammar.BOOL, current_lexeme, current_line, current_index); // BOOL
+                token = new Token(Grammar.BOOL, current_lexeme, current_line, printed_current_index); // BOOL
             }
             case ("if") -> {
-                token = new Token(Grammar.IF, current_lexeme, current_line, current_index); // IF
+                token = new Token(Grammar.IF, current_lexeme, current_line, printed_current_index); // IF
             }
             case ("while") -> {
-                token = new Token(Grammar.WHILE, current_lexeme, current_line, current_index); // WHILE
+                token = new Token(Grammar.WHILE, current_lexeme, current_line, printed_current_index); // WHILE
             }
             case ("print") -> {
-                token = new Token(Grammar.PRINT, current_lexeme, current_line, current_index); // PRINT
+                token = new Token(Grammar.PRINT, current_lexeme, current_line, printed_current_index); // PRINT
             }
             case ("int"), ("string"), ("boolean") -> {
-                token = new Token(Grammar.VARIABLE_TYPE, current_lexeme, current_line, current_index); // VARIABLE TYPES
+                token = new Token(Grammar.VARIABLE_TYPE, current_lexeme, current_line, printed_current_index); // VARIABLE TYPES
             }
             default -> { //since you can't use regex in switch{}, we put the many cases in default
                 if (current_lexeme.matches("[a-z]") & !close_quote_found) { // It is a CHAR if in quotes, else ID
-                    token = new Token(Grammar.CHAR, current_lexeme, current_line, current_index); // CHAR
+                    token = new Token(Grammar.CHAR, current_lexeme, current_line, printed_current_index); // CHAR
                 }
                 else if (current_lexeme.matches("[a-z]")) {
 //                    System.out.println("quote_closed :" + close_quote_found); //DEBUGGING
-                    token = new Token(Grammar.ID, current_lexeme, current_line, current_index); // CHAR
+                    token = new Token(Grammar.ID, current_lexeme, current_line, printed_current_index); // CHAR
                 }
                 else if (current_lexeme.matches("[0-9]")) {
-                    token = new Token(Grammar.DIGIT, current_lexeme, current_line, current_index); // CHAR
+                    token = new Token(Grammar.DIGIT, current_lexeme, current_line, printed_current_index); // CHAR
                 } else {
-                    System.out.println("ERROR: NO TOKEN FOUND FOR " + current_line + ", " + current_index); //TODO: make this better if verbose==true
+                    System.out.println("ERROR: NO TOKEN FOUND FOR " + current_line + ", " + printed_current_index); //TODO: make this better if verbose==true
                 }
             }
         } // end switch
@@ -165,53 +165,90 @@ public class Lexer {
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
             if(debug) {
-                System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
+                System.out.println("Current_String: " + str_current_char.matches("[\\n]") + " at " + current_line + ", " + current_index);  // DEBUGGING
             }
 //            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
-
+//            System.out.println("size of current string: " +  current_string.length());
             // account for spaces in quotes //TODO: make sure this works in unsmallerized txt file
             if (str_current_char.equals(" ") & !close_quote_found & s.length() == 1){
                 Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
                 add_token(token_stream, token, verbose);
+                printed_current_index += 1;
+            }
+
+            if (str_current_char.matches("[ ]") & s.length() == 1){
+//                System.out.println("Found space:" + current_line + ", " + current_index);
+//                current_index += 4; // since tab is 5 characters (maybe not)
+                printed_current_index += 1;
+                current_string = "";
+            } else if (str_current_char.matches("[ ]") & s.length() > 1){
+                current_index = last_index; // reset index
+                printed_current_index = printed_last_index;
+                if (prev_token == null){
+                    add_token(token_stream, current_token, verbose);
+                }
+                else{
+                    add_token(token_stream, prev_token, verbose);
+                }
+                current_index += current_token.s.length() - 1;
+                printed_current_index += current_token.s.length();
+                current_string = "";
             }
 
             // case of current_char is line break
-            if (str_current_char.matches("[\\n]")){ //TODO: seperate current_index and the printed index since they don't match
+            if (str_current_char.matches("[\\n]") & s.length() == 1) { //TODO: seperate current_index and the printed index since they don't match
 //                System.out.println("Found line break:" + current_line + ", " + current_index);
 //                current_index += 1;
                 current_line += 1;
                 printed_current_index = 0;
                 current_string = "";
-            }
-
-            if (str_current_char.matches("[\\t]")){
-//                System.out.println("Found tab:" + current_line + ", " + current_index);
-                printed_current_index += 5; // since tab is 5 characters (maybe not)\
+            } else if (str_current_char.matches("[\\n]") & s.length() > 1){
+                current_index = last_index; // reset index
+                printed_current_index = printed_last_index;
+                if (prev_token == null){
+                    add_token(token_stream, current_token, verbose);
+                }
+                else{
+                    add_token(token_stream, prev_token, verbose);
+                }
+                current_index += current_token.s.length() - 1;
+                printed_current_index += current_token.s.length();
                 current_string = "";
             }
 
-            if (str_current_char.matches("[ ]")){
-//                System.out.println("Found space:" + current_line + ", " + current_index);
-//                current_index += 4; // since tab is 5 characters (maybe not)
-                printed_current_index += 1;
+            if (str_current_char.matches("[\\t]") & s.length() == 1){
+//                System.out.println("Found tab:" + current_line + ", " + current_index);
+                printed_current_index += 5; // since tab is 5 characters (maybe not)\
+                current_string = "";
+            } else if (str_current_char.matches("[\\t]") & s.length() > 1){
+                current_index = last_index; // reset index
+                printed_current_index = printed_last_index;
+                if (prev_token == null){
+                    add_token(token_stream, current_token, verbose);
+                }
+                else{
+                    add_token(token_stream, prev_token, verbose);
+                }
+                current_index += current_token.s.length() - 1;
+                printed_current_index += current_token.s.length();
                 current_string = "";
             }
 
             //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
             //TODO: tab should count as 5 characters, space = 1 character, next line = character:= 0
-            if (str_current_char.matches("[ \\t\\n]+") & (prev_token != null | current_token != null)){
-//                System.out.println("space, indent, or line break Here :"  + current_line + ", " + current_index);
-//                current_index += 1;
-                if (prev_token != null){
-                    add_token(token_stream, prev_token, verbose);
-                }
-                else {
-                    add_token(token_stream, current_token, verbose);
-                }
-                current_token = null;
-                prev_token = null;
-                current_string = "";
-            }
+//            else if (str_current_char.matches("[ \\t\\n]+") & s.length() > 1){
+//                current_index = last_index; // reset index
+//                printed_current_index = printed_last_index;
+//                if (prev_token == null){
+//                    add_token(token_stream, current_token, verbose);
+//                }
+//                else{
+//                    add_token(token_stream, prev_token, verbose);
+//                }
+//                current_index += current_token.s.length() - 1;
+//                printed_current_index += current_token.s.length();
+//                current_string = "";
+//            }
 
             // use comment delimiter "/" as a boundary
             if (str_current_char.equals("/") & current_string.length() > 1) {
@@ -258,7 +295,7 @@ public class Lexer {
                     temp_current_string += String.valueOf(s.charAt(temp_current_index + 1)) + s.charAt(temp_current_index + 2);
                     if (temp_current_string.equals("*/")){
                         current_index += temp_current_index - current_index + 2; // go to next character out of comment
-                        printed_current_index += temp_current_index - current_index + 3;
+                        printed_current_index += temp_current_index - printed_current_index + 3;
                         if(debug) {
                             System.out.println("Found end comment: [ */ ]  at " + current_line + ", " + current_index);
                         }
@@ -325,6 +362,7 @@ public class Lexer {
                 }
                 if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() > 1){  // the boundary
                     current_index = last_index; // reset index
+                    printed_current_index = printed_last_index;
                     if (prev_token == null){
                         add_token(token_stream, current_token, verbose);
                         current_index += current_token.s.length() - 1;

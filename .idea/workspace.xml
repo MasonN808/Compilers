@@ -320,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644709044868</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages">
+      <created>1644712836672</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1644712836672</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -336,7 +343,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Finished is_token" />
     <MESSAGE value="-Moved many boolean variables out of block&#10;-Added some documentation for the methods&#10;-Embedded the switch{} in get_token_stream with an if statement for is_token&#10;-Currently working on longest match and rule order" />
     <MESSAGE value="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error" />
     <MESSAGE value="-Initialize implementation of rule order in get_token_stream()&#10;-Commented out a huge chunk of code with switch{} from get_token_stream.  Code similar to that of is_token() and get_token()" />
@@ -361,6 +367,7 @@
     <MESSAGE value="- Deleted a lot of unnecessary code" />
     <MESSAGE value="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data" />
     <MESSAGE value="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data" />
-    <option name="LAST_COMMIT_MESSAGE" value="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data" />
+    <MESSAGE value="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages" />
   </component>
 </project>
