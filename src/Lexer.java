@@ -15,6 +15,7 @@ public class Lexer {
     public static int num_extra_parenth_found = 0;
     public static int num_extra_brace_found = 0;
     public static int num_extra_comment_found = 0;
+    public static boolean first_thing_found = false; //To check for the first non-empty line in program -> for line number transformation
 
     public boolean L_brace_found = false;
     public boolean L_parenth_found = false;
@@ -147,7 +148,12 @@ public class Lexer {
             }
 //            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
 //            System.out.println("size of current string: " +  current_string.length());
-            // account for spaces in quotes //TODO: make sure this works in unsmallerized txt file
+
+            // Sets the starting line to be the first instance of a non empty line in the program (advised by Alan 2/15/2022)
+            if (!current_string.matches("[ ]") & !current_string.matches("[\\t]") & !current_string.matches("[\r\n]")  & !first_thing_found){
+                first_thing_found = true;
+                current_line = 1;
+            }
 
             if (str_current_char.equals(" ") & !close_quote_found & current_string.length() == 1){
                 Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
@@ -177,8 +183,6 @@ public class Lexer {
             }
 
             // case of current_char is line break
-
-
             if (str_current_char.matches("[\r\n]") & current_string.length() == 1 & !EOP_found) {
                 current_line += 1;
                 printed_current_index = 0;
@@ -209,7 +213,6 @@ public class Lexer {
             }
 
             //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
-            //TODO: tab should count as 5 characters, space = 1 character, next line = character:= 0
 //            else if (str_current_char.matches("[ \\t\\n]+") & s.length() > 1){
 //                current_index = last_index; // reset index
 //                printed_current_index = printed_last_index;
@@ -538,6 +541,7 @@ public class Lexer {
                 L_brace_found = false;
                 L_parenth_found = false;
                 close_quote_found = true;
+                first_thing_found = false;
             }
 
             // Break if final EOP is found
