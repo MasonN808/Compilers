@@ -1,3 +1,11 @@
+
+{
+  int a
+  a = a
+  string b
+  a = b
+}$
+
 {
   int a
   a = a

@@ -136,6 +136,7 @@ public class Lexer {
         Token prev_token = null;
         Lexer.Grammar t_type;
 
+
         System.out.println("------------------------------------------------------------");
         System.out.println("LEXING PROGRAM " + program_num);
         while (current_index < s.length() & !EOP_found) {
@@ -150,7 +151,7 @@ public class Lexer {
 //            System.out.println("size of current string: " +  current_string.length());
 
             // Sets the starting line to be the first instance of a non empty line in the program (advised by Alan 2/15/2022)
-            if (!current_string.matches("[ ]") & !current_string.matches("[\\t]") & !current_string.matches("[\r\n]")  & !first_thing_found){
+            if (!current_string.matches("[ ]") & !current_string.matches("[\\t]") & !current_string.matches("[\\r]?[\\n]?")  & !first_thing_found){
                 first_thing_found = true;
                 current_line = 1;
             }
@@ -183,14 +184,14 @@ public class Lexer {
             }
 
             // case of current_char is line break
-            if (str_current_char.matches("[\r\n]") & current_string.length() == 1 & !EOP_found) {
+            if (str_current_char.matches("[\\r]?[\\n]?") & current_string.length() == 1 & !EOP_found) {
                 current_line += 1;
                 printed_current_index = 0;
                 current_index += 1;
                 current_string = "";
             }
 
-            if (str_current_char.matches("[\r\n]") & current_string.length() == 1 & EOP_found) {
+            if (str_current_char.matches("[\\r]?[\\n]?") & current_string.length() == 1 & EOP_found) {
                 break;
             }
 
@@ -425,7 +426,8 @@ public class Lexer {
                 }
 
             }
-            else if (!str_current_char.equals("/") & !str_current_char.matches("[\\t]") & !str_current_char.matches("[\r\n]") & !str_current_char.matches("[ ]") & !str_current_char.matches("[!]")){
+            else if (!str_current_char.equals("/") & !str_current_char.matches("[\\t]") & !str_current_char.matches("[\\r]?[\\n]?") & !str_current_char.matches("[ ]") & !str_current_char.matches("[!]")){
+//                System.out.println("\r".equals(str_current_char));
                 lex_error(str_current_char, current_line, printed_current_index);
                 printed_current_index += 1;
                 // This commented out portion allows to find end of program to exit program if lex error encountered
