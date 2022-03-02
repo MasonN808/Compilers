@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test3" beforeDir="false" afterPath="$PROJECT_DIR$/src/test3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,13 +75,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Refactoring">
-      <created>1644291460926</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1644291460926</updated>
     </task>
     <task id="LOCAL-00003" summary="Added tokens for the Lexer">
       <created>1644291864159</created>
@@ -420,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644977809014</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="- Fixed bug that didn't identify line breaks correctly in other OSs">
+      <created>1645048035090</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1645048035090</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -436,7 +435,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added more cases for spaces, tabs, and line breaks&#10;- Added global variable line_number" />
     <MESSAGE value="- Added line number and character for Token class&#10;- Debugging Lexer (Specifically comments for indents, spaces, and line break case and none...) and refactoring" />
     <MESSAGE value="- Still Debugging&#10;- Able to find some symbols" />
     <MESSAGE value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
@@ -461,7 +459,8 @@
     <MESSAGE value="- This commit is working in command prompt" />
     <MESSAGE value="- Added more test cases&#10;- fixed issue with warnings and errors&#10;- It now prints out all errors in program until termination&#10;- NEED to add how to fix the errors and warnings&#10;- Works in command prompt" />
     <MESSAGE value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
+    <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

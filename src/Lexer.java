@@ -24,6 +24,8 @@ public class Lexer {
     public static int num_warnings = 0;
     public static int program_num = 0;
 
+    public static boolean WINDOWS = false;
+
     public static int current_index = 0; // Initialize index
     public static int printed_last_index = 0; // The index to be printed
     public static int printed_current_index = 0; // The index to be printed
@@ -130,6 +132,12 @@ public class Lexer {
      * @return ArrayList
      */
     public ArrayList<Token> get_token_stream(String s, boolean verbose) {
+
+        //Check for line break character count
+        if (System.lineSeparator().length()==2){//Windows
+            WINDOWS = true;
+        }
+
         ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
         String current_string = "";
 
@@ -151,7 +159,7 @@ public class Lexer {
 //            System.out.println("size of current string: " +  current_string.length());
 
             // Sets the starting line to be the first instance of a non empty line in the program (advised by Alan 2/15/2022)
-            if (!current_string.matches("[ ]") & !current_string.matches("[\\t]") & !current_string.matches("[\\r]?[\\n]?")  & !first_thing_found){
+            if (!current_string.matches("[ ]") & !current_string.matches("[\\t]") & current_char!=(System.lineSeparator().charAt(0))  & !first_thing_found){
                 first_thing_found = true;
                 current_line = 1;
             }
@@ -184,14 +192,20 @@ public class Lexer {
             }
 
             // case of current_char is line break
-            if (str_current_char.matches("[\\r]?[\\n]?") & current_string.length() == 1 & !EOP_found) {
+            if (current_char==(System.lineSeparator().charAt(0)) & current_string.length() == 1 & !EOP_found) {
+//                if (WINDOWS){ // We do this sine lineSeparator is two char long
+//                    current_index += 1;
+//                }
                 current_line += 1;
                 printed_current_index = 0;
                 current_index += 1;
                 current_string = "";
             }
 
-            if (str_current_char.matches("[\\r]?[\\n]?") & current_string.length() == 1 & EOP_found) {
+            if (current_char==(System.lineSeparator().charAt(0)) & current_string.length() == 1 & EOP_found) {
+                if (WINDOWS){
+                    current_index += 1;
+                }
                 break;
             }
 
