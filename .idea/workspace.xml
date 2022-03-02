@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,13 +73,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Added tokens for the Lexer">
-      <created>1644291864159</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1644291864159</updated>
     </task>
     <task id="LOCAL-00004" summary="Added Token Class for storage later when finding tokens in source code.">
       <created>1644293805148</created>
@@ -419,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645048035090</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="- This commit should fix the line break issue on different OSs">
+      <created>1646193426668</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1646193426668</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -435,7 +433,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added line number and character for Token class&#10;- Debugging Lexer (Specifically comments for indents, spaces, and line break case and none...) and refactoring" />
     <MESSAGE value="- Still Debugging&#10;- Able to find some symbols" />
     <MESSAGE value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
     <MESSAGE value="- Added debugger (kind of)&#10;- Fixed comment issue if s.length() &gt; 1.  Let &quot;/&quot; delimiter be a boundary in longest match algo." />
@@ -460,7 +457,8 @@
     <MESSAGE value="- Added more test cases&#10;- fixed issue with warnings and errors&#10;- It now prints out all errors in program until termination&#10;- NEED to add how to fix the errors and warnings&#10;- Works in command prompt" />
     <MESSAGE value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
     <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
+    <MESSAGE value="- This commit should fix the line break issue on different OSs" />
+    <option name="LAST_COMMIT_MESSAGE" value="- This commit should fix the line break issue on different OSs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
