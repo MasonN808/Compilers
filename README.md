@@ -18,9 +18,9 @@ Run the following:
 > cd .....\Compilers_Local\src
 > javac Compiler808.java
 ```
-For verbose mode run
+Verbose is default, to disable:
 ```
-> java Compiler808 TESTCASE.txt verbose
+> java Compiler808 TESTCASE.txt notVerbose
 ```
 else
 ```
