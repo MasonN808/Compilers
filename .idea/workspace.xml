@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,27 +80,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added constructor for token class">
-      <created>1644294134878</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1644294134878</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)">
-      <created>1644295025336</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1644295025336</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Made a partial first case for token_streamer.  Also changed from array to arraylist since array is a fixed size which may cause problems later on.">
-      <created>1644296002852</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1644296002852</updated>
     </task>
     <task id="LOCAL-00008" summary="Added more cases and attempting to implement longest match and rule order">
       <created>1644361028272</created>
@@ -425,7 +403,28 @@
       <option name="project" value="LOCAL" />
       <updated>1646193501828</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Initialize Node class">
+      <created>1646446747807</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1646446747807</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Added constructor and making match method">
+      <created>1646446786466</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1646446786466</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Edited comment">
+      <created>1646446800838</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1646446800838</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -441,9 +440,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
-    <MESSAGE value="- Added debugger (kind of)&#10;- Fixed comment issue if s.length() &gt; 1.  Let &quot;/&quot; delimiter be a boundary in longest match algo." />
-    <MESSAGE value="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo." />
     <MESSAGE value="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo.&#10;- Some deletion of comments" />
     <MESSAGE value="- Deleted a lot of unnecessary code" />
     <MESSAGE value="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data" />
@@ -466,7 +462,10 @@
     <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
     <MESSAGE value="- This commit should fix the line break issue on different OSs" />
     <MESSAGE value="- Set verbose to default (fixing readme next)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Set verbose to default (fixing readme next)" />
+    <MESSAGE value="Initialize Node class" />
+    <MESSAGE value="Added constructor and making match method" />
+    <MESSAGE value="Edited comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited comment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
