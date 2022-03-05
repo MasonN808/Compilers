@@ -1,19 +1,19 @@
 
 /**
- * <h1>Tree Class (Part 2)</h1>
+ * <h1>Tree Class</h1>
  * Used to construct our Concrete Syntax Tree (CST) while using Node Class
  * <p>
  * <b>Note:</b> Still in progress
  *
  * @author  Mason Nakamura
- * @since   03-01-2022
+ * @since   03-04-2022
  */
 public class Tree {
     public static Node root = null;
     public static Node current = null;
-    public static void add_node(String kind, String label){
+    public static void add_node(String kind, Token label){
         Node n = new Node(); //initialize new Node
-        n.name = label;
+        n.name = label.token_type.toString(); // Transform from Grammar to String //TODO: make sure it converts to string
         if (root == null){ //case for the first node in tree
             root = n;
         }

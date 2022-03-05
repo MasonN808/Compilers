@@ -15,4 +15,11 @@ public class Node {
     public String name = null; //name of the token_type
     public String value = null; //value of the token_type, if it exists
     public ArrayList<Node> children; //children of current node
+
+//    public Node(Node parent, String name, String value, ArrayList<Node> children){
+//        this.parent = parent;
+//        this.name = name;
+//        this.value = value;
+//        this.children = children;
+//    }
 }
