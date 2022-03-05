@@ -33,20 +33,20 @@ public class Parser {
     }
 
     public static void match(Lexer.Grammar expected){
-        Token given = token_stream.get(getIndex());
+        Token given = tokenStream.get(getIndex());
         // Check the expected token_type is the same as the one given
          if (expected == given.token_type){
-             Tree.addNode("leaf", given); //TODO: make sure it's referencing right instance of tree (don't think it is)
+             Tree.addNode("leaf", given);
          }
          else{ //Error if unexpected token
-             System.out.println("PARSE ERROR (Unexpected Token) --------> expected [ " + expected + "], got [" + given.token_type + "]");
+             System.out.println("PARSE ERROR (Unexpected Token) --------> expected [ " + expected + "], got [" + given.token_type + "]"); //TODO: maybe use logger.log() instead
          }
          addIndex();
     }
 
     public static void parseProgram(){
-        parse_block();
-        match(Lexer.Grammar.EOP);//TODO: Transfer the Grammar
+        parseBlock();
+        match(Lexer.Grammar.EOP);
     }
 
     public static void parseBlock(){

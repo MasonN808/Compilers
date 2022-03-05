@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +46,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -80,55 +79,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Added Token Class for storage later when finding tokens in source code.">
-      <created>1644293805148</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1644293805148</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added constructor for token class">
-      <created>1644294134878</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1644294134878</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Making the token stream with many many cases (trying to find a better alternative; I don't think there is one)">
-      <created>1644295025336</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1644295025336</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Made a partial first case for token_streamer.  Also changed from array to arraylist since array is a fixed size which may cause problems later on.">
-      <created>1644296002852</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1644296002852</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Added more cases and attempting to implement longest match and rule order">
-      <created>1644361028272</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1644361028272</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added current string variable to compare the current string to tokens">
-      <created>1644361423274</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1644361423274</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added more tokens with comments">
-      <created>1644362082428</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1644362082428</updated>
     </task>
     <task id="LOCAL-00011" summary="Added tokens that use regular expressions in default of switch{}">
       <created>1644363505849</created>
@@ -424,7 +374,56 @@
       <option name="project" value="LOCAL" />
       <updated>1646193426668</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="- Set verbose to default (fixing readme next)">
+      <created>1646193501828</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1646193501828</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Initialize Node class">
+      <created>1646446747807</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1646446747807</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Added constructor and making match method">
+      <created>1646446786466</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1646446786466</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Edited comment">
+      <created>1646446800838</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1646446800838</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Made Tree Class for the CST">
+      <created>1646449467267</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1646449467267</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Made the Node class">
+      <created>1646449484723</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1646449484723</updated>
+    </task>
+    <task id="LOCAL-00059" summary="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class">
+      <created>1646452871755</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1646452871755</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,13 +439,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Still Debugging&#10;- Able to find some symbols" />
-    <MESSAGE value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
-    <MESSAGE value="- Added debugger (kind of)&#10;- Fixed comment issue if s.length() &gt; 1.  Let &quot;/&quot; delimiter be a boundary in longest match algo." />
-    <MESSAGE value="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo." />
-    <MESSAGE value="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo.&#10;- Some deletion of comments" />
-    <MESSAGE value="- Deleted a lot of unnecessary code" />
-    <MESSAGE value="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data" />
     <MESSAGE value="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data" />
     <MESSAGE value="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages" />
     <MESSAGE value="- Integrated new printing line system for smallerized data&#10;- Working on implementing in biggerized data" />
@@ -465,7 +457,14 @@
     <MESSAGE value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
     <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
     <MESSAGE value="- This commit should fix the line break issue on different OSs" />
-    <option name="LAST_COMMIT_MESSAGE" value="- This commit should fix the line break issue on different OSs" />
+    <MESSAGE value="- Set verbose to default (fixing readme next)" />
+    <MESSAGE value="Initialize Node class" />
+    <MESSAGE value="Added constructor and making match method" />
+    <MESSAGE value="Edited comment" />
+    <MESSAGE value="Made Tree Class for the CST" />
+    <MESSAGE value="Made the Node class" />
+    <MESSAGE value="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
