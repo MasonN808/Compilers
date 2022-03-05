@@ -11,7 +11,8 @@
 public class Tree {
     public static Node root = null;
     public static Node current = null;
-    public static void add_node(String kind, Token label){
+
+    public static void addNode(String kind, Token label){
         Node n = new Node(); //initialize new Node
         n.name = label.token_type.toString(); // Transform from Grammar to String //TODO: make sure it converts to string
         if (root == null){ //case for the first node in tree
@@ -27,7 +28,7 @@ public class Tree {
         }
     }
 
-    public static void move_up(){
+    public static void moveUp(){
         current = current.parent; //Go up the tree
     }
 }
