@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="project1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -73,13 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Added Token Class for storage later when finding tokens in source code.">
-      <created>1644293805148</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1644293805148</updated>
     </task>
     <task id="LOCAL-00005" summary="Added constructor for token class">
       <created>1644294134878</created>
@@ -417,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646193426668</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="- Set verbose to default (fixing readme next)">
+      <created>1646193501828</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1646193501828</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -433,7 +441,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Still Debugging&#10;- Able to find some symbols" />
     <MESSAGE value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
     <MESSAGE value="- Added debugger (kind of)&#10;- Fixed comment issue if s.length() &gt; 1.  Let &quot;/&quot; delimiter be a boundary in longest match algo." />
     <MESSAGE value="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo." />
@@ -458,7 +465,8 @@
     <MESSAGE value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
     <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
     <MESSAGE value="- This commit should fix the line break issue on different OSs" />
-    <option name="LAST_COMMIT_MESSAGE" value="- This commit should fix the line break issue on different OSs" />
+    <MESSAGE value="- Set verbose to default (fixing readme next)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Set verbose to default (fixing readme next)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
