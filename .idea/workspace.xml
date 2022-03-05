@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,13 +79,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added more tokens with comments">
-      <created>1644362082428</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1644362082428</updated>
     </task>
     <task id="LOCAL-00011" summary="Added tokens that use regular expressions in default of switch{}">
       <created>1644363505849</created>
@@ -425,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646449484723</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class">
+      <created>1646452871755</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1646452871755</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -441,7 +439,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data" />
     <MESSAGE value="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data" />
     <MESSAGE value="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages" />
     <MESSAGE value="- Integrated new printing line system for smallerized data&#10;- Working on implementing in biggerized data" />
@@ -466,7 +463,8 @@
     <MESSAGE value="Edited comment" />
     <MESSAGE value="Made Tree Class for the CST" />
     <MESSAGE value="Made the Node class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the Node class" />
+    <MESSAGE value="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
