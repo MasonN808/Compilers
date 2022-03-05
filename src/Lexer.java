@@ -4,10 +4,10 @@ import java.util.ArrayList;
  * We design a lexical analyzer ( or scanner, lexer, ...) to produce a stream
  * of tokens to be fed to the parser (Part 2)
  * <p>
- * <b>Note:</b> Still in progress
+ * <b>Note:</b> Pretty much finished (Needs refactoring)
  *
  * @author  Mason Nakamura
- * @since   02-08-2022
+ * @since   03-01-2022
  */
 public class Lexer {
     public static boolean EOP_found = false; // to check if EOP is found
