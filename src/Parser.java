@@ -37,14 +37,11 @@ public class Parser {
         index = index + 1;
     }
 
-    public static void recursiveDescent(ArrayList<Token> tokenStream){
-    }
-
     public static void match(Lexer.Grammar expected){
         Token given = tokenStream.get(getIndex());
         // Check the expected token_type is the same as the one given
          if (expected == given.token_type){
-             Tree.addNode("leaf", given);
+             Tree.addNode("leaf", given.token_type.toString());
          }
          else{ //Error if unexpected token
              System.out.println("PARSE ERROR (Unexpected Token) --------> expected [ " + expected + "], got [" + given.token_type + "]"); //TODO: maybe use logger.log() instead
@@ -53,18 +50,20 @@ public class Parser {
     }
 
     public static void parseProgram(){
-        Tree.addNode("root", );
+        Tree.addNode("root", "goal");
         parseBlock();
         match(Lexer.Grammar.EOP);
     }
 
     public static void parseBlock(){
+        Tree.addNode("branch", "block");
         match(Lexer.Grammar.L_BRACE);
         parseStatementList();
         match(Lexer.Grammar.R_BRACE);
     }
 
     public static void parseStatementList(){
+        Tree.addNode("branch", "statementList");
         if(statementListValues.contains(tokenStream.get(getIndex()).token_type)){
             parseStatement();
             parseStatementList();
@@ -75,6 +74,7 @@ public class Parser {
     }
 
     public static void parseStatement(){
+        Tree.addNode("branch", "statement");
         switch(tokenStream.get(getIndex()).token_type){
             case (Lexer.Grammar.PRINT) -> parsePrintStatement();
             case (Lexer.Grammar.ASSIGNMENT_OP) -> parseAssignmentStatement();
@@ -87,6 +87,7 @@ public class Parser {
     }
 
     public static void parsePrintStatement(){
+        Tree.addNode("branch", "printStatement");
         match(Lexer.Grammar.PRINT);
         match(Lexer.Grammar.L_PARENTH);
         parseExpr();
@@ -94,6 +95,27 @@ public class Parser {
     }
 
     public static void parseExpr(){
+        Tree.addNode("branch", "expr");
+        switch (tokenStream.get(getIndex()).token_type){
+            case (Lexer.Grammar.DIGIT) -> parseIntExpr();
+            case (Lexer.Grammar.QUOTE) -> parseStringExpr();
+            case (Lexer.Grammar.L_PARENTH),(Lexer.Grammar.BOOL)  -> parseBooleanExpr();
+            case (Lexer.Grammar.CHAR) -> parseId();
+            default -> System.out.println("ERROR: parseExpr() FAILED"); //This should never happen //TODO: implement line number and char number error
+        }
+    }
+
+    public static void parseIntExpr(){
+        Tree.addNode("branch", "intExpr");
+        match(Lexer.Grammar.DIGIT);
+        if (tokenStream.get(getIndex()).token_type == Lexer.Grammar.ADDITION_OP){
+            parseIntop();
+            parseExpr();
+        }
+    }
+
+    public static void parseIntop(){
+        Tree.addNode("branch", "intop");
 
     }
 
