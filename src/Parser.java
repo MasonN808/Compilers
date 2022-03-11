@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * <h1>Parser (Part 2)</h1>
@@ -14,7 +17,12 @@ public class Parser {
     private static int index;
     private static ArrayList<Token> tokenStream;
     public static Tree cst = null;
-    
+    //From https://stackoverflow.com/questions/7604814/best-way-to-format-multiple-or-conditions-in-an-if-statement
+    //Makes the lengthy boolean statement more efficient
+    private static final Set<Lexer.Grammar> statementListValues = new HashSet<Lexer.Grammar>(Arrays.asList(
+            Lexer.Grammar.PRINT, Lexer.Grammar.ASSIGNMENT_OP, Lexer.Grammar.VARIABLE_TYPE/*CASE: VarDecal*/,
+            Lexer.Grammar.WHILE, Lexer.Grammar.IF, Lexer.Grammar.L_BRACE/*CASE: Block*/));
+
     // Constructor to set new token_stream for parsing
     public Parser(ArrayList<Token> tokenStream){
         Parser.tokenStream = tokenStream;
@@ -45,11 +53,48 @@ public class Parser {
     }
 
     public static void parseProgram(){
+        Tree.addNode("root", );
         parseBlock();
         match(Lexer.Grammar.EOP);
     }
 
     public static void parseBlock(){
+        match(Lexer.Grammar.L_BRACE);
+        parseStatementList();
+        match(Lexer.Grammar.R_BRACE);
+    }
+
+    public static void parseStatementList(){
+        if(statementListValues.contains(tokenStream.get(getIndex()).token_type)){
+            parseStatement();
+            parseStatementList();
+        }
+        else{
+            //epsilon production (nothing happens; skips)
+        }
+    }
+
+    public static void parseStatement(){
+        switch(tokenStream.get(getIndex()).token_type){
+            case (Lexer.Grammar.PRINT) -> parsePrintStatement();
+            case (Lexer.Grammar.ASSIGNMENT_OP) -> parseAssignmentStatement();
+            case (Lexer.Grammar.VARIABLE_TYPE) -> parseVarDecal();
+            case (Lexer.Grammar.WHILE) -> parseWhileSatement();
+            case (Lexer.Grammar.IF) -> parseIfStatement();
+            case (Lexer.Grammar.L_BRACE) -> parseBlock();
+            default -> System.out.println("ERROR: parseStatement() FAILED"); //This should never happen
+        }
+    }
+
+    public static void parsePrintStatement(){
+        match(Lexer.Grammar.PRINT);
+        match(Lexer.Grammar.L_PARENTH);
+        parseExpr();
+        match(Lexer.Grammar.R_PARENTH);
+    }
+
+    public static void parseExpr(){
 
     }
+
 }
