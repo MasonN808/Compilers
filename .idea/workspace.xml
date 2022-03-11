@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="-Added in line 171 to make space its own token, not just CHAR">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test2" beforeDir="false" afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,13 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00015" summary="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error">
-      <created>1644377297865</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1644377297865</updated>
     </task>
     <task id="LOCAL-00016" summary="-Initialize implementation of rule order in get_token_stream()&#10;-Commented out a huge chunk of code with switch{} from get_token_stream.  Code similar to that of is_token() and get_token()">
       <created>1644379136786</created>
@@ -427,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646972899837</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="-Added in line 171 to make space its own token, not just CHAR">
+      <created>1647030872331</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1647030872331</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +443,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Lexer now works when multiple programs are in one .txt file" />
     <MESSAGE value="- Refactored many comments and rule order array" />
     <MESSAGE value="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts" />
     <MESSAGE value="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next" />
@@ -468,7 +467,8 @@
     <MESSAGE value="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()" />
     <MESSAGE value="-Transformed input from token to String for label in Tree class" />
     <MESSAGE value="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()" />
+    <MESSAGE value="-Added in line 171 to make space its own token, not just CHAR" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added in line 171 to make space its own token, not just CHAR" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

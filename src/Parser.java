@@ -19,9 +19,11 @@
 //    public static Tree cst = null;
 //    //From https://stackoverflow.com/questions/7604814/best-way-to-format-multiple-or-conditions-in-an-if-statement
 //    //Makes the lengthy boolean statement more efficient
-//    private static final Set<Lexer.Grammar> statementListValues = new HashSet<Lexer.Grammar>(Arrays.asList(
-//            Lexer.Grammar.PRINT, Lexer.Grammar.ASSIGNMENT_OP, Lexer.Grammar.VARIABLE_TYPE/*CASE: VarDecal*/,
-//            Lexer.Grammar.WHILE, Lexer.Grammar.IF, Lexer.Grammar.L_BRACE/*CASE: Block*/));
+//    private static final Set<Compiler808.Grammar> statementListValues = new HashSet<Compiler808.Grammar>(Arrays.asList(
+//            Compiler808.Grammar.PRINT, Compiler808.Grammar.ASSIGNMENT_OP, Compiler808.Grammar.VARIABLE_TYPE/*CASE: VarDecal*/,
+//            Compiler808.Grammar.WHILE, Compiler808.Grammar.IF, Compiler808.Grammar.L_BRACE/*CASE: Block*/));
+//
+//
 //
 //    // Constructor to set new token_stream for parsing
 //    public Parser(ArrayList<Token> tokenStream){
@@ -37,7 +39,7 @@
 //        index = index + 1;
 //    }
 //
-//    public static void match(Lexer.Grammar expected){
+//    public static void match(Compiler808.Grammar expected){
 //        Token given = tokenStream.get(getIndex());
 //        // Check the expected token_type is the same as the one given
 //         if (expected == given.token_type){
@@ -52,14 +54,14 @@
 //    public static void parseProgram(){
 //        Tree.addNode("root", "goal");
 //        parseBlock();
-//        match(Lexer.Grammar.EOP);
+//        match(Compiler808.Grammar.EOP);
 //    }
 //
 //    public static void parseBlock(){
 //        Tree.addNode("branch", "block");
-//        match(Lexer.Grammar.L_BRACE);
+//        match(Compiler808.Grammar.L_BRACE);
 //        parseStatementList();
-//        match(Lexer.Grammar.R_BRACE);
+//        match(Compiler808.Grammar.R_BRACE);
 //    }
 //
 //    public static void parseStatementList(){
@@ -76,39 +78,39 @@
 //    public static void parseStatement(){
 //        Tree.addNode("branch", "statement");
 //        switch(tokenStream.get(getIndex()).token_type){
-//            case (Lexer.Grammar.PRINT) -> parsePrintStatement();
-//            case (Lexer.Grammar.ASSIGNMENT_OP) -> parseAssignmentStatement();
-//            case (Lexer.Grammar.VARIABLE_TYPE) -> parseVarDecal();
-//            case (Lexer.Grammar.WHILE) -> parseWhileSatement();
-//            case (Lexer.Grammar.IF) -> parseIfStatement();
-//            case (Lexer.Grammar.L_BRACE) -> parseBlock();
+//            case (PRINT) -> parsePrintStatement();
+//            case (Compiler808.Grammar.ASSIGNMENT_OP) -> parseAssignmentStatement();
+//            case (Compiler808.Grammar.VARIABLE_TYPE) -> parseVarDecal();
+//            case (Compiler808.Grammar.WHILE) -> parseWhileSatement();
+//            case (Compiler808.Grammar.IF) -> parseIfStatement();
+//            case (Compiler808.Grammar.L_BRACE) -> parseBlock();
 //            default -> System.out.println("ERROR: parseStatement() FAILED"); //This should never happen
 //        }
 //    }
 //
 //    public static void parsePrintStatement(){
 //        Tree.addNode("branch", "printStatement");
-//        match(Lexer.Grammar.PRINT);
-//        match(Lexer.Grammar.L_PARENTH);
+//        match(Compiler808.Grammar.PRINT);
+//        match(Compiler808.Grammar.L_PARENTH);
 //        parseExpr();
-//        match(Lexer.Grammar.R_PARENTH);
+//        match(Compiler808.Grammar.R_PARENTH);
 //    }
 //
 //    public static void parseExpr(){
 //        Tree.addNode("branch", "expr");
 //        switch (tokenStream.get(getIndex()).token_type){
-//            case (Lexer.Grammar.DIGIT) -> parseIntExpr();
-//            case (Lexer.Grammar.QUOTE) -> parseStringExpr();
-//            case (Lexer.Grammar.L_PARENTH),(Lexer.Grammar.BOOL)  -> parseBooleanExpr();
-//            case (Lexer.Grammar.CHAR) -> parseId();
+//            case (Compiler808.Grammar.DIGIT) -> parseIntExpr();
+//            case (Compiler808.Grammar.QUOTE) -> parseStringExpr();
+//            case (Compiler808.Grammar.L_PARENTH),(Compiler808.Grammar.BOOL)  -> parseBooleanExpr();
+//            case (Compiler808.Grammar.CHAR) -> parseId();
 //            default -> System.out.println("ERROR: parseExpr() FAILED"); //This should never happen //TODO: implement line number and char number error
 //        }
 //    }
 //
 //    public static void parseIntExpr(){
 //        Tree.addNode("branch", "intExpr");
-//        match(Lexer.Grammar.DIGIT);
-//        if (tokenStream.get(getIndex()).token_type == Lexer.Grammar.ADDITION_OP){
+//        match(Compiler808.Grammar.DIGIT);
+//        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP){
 //            parseIntop();
 //            parseExpr();
 //        }
@@ -116,17 +118,37 @@
 //
 //    public static void parseIntop(){
 //        Tree.addNode("branch", "intop");
-//        match(Lexer.Grammar.ADDITION_OP);
+//        match(Compiler808.Grammar.ADDITION_OP);
 //    }
 //
 //    public static void parseStringExpr(){
-//        match(Lexer.Grammar.QUOTE);
+//        match(Compiler808.Grammar.QUOTE);
 //        parseCharList();
-//        match(Lexer.Grammar.QUOTE);
+//        match(Compiler808.Grammar.QUOTE);
 //    }
 //
-//    public static void parsesCharList(){
+//    public static void parseCharList(){
 //
 //    }
 //
+//    public static void parseAssignmentStatement(){
+//
+//    }
+//
+//    public static void parseVarDecal(){
+//
+//    }
+//
+//    public static void parseWhileSatement(){
+//
+//    }
+//    public static void parseIfStatement(){
+//
+//    }
+//    public static void parseBooleanExpr(){
+//
+//    }
+//    public static void parseId(){
+//
+//    }
 //}
