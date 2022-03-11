@@ -12,9 +12,9 @@ public class Tree {
     public static Node root = null;
     public static Node current = null;
 
-    public static void addNode(String kind, Token label){
+    public static void addNode(String kind, String label){
         Node n = new Node(); //initialize new Node
-        n.name = label.token_type.toString(); // Transform from Grammar to String //TODO: make sure it converts to string
+        n.name = label;
         if (root == null){ //case for the first node in tree
             root = n;
         }

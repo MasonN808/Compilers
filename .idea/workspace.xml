@@ -4,6 +4,7 @@
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,13 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00012" summary="-Added documentation comments&#10;-Initialized is_token to transfer the implementation of our grammar there instead of get_token_stream.  This will allow us to implement longest match and rule order in get_token_stream instead.">
-      <created>1644364595421</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1644364595421</updated>
     </task>
     <task id="LOCAL-00013" summary="-Finished is_token">
       <created>1644365641369</created>
@@ -424,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646522776459</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()">
+      <created>1646971656405</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1646971656406</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,7 +441,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages" />
     <MESSAGE value="- Integrated new printing line system for smallerized data&#10;- Working on implementing in biggerized data" />
     <MESSAGE value="- LEXICAL ANALYSIS WORKS FOR BIGGER DATA AND SMALLERIST DATA" />
     <MESSAGE value="- Lexer now works when multiple programs are in one .txt file" />
@@ -465,7 +465,8 @@
     <MESSAGE value="Made the Node class" />
     <MESSAGE value="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class" />
     <MESSAGE value="-Added more recommendations" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added more recommendations" />
+    <MESSAGE value="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
