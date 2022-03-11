@@ -39,7 +39,7 @@ public class Lexer {
         EOP, L_BRACE, R_BRACE, VARIABLE_TYPE, IF, WHILE,
         PRINT, ASSIGNMENT_OP, ID, QUOTE, L_PARENTH,
         R_PARENTH, CHAR, DIGIT, EQUALITY_OP, INEQUALITY_OP,
-        BOOL, ADDITION_OP
+        BOOL, ADDITION_OP, SPACE
     }
 
     /**
@@ -108,6 +108,9 @@ public class Lexer {
                 if (current_lexeme.matches("[a-z]") & !close_quote_found) { // It is a CHAR if in quotes, else ID
                     token = new Token(Grammar.CHAR, current_lexeme, current_line, printed_current_index); // CHAR
                 }
+//                else if (current_lexeme.matches(" ") & !close_quote_found){
+//                    token = new Token(Grammar.SPACE, current_lexeme, current_line, printed_current_index); // SPACE
+//                }
                 else if (current_lexeme.matches("[a-z]")) {
 //                    System.out.println("quote_closed :" + close_quote_found); //DEBUGGING
                     token = new Token(Grammar.ID, current_lexeme, current_line, printed_current_index); // CHAR
@@ -165,7 +168,7 @@ public class Lexer {
             }
 
             if (str_current_char.equals(" ") & !close_quote_found & current_string.length() == 1){
-                Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
+                Token token = new Token(Grammar.SPACE, " ", current_line, current_char); // create space character
                 add_token(token_stream, token, verbose);
                 printed_current_index += 1;
             }

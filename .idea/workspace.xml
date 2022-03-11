@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test2" beforeDir="false" afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,20 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00013" summary="-Finished is_token">
-      <created>1644365641369</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1644365641369</updated>
-    </task>
-    <task id="LOCAL-00014" summary="-Moved many boolean variables out of block&#10;-Added some documentation for the methods&#10;-Embedded the switch{} in get_token_stream with an if statement for is_token&#10;-Currently working on longest match and rule order">
-      <created>1644371206367</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1644371206367</updated>
     </task>
     <task id="LOCAL-00015" summary="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error">
       <created>1644377297865</created>
@@ -425,7 +413,21 @@
       <option name="project" value="LOCAL" />
       <updated>1646971656406</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="-Transformed input from token to String for label in Tree class">
+      <created>1646972838502</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1646972838502</updated>
+    </task>
+    <task id="LOCAL-00063" summary="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()">
+      <created>1646972899837</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1646972899837</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -441,8 +443,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Integrated new printing line system for smallerized data&#10;- Working on implementing in biggerized data" />
-    <MESSAGE value="- LEXICAL ANALYSIS WORKS FOR BIGGER DATA AND SMALLERIST DATA" />
     <MESSAGE value="- Lexer now works when multiple programs are in one .txt file" />
     <MESSAGE value="- Refactored many comments and rule order array" />
     <MESSAGE value="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts" />
@@ -466,7 +466,9 @@
     <MESSAGE value="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class" />
     <MESSAGE value="-Added more recommendations" />
     <MESSAGE value="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()" />
+    <MESSAGE value="-Transformed input from token to String for label in Tree class" />
+    <MESSAGE value="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
