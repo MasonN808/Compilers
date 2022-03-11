@@ -94,7 +94,8 @@ public class Lexer {
             case ("!=") -> token = new Token(Compiler808.Grammar.INEQUALITY_OP, current_lexeme, current_line, printed_current_index);
             case ("(") -> token = new Token(Compiler808.Grammar.L_PARENTH, current_lexeme, current_line, printed_current_index); // PARENTHESIS
             case (")") -> token = new Token(Compiler808.Grammar.R_PARENTH, current_lexeme, current_line, printed_current_index);
-            case ("false"), ("true") -> token = new Token(Compiler808.Grammar.BOOL, current_lexeme, current_line, printed_current_index); // BOOL
+            case ("false") -> token = new Token(Compiler808.Grammar.FALSE, current_lexeme, current_line, printed_current_index); // BOOL
+            case ("true") -> token = new Token(Compiler808.Grammar.TRUE, current_lexeme, current_line, printed_current_index); // BOOL
             case ("if") -> token = new Token(Compiler808.Grammar.IF, current_lexeme, current_line, printed_current_index); // IF
             case ("while") -> token = new Token(Compiler808.Grammar.WHILE, current_lexeme, current_line, printed_current_index); // WHILE
             case ("print") -> token = new Token(Compiler808.Grammar.PRINT, current_lexeme, current_line, printed_current_index); // PRINT

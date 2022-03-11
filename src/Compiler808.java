@@ -7,7 +7,7 @@ public class Compiler808 {
         EOP, L_BRACE, R_BRACE, VARIABLE_TYPE, IF, WHILE,
         PRINT, ASSIGNMENT_OP, ID, QUOTE, L_PARENTH,
         R_PARENTH, CHAR, DIGIT, EQUALITY_OP, INEQUALITY_OP,
-        BOOL, ADDITION_OP, SPACE
+        FALSE, TRUE, ADDITION_OP, SPACE
     }
 
     public static void main(String[] args) throws FileNotFoundException {

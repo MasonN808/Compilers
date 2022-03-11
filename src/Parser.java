@@ -92,7 +92,6 @@ public class Parser {
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.IF) parseIfStatement();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_BRACE) parseBlock();
             else System.out.println("ERROR: parseStatement() FAILED"); //This should never happen
-        }
     }
 
     public static void parsePrintStatement(){
@@ -133,27 +132,66 @@ public class Parser {
     }
 
     public static void parseCharList(){
-
+        Tree.addNode("branch", "charList");
+        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR){
+            match(Compiler808.Grammar.CHAR);
+            parseCharList();
+        }
+        else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.SPACE){
+            match(Compiler808.Grammar.SPACE);
+            parseCharList();
+        }
+        else{
+            //epsilon production
+        }
     }
 
     public static void parseAssignmentStatement(){
-
+        Tree.addNode("branch", "assignmentStatement");
+        match(Compiler808.Grammar.ID);
+        match(Compiler808.Grammar.ASSIGNMENT_OP);
+        parseExpr();
     }
 
     public static void parseVarDecal(){
-
+        Tree.addNode("branch", "varDecal");
+        match(Compiler808.Grammar.VARIABLE_TYPE);
+        match(Compiler808.Grammar.ID);
     }
 
     public static void parseWhileSatement(){
-
+        Tree.addNode("branch", "whileStatement");
+        match(Compiler808.Grammar.WHILE);
+        parseBooleanExpr();
+        parseBlock();
     }
+
     public static void parseIfStatement(){
-
+        Tree.addNode("branch", "ifStatement");
+        match(Compiler808.Grammar.IF);
+        parseBooleanExpr();
+        parseBlock();
     }
+
     public static void parseBooleanExpr(){
-
+        Tree.addNode("branch", "booleanExpr");
+        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH){
+            match(Compiler808.Grammar.L_PARENTH);
+            parseExpr();
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.INEQUALITY_OP){
+                match(Compiler808.Grammar.INEQUALITY_OP);
+            }
+            else {
+                match(Compiler808.Grammar.EQUALITY_OP);
+            }
+            parseExpr();
+        }
+        else {
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.BOOL)
+        }
     }
-    public static void parseId(){
 
+    public static void parseId(){
+        Tree.addNode("branch", "id");
     }
 }
