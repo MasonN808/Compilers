@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test2" beforeDir="false" afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,20 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00033" summary="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo.&#10;- Some deletion of comments">
-      <created>1644637793036</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1644637793036</updated>
-    </task>
-    <task id="LOCAL-00034" summary="- Deleted a lot of unnecessary code">
-      <created>1644638163241</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1644638163241</updated>
     </task>
     <task id="LOCAL-00035" summary="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data">
       <created>1644639985148</created>
@@ -430,7 +413,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647116294139</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="-if error found in parse, the CST wont be shown">
+      <created>1647119657861</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1647119657861</updated>
+    </task>
+    <task id="LOCAL-00083" summary="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST.">
+      <created>1647119727001</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1647119727001</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -446,8 +443,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Edited comment" />
-    <MESSAGE value="Made Tree Class for the CST" />
     <MESSAGE value="Made the Node class" />
     <MESSAGE value="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class" />
     <MESSAGE value="-Added more recommendations" />
@@ -471,7 +466,9 @@
     <MESSAGE value="-Implemented moveUp() does nothing" />
     <MESSAGE value="-Added CST String output for Tree class" />
     <MESSAGE value="-Deleted some cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Deleted some cases" />
+    <MESSAGE value="-if error found in parse, the CST wont be shown" />
+    <MESSAGE value="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST." />
+    <option name="LAST_COMMIT_MESSAGE" value="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

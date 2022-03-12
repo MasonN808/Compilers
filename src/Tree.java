@@ -32,6 +32,30 @@ public class Tree {
         current = current.parent; //Go up the tree
     }
 
+    // Adapted from https://stackoverflow.com/questions/19338009/traversing-a-non-binary-tree-in-java
+    public static String traverse(Node node, int depth, String traversalResult){ // post order traversal
+        for (int i = 0; i < depth; i++)
+        {
+            traversalResult = traversalResult.concat("-");
+        }
+
+        for(Node each : node.children){
+            if (each.children.isEmpty()){
+                traversalResult = traversalResult.concat("[" + each.name + "]\n");
+                traverse(each, depth, traversalResult);
+            }
+            else {
+                traversalResult = traversalResult.concat("<" + node.name + "> \n");
+                traverse(each, depth + 1, traversalResult);
+            }
+        }
+        return traversalResult;
+    }
+
+
+
+
+
     //From Alan Website
     // Recursive function to handle the expansion of the nodes.
     public static String expand(Node node, int depth, String traversalResult){
