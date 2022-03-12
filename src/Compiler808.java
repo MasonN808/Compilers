@@ -31,7 +31,7 @@ public class Compiler808 {
         File inFile = new File("src/test2");
 
         String content = new Scanner(inFile).useDelimiter("\\Z").next();
-        Lexer lexer = new Lexer();
+        Lexer2 lexer = new Lexer2();
         lexer.get_token_stream(content, is_verbose);
         System.out.println(System.lineSeparator());
 
