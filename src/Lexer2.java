@@ -528,9 +528,9 @@ public class Lexer2 {
                 }
 
                 //DEBUGGING
-                for (Token token: tokenStream){
-                    System.out.print(" " + token.s);
-                }
+//                for (Token token: tokenStream){
+//                    System.out.print(" " + token.s);
+//                }
 
                 if (num_errors == 0){
                     // putting parser here:
@@ -540,14 +540,15 @@ public class Lexer2 {
                     parser.parseProgram();
                     if (!Parser.foundError) {
                         System.out.println("Parser -------> Parse finished SUCCESSFULLY");
+                        // For CST
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("CST for Program " + program_num);
+                        System.out.println(parser.cst.cstToString());
                     }
                     else {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
                     }
-                    // For CST
-                    System.out.println("------------------------------------------------------------");
-                    System.out.println("CST for Program " + program_num);
-                    System.out.println(parser.cst.cstToString());
+
                 }
                 else { // if lex had errors
                     System.out.println("------------------------------------------------------------");

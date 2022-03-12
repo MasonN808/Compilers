@@ -4,6 +4,7 @@
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test2" beforeDir="false" afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
     </list>
@@ -85,27 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00030" summary="- Still Debugging&#10;- Able to find some symbols">
-      <created>1644630394572</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1644630394572</updated>
-    </task>
-    <task id="LOCAL-00031" summary="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token">
-      <created>1644635369402</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1644635369402</updated>
-    </task>
-    <task id="LOCAL-00032" summary="- Added debugger (kind of)&#10;- Fixed comment issue if s.length() &gt; 1.  Let &quot;/&quot; delimiter be a boundary in longest match algo.">
-      <created>1644636920552</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1644636920552</updated>
     </task>
     <task id="LOCAL-00033" summary="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo.&#10;- Some deletion of comments">
       <created>1644637793036</created>
@@ -429,7 +409,28 @@
       <option name="project" value="LOCAL" />
       <updated>1647060848670</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="-Implemented moveUp() does nothing">
+      <created>1647116253548</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116253549</updated>
+    </task>
+    <task id="LOCAL-00080" summary="-Added CST String output for Tree class">
+      <created>1647116278615</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116278615</updated>
+    </task>
+    <task id="LOCAL-00081" summary="-Deleted some cases">
+      <created>1647116294139</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116294139</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -445,9 +446,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Set verbose to default (fixing readme next)" />
-    <MESSAGE value="Initialize Node class" />
-    <MESSAGE value="Added constructor and making match method" />
     <MESSAGE value="Edited comment" />
     <MESSAGE value="Made Tree Class for the CST" />
     <MESSAGE value="Made the Node class" />
@@ -470,7 +468,10 @@
     <MESSAGE value="-Edited print statements for Parser" />
     <MESSAGE value="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse" />
     <MESSAGE value="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO" />
+    <MESSAGE value="-Implemented moveUp() does nothing" />
+    <MESSAGE value="-Added CST String output for Tree class" />
+    <MESSAGE value="-Deleted some cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Deleted some cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
