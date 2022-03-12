@@ -199,5 +199,6 @@ public class Parser {
 
     public static void parseId(){
         Tree.addNode("branch", "id");
+        match(Compiler808.Grammar.CHAR);
     }
 }
