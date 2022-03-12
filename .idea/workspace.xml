@@ -85,20 +85,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00026" summary="- Split the if into two if statements: one to handle the single character being scanned and the string being scanned.">
-      <created>1644547804263</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1644547804263</updated>
-    </task>
-    <task id="LOCAL-00027" summary="- Added lex error method&#10;- Added code to take care of comments">
-      <created>1644549054472</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1644549054472</updated>
-    </task>
     <task id="LOCAL-00028" summary="- Added more cases for spaces, tabs, and line breaks&#10;- Added global variable line_number">
       <created>1644617015006</created>
       <option name="number" value="00028" />
@@ -428,7 +414,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647058623705</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)">
+      <created>1647059426741</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1647059426741</updated>
+    </task>
+    <task id="LOCAL-00076" summary="-Edited print statements for Parser">
+      <created>1647059441926</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1647059441926</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,9 +444,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- This commit is working in command prompt" />
-    <MESSAGE value="- Added more test cases&#10;- fixed issue with warnings and errors&#10;- It now prints out all errors in program until termination&#10;- NEED to add how to fix the errors and warnings&#10;- Works in command prompt" />
-    <MESSAGE value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
     <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
     <MESSAGE value="- This commit should fix the line break issue on different OSs" />
     <MESSAGE value="- Set verbose to default (fixing readme next)" />
@@ -469,7 +466,10 @@
     <MESSAGE value="-Added verbose mode for Parser" />
     <MESSAGE value="-Initialized children as empty ArrayList&lt;Token&gt;" />
     <MESSAGE value="-Edited Testing for Parser implementation of lexer (lexer2)" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Edited Testing for Parser implementation of lexer (lexer2)" />
+    <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent" />
+    <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)" />
+    <MESSAGE value="-Edited print statements for Parser" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Edited print statements for Parser" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

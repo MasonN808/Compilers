@@ -533,6 +533,12 @@ public class Lexer2 {
                     System.out.println("PARSING Program " + program_num);
                     Parser parser = new Parser(tokenStream, verbose);
                     parser.parseProgram();
+                    if (!Parser.foundError) System.out.println("Parser -------> Parse finished SUCCESSFULLY");
+                    else System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
+                }
+                else { // if lex had errors
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("SKIP Parsing program " + program_num);
                 }
 
                 System.out.println("------------------------------------------------------------");
