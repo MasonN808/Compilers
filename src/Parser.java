@@ -78,6 +78,7 @@ public class Parser {
             match(Compiler808.Grammar.L_BRACE);
             parseStatementList();
             match(Compiler808.Grammar.R_BRACE);
+            cst.moveUp();
         }
     }
 
@@ -92,6 +93,7 @@ public class Parser {
             } else {
                 //epsilon production (nothing happens; skips)
             }
+            cst.moveUp();
         }
     }
 
@@ -108,7 +110,10 @@ public class Parser {
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.WHILE) parseWhileStatement();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.IF) parseIfStatement();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_BRACE) parseBlock();
-            else System.out.println("ERROR: parseStatement() FAILED"); //This should never happen
+            else {
+                System.out.println("ERROR: parseStatement() FAILED"); //This should never happen
+            }
+            cst.moveUp();
         }
     }
 
@@ -121,6 +126,7 @@ public class Parser {
             match(Compiler808.Grammar.L_PARENTH);
             parseExpr();
             match(Compiler808.Grammar.R_PARENTH);
+            cst.moveUp();
         }
     }
 
@@ -134,8 +140,10 @@ public class Parser {
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE)
                 parseBooleanExpr();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR) parseId();
-            else
+            else {
                 System.out.println("ERROR: parseExpr() FAILED"); //This should never happen //TODO: implement line number and char number error
+            }
+            cst.moveUp();
         }
     }
 
@@ -149,6 +157,7 @@ public class Parser {
                 parseIntop();
                 parseExpr();
             }
+            cst.moveUp();
         }
     }
 
@@ -158,6 +167,7 @@ public class Parser {
             if (verbose) System.out.println("Parser -------> parseIntop()");
             cst.addNode("branch", "intop");
             match(Compiler808.Grammar.ADDITION_OP);
+            cst.moveUp();
         }
     }
 
@@ -168,6 +178,7 @@ public class Parser {
             match(Compiler808.Grammar.QUOTE);
             parseCharList();
             match(Compiler808.Grammar.QUOTE);
+            cst.moveUp();
         }
     }
 
@@ -185,6 +196,7 @@ public class Parser {
             } else {
                 //epsilon production
             }
+            cst.moveUp();
         }
     }
 
@@ -196,6 +208,7 @@ public class Parser {
             match(Compiler808.Grammar.ID);
             match(Compiler808.Grammar.ASSIGNMENT_OP);
             parseExpr();
+            cst.moveUp();
         }
     }
 
@@ -206,6 +219,7 @@ public class Parser {
             cst.addNode("branch", "varDecal");
             match(Compiler808.Grammar.VARIABLE_TYPE);
             match(Compiler808.Grammar.ID);
+            cst.moveUp();
         }
     }
 
@@ -217,6 +231,7 @@ public class Parser {
             match(Compiler808.Grammar.WHILE);
             parseBooleanExpr();
             parseBlock();
+            cst.moveUp();
         }
     }
 
@@ -228,6 +243,7 @@ public class Parser {
             match(Compiler808.Grammar.IF);
             parseBooleanExpr();
             parseBlock();
+            cst.moveUp();
         }
     }
 
@@ -250,6 +266,7 @@ public class Parser {
                     parseBoolOp();
                 }
             }
+            cst.moveUp();
         }
     }
 
@@ -263,6 +280,7 @@ public class Parser {
             } else {
                 match(Compiler808.Grammar.FALSE);
             }
+            cst.moveUp();
         }
     }
 
@@ -272,6 +290,7 @@ public class Parser {
             if (verbose) System.out.println("Parser -------> parseId()");
             cst.addNode("branch", "id");
             match(Compiler808.Grammar.CHAR);
+            cst.moveUp();
         }
     }
 }

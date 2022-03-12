@@ -4,7 +4,8 @@
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test2" beforeDir="false" afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,20 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00028" summary="- Added more cases for spaces, tabs, and line breaks&#10;- Added global variable line_number">
-      <created>1644617015006</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1644617015006</updated>
-    </task>
-    <task id="LOCAL-00029" summary="- Added line number and character for Token class&#10;- Debugging Lexer (Specifically comments for indents, spaces, and line break case and none...) and refactoring">
-      <created>1644629448511</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1644629448511</updated>
     </task>
     <task id="LOCAL-00030" summary="- Still Debugging&#10;- Able to find some symbols">
       <created>1644630394572</created>
@@ -428,7 +415,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647059441926</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse">
+      <created>1647060762682</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1647060762682</updated>
+    </task>
+    <task id="LOCAL-00078" summary="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO">
+      <created>1647060848670</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1647060848670</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,8 +445,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
-    <MESSAGE value="- This commit should fix the line break issue on different OSs" />
     <MESSAGE value="- Set verbose to default (fixing readme next)" />
     <MESSAGE value="Initialize Node class" />
     <MESSAGE value="Added constructor and making match method" />
@@ -469,7 +468,9 @@
     <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent" />
     <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)" />
     <MESSAGE value="-Edited print statements for Parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Edited print statements for Parser" />
+    <MESSAGE value="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse" />
+    <MESSAGE value="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
