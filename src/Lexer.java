@@ -506,10 +506,6 @@ public class Lexer {
                     current_string = "";
 
                 }
-//                else{
-//                    System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
-//                    System.out.println("LEXEME: " + current_string);
-//                }
 
             }
 

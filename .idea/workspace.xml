@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="-Added FALSE and TRUE Tokens for easier parser implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test2" beforeDir="false" afterPath="$PROJECT_DIR$/src/test2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,13 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00018" summary="-Marked TODO for where to continue">
-      <created>1644379531869</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1644379531869</updated>
     </task>
     <task id="LOCAL-00019" summary="-Edited the rule order&#10;-Trying to get a file reader up and working (shouldn't be this difficult)">
       <created>1644463492551</created>
@@ -427,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647040933337</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="-Added FALSE and TRUE Tokens for easier parser implementation">
+      <created>1647041833717</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1647041833717</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +441,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next" />
     <MESSAGE value="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis" />
     <MESSAGE value="- Accounted for cases regarding L_PARENTH and R_PARENTH" />
     <MESSAGE value="- Added number of warnings&#10;- Made edits to unterminated comments" />
@@ -468,7 +465,8 @@
     <MESSAGE value="-Added in line 171 to make space its own token, not just CHAR" />
     <MESSAGE value="-Refactored Lexer, Parser, Token and Compiler808 to move Grammar from lexer to Compiler808" />
     <MESSAGE value="-Changed from switch statement to long else if statement because of the grammar refactoring since switches won't work from the refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Changed from switch statement to long else if statement because of the grammar refactoring since switches won't work from the refactoring" />
+    <MESSAGE value="-Added FALSE and TRUE Tokens for easier parser implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added FALSE and TRUE Tokens for easier parser implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

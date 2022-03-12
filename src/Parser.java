@@ -14,12 +14,6 @@ import java.util.Set;
  * @since   03-01-2022
  */
 public class Parser {
-    public enum Grammar {
-        EOP, L_BRACE, R_BRACE, VARIABLE_TYPE, IF, WHILE,
-        PRINT, ASSIGNMENT_OP, ID, QUOTE, L_PARENTH,
-        R_PARENTH, CHAR, DIGIT, EQUALITY_OP, INEQUALITY_OP,
-        BOOL, ADDITION_OP, SPACE
-    }
 
     private static int index;
     private static ArrayList<Token> tokenStream;
@@ -106,7 +100,7 @@ public class Parser {
         Tree.addNode("branch", "expr");
         if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) parseIntExpr();
         else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) parseStringExpr();
-        else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.BOOL) parseBooleanExpr();
+        else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) parseBooleanExpr();
         else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR) parseId();
         else System.out.println("ERROR: parseExpr() FAILED"); //This should never happen //TODO: implement line number and char number error
     }
@@ -187,7 +181,19 @@ public class Parser {
             parseExpr();
         }
         else {
-            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.BOOL)
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE){
+                parseBoolOp();
+            }
+        }
+    }
+
+    public static void parseBoolOp(){
+        Tree.addNode("branch", "boolOp");
+        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
+            match(Compiler808.Grammar.TRUE);
+        }
+        else {
+            match(Compiler808.Grammar.FALSE);
         }
     }
 
