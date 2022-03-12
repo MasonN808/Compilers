@@ -33,6 +33,7 @@ public class Parser {
         this.verbose = verbose;
         cst = new Tree();
         this.foundError = false;
+        this.index = 0;
 
     }
 
@@ -85,13 +86,13 @@ public class Parser {
     public void parseStatementList(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseStatementList()");
+            if (verbose) {
+                System.out.println("Parser -------> parseStatementList()");
+            }
             cst.addNode("branch", "statementList");
             if (statementListValues.contains(tokenStream.get(getIndex()).token_type)) {
                 parseStatement();
                 parseStatementList();
-            } else {
-                //epsilon production (nothing happens; skips)
             }
             cst.moveUp();
         }
