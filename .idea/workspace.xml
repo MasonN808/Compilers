@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,20 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00020" summary="-Imported test1 txt file for testing the reader&#10;-Reader reads the imported file nicely!&#10;-Now working on the Lexer Class">
-      <created>1644518228905</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1644518228905</updated>
-    </task>
-    <task id="LOCAL-00021" summary="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation">
-      <created>1644520616829</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1644520616829</updated>
     </task>
     <task id="LOCAL-00022" summary="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global">
       <created>1644541936047</created>
@@ -428,7 +416,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647047431335</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="-Lexer2 for parser in lexer implementation">
+      <created>1647056156974</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1647056156975</updated>
+    </task>
+    <task id="LOCAL-00070" summary="-edited parseID">
+      <created>1647056171832</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1647056171832</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,8 +446,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis" />
-    <MESSAGE value="- Accounted for cases regarding L_PARENTH and R_PARENTH" />
     <MESSAGE value="- Added number of warnings&#10;- Made edits to unterminated comments" />
     <MESSAGE value="- Added new test case&#10;- small edits to error log statement" />
     <MESSAGE value="- Refactoring" />
@@ -469,7 +469,9 @@
     <MESSAGE value="-Refactored Lexer, Parser, Token and Compiler808 to move Grammar from lexer to Compiler808" />
     <MESSAGE value="-Changed from switch statement to long else if statement because of the grammar refactoring since switches won't work from the refactoring" />
     <MESSAGE value="-Added FALSE and TRUE Tokens for easier parser implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added FALSE and TRUE Tokens for easier parser implementation" />
+    <MESSAGE value="-Lexer2 for parser in lexer implementation" />
+    <MESSAGE value="-edited parseID" />
+    <option name="LAST_COMMIT_MESSAGE" value="-edited parseID" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
