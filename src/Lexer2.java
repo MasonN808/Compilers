@@ -40,21 +40,22 @@ public class Lexer2 {
     public Token current_token;
     public boolean debug = false; // For debugging
 
+
     // List out all tokens from our predefined Compiler808.Grammar https://www.labouseur.com/courses/compilers/Compiler808.Grammar.pdf
 
 
     /**
      * This method prints out various tokens depending on the token the lexer identifies
-     * @param token_stream The stream of tokens the lexer already identified
+     * @param tokenStream The stream of tokens the lexer already identified
      * @param token  The token the lexer identifies after longest match and rule order
      * @param verbose A condition to allow the user to print extra information
      */
-    public static void add_token(ArrayList<Token> token_stream, Token token, boolean verbose) {
+    public static void add_token(ArrayList<Token> tokenStream, Token token, boolean verbose) {
         if (verbose) {
             System.out.println("Lexer -------> " + token.token_type + " [ " + token.s + " ] at "
                     + token.line_number + ", " + token.character_number);
         }
-        token_stream.add(token);
+        tokenStream.add(token);
     }
 
     /**
@@ -143,7 +144,8 @@ public class Lexer2 {
             WINDOWS = true;
         }
 
-        ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
+        ArrayList<Token> tokenStreamAggregate = new ArrayList<Token>(); // Initialize the tokenStream that will output ALL tokenStreams
+        ArrayList<Token> tokenStream = new ArrayList<Token>(); // Initialize the tokenStream that will be given to the parser
         String current_string = "";
 
         Token prev_token = null;
@@ -171,7 +173,7 @@ public class Lexer2 {
 
             if (str_current_char.equals(" ") & !close_quote_found & current_string.length() == 1){
                 Token token = new Token(Compiler808.Grammar.SPACE, " ", current_line, current_char); // create space character
-                add_token(token_stream, token, verbose);
+                add_token(tokenStream, token, verbose);
                 printed_current_index += 1;
             }
 
@@ -186,10 +188,10 @@ public class Lexer2 {
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                 }
                 else{
-                    add_token(token_stream, prev_token, verbose);
+                    add_token(tokenStream, prev_token, verbose);
                 }
                 current_index += current_token.s.length() - 1;
                 printed_current_index += current_token.s.length();
@@ -222,10 +224,10 @@ public class Lexer2 {
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                 }
                 else{
-                    add_token(token_stream, prev_token, verbose);
+                    add_token(tokenStream, prev_token, verbose);
                 }
                 current_index += current_token.s.length() - 1;
                 printed_current_index += current_token.s.length();
@@ -237,10 +239,10 @@ public class Lexer2 {
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                 }
                 else{
-                    add_token(token_stream, prev_token, verbose);
+                    add_token(tokenStream, prev_token, verbose);
                 }
                 current_index += current_token.s.length() - 1;
                 printed_current_index += current_token.s.length();
@@ -308,7 +310,7 @@ public class Lexer2 {
 //                System.out.println("Found Token" + "[ " + get_token(str_current_char).s + " ] at: " + current_line + ", " + current_index); // DEBUGGING
                 t_type = get_token(str_current_char).token_type;
                 if (t_type == Compiler808.Grammar.EOP & current_string.length() == 1){
-                    add_token(token_stream, get_token(str_current_char), verbose);
+                    add_token(tokenStream, get_token(str_current_char), verbose);
                     printed_current_index += 1;
                     EOP_found = true;
                     current_string = "";
@@ -317,10 +319,10 @@ public class Lexer2 {
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
-                        add_token(token_stream, current_token, verbose);
+                        add_token(tokenStream, current_token, verbose);
                     }
                     else{
-                        add_token(token_stream, prev_token, verbose);
+                        add_token(tokenStream, prev_token, verbose);
                     }
                     current_index += current_token.s.length() - 1;
                     printed_current_index += current_token.s.length();
@@ -337,13 +339,13 @@ public class Lexer2 {
 //                    System.out.println(temp_current_string); //DEBUG
                     if (is_token(temp_current_string)){ // make sure not null
                         if (get_token(temp_current_string).token_type == Compiler808.Grammar.EQUALITY_OP){
-                            add_token(token_stream, get_token(temp_current_string), verbose);
+                            add_token(tokenStream, get_token(temp_current_string), verbose);
                             current_index += 1; // 1 because we temporarily went ahead one index
                             printed_current_index += 2;
                             current_string = "";
                         }
                     }else{// assumed that it is not inequality, thus we add = Token
-                        add_token(token_stream, get_token(current_string), verbose);
+                        add_token(tokenStream, get_token(current_string), verbose);
                         printed_current_index += 1;
                         current_string = "";
                     }
@@ -352,13 +354,13 @@ public class Lexer2 {
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
-                        add_token(token_stream, current_token, verbose);
+                        add_token(tokenStream, current_token, verbose);
                         current_index += current_token.s.length() - 1;
                         printed_current_index += current_token.s.length();
                         current_string = "";
                     }
                     else{
-                        add_token(token_stream, prev_token, verbose);
+                        add_token(tokenStream, prev_token, verbose);
                         current_index += current_token.s.length() - 1; // do this to account for length of token for updated index
                         printed_current_index += current_token.s.length();
                         current_string = "";
@@ -407,7 +409,7 @@ public class Lexer2 {
                     }
 
                     current_token = get_token(str_current_char);
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
                 }
@@ -417,11 +419,11 @@ public class Lexer2 {
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
-                        add_token(token_stream, current_token, verbose);
+                        add_token(tokenStream, current_token, verbose);
                         printed_current_index += 1;
                     }
                     else{
-                        add_token(token_stream, prev_token, verbose);
+                        add_token(tokenStream, prev_token, verbose);
                         printed_current_index += 1;
                     }
                     current_index += current_token.s.length() - 1;
@@ -456,7 +458,7 @@ public class Lexer2 {
                 temp_current_string += temp_current_char;
                 if (is_token(temp_current_string)){
                     if (get_token(temp_current_string).token_type == Compiler808.Grammar.INEQUALITY_OP) {
-                        add_token(token_stream, get_token(temp_current_string), verbose);
+                        add_token(tokenStream, get_token(temp_current_string), verbose);
                         current_index += 1; // 1 because we temporarily went ahead one index
                         printed_current_index += 2;
                         current_string = "";
@@ -486,13 +488,13 @@ public class Lexer2 {
 //
 
                 } else if (t_type == Compiler808.Grammar.DIGIT) {
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
 
 
                 } else if (t_type == Compiler808.Grammar.CHAR) {
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
 
@@ -524,6 +526,14 @@ public class Lexer2 {
                 else{
                     System.out.println("Lexer -------> Lex finished with " + num_errors + " errors and " + num_warnings + " warnings");
                 }
+
+                if (num_errors == 0){
+                    // putting parser here:
+
+                    Parser parser = new Parser(tokenStream, verbose);
+                    parser.parseProgram();
+                }
+
                 System.out.println("------------------------------------------------------------");
 
                 program_num += 1;
@@ -545,8 +555,10 @@ public class Lexer2 {
                 close_quote_found = true;
                 first_thing_found = false;
 
-                // putting parser here:
+                tokenStreamAggregate.addAll(tokenStream); //Add current tokenstream to aggregate
 
+
+                tokenStream = new ArrayList<Token>(); // make TokenStream empty for next program
             }
 
             // Break if final EOP is found
@@ -575,6 +587,6 @@ public class Lexer2 {
 
             current_index += 1;
         }
-        return token_stream;
+        return tokenStream;
     }
 }
