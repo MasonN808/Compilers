@@ -14,7 +14,7 @@ public class Node {
     public Node parent = null; //parent node of current node
     public String name = null; //name of the token_type
     public String value = null; //value of the token_type, if it exists
-    public ArrayList<Node> children; //children of current node
+    public ArrayList<Node> children = new ArrayList<>(); //children of current node
 
 //    public Node(Node parent, String name, String value, ArrayList<Node> children){
 //        this.parent = parent;
