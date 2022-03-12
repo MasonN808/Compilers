@@ -24,7 +24,7 @@ public class Parser {
     private static final Set<Compiler808.Grammar> statementListValues = new HashSet<Compiler808.Grammar>(Arrays.asList(
             Compiler808.Grammar.PRINT, Compiler808.Grammar.ASSIGNMENT_OP, Compiler808.Grammar.VARIABLE_TYPE/*CASE: VarDecal*/,
             Compiler808.Grammar.WHILE, Compiler808.Grammar.IF, Compiler808.Grammar.L_BRACE/*CASE: Block*/));
-
+    public static boolean foundError = false;
 
 
     // Constructor to set new token_stream for parsing
@@ -32,6 +32,7 @@ public class Parser {
         this.tokenStream = tokenStream;
         this.verbose = verbose;
         cst = new Tree();
+        this.foundError = false;
 
     }
 
@@ -44,182 +45,233 @@ public class Parser {
     }
 
     public static void match(Compiler808.Grammar expected){
-        Token given = tokenStream.get(getIndex());
-        // Check the expected token_type is the same as the one given
-         if (expected == given.token_type){
-             Tree.addNode("leaf", given.token_type.toString());
-         }
-         else{ //Error if unexpected token
-             System.out.println("Parser [ERROR][Unexpected Token] --------> expected [ " + expected + " ], got [" + given.token_type + "] at " + given.line_number + ", " + given.character_number);
-             return;
-         }
-         addIndex();
+        if (foundError) return;
+        else {
+            Token given = tokenStream.get(getIndex());
+            // Check the expected token_type is the same as the one given
+            if (expected == given.token_type) {
+                Tree.addNode("leaf", given.token_type.toString());
+            } else { //Error if unexpected token
+                System.out.println("Parser [ERROR][Unexpected Token] --------> expected [ " + expected + " ], got [" + given.token_type + "] at " + given.line_number + ", " + given.character_number);
+                foundError = true;
+                return;
+            }
+            addIndex();
+        }
     }
 
     public void parseProgram(){
-        if (verbose) System.out.println("Parser -------> parseProgram()");
-        cst.addNode("root", "goal");
-        parseBlock();
-        match(Compiler808.Grammar.EOP);
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseProgram()");
+            cst.addNode("root", "goal");
+            parseBlock();
+            match(Compiler808.Grammar.EOP);
+        }
     }
 
     public void parseBlock(){
-        if (verbose) System.out.println("Parser -------> parseBlock()");
-        cst.addNode("branch", "block");
-        match(Compiler808.Grammar.L_BRACE);
-        parseStatementList();
-        match(Compiler808.Grammar.R_BRACE);
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseBlock()");
+            cst.addNode("branch", "block");
+            match(Compiler808.Grammar.L_BRACE);
+            parseStatementList();
+            match(Compiler808.Grammar.R_BRACE);
+        }
     }
 
     public void parseStatementList(){
-        if (verbose) System.out.println("Parser -------> parseStatementList()");
-        cst.addNode("branch", "statementList");
-        if(statementListValues.contains(tokenStream.get(getIndex()).token_type)){
-            parseStatement();
-            parseStatementList();
-        }
-        else{
-            //epsilon production (nothing happens; skips)
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseStatementList()");
+            cst.addNode("branch", "statementList");
+            if (statementListValues.contains(tokenStream.get(getIndex()).token_type)) {
+                parseStatement();
+                parseStatementList();
+            } else {
+                //epsilon production (nothing happens; skips)
+            }
         }
     }
 
     public void parseStatement(){
-        if (verbose) System.out.println("Parser -------> parseStatement()");
-        cst.addNode("branch", "statement");
-        //switch statement WONT WORK
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseStatement()");
+            cst.addNode("branch", "statement");
+            //switch statement WONT WORK
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.PRINT) parsePrintStatement();
-            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ASSIGNMENT_OP) parseAssignmentStatement();
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ASSIGNMENT_OP)
+                parseAssignmentStatement();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.VARIABLE_TYPE) parseVarDecal();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.WHILE) parseWhileStatement();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.IF) parseIfStatement();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_BRACE) parseBlock();
             else System.out.println("ERROR: parseStatement() FAILED"); //This should never happen
+        }
     }
 
     public void parsePrintStatement(){
-        if (verbose) System.out.println("Parser -------> parsePrintStatement()");
-        cst.addNode("branch", "printStatement");
-        match(Compiler808.Grammar.PRINT);
-        match(Compiler808.Grammar.L_PARENTH);
-        parseExpr();
-        match(Compiler808.Grammar.R_PARENTH);
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parsePrintStatement()");
+            cst.addNode("branch", "printStatement");
+            match(Compiler808.Grammar.PRINT);
+            match(Compiler808.Grammar.L_PARENTH);
+            parseExpr();
+            match(Compiler808.Grammar.R_PARENTH);
+        }
     }
 
     public void parseExpr(){
-        if (verbose) System.out.println("Parser -------> parseExpr()");
-        cst.addNode("branch", "expr");
-        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) parseIntExpr();
-        else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) parseStringExpr();
-        else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) parseBooleanExpr();
-        else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR) parseId();
-        else System.out.println("ERROR: parseExpr() FAILED"); //This should never happen //TODO: implement line number and char number error
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseExpr()");
+            cst.addNode("branch", "expr");
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) parseIntExpr();
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) parseStringExpr();
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE)
+                parseBooleanExpr();
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR) parseId();
+            else
+                System.out.println("ERROR: parseExpr() FAILED"); //This should never happen //TODO: implement line number and char number error
+        }
     }
 
     public void parseIntExpr(){
-        if (verbose) System.out.println("Parser -------> parseIntExpr()");
-        cst.addNode("branch", "intExpr");
-        match(Compiler808.Grammar.DIGIT);
-        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP){
-            parseIntop();
-            parseExpr();
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseIntExpr()");
+            cst.addNode("branch", "intExpr");
+            match(Compiler808.Grammar.DIGIT);
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP) {
+                parseIntop();
+                parseExpr();
+            }
         }
     }
 
     public void parseIntop(){
-        if (verbose) System.out.println("Parser -------> parseIntop()");
-        cst.addNode("branch", "intop");
-        match(Compiler808.Grammar.ADDITION_OP);
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseIntop()");
+            cst.addNode("branch", "intop");
+            match(Compiler808.Grammar.ADDITION_OP);
+        }
     }
 
     public void parseStringExpr(){
-        if (verbose) System.out.println("Parser -------> parseStringExpr()");
-        match(Compiler808.Grammar.QUOTE);
-        parseCharList();
-        match(Compiler808.Grammar.QUOTE);
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseStringExpr()");
+            match(Compiler808.Grammar.QUOTE);
+            parseCharList();
+            match(Compiler808.Grammar.QUOTE);
+        }
     }
 
     public void parseCharList(){
-        if (verbose) System.out.println("Parser -------> parseCharList()");
-        cst.addNode("branch", "charList");
-        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR){
-            match(Compiler808.Grammar.CHAR);
-            parseCharList();
-        }
-        else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.SPACE){
-            match(Compiler808.Grammar.SPACE);
-            parseCharList();
-        }
-        else{
-            //epsilon production
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseCharList()");
+            cst.addNode("branch", "charList");
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR) {
+                match(Compiler808.Grammar.CHAR);
+                parseCharList();
+            } else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.SPACE) {
+                match(Compiler808.Grammar.SPACE);
+                parseCharList();
+            } else {
+                //epsilon production
+            }
         }
     }
 
     public void parseAssignmentStatement(){
-        if (verbose) System.out.println("Parser -------> parseAssignmentStatement()");
-        cst.addNode("branch", "assignmentStatement");
-        match(Compiler808.Grammar.ID);
-        match(Compiler808.Grammar.ASSIGNMENT_OP);
-        parseExpr();
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseAssignmentStatement()");
+            cst.addNode("branch", "assignmentStatement");
+            match(Compiler808.Grammar.ID);
+            match(Compiler808.Grammar.ASSIGNMENT_OP);
+            parseExpr();
+        }
     }
 
     public void parseVarDecal(){
-        if (verbose) System.out.println("Parser -------> parseVarDecal()");
-        cst.addNode("branch", "varDecal");
-        match(Compiler808.Grammar.VARIABLE_TYPE);
-        match(Compiler808.Grammar.ID);
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseVarDecal()");
+            cst.addNode("branch", "varDecal");
+            match(Compiler808.Grammar.VARIABLE_TYPE);
+            match(Compiler808.Grammar.ID);
+        }
     }
 
     public void parseWhileStatement(){
-        if (verbose) System.out.println("Parser -------> parseWhileStatement()");
-        cst.addNode("branch", "whileStatement");
-        match(Compiler808.Grammar.WHILE);
-        parseBooleanExpr();
-        parseBlock();
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseWhileStatement()");
+            cst.addNode("branch", "whileStatement");
+            match(Compiler808.Grammar.WHILE);
+            parseBooleanExpr();
+            parseBlock();
+        }
     }
 
     public void parseIfStatement(){
-        if (verbose) System.out.println("Parser -------> parseIfStatement()");
-        cst.addNode("branch", "ifStatement");
-        match(Compiler808.Grammar.IF);
-        parseBooleanExpr();
-        parseBlock();
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseIfStatement()");
+            cst.addNode("branch", "ifStatement");
+            match(Compiler808.Grammar.IF);
+            parseBooleanExpr();
+            parseBlock();
+        }
     }
 
     public void parseBooleanExpr(){
-        if (verbose) System.out.println("Parser -------> parseBooleanExpr()");
-        cst.addNode("branch", "booleanExpr");
-        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH){
-            match(Compiler808.Grammar.L_PARENTH);
-            parseExpr();
-            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.INEQUALITY_OP){
-                match(Compiler808.Grammar.INEQUALITY_OP);
-            }
-            else {
-                match(Compiler808.Grammar.EQUALITY_OP);
-            }
-            parseExpr();
-        }
+        if (foundError) return;
         else {
-            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE){
-                parseBoolOp();
+            if (verbose) System.out.println("Parser -------> parseBooleanExpr()");
+            cst.addNode("branch", "booleanExpr");
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
+                match(Compiler808.Grammar.L_PARENTH);
+                parseExpr();
+                if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.INEQUALITY_OP) {
+                    match(Compiler808.Grammar.INEQUALITY_OP);
+                } else {
+                    match(Compiler808.Grammar.EQUALITY_OP);
+                }
+                parseExpr();
+            } else {
+                if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE) {
+                    parseBoolOp();
+                }
             }
         }
     }
 
     public void parseBoolOp(){
-        if (verbose) System.out.println("Parser -------> parseBoolOp()");
-        cst.addNode("branch", "boolOp");
-        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
-            match(Compiler808.Grammar.TRUE);
-        }
+        if (foundError) return;
         else {
-            match(Compiler808.Grammar.FALSE);
+            if (verbose) System.out.println("Parser -------> parseBoolOp()");
+            cst.addNode("branch", "boolOp");
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) {
+                match(Compiler808.Grammar.TRUE);
+            } else {
+                match(Compiler808.Grammar.FALSE);
+            }
         }
     }
 
     public void parseId(){
-        if (verbose) System.out.println("Parser -------> parseId()");
-        cst.addNode("branch", "id");
-        match(Compiler808.Grammar.CHAR);
+        if (foundError) return;
+        else {
+            if (verbose) System.out.println("Parser -------> parseId()");
+            cst.addNode("branch", "id");
+            match(Compiler808.Grammar.CHAR);
+        }
     }
 }
