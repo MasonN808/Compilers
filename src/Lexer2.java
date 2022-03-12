@@ -529,7 +529,8 @@ public class Lexer2 {
 
                 if (num_errors == 0){
                     // putting parser here:
-
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("PARSING Program " + program_num);
                     Parser parser = new Parser(tokenStream, verbose);
                     parser.parseProgram();
                 }
