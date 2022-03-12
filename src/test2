@@ -8,16 +8,3 @@
 
 
 { /* comments are still ignored */ int @}$
-
-
-{
- int a
- a = a
- string b
- a = b
-}$
-
-"int int i  "$
-
-"false true tru"$
-false true false fal$

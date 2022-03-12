@@ -527,14 +527,27 @@ public class Lexer2 {
                     System.out.println("Lexer -------> Lex finished with " + num_errors + " errors and " + num_warnings + " warnings");
                 }
 
+                //DEBUGGING
+                for (Token token: tokenStream){
+                    System.out.print(" " + token.s);
+                }
+
                 if (num_errors == 0){
                     // putting parser here:
                     System.out.println("------------------------------------------------------------");
                     System.out.println("PARSING Program " + program_num);
                     Parser parser = new Parser(tokenStream, verbose);
                     parser.parseProgram();
-                    if (!Parser.foundError) System.out.println("Parser -------> Parse finished SUCCESSFULLY");
-                    else System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
+                    if (!Parser.foundError) {
+                        System.out.println("Parser -------> Parse finished SUCCESSFULLY");
+                    }
+                    else {
+                        System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
+                    }
+                    // For CST
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("CST for Program " + program_num);
+                    System.out.println(parser.cst.cstToString());
                 }
                 else { // if lex had errors
                     System.out.println("------------------------------------------------------------");
