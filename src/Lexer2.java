@@ -550,19 +550,44 @@ public class Lexer2 {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
                         System.out.println("------------------------------------------------------------");
                         System.out.println("SKIP CST for program " + program_num + " since error in Parse");
+                        System.out.println("------------------------------------------------------------");
                     }
 
                 }
                 else { // if lex had errors
                     System.out.println("------------------------------------------------------------");
                     System.out.println("SKIP Parsing program " + program_num + " since error in Lex");
+                    System.out.println("------------------------------------------------------------");
                 }
 
-                System.out.println("------------------------------------------------------------");
+                System.out.println();
+                System.out.println();
 
                 program_num += 1;
-                if (current_index < s.length() - 1){
-                    System.out.println("LEXING PROGRAM " + program_num);
+
+                // Check if this was the last program
+                if (current_index < s.length()-1){
+                    //search for any char besides space, tabs, and newlines
+                    int temp_index = current_index + 1;
+                    System.out.println(s.charAt(temp_index));
+                    boolean found = false;
+                    while (temp_index < s.length() & !found){
+                        char temp_char = s.charAt(temp_index);
+                        if (!String.valueOf(temp_char).matches("[ ]") & !String.valueOf(temp_char).matches("[\\t]") & temp_char!=(System.lineSeparator().charAt(0))){
+                            if (WINDOWS){
+                                if (temp_char != (System.lineSeparator().charAt(1)) & temp_index < s.length()-1){
+                                    found = true;
+                                }
+                            }
+
+                        }
+                        temp_index += 1;
+                    }
+                    if (found){
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("LEXING PROGRAM " + program_num);
+                    }
+
                 }
 
                 // reset pointers
@@ -604,10 +629,10 @@ public class Lexer2 {
                 break;
             }
 
-            // Check if end of EOP is in program, specifically if error is found
-            else if (!EOP_found & current_index >= s.length() - 1){
-                System.out.println("Lexer [WARNING]: -------> End of Program Token not found" );
-            }
+            // Check if end of EOP is in program, specifically if error is found (A parser problem, not a lexer problem)(Commented out)
+//            else if (!EOP_found & current_index >= s.length() - 1){
+//                System.out.println("Lexer [WARNING]: -------> End of Program Token not found" );
+//            }
 
             current_index += 1;
         }
