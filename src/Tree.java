@@ -24,10 +24,11 @@ public class Tree {
             root = n;
             n.parent = null;
         } else {
-            System.out.println("current: " + current.name);
-            n.parent = current; //Assign n's parent to current node
             //DEBUGGING
-            System.out.println("parent: " + n.parent.name);
+//            System.out.println("n: " + n.name);
+//            System.out.println("n.parent: " + current.name);
+            n.parent = current; //Assign n's parent to current node
+
             n.parent.children.add(n); //add n to parent's children array, letting parent know who its children is
         }
         if (!kind.equals("leaf")) {

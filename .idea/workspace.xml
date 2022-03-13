@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test1" beforeDir="false" afterPath="$PROJECT_DIR$/src/test1" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,27 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00040" summary="- Lexer now works when multiple programs are in one .txt file">
-      <created>1644729425890</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1644729425890</updated>
-    </task>
-    <task id="LOCAL-00041" summary="- Refactored many comments and rule order array">
-      <created>1644729721565</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1644729721565</updated>
-    </task>
-    <task id="LOCAL-00042" summary="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts">
-      <created>1644733089989</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1644733089989</updated>
     </task>
     <task id="LOCAL-00043" summary="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next">
       <created>1644733364318</created>
@@ -429,7 +408,28 @@
       <option name="project" value="LOCAL" />
       <updated>1647132659746</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="-Minor edits to Parser&#10;-Added boolOp() method and refactored">
+      <created>1647135958491</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1647135958491</updated>
+    </task>
+    <task id="LOCAL-00090" summary="-Refactored Tree Class&#10;-Debugging Tree Class">
+      <created>1647135996964</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1647135996964</updated>
+    </task>
+    <task id="LOCAL-00091" summary="-Different test case for testing">
+      <created>1647136014962</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1647136014962</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -445,9 +445,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()" />
-    <MESSAGE value="-Added in line 171 to make space its own token, not just CHAR" />
-    <MESSAGE value="-Refactored Lexer, Parser, Token and Compiler808 to move Grammar from lexer to Compiler808" />
     <MESSAGE value="-Changed from switch statement to long else if statement because of the grammar refactoring since switches won't work from the refactoring" />
     <MESSAGE value="-Added FALSE and TRUE Tokens for easier parser implementation" />
     <MESSAGE value="-Lexer2 for parser in lexer implementation" />
@@ -470,7 +467,10 @@
     <MESSAGE value="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)" />
     <MESSAGE value="-Fixed issue with statementList() identifying as leaf node" />
     <MESSAGE value="-Edited Print statements when skipping parse or CST" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Edited Print statements when skipping parse or CST" />
+    <MESSAGE value="-Minor edits to Parser&#10;-Added boolOp() method and refactored" />
+    <MESSAGE value="-Refactored Tree Class&#10;-Debugging Tree Class" />
+    <MESSAGE value="-Different test case for testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Different test case for testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
