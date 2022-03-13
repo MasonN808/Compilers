@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parserTests" beforeDir="false" afterPath="$PROJECT_DIR$/src/parserTests" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,20 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00047" summary="- Added new test case&#10;- small edits to error log statement">
-      <created>1644782401041</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1644782401041</updated>
-    </task>
-    <task id="LOCAL-00048" summary="- This commit is working in command prompt">
-      <created>1644782775460</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1644782775460</updated>
     </task>
     <task id="LOCAL-00049" summary="- Added more test cases&#10;- fixed issue with warnings and errors&#10;- It now prints out all errors in program until termination&#10;- NEED to add how to fix the errors and warnings&#10;- Works in command prompt">
       <created>1644788005729</created>
@@ -427,7 +416,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647141590111</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="-Fixed issue when going to a next program that didn't exist">
+      <created>1647141641384</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141641384</updated>
+    </task>
+    <task id="LOCAL-00097" summary="-Tested more test cases SUCCESSFULLY">
+      <created>1647141667331</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141667331</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,8 +446,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added verbose mode for Parser" />
-    <MESSAGE value="-Initialized children as empty ArrayList&lt;Token&gt;" />
     <MESSAGE value="-Edited Testing for Parser implementation of lexer (lexer2)" />
     <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent" />
     <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)" />
@@ -468,7 +469,9 @@
     <MESSAGE value="-Modified test1" />
     <MESSAGE value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
     <MESSAGE value="-Added more test cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added more test cases" />
+    <MESSAGE value="-Fixed issue when going to a next program that didn't exist" />
+    <MESSAGE value="-Tested more test cases SUCCESSFULLY" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Tested more test cases SUCCESSFULLY" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
