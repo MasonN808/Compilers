@@ -65,7 +65,7 @@ public class Parser {
     public void parseProgram(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseProgram()");
+            if (verbose) System.out.println("Parser -------> parseProgram() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("root", "program");
             parseBlock();
@@ -77,7 +77,7 @@ public class Parser {
     public void parseBlock(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseBlock()");
+            if (verbose) System.out.println("Parser -------> parseBlock() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "block");
             match(Compiler808.Grammar.L_BRACE);
@@ -104,7 +104,7 @@ public class Parser {
     public void parseStatement(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseStatement()");
+            if (verbose) System.out.println("Parser -------> parseStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "statement");
             //switch statement WONT WORK
@@ -113,10 +113,7 @@ public class Parser {
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.VARIABLE_TYPE) parseVarDecal();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.WHILE) parseWhileStatement();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.IF) parseIfStatement();
-            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_BRACE) parseBlock();
-            else {
-                System.out.println("ERROR: parseStatement() FAILED"); //This should never happen
-            }
+            else parseBlock();
             cst.moveUp();
         }
     }
@@ -124,7 +121,7 @@ public class Parser {
     public void parsePrintStatement(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parsePrintStatement()");
+            if (verbose) System.out.println("Parser -------> parsePrintStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "printStatement");
             match(Compiler808.Grammar.PRINT);
@@ -138,17 +135,14 @@ public class Parser {
     public void parseExpr(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseExpr()");
+            if (verbose) System.out.println("Parser -------> parseExpr() ---->  " +  tokenStream.get(getIndex()).s);
             cst.addNode("branch", "expr");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) parseIntExpr();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) parseStringExpr();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
                 parseBooleanExpr();
             }
-            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ID) parseId();
-            else {
-                System.out.println("ERROR: parseExpr() FAILED"); //This should never happen //TODO: implement line number and char number error
-            }
+            else parseId();
             cst.moveUp();
         }
     }
@@ -156,7 +150,7 @@ public class Parser {
     public void parseIntExpr(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseIntExpr()");
+            if (verbose) System.out.println("Parser -------> parseIntExpr() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "intExpr");
             match(Compiler808.Grammar.DIGIT);
@@ -171,7 +165,7 @@ public class Parser {
     public void parseIntop(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseIntop()");
+            if (verbose) System.out.println("Parser -------> parseIntop() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "intop");
             match(Compiler808.Grammar.ADDITION_OP);
@@ -182,8 +176,9 @@ public class Parser {
     public void parseStringExpr(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseStringExpr()");
+            if (verbose) System.out.println("Parser -------> parseStringExpr() ---->  " +  tokenStream.get(getIndex()).s);
 
+            cst.addNode("branch", "stringExpr");
             match(Compiler808.Grammar.QUOTE);
             parseCharList();
             match(Compiler808.Grammar.QUOTE);
@@ -194,7 +189,7 @@ public class Parser {
     public void parseCharList(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseCharList()");
+            if (verbose) System.out.println("Parser -------> parseCharList() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "charList");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR) {
@@ -213,7 +208,7 @@ public class Parser {
     public void parseAssignmentStatement(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseAssignmentStatement()");
+            if (verbose) System.out.println("Parser -------> parseAssignmentStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "assignmentStatement");
             match(Compiler808.Grammar.ID);
@@ -226,7 +221,7 @@ public class Parser {
     public void parseVarDecal(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseVarDecal()");
+            if (verbose) System.out.println("Parser -------> parseVarDecal() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "varDecal");
             match(Compiler808.Grammar.VARIABLE_TYPE);
@@ -238,7 +233,7 @@ public class Parser {
     public void parseWhileStatement(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseWhileStatement()");
+            if (verbose) System.out.println("Parser -------> parseWhileStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "whileStatement");
             match(Compiler808.Grammar.WHILE);
@@ -251,7 +246,7 @@ public class Parser {
     public void parseIfStatement(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseIfStatement()");
+            if (verbose) System.out.println("Parser -------> parseIfStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "ifStatement");
             match(Compiler808.Grammar.IF);
@@ -264,7 +259,7 @@ public class Parser {
     public void parseBooleanExpr(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseBooleanExpr()");
+            if (verbose) System.out.println("Parser -------> parseBooleanExpr() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "booleanExpr");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
@@ -285,7 +280,7 @@ public class Parser {
     public void parseBoolOp(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseBoolOp()");
+            if (verbose) System.out.println("Parser -------> parseBoolOp() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "boolOp");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.EQUALITY_OP) {
@@ -300,7 +295,7 @@ public class Parser {
     public void parseBoolVal(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseBoolVal()");
+            if (verbose) System.out.println("Parser -------> parseBoolVal() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "boolVal");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) {
@@ -315,7 +310,7 @@ public class Parser {
     public void parseId(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("Parser -------> parseId()");
+            if (verbose) System.out.println("Parser -------> parseId() ---->  " +  tokenStream.get(getIndex()).s);
 
             cst.addNode("branch", "id");
             match(Compiler808.Grammar.ID);
