@@ -65,7 +65,7 @@ public class Parser {
         if (foundError) return;
         else {
             if (verbose) System.out.println("Parser -------> parseProgram()");
-            cst.addNode("root", "goal");
+            cst.addNode("root", "program");
             parseBlock();
             match(Compiler808.Grammar.EOP);
         }

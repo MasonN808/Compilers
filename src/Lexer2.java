@@ -540,13 +540,16 @@ public class Lexer2 {
                     parser.parseProgram();
                     if (!Parser.foundError) {
                         System.out.println("Parser -------> Parse finished SUCCESSFULLY");
+
                         // For CST
                         System.out.println("------------------------------------------------------------");
                         System.out.println("CST for Program " + program_num);
-                        System.out.println(parser.cst.cstToString());
+                        System.out.println(parser.cst.traverse(parser.cst.root, 0, ""));
                     }
                     else {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("SKIP CST for program " + program_num);
                     }
 
                 }

@@ -12,6 +12,11 @@ public class Tree {
     public static Node root = null;
     public static Node current = null;
 
+    public Tree(){
+        this.root = null; // make sure root and current are made null for a new instance of Tree
+        this.current = null;
+    }
+
     public static void addNode(String kind, String label){
         Node n = new Node(); //initialize new Node
         n.name = label;
@@ -34,20 +39,29 @@ public class Tree {
 
     // Adapted from https://stackoverflow.com/questions/19338009/traversing-a-non-binary-tree-in-java
     public static String traverse(Node node, int depth, String traversalResult){ // post order traversal
+//        if ()
         for (int i = 0; i < depth; i++)
         {
             traversalResult = traversalResult.concat("-");
         }
-
+//
+//        if (node.children.isEmpty()){
+//            traversalResult = traversalResult.concat("[" + node.name + "]\n");
+//            traverse(node, depth, traversalResult);
+//        }
+//        System.out.println(node.name);
         for(Node each : node.children){
             if (each.children.isEmpty()){
+                node.children.remove(each);
                 traversalResult = traversalResult.concat("[" + each.name + "]\n");
-                traverse(each, depth, traversalResult);
+                traverse(node, depth, traversalResult);
             }
             else {
-                traversalResult = traversalResult.concat("<" + node.name + "> \n");
+                traversalResult = traversalResult.concat("<" + each.name + "> \n");
                 traverse(each, depth + 1, traversalResult);
             }
+            traverse(each, depth, traversalResult);
+
         }
         return traversalResult;
     }
