@@ -38,30 +38,50 @@ public class Tree {
     }
 
     // Adapted from https://stackoverflow.com/questions/19338009/traversing-a-non-binary-tree-in-java
+
+//        for(Node each : child.getChildren()){
+//        traverse(each);
+//    }
+//    this.printData();
     public static String traverse(Node node, int depth, String traversalResult){ // post order traversal
-//        if ()
         for (int i = 0; i < depth; i++)
         {
             traversalResult = traversalResult.concat("-");
         }
-//
-//        if (node.children.isEmpty()){
-//            traversalResult = traversalResult.concat("[" + node.name + "]\n");
-//            traverse(node, depth, traversalResult);
+//        if (node.traversed){
+//            node = node.parent;
 //        }
-//        System.out.println(node.name);
-        for(Node each : node.children){
-            if (each.children.isEmpty()){
-                node.children.remove(each);
-                traversalResult = traversalResult.concat("[" + each.name + "]\n");
-                traverse(node, depth, traversalResult);
-            }
-            else {
-                traversalResult = traversalResult.concat("<" + each.name + "> \n");
-                traverse(each, depth + 1, traversalResult);
-            }
-            traverse(each, depth, traversalResult);
-
+//        if (node.children.isEmpty()){
+////            if (node.traversed){
+////                node = node.parent;
+////            }
+////            else{
+////                node.parent.children.remove(node);
+//                traversalResult = traversalResult.concat("[" + node.name + "]\n");
+////                traverse(node.parent, depth - 1, traversalResult);
+////            }
+//        }
+////        System.out.println(node.name);
+//        else{
+//            traversalResult = traversalResult.concat("<" + node.name + "> \n");
+//        }
+        if (node.children.isEmpty()){
+            System.out.println(traversalResult.concat("[" + node.name + "]"));
+        }
+        else {
+            System.out.println(traversalResult.concat("<" + node.name + ">"));
+        }
+        for (Node each : node.children){
+//            if (each.children.isEmpty()){
+////                node.children.remove(each);
+//                traversalResult = traversalResult.concat("[" + each.name + "]\n");
+//                traverse(each, depth, traversalResult);
+//            }
+//            else {
+//                traversalResult = traversalResult.concat("<" + each.name + "> \n");
+//                traverse(each, depth + 1, traversalResult);
+//            }
+            traverse(each, depth + 1, traversalResult);
         }
         return traversalResult;
     }
