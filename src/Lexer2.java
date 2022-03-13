@@ -549,13 +549,13 @@ public class Lexer2 {
                     else {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
                         System.out.println("------------------------------------------------------------");
-                        System.out.println("SKIP CST for program " + program_num);
+                        System.out.println("SKIP CST for program " + program_num + " since error in Parse");
                     }
 
                 }
                 else { // if lex had errors
                     System.out.println("------------------------------------------------------------");
-                    System.out.println("SKIP Parsing program " + program_num);
+                    System.out.println("SKIP Parsing program " + program_num + " since error in Lex");
                 }
 
                 System.out.println("------------------------------------------------------------");
