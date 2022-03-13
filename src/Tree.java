@@ -31,6 +31,7 @@ public class Tree {
         if (!kind.equals("leaf")){
             current = n;
         }
+        n.kind = kind;
     }
 
     public static void moveUp() {
@@ -65,7 +66,7 @@ public class Tree {
 //        else{
 //            traversalResult = traversalResult.concat("<" + node.name + "> \n");
 //        }
-        if (node.children.isEmpty()){
+        if (node.kind.equals("leaf")){
             System.out.println(traversalResult.concat("[" + node.name + "]"));
         }
         else {

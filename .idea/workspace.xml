@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
     </list>
@@ -84,13 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00037" summary="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages">
-      <created>1644712836672</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1644712836672</updated>
     </task>
     <task id="LOCAL-00038" summary="- Integrated new printing line system for smallerized data&#10;- Working on implementing in biggerized data">
       <created>1644720217112</created>
@@ -428,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647130002205</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)">
+      <created>1647131716996</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1647131716996</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,7 +443,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added more recommendations" />
     <MESSAGE value="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()" />
     <MESSAGE value="-Transformed input from token to String for label in Tree class" />
     <MESSAGE value="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()" />
@@ -469,7 +467,8 @@
     <MESSAGE value="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST." />
     <MESSAGE value="-Made new traverse() method that uses depth-first preorder traversal to make CST (In testing)" />
     <MESSAGE value="-More edits for CST implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="-More edits for CST implementation" />
+    <MESSAGE value="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)" />
+    <option name="LAST_COMMIT_MESSAGE" value="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
