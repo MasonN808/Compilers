@@ -1,0 +1,20 @@
+/* From Nightingale */
+/* Should have PARSE ERRORS */
+/* Incomplete Expressions, Parse should throw error(s)*/
+{
+	while (a != ) {
+		print("this should not work")
+	}
+}$
+
+/* From Nightingale */
+/* Should have PARSE ERRORS */
+/* Incomplete Assignment Operation */
+{
+	{
+		a = 0 + 1
+		b = 1 + 2
+		c = 2 +
+	}
+}$
+

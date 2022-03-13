@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/parserTests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test1" beforeDir="false" afterPath="$PROJECT_DIR$/src/test1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,27 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00043" summary="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next">
-      <created>1644733364318</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1644733364318</updated>
-    </task>
-    <task id="LOCAL-00044" summary="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis">
-      <created>1644773488093</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1644773488093</updated>
-    </task>
-    <task id="LOCAL-00045" summary="- Accounted for cases regarding L_PARENTH and R_PARENTH">
-      <created>1644773680786</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1644773680786</updated>
     </task>
     <task id="LOCAL-00046" summary="- Added number of warnings&#10;- Made edits to unterminated comments">
       <created>1644781733927</created>
@@ -429,7 +408,28 @@
       <option name="project" value="LOCAL" />
       <updated>1647136014962</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="-Commented out debugging">
+      <created>1647138578292</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138578292</updated>
+    </task>
+    <task id="LOCAL-00093" summary="-Modified test1">
+      <created>1647138599116</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138599116</updated>
+    </task>
+    <task id="LOCAL-00094" summary="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()">
+      <created>1647138665071</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138665071</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -445,9 +445,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Changed from switch statement to long else if statement because of the grammar refactoring since switches won't work from the refactoring" />
-    <MESSAGE value="-Added FALSE and TRUE Tokens for easier parser implementation" />
-    <MESSAGE value="-Lexer2 for parser in lexer implementation" />
     <MESSAGE value="-edited parseID" />
     <MESSAGE value="-Added verbose mode for Parser" />
     <MESSAGE value="-Initialized children as empty ArrayList&lt;Token&gt;" />
@@ -470,7 +467,10 @@
     <MESSAGE value="-Minor edits to Parser&#10;-Added boolOp() method and refactored" />
     <MESSAGE value="-Refactored Tree Class&#10;-Debugging Tree Class" />
     <MESSAGE value="-Different test case for testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Different test case for testing" />
+    <MESSAGE value="-Commented out debugging" />
+    <MESSAGE value="-Modified test1" />
+    <MESSAGE value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
