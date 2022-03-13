@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/parserTests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer2.java" afterDir="false" />
     </list>
@@ -85,13 +83,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00046" summary="- Added number of warnings&#10;- Made edits to unterminated comments">
-      <created>1644781733927</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1644781733927</updated>
     </task>
     <task id="LOCAL-00047" summary="- Added new test case&#10;- small edits to error log statement">
       <created>1644782401041</created>
@@ -429,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647138665071</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="-Added more test cases">
+      <created>1647141590111</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141590111</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -445,7 +443,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-edited parseID" />
     <MESSAGE value="-Added verbose mode for Parser" />
     <MESSAGE value="-Initialized children as empty ArrayList&lt;Token&gt;" />
     <MESSAGE value="-Edited Testing for Parser implementation of lexer (lexer2)" />
@@ -470,7 +467,8 @@
     <MESSAGE value="-Commented out debugging" />
     <MESSAGE value="-Modified test1" />
     <MESSAGE value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
+    <MESSAGE value="-Added more test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added more test cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
