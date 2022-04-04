@@ -28,7 +28,7 @@ public class Compiler808 {
 
 
         boolean is_verbose = true;
-        File inFile = new File("src/parserTests");
+        File inFile = new File("src/test3");
 
         String content = new Scanner(inFile).useDelimiter("\\Z").next();
         Lexer lexer = new Lexer();
