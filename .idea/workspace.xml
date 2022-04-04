@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +45,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -80,13 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Added Token Class for storage later when finding tokens in source code.">
-      <created>1644293805148</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1644293805148</updated>
     </task>
     <task id="LOCAL-00005" summary="Added constructor for token class">
       <created>1644294134878</created>
@@ -424,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646193426668</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Initialization of generating AST, and have to fix break issues on MacOS">
+      <created>1649080041057</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1649080041058</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,7 +442,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Still Debugging&#10;- Able to find some symbols" />
     <MESSAGE value="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token" />
     <MESSAGE value="- Added debugger (kind of)&#10;- Fixed comment issue if s.length() &gt; 1.  Let &quot;/&quot; delimiter be a boundary in longest match algo." />
     <MESSAGE value="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo." />
@@ -465,7 +466,8 @@
     <MESSAGE value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
     <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
     <MESSAGE value="- This commit should fix the line break issue on different OSs" />
-    <option name="LAST_COMMIT_MESSAGE" value="- This commit should fix the line break issue on different OSs" />
+    <MESSAGE value="Initialization of generating AST, and have to fix break issues on MacOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initialization of generating AST, and have to fix break issues on MacOS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

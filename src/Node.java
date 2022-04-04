@@ -16,6 +16,8 @@ public class Node {
     public String value = null; //value of the token_type, if it exists
     public ArrayList<Node> children = new ArrayList<>(); //children of current node
     public String kind = null; // for making CST
+    // For AST
+    public boolean isBlock = false;
 
 //    public Node(Node parent, String name, String value, ArrayList<Node> children){
 //        this.parent = parent;
