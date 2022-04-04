@@ -545,6 +545,13 @@ public class Lexer {
                         System.out.println("------------------------------------------------------------");
                         System.out.println("CST for Program " + program_num);
                         System.out.println(parser.cst.traverse(parser.cst.root, 0, ""));
+
+                        AbstractSyntaxTree abstractST = new AbstractSyntaxTree(tokenStream, verbose);
+                        // Assume parser made CST successfully, so don't have to check for errors
+                        // For AST
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("AST for Program " + program_num);
+                        System.out.println(abstractST.ast.traverse(abstractST.ast.root, 0, ""));
                     }
                     else {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
