@@ -1,0 +1,142 @@
+/* From Nightingale */
+/* Should have PARSE ERRORS */
+/* Incomplete Expressions, Parse should throw error(s)*/
+{
+	while (a != ) {
+		print("this should not work")
+	}
+}$
+
+
+
+/* From Nightingale */
+/* Should have PARSE ERRORS */
+/* Incomplete Assignment Operation */
+{
+	{
+		a = 0 + 1
+		b = 1 + 2
+		c = 2 +
+	}
+}$
+
+
+
+/* From Nightingale */
+/* Tricky Declarations */
+/* This should fail */
+{
+	int x
+	int y = x
+	z = x + y
+}$
+
+
+
+/* From Nightingale */
+/* Bool Declaration */
+/* This should fail */
+{
+	boolean x
+	boolean y
+	 while (x != y){}
+	 if (true != false)
+}$
+
+
+
+/* From Nightingale */
+/* This should fail */
+{
+	boolean x
+	boolean y
+	 while (x != y){}
+	 if ((true != false))
+}$
+
+
+
+
+/* From Nightingale */
+  /* This is a valid parse... hmm... */
+  {
+    a = 1 + (true == false)
+  }$
+  /* This is a valid parse as well.. */
+  {
+      a = 1 + "hmmmmmmmm"
+  }$
+
+
+
+
+
+/* From Nightingale */
+/* This is theoretically correct.. I'll be damned if my computer doesn't blow up from this. */
+{
+	if( (((true != false) == (false == true)) == false) != true ){
+		 print("wow")
+	}
+}$
+
+
+
+
+
+/* From Nightingale */
+/* Broken program for more chaos */
+}$
+
+
+
+
+/* From Nightingale */
+/* SONARS TEST CASE: This will fail because an identifier is expected but not provided */
+  {
+    /* 1 is not a valid identifier */
+    string 1
+  }$
+
+
+
+/* SVEGLIATOR TEST CASE: Should pass lex, parse, but fail at semantic analysis...*/
+{
+int a
+a = 1
+print(a)
+{
+    int a
+    a = 2
+    print(a)
+}
+{
+    int a
+    a = 3
+    print(a)
+}
+string s
+s = "stra"
+print(s)
+s = "strb"
+print((s == "str"))
+if (a != 5) {
+    print((true == (s == s)))
+}
+if (a == 5) {
+    print("false")
+}
+s = "meowa"
+s = "meowb"
+s = "meowc"
+s = "meowd"
+s = "meowe"
+s = "meowf"
+int z
+z = 5
+} $
+
+
+/* Shouldn't work */
+/* JUICES TEST CASE Test case for crazy one liner */
+${hellotruefalse!======trueprinta=3b=0print("false true")whi33leiftruefalsestring!= stringintbooleanaa truewhileif{hi+++==!==}}/*aaahaha*/hahahahaha/*awao*/$
+

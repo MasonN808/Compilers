@@ -1,15 +1,21 @@
 import java.util.ArrayList;
+
 /**
  * <h1>Lexical Analysis (Part 1)</h1>
  * We design a lexical analyzer ( or scanner, lexer, ...) to produce a stream
  * of tokens to be fed to the parser (Part 2)
  * <p>
- * <b>Note:</b> Still in progress
+ * <b>Note:</b> Pretty much finished (Needs refactoring)
  *
  * @author  Mason Nakamura
- * @since   02-08-2022
+ * @since   03-01-2022
  */
 public class Lexer {
+//    Logger logger
+//            = Logger.getLogger(
+//            Lexer2.class.getName());
+
+
     public static boolean EOP_found = false; // to check if EOP is found
     public static boolean close_quote_found = true; // to check if closed quote is found
     public static int num_extra_parenth_found = 0;
@@ -34,30 +40,26 @@ public class Lexer {
     public Token current_token;
     public boolean debug = false; // For debugging
 
-    // List out all tokens from our predefined grammar https://www.labouseur.com/courses/compilers/grammar.pdf
-    public enum Grammar {
-        EOP, L_BRACE, R_BRACE, VARIABLE_TYPE, IF, WHILE,
-        PRINT, ASSIGNMENT_OP, ID, QUOTE, L_PARENTH,
-        R_PARENTH, CHAR, DIGIT, EQUALITY_OP, INEQUALITY_OP,
-        BOOL, ADDITION_OP
-    }
+
+    // List out all tokens from our predefined Compiler808.Grammar https://www.labouseur.com/courses/compilers/Compiler808.Grammar.pdf
+
 
     /**
      * This method prints out various tokens depending on the token the lexer identifies
-     * @param token_stream The stream of tokens the lexer already identified
+     * @param tokenStream The stream of tokens the lexer already identified
      * @param token  The token the lexer identifies after longest match and rule order
      * @param verbose A condition to allow the user to print extra information
      */
-    public static void add_token(ArrayList<Token> token_stream, Token token, boolean verbose) {
+    public static void add_token(ArrayList<Token> tokenStream, Token token, boolean verbose) {
         if (verbose) {
             System.out.println("Lexer -------> " + token.token_type + " [ " + token.s + " ] at "
                     + token.line_number + ", " + token.character_number);
         }
-        token_stream.add(token);
+        tokenStream.add(token);
     }
 
     /**
-     * This method uses our grammar to determine whether a string is identified as a token
+     * This method uses our Compiler808.Grammar to determine whether a string is identified as a token
      * @param current_lexeme The lexeme to be tested
      * @return boolean
      */
@@ -82,38 +84,42 @@ public class Lexer {
     }
 
     /**
-     * This method uses our grammar to return the token of the current lexeme if it exists
+     * This method uses our Compiler808.Grammar to return the token of the current lexeme if it exists
      * @param current_lexeme The lexeme to be tested
      * @return boolean
      */
     public static Token get_token(String current_lexeme){
         Token token = null; // initialize the token
         switch (current_lexeme) {
-            case ("$") -> token = new Token(Grammar.EOP, current_lexeme, current_line, printed_current_index); // END OF PROGRAM (EOP)
-            case ("{") -> token = new Token(Grammar.L_BRACE, current_lexeme, current_line, printed_current_index); // BRACES
-            case ("}") -> token = new Token(Grammar.R_BRACE, current_lexeme, current_line, printed_current_index);
-            case ("\"") -> token = new Token(Grammar.QUOTE, current_lexeme, current_line, printed_current_index); // QUOTE
-            case ("+") -> token = new Token(Grammar.ADDITION_OP, current_lexeme, current_line, printed_current_index); // OPERATORS
-            case ("=") -> token = new Token(Grammar.ASSIGNMENT_OP, current_lexeme, current_line, printed_current_index);
-            case ("==") -> token = new Token(Grammar.EQUALITY_OP, current_lexeme, current_line, printed_current_index);
-            case ("!=") -> token = new Token(Grammar.INEQUALITY_OP, current_lexeme, current_line, printed_current_index);
-            case ("(") -> token = new Token(Grammar.L_PARENTH, current_lexeme, current_line, printed_current_index); // PARENTHESIS
-            case (")") -> token = new Token(Grammar.R_PARENTH, current_lexeme, current_line, printed_current_index);
-            case ("false"), ("true") -> token = new Token(Grammar.BOOL, current_lexeme, current_line, printed_current_index); // BOOL
-            case ("if") -> token = new Token(Grammar.IF, current_lexeme, current_line, printed_current_index); // IF
-            case ("while") -> token = new Token(Grammar.WHILE, current_lexeme, current_line, printed_current_index); // WHILE
-            case ("print") -> token = new Token(Grammar.PRINT, current_lexeme, current_line, printed_current_index); // PRINT
-            case ("int"), ("string"), ("boolean") -> token = new Token(Grammar.VARIABLE_TYPE, current_lexeme, current_line, printed_current_index); // VARIABLE TYPES
+            case ("$") -> token = new Token(Compiler808.Grammar.EOP, current_lexeme, current_line, printed_current_index); // END OF PROGRAM (EOP)
+            case ("{") -> token = new Token(Compiler808.Grammar.L_BRACE, current_lexeme, current_line, printed_current_index); // BRACES
+            case ("}") -> token = new Token(Compiler808.Grammar.R_BRACE, current_lexeme, current_line, printed_current_index);
+            case ("\"") -> token = new Token(Compiler808.Grammar.QUOTE, current_lexeme, current_line, printed_current_index); // QUOTE
+            case ("+") -> token = new Token(Compiler808.Grammar.ADDITION_OP, current_lexeme, current_line, printed_current_index); // OPERATORS
+            case ("=") -> token = new Token(Compiler808.Grammar.ASSIGNMENT_OP, current_lexeme, current_line, printed_current_index);
+            case ("==") -> token = new Token(Compiler808.Grammar.EQUALITY_OP, current_lexeme, current_line, printed_current_index);
+            case ("!=") -> token = new Token(Compiler808.Grammar.INEQUALITY_OP, current_lexeme, current_line, printed_current_index);
+            case ("(") -> token = new Token(Compiler808.Grammar.L_PARENTH, current_lexeme, current_line, printed_current_index); // PARENTHESIS
+            case (")") -> token = new Token(Compiler808.Grammar.R_PARENTH, current_lexeme, current_line, printed_current_index);
+            case ("false") -> token = new Token(Compiler808.Grammar.FALSE, current_lexeme, current_line, printed_current_index); // BOOL
+            case ("true") -> token = new Token(Compiler808.Grammar.TRUE, current_lexeme, current_line, printed_current_index); // BOOL
+            case ("if") -> token = new Token(Compiler808.Grammar.IF, current_lexeme, current_line, printed_current_index); // IF
+            case ("while") -> token = new Token(Compiler808.Grammar.WHILE, current_lexeme, current_line, printed_current_index); // WHILE
+            case ("print") -> token = new Token(Compiler808.Grammar.PRINT, current_lexeme, current_line, printed_current_index); // PRINT
+            case ("int"), ("string"), ("boolean") -> token = new Token(Compiler808.Grammar.VARIABLE_TYPE, current_lexeme, current_line, printed_current_index); // VARIABLE TYPES
             default -> { //since you can't use regex in switch{}, we put the many cases in default
                 if (current_lexeme.matches("[a-z]") & !close_quote_found) { // It is a CHAR if in quotes, else ID
-                    token = new Token(Grammar.CHAR, current_lexeme, current_line, printed_current_index); // CHAR
+                    token = new Token(Compiler808.Grammar.CHAR, current_lexeme, current_line, printed_current_index); // CHAR
                 }
+//                else if (current_lexeme.matches(" ") & !close_quote_found){
+//                    token = new Token(Compiler808.Grammar.SPACE, current_lexeme, current_line, printed_current_index); // SPACE
+//                }
                 else if (current_lexeme.matches("[a-z]")) {
 //                    System.out.println("quote_closed :" + close_quote_found); //DEBUGGING
-                    token = new Token(Grammar.ID, current_lexeme, current_line, printed_current_index); // CHAR
+                    token = new Token(Compiler808.Grammar.ID, current_lexeme, current_line, printed_current_index); // CHAR
                 }
                 else if (current_lexeme.matches("[0-9]")) {
-                    token = new Token(Grammar.DIGIT, current_lexeme, current_line, printed_current_index); // CHAR
+                    token = new Token(Compiler808.Grammar.DIGIT, current_lexeme, current_line, printed_current_index); // CHAR
                 } else {
                     lex_error(current_lexeme, current_line, printed_current_index);
                     printed_current_index += 1;
@@ -138,11 +144,12 @@ public class Lexer {
             WINDOWS = true;
         }
 
-        ArrayList<Token> token_stream = new ArrayList<Token>(); // Initialize the token_stream which what will be given to the parser
+        ArrayList<Token> tokenStreamAggregate = new ArrayList<Token>(); // Initialize the tokenStream that will output ALL tokenStreams
+        ArrayList<Token> tokenStream = new ArrayList<Token>(); // Initialize the tokenStream that will be given to the parser
         String current_string = "";
 
         Token prev_token = null;
-        Lexer.Grammar t_type;
+        Compiler808.Grammar t_type;
 
 
         System.out.println("------------------------------------------------------------");
@@ -165,8 +172,8 @@ public class Lexer {
             }
 
             if (str_current_char.equals(" ") & !close_quote_found & current_string.length() == 1){
-                Token token = new Token(Grammar.CHAR, " ", current_line, current_char); // create space character
-                add_token(token_stream, token, verbose);
+                Token token = new Token(Compiler808.Grammar.SPACE, " ", current_line, current_char); // create space character
+                add_token(tokenStream, token, verbose);
                 printed_current_index += 1;
             }
 
@@ -181,10 +188,10 @@ public class Lexer {
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                 }
                 else{
-                    add_token(token_stream, prev_token, verbose);
+                    add_token(tokenStream, prev_token, verbose);
                 }
                 current_index += current_token.s.length() - 1;
                 printed_current_index += current_token.s.length();
@@ -217,40 +224,25 @@ public class Lexer {
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                 }
                 else{
-                    add_token(token_stream, prev_token, verbose);
+                    add_token(tokenStream, prev_token, verbose);
                 }
                 current_index += current_token.s.length() - 1;
                 printed_current_index += current_token.s.length();
                 current_string = "";
             }
 
-            //check for spaces, indents, and line breaks as boundaries //TODO: Might need to change this to somewhere else in the code
-//            else if (str_current_char.matches("[ \\t\\n]+") & s.length() > 1){
-//                current_index = last_index; // reset index
-//                printed_current_index = printed_last_index;
-//                if (prev_token == null){
-//                    add_token(token_stream, current_token, verbose);
-//                }
-//                else{
-//                    add_token(token_stream, prev_token, verbose);
-//                }
-//                current_index += current_token.s.length() - 1;
-//                printed_current_index += current_token.s.length();
-//                current_string = "";
-//            }
-
             // use comment delimiter "/" as a boundary
             if (str_current_char.equals("/") & current_string.length() > 1) {
                 current_index = last_index; // reset index
                 printed_current_index = printed_last_index;
                 if (prev_token == null){
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                 }
                 else{
-                    add_token(token_stream, prev_token, verbose);
+                    add_token(tokenStream, prev_token, verbose);
                 }
                 current_index += current_token.s.length() - 1;
                 printed_current_index += current_token.s.length();
@@ -317,26 +309,26 @@ public class Lexer {
             if (is_token(str_current_char)){ // Check if current character is a token
 //                System.out.println("Found Token" + "[ " + get_token(str_current_char).s + " ] at: " + current_line + ", " + current_index); // DEBUGGING
                 t_type = get_token(str_current_char).token_type;
-                if (t_type == Grammar.EOP & current_string.length() == 1){
-                    add_token(token_stream, get_token(str_current_char), verbose);
+                if (t_type == Compiler808.Grammar.EOP & current_string.length() == 1){
+                    add_token(tokenStream, get_token(str_current_char), verbose);
                     printed_current_index += 1;
                     EOP_found = true;
                     current_string = "";
                 }
-                else if (t_type == Grammar.EOP & current_string.length() > 1){
+                else if (t_type == Compiler808.Grammar.EOP & current_string.length() > 1){
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
-                        add_token(token_stream, current_token, verbose);
+                        add_token(tokenStream, current_token, verbose);
                     }
                     else{
-                        add_token(token_stream, prev_token, verbose);
+                        add_token(tokenStream, prev_token, verbose);
                     }
                     current_index += current_token.s.length() - 1;
                     printed_current_index += current_token.s.length();
                     current_string = "";
                 }
-                else if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() == 1){  // CASE: for when the current character is an = sign and checking if next character is a == operator
+                else if (t_type == Compiler808.Grammar.ASSIGNMENT_OP & current_string.length() == 1){  // CASE: for when the current character is an = sign and checking if next character is a == operator
                     // Create temporary variables to check if its an assignment operator or an equality operator
                     int temp_current_index = current_index; //TODO: make this a method to smallerize code
                     temp_current_index += 1;
@@ -346,29 +338,29 @@ public class Lexer {
                     temp_current_string += temp_current_char;
 //                    System.out.println(temp_current_string); //DEBUG
                     if (is_token(temp_current_string)){ // make sure not null
-                        if (get_token(temp_current_string).token_type == Grammar.EQUALITY_OP){
-                            add_token(token_stream, get_token(temp_current_string), verbose);
+                        if (get_token(temp_current_string).token_type == Compiler808.Grammar.EQUALITY_OP){
+                            add_token(tokenStream, get_token(temp_current_string), verbose);
                             current_index += 1; // 1 because we temporarily went ahead one index
                             printed_current_index += 2;
                             current_string = "";
                         }
                     }else{// assumed that it is not inequality, thus we add = Token
-                        add_token(token_stream, get_token(current_string), verbose);
+                        add_token(tokenStream, get_token(current_string), verbose);
                         printed_current_index += 1;
                         current_string = "";
                     }
                 }
-                else if (t_type == Grammar.ASSIGNMENT_OP & current_string.length() > 1){  // the boundary
+                else if (t_type == Compiler808.Grammar.ASSIGNMENT_OP & current_string.length() > 1){  // the boundary
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
-                        add_token(token_stream, current_token, verbose);
+                        add_token(tokenStream, current_token, verbose);
                         current_index += current_token.s.length() - 1;
                         printed_current_index += current_token.s.length();
                         current_string = "";
                     }
                     else{
-                        add_token(token_stream, prev_token, verbose);
+                        add_token(tokenStream, prev_token, verbose);
                         current_index += current_token.s.length() - 1; // do this to account for length of token for updated index
                         printed_current_index += current_token.s.length();
                         current_string = "";
@@ -376,17 +368,17 @@ public class Lexer {
                 }
 
 //                 Does not register the current string is not of these types
-                else if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
-                    if (t_type == Grammar.QUOTE) {
+                else if ((t_type == Compiler808.Grammar.QUOTE | t_type == Compiler808.Grammar.L_BRACE | t_type == Compiler808.Grammar.R_BRACE | t_type == Compiler808.Grammar.L_PARENTH | t_type == Compiler808.Grammar.R_PARENTH | t_type == Compiler808.Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
+                    if (t_type == Compiler808.Grammar.QUOTE) {
                         close_quote_found = !close_quote_found; // TODO: check for unterminated quote
                     }
                     // Case a: unequal number of L_BRACE and R_BRACE
                     // Case b: R_BRACE with no previous L_BRACE
-                    if (t_type == Grammar.L_BRACE){
+                    if (t_type == Compiler808.Grammar.L_BRACE){
                         num_extra_brace_found += 1;
 //                        L_brace_found = true;
                     }
-                    else if (t_type == Grammar.R_BRACE){
+                    else if (t_type == Compiler808.Grammar.R_BRACE){
                         num_extra_brace_found -= 1;
 //                        if (!L_brace_found){
 //                            System.out.println("Lexer [WARNING]: -------> Missing L_BRACE with R_BRACE at " + current_line + ", " + printed_current_index);
@@ -399,11 +391,11 @@ public class Lexer {
 
                     }
 
-                    if (t_type == Grammar.L_PARENTH){
+                    if (t_type == Compiler808.Grammar.L_PARENTH){
                         num_extra_parenth_found += 1;
 //                        L_brace_found = true;
                     }
-                    else if (t_type == Grammar.R_PARENTH){
+                    else if (t_type == Compiler808.Grammar.R_PARENTH){
                         num_extra_parenth_found -= 1;
 //                        if (!L_brace_found){
 //                            System.out.println("Lexer [WARNING]: -------> Missing L_BRACE with R_BRACE at " + current_line + ", " + printed_current_index);
@@ -417,21 +409,21 @@ public class Lexer {
                     }
 
                     current_token = get_token(str_current_char);
-                    add_token(token_stream, current_token, verbose);
+                    add_token(tokenStream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
                 }
 
                 // make these symbols boundaries for longest match algo
-                else if ((t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.ADDITION_OP) & current_string.length() > 1){
+                else if ((t_type == Compiler808.Grammar.QUOTE | t_type == Compiler808.Grammar.L_BRACE | t_type == Compiler808.Grammar.R_BRACE | t_type == Compiler808.Grammar.L_PARENTH | t_type == Compiler808.Grammar.R_PARENTH | t_type == Compiler808.Grammar.ADDITION_OP) & current_string.length() > 1){
                     current_index = last_index; // reset index
                     printed_current_index = printed_last_index;
                     if (prev_token == null){
-                        add_token(token_stream, current_token, verbose);
+                        add_token(tokenStream, current_token, verbose);
                         printed_current_index += 1;
                     }
                     else{
-                        add_token(token_stream, prev_token, verbose);
+                        add_token(tokenStream, prev_token, verbose);
                         printed_current_index += 1;
                     }
                     current_index += current_token.s.length() - 1;
@@ -465,8 +457,8 @@ public class Lexer {
                 String temp_current_string = current_string;
                 temp_current_string += temp_current_char;
                 if (is_token(temp_current_string)){
-                    if (get_token(temp_current_string).token_type == Grammar.INEQUALITY_OP) {
-                        add_token(token_stream, get_token(temp_current_string), verbose);
+                    if (get_token(temp_current_string).token_type == Compiler808.Grammar.INEQUALITY_OP) {
+                        add_token(tokenStream, get_token(temp_current_string), verbose);
                         current_index += 1; // 1 because we temporarily went ahead one index
                         printed_current_index += 2;
                         current_string = "";
@@ -485,32 +477,28 @@ public class Lexer {
                 current_token = get_token(current_string);
                 t_type = get_token(current_string).token_type;
 
-                if (t_type == Grammar.ID) {
+                if (t_type == Compiler808.Grammar.ID) {
                     last_index = current_index; // set pointer to ID since ID might be keyword
                     printed_last_index = printed_current_index;
 
-//                } else if (t_type == Grammar.IF | t_type == Grammar.WHILE | t_type == Grammar.PRINT | t_type == Grammar.VARIABLE_TYPE | t_type == Grammar.BOOL | t_type == Grammar.EOP) {
+//                } else if (t_type == Compiler808.Grammar.IF | t_type == Compiler808.Grammar.WHILE | t_type == Compiler808.Grammar.PRINT | t_type == Compiler808.Grammar.VARIABLE_TYPE | t_type == Compiler808.Grammar.BOOL | t_type == Compiler808.Grammar.EOP) {
 //
 //
-//                } else if (t_type == Grammar.QUOTE | t_type == Grammar.L_BRACE | t_type == Grammar.R_BRACE | t_type == Grammar.L_PARENTH | t_type == Grammar.R_PARENTH | t_type == Grammar.INEQUALITY_OP | t_type == Grammar.ADDITION_OP | t_type == Grammar.EQUALITY_OP) {
+//                } else if (t_type == Compiler808.Grammar.QUOTE | t_type == Compiler808.Grammar.L_BRACE | t_type == Compiler808.Grammar.R_BRACE | t_type == Compiler808.Grammar.L_PARENTH | t_type == Compiler808.Grammar.R_PARENTH | t_type == Compiler808.Grammar.INEQUALITY_OP | t_type == Compiler808.Grammar.ADDITION_OP | t_type == Compiler808.Grammar.EQUALITY_OP) {
 //
 
-                } else if (t_type == Grammar.DIGIT) {
-                    add_token(token_stream, current_token, verbose);
+                } else if (t_type == Compiler808.Grammar.DIGIT) {
+                    add_token(tokenStream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
 
 
-                } else if (t_type == Grammar.CHAR) {
-                    add_token(token_stream, current_token, verbose);
+                } else if (t_type == Compiler808.Grammar.CHAR) {
+                    add_token(tokenStream, current_token, verbose);
                     printed_current_index += 1;
                     current_string = "";
 
                 }
-//                else{
-//                    System.out.println("ERROR: lexeme not recognized as a token"); // Should not occur
-//                    System.out.println("LEXEME: " + current_string);
-//                }
 
             }
 
@@ -518,8 +506,8 @@ public class Lexer {
             if (EOP_found & current_index <= s.length() - 1){ // This assumes that there are no characters after $
                 // print errors and warnings
                     if (num_extra_brace_found > 0) {
-                        System.out.println("Lexer [WARNING]: -------> Missing R_BRACE");
-                        num_warnings += 1;
+                            System.out.println("Lexer [WARNING]: -------> Missing R_BRACE");
+                            num_warnings += 1;
                     }
 
                     if (num_extra_parenth_found > 0) {
@@ -538,11 +526,75 @@ public class Lexer {
                 else{
                     System.out.println("Lexer -------> Lex finished with " + num_errors + " errors and " + num_warnings + " warnings");
                 }
-                System.out.println("------------------------------------------------------------");
+
+                //DEBUGGING
+//                for (Token token: tokenStream){
+//                    System.out.print(" " + token.s);
+//                }
+
+                if (num_errors == 0){
+                    // putting parser here:
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("PARSING Program " + program_num);
+                    Parser parser = new Parser(tokenStream, verbose);
+                    parser.parseProgram();
+                    if (!Parser.foundError) {
+                        System.out.println("Parser -------> Parse finished SUCCESSFULLY");
+
+                        // For CST
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("CST for Program " + program_num);
+                        System.out.println(parser.cst.traverse(parser.cst.root, 0, ""));
+
+                        AbstractSyntaxTree abstractST = new AbstractSyntaxTree(tokenStream, verbose);
+                        abstractST.parseProgram();
+                        // Assume parser made CST successfully, so don't have to check for errors
+                        // For AST
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("AST for Program " + program_num);
+                        System.out.println(abstractST.ast.traverse(abstractST.ast.root, 0, ""));
+                    }
+                    else {
+                        System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("SKIP CST for program " + program_num + " since error in Parse");
+                        System.out.println("------------------------------------------------------------");
+                    }
+
+                }
+                else { // if lex had errors
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("SKIP Parsing program " + program_num + " since error in Lex");
+                    System.out.println("------------------------------------------------------------");
+                }
+
+                System.out.println();
+                System.out.println();
 
                 program_num += 1;
-                if (current_index < s.length() - 1){
-                    System.out.println("LEXING PROGRAM " + program_num);
+
+                // Check if this was the last program
+                if (current_index < s.length()-1){
+                    //search for any char besides space, tabs, and newlines
+                    int temp_index = current_index + 1;
+                    boolean found = false;
+                    while (temp_index < s.length() & !found){
+                        char temp_char = s.charAt(temp_index);
+                        if (!String.valueOf(temp_char).matches("[ ]") & !String.valueOf(temp_char).matches("[\\t]") & temp_char!=(System.lineSeparator().charAt(0))){
+                            if (WINDOWS){
+                                if (temp_char != (System.lineSeparator().charAt(1)) & temp_index < s.length()-1){
+                                    found = true;
+                                }
+                            }
+
+                        }
+                        temp_index += 1;
+                    }
+                    if (found){
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("LEXING PROGRAM " + program_num);
+                    }
+
                 }
 
                 // reset pointers
@@ -558,6 +610,11 @@ public class Lexer {
                 L_parenth_found = false;
                 close_quote_found = true;
                 first_thing_found = false;
+
+                tokenStreamAggregate.addAll(tokenStream); //Add current tokenstream to aggregate
+
+
+                tokenStream = new ArrayList<Token>(); // make TokenStream empty for next program
             }
 
             // Break if final EOP is found
@@ -579,13 +636,13 @@ public class Lexer {
                 break;
             }
 
-            // Check if end of EOP is in program, specifically if error is found
-            else if (!EOP_found & current_index >= s.length() - 1){
-                System.out.println("Lexer [WARNING]: -------> End of Program Token not found" );
-            }
+            // Check if end of EOP is in program, specifically if error is found (A parser problem, not a lexer problem)(Commented out)
+//            else if (!EOP_found & current_index >= s.length() - 1){
+//                System.out.println("Lexer [WARNING]: -------> End of Program Token not found" );
+//            }
 
             current_index += 1;
         }
-        return token_stream;
+        return tokenStream;
     }
 }
