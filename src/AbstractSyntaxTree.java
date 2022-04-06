@@ -75,7 +75,7 @@ public class AbstractSyntaxTree {
     public void parseBlock(){
         if (foundError) return;
         else {
-            if (verbose) System.out.println("AST -------> parseBlock() ---->  " +  tokenStream.get(getIndex()).s);
+//            if (verbose) System.out.println("AST -------> parseBlock() ---->  " +  tokenStream.get(getIndex()).s);
             if (ast.root == null){
                 ast.addNode("root", "block", tokenStream.get(getIndex()));
             }
@@ -336,7 +336,7 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseBoolVal() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "boolVal", tokenStream.get(getIndex()));
+//            ast.addNode("branch", "boolVal", tokenStream.get(getIndex()));
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) {
                 exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.TRUE);
@@ -344,7 +344,7 @@ public class AbstractSyntaxTree {
                 exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.FALSE);
             }
-            ast.moveUp();
+//            ast.moveUp();
         }
     }
 

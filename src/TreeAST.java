@@ -71,10 +71,13 @@ public class TreeAST {
             traversalResult = traversalResult.concat("-");
         }
         if (node.kind.equals("leaf")) {
-            System.out.println(traversalResult.concat("[" + node.name + ", " + node.value + "]"));
+//            System.out.println(traversalResult.concat("[" + node.name + ", " + node.value + "]"));
+            System.out.println(traversalResult.concat("[" + node.value + "]"));
         } else {
             if (node.name.equals("boolOp")){
-                System.out.println(traversalResult.concat("<" + node.name + ", " + node.value + " >"));
+//                System.out.println(traversalResult.concat("<" + node.name + ", " + node.value + " >"));
+                System.out.println(traversalResult.concat("<" + node.value + " >"));
+
             }
             else{
                 System.out.println(traversalResult.concat("<" + node.name + ">"));
