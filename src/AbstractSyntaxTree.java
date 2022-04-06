@@ -22,7 +22,11 @@ public class AbstractSyntaxTree {
     private static final Set<Compiler808.Grammar> statementListValues = new HashSet<Compiler808.Grammar>(Arrays.asList(
             Compiler808.Grammar.PRINT, Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE/*CASE: VarDecal*/,
             Compiler808.Grammar.WHILE, Compiler808.Grammar.IF, Compiler808.Grammar.L_BRACE/*CASE: Block*/));
+    private static final Set<Compiler808.Grammar> matchValues = new HashSet<Compiler808.Grammar>(Arrays.asList(
+            Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE, Compiler808.Grammar.DIGIT, Compiler808.Grammar.QUOTE, Compiler808.Grammar.CHAR,
+            Compiler808.Grammar.FALSE, Compiler808.Grammar.TRUE));
     public static boolean foundError = false;
+    public static ArrayList<String> exprList = new ArrayList<>();
 
 
     // Constructor to set new token_stream for parsing
@@ -47,9 +51,9 @@ public class AbstractSyntaxTree {
         else {
             Token given = tokenStream.get(getIndex());
             // Check the expected token_type is the same as the one given
-            if (expected == given.token_type & (given.token_type == Compiler808.Grammar.VARIABLE_TYPE | given.token_type == Compiler808.Grammar.ID | given.token_type == Compiler808.Grammar.DIGIT)) {
+            if (expected == given.token_type & matchValues.contains(given.token_type)) {
 //                System.out.println();
-                Tree.addNode("leaf", given.token_type.toString());
+                ast.addNode("leaf", given.token_type.toString(), given);
             } else { //should not have unexpected token
                 // Skip
             }
@@ -74,10 +78,10 @@ public class AbstractSyntaxTree {
         else {
             if (verbose) System.out.println("AST -------> parseBlock() ---->  " +  tokenStream.get(getIndex()).s);
             if (ast.root == null){
-                ast.addNode("root", "block");
+                ast.addNode("root", "block", tokenStream.get(getIndex()));
             }
             else{
-                ast.addNode("branch", "block");
+                ast.addNode("branch", "block", tokenStream.get(getIndex()));
             }
             match(Compiler808.Grammar.L_BRACE);
             parseStatementList();
@@ -124,7 +128,7 @@ public class AbstractSyntaxTree {
         else {
 //            //if (verbose) System.out.println("AST -------> parsePrintStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "printStatement");
+            ast.addNode("branch", "printStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.PRINT);
             match(Compiler808.Grammar.L_PARENTH);
             parseExpr();
@@ -137,13 +141,16 @@ public class AbstractSyntaxTree {
         if (foundError) return;
         else {
             //if (verbose) System.out.println("AST -------> parseExpr() ---->  " +  tokenStream.get(getIndex()).s);
-//            ast.addNode("branch", "expr");
+
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) parseIntExpr();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) parseStringExpr();
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
                 parseBooleanExpr();
             }
             else parseId();
+            ast.addNodeAsStringList("leaf", "expr", exprList);
+            exprList.clear(); //Clear the arrayList of strings
+
 //            ast.moveUp();
         }
     }
@@ -154,8 +161,10 @@ public class AbstractSyntaxTree {
             //if (verbose) System.out.println("AST -------> parseIntExpr() ---->  " +  tokenStream.get(getIndex()).s);
 
 //            ast.addNode("branch", "intExpr");
+            exprList.add(tokenStream.get(getIndex()).s);
             match(Compiler808.Grammar.DIGIT);
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP) {
+                exprList.add(tokenStream.get(getIndex()).s);
                 parseIntop();
                 parseExpr();
             }
@@ -169,6 +178,7 @@ public class AbstractSyntaxTree {
             //if (verbose) System.out.println("AST -------> parseIntop() ---->  " +  tokenStream.get(getIndex()).s);
 
 //            ast.addNode("branch", "intop");
+            exprList.add(tokenStream.get(getIndex()).s);
             match(Compiler808.Grammar.ADDITION_OP);
 //            ast.moveUp();
         }
@@ -180,8 +190,10 @@ public class AbstractSyntaxTree {
             //if (verbose) System.out.println("AST -------> parseStringExpr() ---->  " +  tokenStream.get(getIndex()).s);
 
 //            ast.addNode("branch", "stringExpr");
+            exprList.add(tokenStream.get(getIndex()).s);
             match(Compiler808.Grammar.QUOTE);
             parseCharList();
+            exprList.add(tokenStream.get(getIndex()).s);
             match(Compiler808.Grammar.QUOTE);
 //            ast.moveUp();
         }
@@ -194,9 +206,11 @@ public class AbstractSyntaxTree {
 
 //            ast.addNode("branch", "charList");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.CHAR) {
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.CHAR);
                 parseCharList();
             } else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.SPACE) {
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.SPACE);
                 parseCharList();
             } else {
@@ -211,7 +225,7 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseAssignmentStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "assignmentStatement");
+            ast.addNode("branch", "assignmentStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.ID);
             match(Compiler808.Grammar.ASSIGNMENT_OP);
             parseExpr();
@@ -224,7 +238,7 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseVarDecal() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "varDecal");
+            ast.addNode("branch", "varDecal", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.VARIABLE_TYPE);
             match(Compiler808.Grammar.ID);
             ast.moveUp();
@@ -236,7 +250,7 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseWhileStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "whileStatement");
+            ast.addNode("branch", "whileStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.WHILE);
             parseBooleanExpr();
             parseBlock();
@@ -249,7 +263,7 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseIfStatement() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "ifStatement");
+            ast.addNode("branch", "ifStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.IF);
             parseBooleanExpr();
             parseBlock();
@@ -264,10 +278,12 @@ public class AbstractSyntaxTree {
 
 //            ast.addNode("branch", "booleanExpr");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.L_PARENTH);
                 parseExpr();
                 parseBoolOp();
                 parseExpr();
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.R_PARENTH);
             } else {
                 if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE) {
@@ -283,10 +299,12 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseBoolOp() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "boolOp");
+            ast.addNode("branch", "boolOp", tokenStream.get(getIndex()));
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.EQUALITY_OP) {
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.EQUALITY_OP);
             } else {
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.INEQUALITY_OP);
             }
             ast.moveUp();
@@ -298,10 +316,12 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseBoolVal() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "boolVal");
+            ast.addNode("branch", "boolVal", tokenStream.get(getIndex()));
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) {
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.TRUE);
             } else {
+                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.FALSE);
             }
             ast.moveUp();
@@ -313,9 +333,9 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseId() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("branch", "id");
+//            ast.addNode("branch", "id", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.ID);
-            ast.moveUp();
+//            ast.moveUp();
         }
     }
 
