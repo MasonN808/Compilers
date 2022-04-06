@@ -4,12 +4,12 @@
   a = 1
   {
     string b
-    b=a
+    a = "a"
     print(a)
   }
   string b
   b = "baa"
-  if (a==1) {
+  if (a == 1) {
     print(b)
   }
 }$

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test3" beforeDir="false" afterPath="$PROJECT_DIR$/src/test3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,27 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00050" summary="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt">
-      <created>1644977809014</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1644977809014</updated>
-    </task>
-    <task id="LOCAL-00051" summary="- Fixed bug that didn't identify line breaks correctly in other OSs">
-      <created>1645048035090</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1645048035090</updated>
-    </task>
-    <task id="LOCAL-00052" summary="- This commit should fix the line break issue on different OSs">
-      <created>1646193426668</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1646193426668</updated>
     </task>
     <task id="LOCAL-00053" summary="- Set verbose to default (fixing readme next)">
       <created>1646193501828</created>
@@ -429,7 +408,28 @@
       <option name="project" value="LOCAL" />
       <updated>1649224518477</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="-Created new Tree Class for AST to edit tree structure from CST">
+      <created>1649270982301</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1649270982302</updated>
+    </task>
+    <task id="LOCAL-00100" summary="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method">
+      <created>1649271040230</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1649271040230</updated>
+    </task>
+    <task id="LOCAL-00101" summary="-Added new token attribute to Node class to keep track of tokens and line number and char number">
+      <created>1649271078057</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1649271078057</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,9 +457,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent" />
-    <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)" />
-    <MESSAGE value="-Edited print statements for Parser" />
     <MESSAGE value="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse" />
     <MESSAGE value="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO" />
     <MESSAGE value="-Implemented moveUp() does nothing" />
@@ -482,6 +479,9 @@
     <MESSAGE value="-Fixed issue when going to a next program that didn't exist" />
     <MESSAGE value="-Tested more test cases SUCCESSFULLY" />
     <MESSAGE value="-Getting AST to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Getting AST to work" />
+    <MESSAGE value="-Created new Tree Class for AST to edit tree structure from CST" />
+    <MESSAGE value="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method" />
+    <MESSAGE value="-Added new token attribute to Node class to keep track of tokens and line number and char number" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added new token attribute to Node class to keep track of tokens and line number and char number" />
   </component>
 </project>
