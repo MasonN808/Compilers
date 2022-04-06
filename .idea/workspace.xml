@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test3" beforeDir="false" afterPath="$PROJECT_DIR$/src/test3" afterDir="false" />
-    </list>
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,27 +80,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00053" summary="- Set verbose to default (fixing readme next)">
-      <created>1646193501828</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1646193501828</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Initialize Node class">
-      <created>1646446747807</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1646446747807</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Added constructor and making match method">
-      <created>1646446786466</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1646446786466</updated>
     </task>
     <task id="LOCAL-00056" summary="Edited comment">
       <created>1646446800838</created>
@@ -429,7 +403,28 @@
       <option name="project" value="LOCAL" />
       <updated>1649271078057</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="-Edits to match slides">
+      <created>1649275366021</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1649275366021</updated>
+    </task>
+    <task id="LOCAL-00103" summary="-Generalized to token input&#10;-Added addNodeAsStringList() method to print list of expressions for visualization of AST">
+      <created>1649275428323</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1649275428323</updated>
+    </task>
+    <task id="LOCAL-00104" summary="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing">
+      <created>1649275494198</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1649275494198</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,9 +452,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse" />
-    <MESSAGE value="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO" />
-    <MESSAGE value="-Implemented moveUp() does nothing" />
     <MESSAGE value="-Added CST String output for Tree class" />
     <MESSAGE value="-Deleted some cases" />
     <MESSAGE value="-if error found in parse, the CST wont be shown" />
@@ -482,6 +474,9 @@
     <MESSAGE value="-Created new Tree Class for AST to edit tree structure from CST" />
     <MESSAGE value="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method" />
     <MESSAGE value="-Added new token attribute to Node class to keep track of tokens and line number and char number" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added new token attribute to Node class to keep track of tokens and line number and char number" />
+    <MESSAGE value="-Edits to match slides" />
+    <MESSAGE value="-Generalized to token input&#10;-Added addNodeAsStringList() method to print list of expressions for visualization of AST" />
+    <MESSAGE value="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing" />
   </component>
 </project>

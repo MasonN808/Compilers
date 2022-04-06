@@ -42,7 +42,7 @@ public class TreeAST {
     public static void addNodeAsStringList(String kind, String label, ArrayList<String> list) {
         Node n = new Node(); //initialize new Node
         n.name = label;
-        String listString = String.join(", ", list);
+        String listString = String.join("", list);
         n.value = listString;
         if (root == null) { //case for the first node in tree
             root = n;
