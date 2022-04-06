@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="-Edited to print the boolOp in the branch of AST">
+      <change afterPath="$PROJECT_DIR$/src/SymbolTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/semanticTests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,20 +87,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Made Tree Class for the CST">
-      <created>1646449467267</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1646449467267</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Made the Node class">
-      <created>1646449484723</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1646449484723</updated>
     </task>
     <task id="LOCAL-00059" summary="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class">
       <created>1646452871755</created>
@@ -428,7 +417,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649275687216</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="-Added new parseExprPrint() method to print list of expression for AST output, avoiding printing on certain productions (e.g. printStatement,...)&#10;-Edited where parseExprPrint() is used in place of parseExpr()&#10;-Outputs successfully (NEEDS more testing)">
+      <created>1649277312119</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1649277312119</updated>
+    </task>
+    <task id="LOCAL-00107" summary="-Edited to print the boolOp in the branch of AST">
+      <created>1649277343914</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1649277343914</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,8 +459,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Deleted some cases" />
-    <MESSAGE value="-if error found in parse, the CST wont be shown" />
     <MESSAGE value="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST." />
     <MESSAGE value="-Made new traverse() method that uses depth-first preorder traversal to make CST (In testing)" />
     <MESSAGE value="-More edits for CST implementation" />
@@ -481,6 +482,8 @@
     <MESSAGE value="-Generalized to token input&#10;-Added addNodeAsStringList() method to print list of expressions for visualization of AST" />
     <MESSAGE value="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing" />
     <MESSAGE value="-Changed delimiter to output correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Changed delimiter to output correctly" />
+    <MESSAGE value="-Added new parseExprPrint() method to print list of expression for AST output, avoiding printing on certain productions (e.g. printStatement,...)&#10;-Edited where parseExprPrint() is used in place of parseExpr()&#10;-Outputs successfully (NEEDS more testing)" />
+    <MESSAGE value="-Edited to print the boolOp in the branch of AST" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Edited to print the boolOp in the branch of AST" />
   </component>
 </project>
