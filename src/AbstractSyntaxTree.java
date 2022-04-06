@@ -23,8 +23,7 @@ public class AbstractSyntaxTree {
             Compiler808.Grammar.PRINT, Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE/*CASE: VarDecal*/,
             Compiler808.Grammar.WHILE, Compiler808.Grammar.IF, Compiler808.Grammar.L_BRACE/*CASE: Block*/));
     private static final Set<Compiler808.Grammar> matchValues = new HashSet<Compiler808.Grammar>(Arrays.asList(
-            Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE, Compiler808.Grammar.DIGIT, Compiler808.Grammar.QUOTE, Compiler808.Grammar.CHAR,
-            Compiler808.Grammar.FALSE, Compiler808.Grammar.TRUE));
+            Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE));
     public static boolean foundError = false;
     public static ArrayList<String> exprList = new ArrayList<>();
 
@@ -137,6 +136,28 @@ public class AbstractSyntaxTree {
         }
     }
 
+
+    // two versions of parseExpr() to differentiate what productions output a list
+    public void parseExprPrint(){
+        if (foundError) return;
+        else {
+            //if (verbose) System.out.println("AST -------> parseExpr() ---->  " +  tokenStream.get(getIndex()).s);
+
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) parseIntExpr();
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) parseStringExpr();
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
+                parseBooleanExpr();
+            }
+            else parseId();
+            if (!exprList.isEmpty()){
+                ast.addNodeAsStringList("leaf", "expr", exprList);
+                exprList.clear(); //Clear the arrayList of strings
+            }
+
+//            ast.moveUp();
+        }
+    }
+
     public void parseExpr(){
         if (foundError) return;
         else {
@@ -148,7 +169,6 @@ public class AbstractSyntaxTree {
                 parseBooleanExpr();
             }
             else parseId();
-            ast.addNodeAsStringList("leaf", "expr", exprList);
             exprList.clear(); //Clear the arrayList of strings
 
 //            ast.moveUp();
@@ -228,7 +248,7 @@ public class AbstractSyntaxTree {
             ast.addNode("branch", "assignmentStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.ID);
             match(Compiler808.Grammar.ASSIGNMENT_OP);
-            parseExpr();
+            parseExprPrint();
             ast.moveUp();
         }
     }
@@ -278,12 +298,12 @@ public class AbstractSyntaxTree {
 
 //            ast.addNode("branch", "booleanExpr");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
-                exprList.add(tokenStream.get(getIndex()).s);
+//                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.L_PARENTH);
-                parseExpr();
+                parseExprPrint();
                 parseBoolOp();
-                parseExpr();
-                exprList.add(tokenStream.get(getIndex()).s);
+                parseExprPrint();
+//                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.R_PARENTH);
             } else {
                 if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE) {
@@ -301,10 +321,10 @@ public class AbstractSyntaxTree {
 
             ast.addNode("branch", "boolOp", tokenStream.get(getIndex()));
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.EQUALITY_OP) {
-                exprList.add(tokenStream.get(getIndex()).s);
+//                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.EQUALITY_OP);
             } else {
-                exprList.add(tokenStream.get(getIndex()).s);
+//                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.INEQUALITY_OP);
             }
             ast.moveUp();

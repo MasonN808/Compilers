@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="" />
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,13 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Edited comment">
-      <created>1646446800838</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1646446800838</updated>
     </task>
     <task id="LOCAL-00057" summary="Made Tree Class for the CST">
       <created>1646449467267</created>
@@ -424,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649275494198</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="-Changed delimiter to output correctly">
+      <created>1649275687216</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1649275687216</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -452,7 +456,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added CST String output for Tree class" />
     <MESSAGE value="-Deleted some cases" />
     <MESSAGE value="-if error found in parse, the CST wont be shown" />
     <MESSAGE value="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST." />
@@ -477,6 +480,7 @@
     <MESSAGE value="-Edits to match slides" />
     <MESSAGE value="-Generalized to token input&#10;-Added addNodeAsStringList() method to print list of expressions for visualization of AST" />
     <MESSAGE value="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing" />
+    <MESSAGE value="-Changed delimiter to output correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Changed delimiter to output correctly" />
   </component>
 </project>
