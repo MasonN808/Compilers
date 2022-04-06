@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -454,7 +455,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Fixed issue with statementList() identifying as leaf node" />
     <MESSAGE value="-Edited Print statements when skipping parse or CST" />
     <MESSAGE value="-Minor edits to Parser&#10;-Added boolOp() method and refactored" />
     <MESSAGE value="-Refactored Tree Class&#10;-Debugging Tree Class" />
@@ -479,6 +479,7 @@
     <MESSAGE value="-Starting symbolTable" />
     <MESSAGE value="-Changed output of AST to be less specific" />
     <MESSAGE value="-Testing using semanticTests" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Testing using semanticTests" />
+    <MESSAGE value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
   </component>
 </project>
