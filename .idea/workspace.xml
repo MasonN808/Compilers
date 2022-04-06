@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="-Edited to print the boolOp in the branch of AST">
-      <change afterPath="$PROJECT_DIR$/src/SymbolTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/semanticTests" afterDir="false" />
+    <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,34 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00059" summary="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class">
-      <created>1646452871755</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1646452871755</updated>
-    </task>
-    <task id="LOCAL-00060" summary="-Added more recommendations">
-      <created>1646522776459</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1646522776459</updated>
-    </task>
-    <task id="LOCAL-00061" summary="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()">
-      <created>1646971656405</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1646971656406</updated>
-    </task>
-    <task id="LOCAL-00062" summary="-Transformed input from token to String for label in Tree class">
-      <created>1646972838502</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1646972838502</updated>
     </task>
     <task id="LOCAL-00063" summary="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()">
       <created>1646972899837</created>
@@ -431,7 +398,35 @@
       <option name="project" value="LOCAL" />
       <updated>1649277343914</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="-Start of test cases for semantic Analysis">
+      <created>1649278105386</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1649278105386</updated>
+    </task>
+    <task id="LOCAL-00109" summary="-Starting symbolTable">
+      <created>1649278161719</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1649278161719</updated>
+    </task>
+    <task id="LOCAL-00110" summary="-Changed output of AST to be less specific">
+      <created>1649278215185</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1649278215185</updated>
+    </task>
+    <task id="LOCAL-00111" summary="-Testing using semanticTests">
+      <created>1649278229512</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1649278229512</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -459,10 +454,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST." />
-    <MESSAGE value="-Made new traverse() method that uses depth-first preorder traversal to make CST (In testing)" />
-    <MESSAGE value="-More edits for CST implementation" />
-    <MESSAGE value="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)" />
     <MESSAGE value="-Fixed issue with statementList() identifying as leaf node" />
     <MESSAGE value="-Edited Print statements when skipping parse or CST" />
     <MESSAGE value="-Minor edits to Parser&#10;-Added boolOp() method and refactored" />
@@ -484,6 +475,10 @@
     <MESSAGE value="-Changed delimiter to output correctly" />
     <MESSAGE value="-Added new parseExprPrint() method to print list of expression for AST output, avoiding printing on certain productions (e.g. printStatement,...)&#10;-Edited where parseExprPrint() is used in place of parseExpr()&#10;-Outputs successfully (NEEDS more testing)" />
     <MESSAGE value="-Edited to print the boolOp in the branch of AST" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Edited to print the boolOp in the branch of AST" />
+    <MESSAGE value="-Start of test cases for semantic Analysis" />
+    <MESSAGE value="-Starting symbolTable" />
+    <MESSAGE value="-Changed output of AST to be less specific" />
+    <MESSAGE value="-Testing using semanticTests" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Testing using semanticTests" />
   </component>
 </project>
