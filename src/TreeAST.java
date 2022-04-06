@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * <h1>Tree Class</h1>
@@ -17,9 +18,32 @@ public class TreeAST {
         this.current = null;
     }
 
-    public static void addNode(String kind, String label) {
+    public static void addNode(String kind, String label, Token token) {
         Node n = new Node(); //initialize new Node
         n.name = label;
+        n.value = token.s;
+        if (root == null) { //case for the first node in tree
+            root = n;
+            n.parent = null;
+        } else {
+            //DEBUGGING
+//            System.out.println("n: " + n.name);
+//            System.out.println("n.parent: " + current.name);
+            n.parent = current; //Assign n's parent to current node
+
+            n.parent.children.add(n); //add n to parent's children array, letting parent know who its children is
+        }
+        if (!kind.equals("leaf")) {
+            current = n;
+        }
+        n.kind = kind;
+    }
+
+    public static void addNodeAsStringList(String kind, String label, ArrayList<String> list) {
+        Node n = new Node(); //initialize new Node
+        n.name = label;
+        String listString = String.join(", ", list);
+        n.value = listString;
         if (root == null) { //case for the first node in tree
             root = n;
             n.parent = null;
