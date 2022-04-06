@@ -4,6 +4,7 @@
     <list default="true" id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -55,6 +56,9 @@
       <recent name="C:\Users\Mason\IdeaProjects\Compilers_Local" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
@@ -80,279 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added more tokens with comments">
-      <created>1644362082428</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1644362082428</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added tokens that use regular expressions in default of switch{}">
-      <created>1644363505849</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1644363505849</updated>
-    </task>
-    <task id="LOCAL-00012" summary="-Added documentation comments&#10;-Initialized is_token to transfer the implementation of our grammar there instead of get_token_stream.  This will allow us to implement longest match and rule order in get_token_stream instead.">
-      <created>1644364595421</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1644364595421</updated>
-    </task>
-    <task id="LOCAL-00013" summary="-Finished is_token">
-      <created>1644365641369</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1644365641369</updated>
-    </task>
-    <task id="LOCAL-00014" summary="-Moved many boolean variables out of block&#10;-Added some documentation for the methods&#10;-Embedded the switch{} in get_token_stream with an if statement for is_token&#10;-Currently working on longest match and rule order">
-      <created>1644371206367</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1644371206367</updated>
-    </task>
-    <task id="LOCAL-00015" summary="-Made many global variables static&#10;-Created return_token to return the token of the lexeme if it exists, else error">
-      <created>1644377297865</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1644377297865</updated>
-    </task>
-    <task id="LOCAL-00016" summary="-Initialize implementation of rule order in get_token_stream()&#10;-Commented out a huge chunk of code with switch{} from get_token_stream.  Code similar to that of is_token() and get_token()">
-      <created>1644379136786</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1644379136786</updated>
-    </task>
-    <task id="LOCAL-00017" summary="-Minor edits to while loop statement for validity&#10;-CONTINUE: longest match and rule order">
-      <created>1644379487660</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1644379487660</updated>
-    </task>
-    <task id="LOCAL-00018" summary="-Marked TODO for where to continue">
-      <created>1644379531869</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1644379531869</updated>
-    </task>
-    <task id="LOCAL-00019" summary="-Edited the rule order&#10;-Trying to get a file reader up and working (shouldn't be this difficult)">
-      <created>1644463492551</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1644463492551</updated>
-    </task>
-    <task id="LOCAL-00020" summary="-Imported test1 txt file for testing the reader&#10;-Reader reads the imported file nicely!&#10;-Now working on the Lexer Class">
-      <created>1644518228905</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1644518228905</updated>
-    </task>
-    <task id="LOCAL-00021" summary="-Converted test case with not spaces, tabs, or line breaks to put in lexer&#10;-Editing Lexer's rule order implementation">
-      <created>1644520616829</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1644520616829</updated>
-    </task>
-    <task id="LOCAL-00022" summary="-Deleted large commented block in Compiler808 for File reader&#10;-Moved character count and previous index to global">
-      <created>1644541936047</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1644541936047</updated>
-    </task>
-    <task id="LOCAL-00023" summary="-Created an arraylist implentation of rule order">
-      <created>1644543960395</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1644543960395</updated>
-    </task>
-    <task id="LOCAL-00024" summary="- LOTS of edits to rule order implementation">
-      <created>1644545789278</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1644545789278</updated>
-    </task>
-    <task id="LOCAL-00025" summary="- Added case to check if = operator token is actually a == operator token">
-      <created>1644546908180</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1644546908180</updated>
-    </task>
-    <task id="LOCAL-00026" summary="- Split the if into two if statements: one to handle the single character being scanned and the string being scanned.">
-      <created>1644547804263</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1644547804263</updated>
-    </task>
-    <task id="LOCAL-00027" summary="- Added lex error method&#10;- Added code to take care of comments">
-      <created>1644549054472</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1644549054472</updated>
-    </task>
-    <task id="LOCAL-00028" summary="- Added more cases for spaces, tabs, and line breaks&#10;- Added global variable line_number">
-      <created>1644617015006</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1644617015006</updated>
-    </task>
-    <task id="LOCAL-00029" summary="- Added line number and character for Token class&#10;- Debugging Lexer (Specifically comments for indents, spaces, and line break case and none...) and refactoring">
-      <created>1644629448511</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1644629448511</updated>
-    </task>
-    <task id="LOCAL-00030" summary="- Still Debugging&#10;- Able to find some symbols">
-      <created>1644630394572</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1644630394572</updated>
-    </task>
-    <task id="LOCAL-00031" summary="- Still Debugging&#10;- Fixed index issue for the comment&#10;- add case for inequality token">
-      <created>1644635369402</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1644635369402</updated>
-    </task>
-    <task id="LOCAL-00032" summary="- Added debugger (kind of)&#10;- Fixed comment issue if s.length() &gt; 1.  Let &quot;/&quot; delimiter be a boundary in longest match algo.">
-      <created>1644636920552</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1644636920552</updated>
-    </task>
-    <task id="LOCAL-00033" summary="- Fixed not recognizing tokens near end of program due to insufficient rule order algo if s.length() &gt; 1.  Let &quot;$&quot; delimiter be a boundary in longest match algo.&#10;- Some deletion of comments">
-      <created>1644637793036</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1644637793036</updated>
-    </task>
-    <task id="LOCAL-00034" summary="- Deleted a lot of unnecessary code">
-      <created>1644638163241</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1644638163241</updated>
-    </task>
-    <task id="LOCAL-00035" summary="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data">
-      <created>1644639985148</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1644639985148</updated>
-    </task>
-    <task id="LOCAL-00036" summary="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data">
-      <created>1644709044868</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1644709044868</updated>
-    </task>
-    <task id="LOCAL-00037" summary="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages">
-      <created>1644712836672</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1644712836672</updated>
-    </task>
-    <task id="LOCAL-00038" summary="- Integrated new printing line system for smallerized data&#10;- Working on implementing in biggerized data">
-      <created>1644720217112</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1644720217112</updated>
-    </task>
-    <task id="LOCAL-00039" summary="- LEXICAL ANALYSIS WORKS FOR BIGGER DATA AND SMALLERIST DATA">
-      <created>1644722321183</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1644722321183</updated>
-    </task>
-    <task id="LOCAL-00040" summary="- Lexer now works when multiple programs are in one .txt file">
-      <created>1644729425890</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1644729425890</updated>
-    </task>
-    <task id="LOCAL-00041" summary="- Refactored many comments and rule order array">
-      <created>1644729721565</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1644729721565</updated>
-    </task>
-    <task id="LOCAL-00042" summary="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts">
-      <created>1644733089989</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1644733089989</updated>
-    </task>
-    <task id="LOCAL-00043" summary="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next">
-      <created>1644733364318</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1644733364318</updated>
-    </task>
-    <task id="LOCAL-00044" summary="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis">
-      <created>1644773488093</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1644773488093</updated>
-    </task>
-    <task id="LOCAL-00045" summary="- Accounted for cases regarding L_PARENTH and R_PARENTH">
-      <created>1644773680786</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1644773680786</updated>
-    </task>
-    <task id="LOCAL-00046" summary="- Added number of warnings&#10;- Made edits to unterminated comments">
-      <created>1644781733927</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1644781733927</updated>
-    </task>
-    <task id="LOCAL-00047" summary="- Added new test case&#10;- small edits to error log statement">
-      <created>1644782401041</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1644782401041</updated>
-    </task>
-    <task id="LOCAL-00048" summary="- This commit is working in command prompt">
-      <created>1644782775460</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1644782775460</updated>
     </task>
     <task id="LOCAL-00049" summary="- Added more test cases&#10;- fixed issue with warnings and errors&#10;- It now prints out all errors in program until termination&#10;- NEED to add how to fix the errors and warnings&#10;- Works in command prompt">
       <created>1644788005729</created>
@@ -382,49 +113,322 @@
       <option name="project" value="LOCAL" />
       <updated>1646193426668</updated>
     </task>
-    <task id="LOCAL-00053" summary="Initialization of generating AST, and have to fix break issues on MacOS">
-      <created>1649080041057</created>
+    <task id="LOCAL-00053" summary="- Set verbose to default (fixing readme next)">
+      <created>1646193501828</created>
       <option name="number" value="00053" />
       <option name="presentableId" value="LOCAL-00053" />
       <option name="project" value="LOCAL" />
-      <updated>1649080041058</updated>
+      <updated>1646193501828</updated>
     </task>
-    <task id="LOCAL-00054" summary="Added isBlock (but may not need it if we just use children as an indicator)">
-      <created>1649082103195</created>
+    <task id="LOCAL-00054" summary="Initialize Node class">
+      <created>1646446747807</created>
       <option name="number" value="00054" />
       <option name="presentableId" value="LOCAL-00054" />
       <option name="project" value="LOCAL" />
-      <updated>1649082103195</updated>
+      <updated>1646446747807</updated>
     </task>
-    <task id="LOCAL-00055" summary="Adding implementation of AST into Lexer (main testing)">
-      <created>1649082160684</created>
+    <task id="LOCAL-00055" summary="Added constructor and making match method">
+      <created>1646446786466</created>
       <option name="number" value="00055" />
       <option name="presentableId" value="LOCAL-00055" />
       <option name="project" value="LOCAL" />
-      <updated>1649082160684</updated>
+      <updated>1646446786466</updated>
     </task>
-    <task id="LOCAL-00056" summary="Made edits to which productions will be in AST">
-      <created>1649082393813</created>
+    <task id="LOCAL-00056" summary="Edited comment">
+      <created>1646446800838</created>
       <option name="number" value="00056" />
       <option name="presentableId" value="LOCAL-00056" />
       <option name="project" value="LOCAL" />
-      <updated>1649082393813</updated>
+      <updated>1646446800838</updated>
     </task>
-    <task id="LOCAL-00057" summary="Edits test3 with slides example">
-      <created>1649085466599</created>
+    <task id="LOCAL-00057" summary="Made Tree Class for the CST">
+      <created>1646449467267</created>
       <option name="number" value="00057" />
       <option name="presentableId" value="LOCAL-00057" />
       <option name="project" value="LOCAL" />
-      <updated>1649085466600</updated>
+      <updated>1646449467267</updated>
     </task>
-    <task id="LOCAL-00058" summary="Editing match()">
-      <created>1649085489747</created>
+    <task id="LOCAL-00058" summary="Made the Node class">
+      <created>1646449484723</created>
       <option name="number" value="00058" />
       <option name="presentableId" value="LOCAL-00058" />
       <option name="project" value="LOCAL" />
-      <updated>1649085489747</updated>
+      <updated>1646449484723</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="-Took out constructor from Node class: made it less efficient&#10;-implemented Tree into Parser&#10;-Added error to match()&#10;-Added lots of TODOs&#10;-Next: transfer Grammar from Lexer to own Class">
+      <created>1646452871755</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1646452871755</updated>
+    </task>
+    <task id="LOCAL-00060" summary="-Added more recommendations">
+      <created>1646522776459</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1646522776459</updated>
+    </task>
+    <task id="LOCAL-00061" summary="-Added more methods: parseBlock(), parseStatementList(), parseStatement(), parsePrintStatement(), parseExpr()">
+      <created>1646971656405</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1646971656406</updated>
+    </task>
+    <task id="LOCAL-00062" summary="-Transformed input from token to String for label in Tree class">
+      <created>1646972838502</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1646972838502</updated>
+    </task>
+    <task id="LOCAL-00063" summary="-Added addNode() methods to each parse() method&#10;-Added parseExpr(), parseIntExpr(), and some of parseIntop()">
+      <created>1646972899837</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1646972899837</updated>
+    </task>
+    <task id="LOCAL-00064" summary="-Added in line 171 to make space its own token, not just CHAR">
+      <created>1647030872331</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1647030872331</updated>
+    </task>
+    <task id="LOCAL-00065" summary="-Refactored Lexer, Parser, Token and Compiler808 to move Grammar from lexer to Compiler808">
+      <created>1647039465116</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1647039465116</updated>
+    </task>
+    <task id="LOCAL-00066" summary="-Changed from switch statement to long else if statement because of the grammar refactoring since switches won't work from the refactoring">
+      <created>1647040933337</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1647040933337</updated>
+    </task>
+    <task id="LOCAL-00067" summary="-Added FALSE and TRUE Tokens for easier parser implementation">
+      <created>1647041833717</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1647041833717</updated>
+    </task>
+    <task id="LOCAL-00068" summary="-Added FALSE and TRUE Tokens for easier parser implementation">
+      <created>1647047431335</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1647047431335</updated>
+    </task>
+    <task id="LOCAL-00069" summary="-Lexer2 for parser in lexer implementation">
+      <created>1647056156974</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1647056156975</updated>
+    </task>
+    <task id="LOCAL-00070" summary="-edited parseID">
+      <created>1647056171832</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1647056171832</updated>
+    </task>
+    <task id="LOCAL-00071" summary="-Added verbose mode for Parser">
+      <created>1647058545287</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1647058545287</updated>
+    </task>
+    <task id="LOCAL-00072" summary="-Initialized children as empty ArrayList&lt;Token&gt;">
+      <created>1647058578677</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1647058578677</updated>
+    </task>
+    <task id="LOCAL-00073" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
+      <created>1647058610838</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1647058610838</updated>
+    </task>
+    <task id="LOCAL-00074" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
+      <created>1647058623705</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1647058623705</updated>
+    </task>
+    <task id="LOCAL-00075" summary="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)">
+      <created>1647059426741</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1647059426741</updated>
+    </task>
+    <task id="LOCAL-00076" summary="-Edited print statements for Parser">
+      <created>1647059441926</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1647059441926</updated>
+    </task>
+    <task id="LOCAL-00077" summary="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse">
+      <created>1647060762682</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1647060762682</updated>
+    </task>
+    <task id="LOCAL-00078" summary="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO">
+      <created>1647060848670</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1647060848670</updated>
+    </task>
+    <task id="LOCAL-00079" summary="-Implemented moveUp() does nothing">
+      <created>1647116253548</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116253549</updated>
+    </task>
+    <task id="LOCAL-00080" summary="-Added CST String output for Tree class">
+      <created>1647116278615</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116278615</updated>
+    </task>
+    <task id="LOCAL-00081" summary="-Deleted some cases">
+      <created>1647116294139</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116294139</updated>
+    </task>
+    <task id="LOCAL-00082" summary="-if error found in parse, the CST wont be shown">
+      <created>1647119657861</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1647119657861</updated>
+    </task>
+    <task id="LOCAL-00083" summary="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST.">
+      <created>1647119727001</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1647119727001</updated>
+    </task>
+    <task id="LOCAL-00084" summary="-Made new traverse() method that uses depth-first preorder traversal to make CST (In testing)">
+      <created>1647121964257</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1647121964257</updated>
+    </task>
+    <task id="LOCAL-00085" summary="-More edits for CST implementation">
+      <created>1647130002204</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1647130002205</updated>
+    </task>
+    <task id="LOCAL-00086" summary="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)">
+      <created>1647131716996</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1647131716996</updated>
+    </task>
+    <task id="LOCAL-00087" summary="-Fixed issue with statementList() identifying as leaf node">
+      <created>1647131977427</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1647131977427</updated>
+    </task>
+    <task id="LOCAL-00088" summary="-Edited Print statements when skipping parse or CST">
+      <created>1647132659746</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1647132659746</updated>
+    </task>
+    <task id="LOCAL-00089" summary="-Minor edits to Parser&#10;-Added boolOp() method and refactored">
+      <created>1647135958491</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1647135958491</updated>
+    </task>
+    <task id="LOCAL-00090" summary="-Refactored Tree Class&#10;-Debugging Tree Class">
+      <created>1647135996964</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1647135996964</updated>
+    </task>
+    <task id="LOCAL-00091" summary="-Different test case for testing">
+      <created>1647136014962</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1647136014962</updated>
+    </task>
+    <task id="LOCAL-00092" summary="-Commented out debugging">
+      <created>1647138578292</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138578292</updated>
+    </task>
+    <task id="LOCAL-00093" summary="-Modified test1">
+      <created>1647138599116</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138599116</updated>
+    </task>
+    <task id="LOCAL-00094" summary="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()">
+      <created>1647138665071</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138665071</updated>
+    </task>
+    <task id="LOCAL-00095" summary="-Added more test cases">
+      <created>1647141590111</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141590111</updated>
+    </task>
+    <task id="LOCAL-00096" summary="-Fixed issue when going to a next program that didn't exist">
+      <created>1647141641384</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141641384</updated>
+    </task>
+    <task id="LOCAL-00097" summary="-Tested more test cases SUCCESSFULLY">
+      <created>1647141667331</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141667331</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -432,7 +436,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/semantic_analysis" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -440,41 +456,31 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- 95% working on smallerized data for this commit ---&gt; ISSUE: tokens registering as ID instead of CHAR in quotes&#10;- Fix this, then work on biggerized data" />
-    <MESSAGE value="- 100% working on smallerized data for this commit --&gt; Fixed CHAR issue in quotes&#10;- Working on biggerized data" />
-    <MESSAGE value="- Added variables printed_last_index and printed_current_index to account for printed index on biggerized data (with spaces, indents, and tabs)&#10;- Added variables for closed parenthesis and blocks for warning messages" />
-    <MESSAGE value="- Integrated new printing line system for smallerized data&#10;- Working on implementing in biggerized data" />
-    <MESSAGE value="- LEXICAL ANALYSIS WORKS FOR BIGGER DATA AND SMALLERIST DATA" />
-    <MESSAGE value="- Lexer now works when multiple programs are in one .txt file" />
-    <MESSAGE value="- Refactored many comments and rule order array" />
-    <MESSAGE value="- Added code to account for a nontoken found in program and to proceed to next program if it exists&#10;- Added num errors for each program and when each program ends and starts" />
-    <MESSAGE value="- minor edits&#10;- NEXT: try out a lot of test cases&#10;- NEXT: account for warnings next" />
-    <MESSAGE value="- Accounted for cases regarding L_BLOCK and R_BLOCK&#10;- Working on the same thing for parenthesis" />
-    <MESSAGE value="- Accounted for cases regarding L_PARENTH and R_PARENTH" />
-    <MESSAGE value="- Added number of warnings&#10;- Made edits to unterminated comments" />
-    <MESSAGE value="- Added new test case&#10;- small edits to error log statement" />
-    <MESSAGE value="- Refactoring" />
-    <MESSAGE value="- This commit is working in command prompt" />
-    <MESSAGE value="- Added more test cases&#10;- fixed issue with warnings and errors&#10;- It now prints out all errors in program until termination&#10;- NEED to add how to fix the errors and warnings&#10;- Works in command prompt" />
-    <MESSAGE value="- Added new initialization of line numbers where it identifies line one on the first non-empty line (includes comment lines)&#10;- Works in command prompt" />
-    <MESSAGE value="- Fixed bug that didn't identify line breaks correctly in other OSs" />
-    <MESSAGE value="- This commit should fix the line break issue on different OSs" />
-    <MESSAGE value="Initialization of generating AST, and have to fix break issues on MacOS" />
-    <MESSAGE value="Added isBlock (but may not need it if we just use children as an indicator)" />
-    <MESSAGE value="Adding implementation of AST into Lexer (main testing)" />
-    <MESSAGE value="Made edits to which productions will be in AST" />
-    <MESSAGE value="Edits test3 with slides example" />
-    <MESSAGE value="Editing match()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Editing match()" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="-Edited Testing for Parser implementation of lexer (lexer2)" />
+    <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent" />
+    <MESSAGE value="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)" />
+    <MESSAGE value="-Edited print statements for Parser" />
+    <MESSAGE value="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse" />
+    <MESSAGE value="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO" />
+    <MESSAGE value="-Implemented moveUp() does nothing" />
+    <MESSAGE value="-Added CST String output for Tree class" />
+    <MESSAGE value="-Deleted some cases" />
+    <MESSAGE value="-if error found in parse, the CST wont be shown" />
+    <MESSAGE value="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST." />
+    <MESSAGE value="-Made new traverse() method that uses depth-first preorder traversal to make CST (In testing)" />
+    <MESSAGE value="-More edits for CST implementation" />
+    <MESSAGE value="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)" />
+    <MESSAGE value="-Fixed issue with statementList() identifying as leaf node" />
+    <MESSAGE value="-Edited Print statements when skipping parse or CST" />
+    <MESSAGE value="-Minor edits to Parser&#10;-Added boolOp() method and refactored" />
+    <MESSAGE value="-Refactored Tree Class&#10;-Debugging Tree Class" />
+    <MESSAGE value="-Different test case for testing" />
+    <MESSAGE value="-Commented out debugging" />
+    <MESSAGE value="-Modified test1" />
+    <MESSAGE value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
+    <MESSAGE value="-Added more test cases" />
+    <MESSAGE value="-Fixed issue when going to a next program that didn't exist" />
+    <MESSAGE value="-Tested more test cases SUCCESSFULLY" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Tested more test cases SUCCESSFULLY" />
   </component>
 </project>

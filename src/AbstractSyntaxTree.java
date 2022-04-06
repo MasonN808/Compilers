@@ -64,7 +64,7 @@ public class AbstractSyntaxTree {
         else {
             //if (verbose) System.out.println("AST -------> parseProgram() ---->  " +  tokenStream.get(getIndex()).s);
 
-            ast.addNode("root", "program");
+//            ast.addNode("root", "program");
             parseBlock();
             match(Compiler808.Grammar.EOP);
 //            ast.moveUp();
