@@ -15,7 +15,7 @@ public class TreeST {
         Node node = new Node(); //initialize new Node
         idDetails details = new idDetails(type, current.token, isInitialized, isUsed);
         Hashtable<String,idDetails> ht = new Hashtable<>();
-        idDetails a = ht.put(id, details);
+        ht.put(id, details);
 
         if (root == null) { //case for the first node in tree
             root = node;
@@ -34,10 +34,9 @@ public class TreeST {
             current = root;
         }
         for (Node each : node.children) {
-            if(each.name.equals("varDecal")){
-                addNode();
-            }
             populateST(each);
         }
+        addNode(node.value
+
     }
 }
