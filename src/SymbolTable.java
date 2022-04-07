@@ -8,4 +8,8 @@ public class SymbolTable {
     public static void makeTable(){
 
     }
+
+    public static void printTable(){
+
+    }
 }
