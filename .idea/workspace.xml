@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/idDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NodeSymbolTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SymbolTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeSymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,34 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00065" summary="-Refactored Lexer, Parser, Token and Compiler808 to move Grammar from lexer to Compiler808">
-      <created>1647039465116</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1647039465116</updated>
-    </task>
-    <task id="LOCAL-00066" summary="-Changed from switch statement to long else if statement because of the grammar refactoring since switches won't work from the refactoring">
-      <created>1647040933337</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1647040933337</updated>
-    </task>
-    <task id="LOCAL-00067" summary="-Added FALSE and TRUE Tokens for easier parser implementation">
-      <created>1647041833717</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1647041833717</updated>
-    </task>
-    <task id="LOCAL-00068" summary="-Added FALSE and TRUE Tokens for easier parser implementation">
-      <created>1647047431335</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1647047431335</updated>
     </task>
     <task id="LOCAL-00069" summary="-Lexer2 for parser in lexer implementation">
       <created>1647056156974</created>
@@ -432,7 +400,35 @@
       <option name="project" value="LOCAL" />
       <updated>1649282405351</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="- Made idDetails for Hashtable of ids in symbol table/tree">
+      <created>1649292273785</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292273785</updated>
+    </task>
+    <task id="LOCAL-00115" summary="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type">
+      <created>1649292393289</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292393289</updated>
+    </task>
+    <task id="LOCAL-00116" summary="- Creating a tree from the AST for the symbol table">
+      <created>1649292447338</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292447338</updated>
+    </task>
+    <task id="LOCAL-00117" summary="- Minor initializations of files">
+      <created>1649292471165</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292471165</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -460,10 +456,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Minor edits to Parser&#10;-Added boolOp() method and refactored" />
-    <MESSAGE value="-Refactored Tree Class&#10;-Debugging Tree Class" />
-    <MESSAGE value="-Different test case for testing" />
-    <MESSAGE value="-Commented out debugging" />
     <MESSAGE value="-Modified test1" />
     <MESSAGE value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
     <MESSAGE value="-Added more test cases" />
@@ -485,6 +477,10 @@
     <MESSAGE value="-Testing using semanticTests" />
     <MESSAGE value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
     <MESSAGE value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
+    <MESSAGE value="- Made idDetails for Hashtable of ids in symbol table/tree" />
+    <MESSAGE value="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type" />
+    <MESSAGE value="- Creating a tree from the AST for the symbol table" />
+    <MESSAGE value="- Minor initializations of files" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Minor initializations of files" />
   </component>
 </project>
