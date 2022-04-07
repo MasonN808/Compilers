@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/NodeSymbolTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TreeSymbolTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/idDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NodeSymbolTable.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SymbolTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeSymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Algorithms_local" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -85,13 +88,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00064" summary="-Added in line 171 to make space its own token, not just CHAR">
-      <created>1647030872331</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1647030872331</updated>
     </task>
     <task id="LOCAL-00065" summary="-Refactored Lexer, Parser, Token and Compiler808 to move Grammar from lexer to Compiler808">
       <created>1647039465116</created>
@@ -429,7 +425,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649281524896</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically">
+      <created>1649282405351</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1649282405351</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +460,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Edited Print statements when skipping parse or CST" />
     <MESSAGE value="-Minor edits to Parser&#10;-Added boolOp() method and refactored" />
     <MESSAGE value="-Refactored Tree Class&#10;-Debugging Tree Class" />
     <MESSAGE value="-Different test case for testing" />
@@ -482,6 +484,7 @@
     <MESSAGE value="-Changed output of AST to be less specific" />
     <MESSAGE value="-Testing using semanticTests" />
     <MESSAGE value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
+    <MESSAGE value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
   </component>
 </project>
