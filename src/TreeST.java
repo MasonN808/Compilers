@@ -1,0 +1,27 @@
+import java.util.Hashtable;
+
+public class TreeST {
+    public static Node root = null;
+    public static Node current = null;
+    public static AbstractSyntaxTree ast = null;
+
+    public TreeST(AbstractSyntaxTree ast){
+        this.ast = ast;
+        this.root = null;
+        this.current = null;
+    }
+
+    public static void addNode(String id, String type, boolean isInitialized, boolean isUsed){
+        Node node = new Node();
+        idDetails details = new idDetails(type, current.token, isInitialized, isUsed);
+        Hashtable<String,idDetails> ht = new Hashtable<>();
+        ht.put(id, details);
+    }
+
+    public static void populateST(Node node){ //start will be AbstractSyntaxTree.ast.root
+        for (Node each : node.children) {
+
+            populateST(each);
+        }
+    }
+}
