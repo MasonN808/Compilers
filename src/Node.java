@@ -22,10 +22,4 @@ public class Node {
     // For AST
     public Hashtable<String,idDetails> ht = null;
 
-//    public Node(Node parent, String name, String value, ArrayList<Node> children){
-//        this.parent = parent;
-//        this.name = name;
-//        this.value = value;
-//        this.children = children;
-//    }
 }
