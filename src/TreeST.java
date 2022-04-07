@@ -13,7 +13,7 @@ public class TreeST {
 
     public static void addNode(String id, String type, boolean isInitialized, boolean isUsed){
         Node node = new Node(); //initialize new Node
-        idDetails details = new idDetails(type, current.token, isInitialized, isUsed);
+        idDetails details = new idDetails(type, isInitialized, isUsed, current.token);
         Hashtable<String,idDetails> ht = new Hashtable<>();
         ht.put(id, details);
 
@@ -29,14 +29,19 @@ public class TreeST {
     }
 
     public static void populateST(Node node){ //start will be AbstractSyntaxTree.ast.root
-        if (root == null){
-            root = node;
-            current = root;
-        }
         for (Node each : node.children) {
+            if (each.name.equals("varDecal")){
+                addNode(node.children.get(1).value,node.children.get(0).value, false, true);
+                continue; // go to next child ===> don't do recursion on varDecal node
+            }
+            if (each.name.equals("assignmentStatement")){
+                addNode(node.children.get(1).value,node.children.get(0).value, true, true);
+                continue; // go to next child ===> don't do recursion on varDecal node
+            }
             populateST(each);
         }
-        addNode(node.value
+
+
 
     }
 }

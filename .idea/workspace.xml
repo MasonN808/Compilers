@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- More edits">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/idDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/idDetails.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,20 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00070" summary="-edited parseID">
-      <created>1647056171832</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1647056171832</updated>
-    </task>
-    <task id="LOCAL-00071" summary="-Added verbose mode for Parser">
-      <created>1647058545287</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1647058545287</updated>
     </task>
     <task id="LOCAL-00072" summary="-Initialized children as empty ArrayList&lt;Token&gt;">
       <created>1647058578677</created>
@@ -429,7 +415,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649293357174</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="- Deleted commented section">
+      <created>1649293834545</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1649293834545</updated>
+    </task>
+    <task id="LOCAL-00120" summary="- More edits">
+      <created>1649293846484</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1649293846484</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,8 +457,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()" />
-    <MESSAGE value="-Added more test cases" />
     <MESSAGE value="-Fixed issue when going to a next program that didn't exist" />
     <MESSAGE value="-Tested more test cases SUCCESSFULLY" />
     <MESSAGE value="-Getting AST to work" />
@@ -482,6 +480,8 @@
     <MESSAGE value="- Creating a tree from the AST for the symbol table" />
     <MESSAGE value="- Minor initializations of files" />
     <MESSAGE value="- Getting symbol table tree to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Getting symbol table tree to work" />
+    <MESSAGE value="- Deleted commented section" />
+    <MESSAGE value="- More edits" />
+    <option name="LAST_COMMIT_MESSAGE" value="- More edits" />
   </component>
 </project>

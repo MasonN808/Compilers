@@ -5,7 +5,7 @@ public class idDetails {
     boolean isInitialized = false;
     boolean isUsed = false;
 
-    public idDetails(String type, Token token, boolean isInitialized, boolean isUsed){
+    public idDetails(String type, boolean isInitialized, boolean isUsed, Token token){
         this.type = type;
         this.token = token;
         this.isInitialized = isInitialized;
