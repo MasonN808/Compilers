@@ -359,4 +359,14 @@ public class AbstractSyntaxTree {
         }
     }
 
+    public void rearrangeTree(Node node){// post order traversal
+            for(Node each : node.children){
+                if (each.name.equals("ifStatement")|each.name.equals("whileStatement"))
+                    each.children.get(1)
+                rearrangeTree(each);
+            }
+            this.printData();
+        }
+    }
+
 }

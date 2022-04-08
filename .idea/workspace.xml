@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,13 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00073" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
-      <created>1647058610838</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1647058610838</updated>
     </task>
     <task id="LOCAL-00074" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
       <created>1647058623705</created>
@@ -429,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649307241813</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="- More additions to populating the symbol table (looking better)">
+      <created>1649379007422</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1649379007422</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +456,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Tested more test cases SUCCESSFULLY" />
     <MESSAGE value="-Getting AST to work" />
     <MESSAGE value="-Created new Tree Class for AST to edit tree structure from CST" />
     <MESSAGE value="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method" />
@@ -482,6 +480,7 @@
     <MESSAGE value="- Deleted commented section" />
     <MESSAGE value="- More edits" />
     <MESSAGE value="- More additions to populating the symbol table (not looking too good)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- More additions to populating the symbol table (not looking too good)" />
+    <MESSAGE value="- More additions to populating the symbol table (looking better)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- More additions to populating the symbol table (looking better)" />
   </component>
 </project>
