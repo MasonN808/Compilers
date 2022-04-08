@@ -552,7 +552,7 @@ public class Lexer {
                         // For AST
                         System.out.println("------------------------------------------------------------");
                         System.out.println("AST for Program " + program_num);
-                        System.out.println(abstractST.ast.traverse(abstractST.ast.root, 0, ""));
+                        System.out.println(abstractST.ast.traverseabstractST.ast(abstractST.ast.root, 0, ""));
                     }
                     else {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
