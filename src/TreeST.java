@@ -4,6 +4,7 @@ public class TreeST {
     public static Node root = null;
     public static Node current = null;
     public static AbstractSyntaxTree ast = null;
+    public static TreeST tree = null;
 
     public TreeST(AbstractSyntaxTree ast){
         this.ast = ast;
@@ -25,18 +26,46 @@ public class TreeST {
 
             node.parent.children.add(node); //add n to parent's children array, letting parent know who its children is
         }
+    }
+    public static void editNode(Node node, String id, String type, boolean isInitialized, boolean isUsed){
 
     }
 
     public static void populateST(Node node){ //start will be AbstractSyntaxTree.ast.root
         for (Node each : node.children) {
+            if (each.name.equals("block")){
+                Node tempNode = new Node();
+                if (root == null) { //case for the first node in tree
+                    root = tempNode;
+                    tempNode.parent = null;
+                    current = tempNode;
+                }
+                else{
+                    tempNode.parent = current; //Assign n's parent to current node
+                    tempNode.parent.children.add(tempNode); //add n to parent's children array, letting parent know who its children is
+                }
+                populateST(each);
+            }
             if (each.name.equals("varDecal")){
-                addNode(node.children.get(1).value,node.children.get(0).value, false, true);
+                // TODO: put error exception here
+                idDetails details = new idDetails(node.children.get(0).value, false, false, node.token);
+                current.ht.put(each.children.get(1).value, details);
+//                addNode(node.children.get(1).value,node.children.get(0).value, false, true);
                 continue; // go to next child ===> don't do recursion on varDecal node
             }
             if (each.name.equals("assignmentStatement")){
-                addNode(node.children.get(1).value,node.children.get(0).value, true, true);
+                // TODO: put error exception here
+                idDetails details = new idDetails(node.children.get(0).value, true, false, node.token);
+                current.ht.put(each.children.get(1).value, details);
                 continue; // go to next child ===> don't do recursion on varDecal node
+            }
+            if (each.name.equals("printStatement")){
+                // TODO: put error exception here
+                idDetails details = new idDetails(node.children.get(0).value, true, true, node.token);
+                current.ht.put(each.children.get(1).value, details);
+            }
+            if (each.name.equals("whileStatement") | each.name.equals("ifStatement")){
+
             }
             populateST(each);
         }
