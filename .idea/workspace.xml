@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,13 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00076" summary="-Edited print statements for Parser">
-      <created>1647059441926</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1647059441926</updated>
     </task>
     <task id="LOCAL-00077" summary="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse">
       <created>1647060762682</created>
@@ -428,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649476122238</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="- Redoing symbol tree implementation">
+      <created>1649477466530</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1649477466530</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +456,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method" />
     <MESSAGE value="-Added new token attribute to Node class to keep track of tokens and line number and char number" />
     <MESSAGE value="-Edits to match slides" />
     <MESSAGE value="-Generalized to token input&#10;-Added addNodeAsStringList() method to print list of expressions for visualization of AST" />
@@ -481,6 +480,7 @@
     <MESSAGE value="- More additions to populating the symbol table (looking better)" />
     <MESSAGE value="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)" />
     <MESSAGE value="- Edits to print of booleanExpr" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Edits to print of booleanExpr" />
+    <MESSAGE value="- Redoing symbol tree implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Redoing symbol tree implementation" />
   </component>
 </project>

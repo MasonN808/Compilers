@@ -21,5 +21,6 @@ public class Node {
     public Token token = null;
     // For AST
     public Hashtable<String,idDetails> ht = null;
+    public String type = null; // type of variable
 
 }

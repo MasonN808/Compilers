@@ -83,4 +83,19 @@ public class TreeST {
     public static void buildSymbolTable(){
         processNode(ast.root);
     }
+
+    public static void processNode(Node node){
+        switch (node.name){
+            case ("block"):
+                openScope();
+            case ("varDecal"):
+                enterSymbol(node.value, node.type);
+            default:
+                String symbol = retrieveSymbol(node.value);
+                if (symbol == null){
+                    System.out.println("Semantic ERROR: Undeclared Symbol");
+                }
+        }
+    }
+
 }
