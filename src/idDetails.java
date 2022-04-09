@@ -4,6 +4,7 @@ public class idDetails {
     Token token = null;
     boolean isInitialized = false;
     boolean isUsed = false;
+    int depth = 0;
 
     public idDetails(String type, boolean isInitialized, boolean isUsed, Token token){
         this.type = type;

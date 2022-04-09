@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class TreeST {
@@ -6,11 +8,156 @@ public class TreeST {
     public static TreeST tree = null;
     public static TreeAST ast = null;
 
+    public static int depth = 0; //Initialize depth of scopeDisplay
+    public static ArrayList<ScopeNode> scopeDisplay; //Initialize an Array list of Scope Nodes to assign children to each node and an INT for depth
+    public static Hashtable<String,idDetails> hashTable = new Hashtable<>();
+    public static ScopeNode currentScope = null; // The current scope node
+
+
+//        idDetails details = new idDetails(type, isInitialized, isUsed, current.token);
+//        ht.put(id, details);
+
     public TreeST(TreeAST ast){
         this.ast = ast;
         this.root = null;
         this.current = null;
+        this.depth = 0;
     }
+
+    // Created a node class for scopeDisplay to assign pointers to children
+    // TODO: might need to assign parent for children (MIGHT)
+    public static class ScopeNode{
+        public ArrayList<Node> children = new ArrayList<>();
+        public Hashtable<String,idDetails> hashTable;
+        public int depth;
+        public ScopeNode prev = null; // Make pointers to see next scope or previous scope for checking symbol out of valid scope
+        public ScopeNode next = null;
+
+        public ScopeNode(Hashtable<String,idDetails> hashTable){
+            this.hashTable = hashTable;
+        }
+    }
+
+    public static void buildSymbolTable(){
+        processNode(ast.root);
+    }
+
+    public static void processNode(Node node){
+        switch (node.name){
+            case ("block"):
+                Hashtable<String,idDetails> hashTable = new Hashtable<>(); // Create hashtable in new scope
+                ScopeNode scopeNode = new ScopeNode(hashTable); // Create new scope node
+                if (depth == 0){
+                    scopeNode.prev = null;
+                }
+                else {
+                    scopeNode.prev = currentScope; // set the previous scope to outer scope
+                }
+                currentScope = scopeNode; // reinitialize current scope
+                depth = depth + 1; // increase depth of tree
+
+            case ("varDecal"):
+                Node key = node.children.get(1);
+                Node type = node.children.get(0);
+                if (currentScope.hashTable.get(key.value) == null){
+                    idDetails details = new idDetails(type.value, false, false, node.token);
+                    currentScope.hashTable.put(key.value, details);
+                }
+                else{
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Identifier redeclared error at line " +
+                            node.children.get(1).token.line_number + ", char " + node.children.get(1).token.character_number);
+                }
+            case ("assignmentStatement"):
+                Node assignedKey = node.children.get(0);
+                Node assignedValue = node.children.get(1);
+                if (currentScope.hashTable.get(assignedKey.value) == null){ // if identifier is undeclared
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                            assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
+                }
+                else if (!checkAssignmentTypes(currentScope.hashTable.get(assignedKey.value).type, assignedValue.value)) { // arg[0] and arg[1] will be strings
+                    // if type-mismatch occurs in assignment
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + currentScope.hashTable.get(assignedKey.value).type +  " at " +
+                            assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+                }
+                else{
+
+                }
+            default:
+
+                String symbol = retrieveSymbol(node.value);
+                if (symbol == null){
+                    System.out.println("Semantic ERROR: Undeclared Symbol");
+                }
+        }
+        for (Node each: node.children){
+            processNode(each);
+        }
+        if (node.name.equals("block")){
+            closeScope();
+        }
+    }
+
+    public static boolean checkAssignmentTypes(String type, String assigned){
+        if (Character.toString(assigned.charAt(0)).equals("\"") & type.equals("string")){
+            return true;
+        }
+        else if ((assigned.charAt(0)) == (int) assigned.charAt(0) & type.equals("int")){
+            return true;
+        }
+        else if ((assigned.equals("false") | assigned.equals("true")) & type.equals("boolean")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+//    public static void processNode(Node node){
+//        switch (node.name){
+//            case ("block"):
+//                openScope();
+//            case ("varDecal"):
+//                enterSymbol(node.value, node.type);
+//            default:
+//                String symbol = retrieveSymbol(node.value);
+//                if (symbol == null){
+//                    System.out.println("Semantic ERROR: Undeclared Symbol");
+//                }
+//        }
+//        for (Node each: node.children){
+//            processNode(each);
+//        }
+//        if (node.name.equals("block")){
+//            closeScope();
+//        }
+//    }
+
+
+//    /**
+//     * opens a new scope for symbol table
+//     */
+//    public static void openScope(){
+//        depth = depth + 1; // add depth
+//        scopeDisplay.set(depth, null); // set it to null
+//    }
+//
+//
+//    /**
+//     * closes current scope
+//     */
+//    public static void closeScope(){
+//        ArrayList<Node> tempChildren = scopeDisplay.get(depth).children;
+//        for (Node sym: tempChildren){ // Do for loop on each child of scopeDisplay element at some depth
+//            String prevSym = sym.value;
+//            hashTable.remove(sym.value);
+//            tempChildren.set(tempChildren.indexOf(sym), null); // Delete (set to null) the sym element in children
+//            if (prevSym != null){
+//                scopeDisplay.get(depth).children.set(tempChildren.indexOf(sym), null);
+//            }
+//        }
+//    }
+
+
 
 //    public static void addNode(String id, String type, boolean isInitialized, boolean isUsed){
 //        Node node = new Node(); //initialize new Node
@@ -80,22 +227,5 @@ public class TreeST {
 //
 //    }
 
-    public static void buildSymbolTable(){
-        processNode(ast.root);
-    }
-
-    public static void processNode(Node node){
-        switch (node.name){
-            case ("block"):
-                openScope();
-            case ("varDecal"):
-                enterSymbol(node.value, node.type);
-            default:
-                String symbol = retrieveSymbol(node.value);
-                if (symbol == null){
-                    System.out.println("Semantic ERROR: Undeclared Symbol");
-                }
-        }
-    }
 
 }
