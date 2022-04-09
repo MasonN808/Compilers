@@ -70,16 +70,62 @@ public class TreeST {
             case ("assignmentStatement"):
                 Node assignedKey = node.children.get(0);
                 Node assignedValue = node.children.get(1);
-                if (currentScope.hashTable.get(assignedKey.value) == null){ // if identifier is undeclared
-                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
-                            assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
+                boolean foundKey = false;
+                ScopeNode tempCurrentScope = currentScope;
+                if (currentScope.hashTable.get(assignedKey.value) == null){ // if identifier is undeclared in current scope
+                    while (tempCurrentScope.prev != null & !foundKey){
+                        if (tempCurrentScope.prev.hashTable.get(assignedKey.value) != null){
+                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
+                            foundKey = true; // Found key in a different scope (we use this key for assignment
+                        }
+                        tempCurrentScope = tempCurrentScope.prev;
+                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                    }
+                    if (!foundKey){
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                                assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
+                    }
                 }
-                else if (!checkAssignmentTypes(currentScope.hashTable.get(assignedKey.value).type, assignedValue.value)) { // arg[0] and arg[1] will be strings
+                if (!checkAssignmentTypes(currentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
                     // if type-mismatch occurs in assignment
                     System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + currentScope.hashTable.get(assignedKey.value).type +  " at " +
                             assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
                 }
-                else{
+                else{ // key found
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> UNCAUGHT ERROR at assignmentStatement case ");
+                    // First get original details from hashtable of key
+                    // tempCurrentScope is the scope the key value is in
+                    boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
+                    boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
+                    Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
+                    // Then assign accordingly
+                    if (wasInitialized == false){ // mark key as is Initialized and keep wasUsed the same
+                        idDetails details = new idDetails(assignedValue.value, true, wasUsed, wasToken);
+                        tempCurrentScope.hashTable.put(assignedKey.value, details);
+                    }
+
+                }
+            case ("printStatement"):
+                Node printKey = node.children.get(0);
+                foundKey = false;
+                // TODO: Maybe make this it's own method
+                if (currentScope.hashTable.get(printKey.value) == null){ // if identifier is undeclared in current scope
+                    ScopeNode tempCurrentScope = currentScope;
+                    while (tempCurrentScope.prev != null & !foundKey){
+                        if (tempCurrentScope.prev.hashTable.get(printKey.value) != null){
+                            foundKey = true; // Found key in a different scope (we use this key for assignment
+                        }
+                        tempCurrentScope = tempCurrentScope.prev;
+                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                    }
+                    if (!foundKey){
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                                printKey.token.line_number + ", char " + printKey.token.character_number);
+                    }
+                }
+
+                // If the key is found in some scope, mark key as isUsed
+                if (foundKey){
 
                 }
             default:
