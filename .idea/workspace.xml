@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,20 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00074" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
-      <created>1647058623705</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1647058623705</updated>
-    </task>
-    <task id="LOCAL-00075" summary="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)">
-      <created>1647059426741</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1647059426741</updated>
     </task>
     <task id="LOCAL-00076" summary="-Edited print statements for Parser">
       <created>1647059441926</created>
@@ -429,7 +414,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649379007422</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)">
+      <created>1649476025845</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1649476025845</updated>
+    </task>
+    <task id="LOCAL-00124" summary="- Edits to print of booleanExpr">
+      <created>1649476122238</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1649476122238</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,8 +456,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Getting AST to work" />
-    <MESSAGE value="-Created new Tree Class for AST to edit tree structure from CST" />
     <MESSAGE value="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method" />
     <MESSAGE value="-Added new token attribute to Node class to keep track of tokens and line number and char number" />
     <MESSAGE value="-Edits to match slides" />
@@ -482,6 +479,8 @@
     <MESSAGE value="- More edits" />
     <MESSAGE value="- More additions to populating the symbol table (not looking too good)" />
     <MESSAGE value="- More additions to populating the symbol table (looking better)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- More additions to populating the symbol table (looking better)" />
+    <MESSAGE value="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)" />
+    <MESSAGE value="- Edits to print of booleanExpr" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Edits to print of booleanExpr" />
   </component>
 </project>
