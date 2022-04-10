@@ -569,6 +569,8 @@ public class Lexer {
                         }
                         else {
                             System.out.println("SYMBOL TABLE -------> SYMBOL TABLE finished SUCCESSFULLY");
+                            boolean[] discovered = new boolean[treeST.scopeNum]; //make sure all values are false
+                            treeST.BFS(treeST, treeST.root, discovered);
                         }
                     }
                     else {
