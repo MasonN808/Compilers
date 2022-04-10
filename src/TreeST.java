@@ -8,6 +8,7 @@ public class TreeST {
     public static TreeAST ast = null;
 
     public static int numErrors = 0;
+    public static int numWarnings = 0;
     public static int scopeNum = 0; // How many scopes/nodes in tree
 
     public static int depth = 0; //Initialize depth of scopeDisplay
@@ -49,7 +50,7 @@ public class TreeST {
     }
 
     public static void processNode(Node node) {
-        System.out.println(node.name);
+//        System.out.println(node.name);
 //        System.out.println(currentScope != null);
         switch (node.name) {
             case ("block"):
@@ -73,14 +74,14 @@ public class TreeST {
                 Node type = node.children.get(0);
 //                System.out.println(type.value);
                 if (currentScope.hashTable.get(key.value) == null) {
-                    idDetails details = new idDetails(type.value, false, false, node.token);
+                    idDetails details = new idDetails(type.value, false, false, key.token);
                     currentScope.hashTable.put(key.value, details);
                 } else {
                     System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Identifier redeclared error at line " +
                             node.children.get(1).token.line_number + ", char " + node.children.get(1).token.character_number);
                     numErrors = numErrors + 1;
                 }
-                System.out.println("DEBUG: " + currentScope.hashTable.get(key.value).type);
+//                System.out.println("DEBUG: " + currentScope.hashTable.get(key.value).type);
 
                 break;
             case ("assignmentStatement"):
@@ -95,8 +96,7 @@ public class TreeST {
                         if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
 //                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
                             foundKey = true; // Found key in a different scope (we use this key for assignment
-                        }
-                        else{
+                        } else {
                             tempCurrentScope = tempCurrentScope.prev;
                         }
                         // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
@@ -106,8 +106,7 @@ public class TreeST {
                                 assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
                         numErrors = numErrors + 1;
                     }
-                }
-                else{
+                } else {
                     foundKey = true;
                 }
                 // Debugging checking assignment mismatch
@@ -143,8 +142,7 @@ public class TreeST {
                     while (tempCurrentScope != null & !foundKey) {
                         if (tempCurrentScope.hashTable.get(printKey.value) != null) {
                             foundKey = true; // Found key in a different scope (we use this key for assignment
-                        }
-                        else{
+                        } else {
                             tempCurrentScope = tempCurrentScope.prev;
                         }
                     }
@@ -153,14 +151,13 @@ public class TreeST {
                                 printKey.token.line_number + ", char " + printKey.token.character_number);
                         numErrors = numErrors + 1;
                     }
-                }
-                else{
+                } else {
                     foundKey = true;
                 }
-                System.out.println("FOUND KEY " + foundKey);
+//                System.out.println("FOUND KEY " + foundKey);
                 // If the key is found in some scope, mark key as isUsed
                 if (foundKey) {
-                    System.out.println("FOUND KEY");
+//                    System.out.println("FOUND KEY");
                     // First get original details from hashtable of key
                     // tempCurrentScope is the scope the key value is in
                     String wasType = tempCurrentScope.hashTable.get(printKey.value).type;
@@ -192,8 +189,7 @@ public class TreeST {
                     while (tempCurrentScope != null & !foundKey) {
                         if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
                             foundKey = true; // Found key in a different scope (we use this key for assignment
-                        }
-                        else{
+                        } else {
                             tempCurrentScope = tempCurrentScope.prev;
                         }
                     }
@@ -202,8 +198,7 @@ public class TreeST {
                                 assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
                         numErrors = numErrors + 1;
                     }
-                }
-                else{
+                } else {
                     foundKey = true;
                 }
                 if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
@@ -234,7 +229,7 @@ public class TreeST {
             processNode(each);
         }
         if (node.name.equals("block")) {
-            System.out.println("Block Done");
+//            System.out.println("Block Done");
             currentScope = currentScope.prev; // Go back up the tree at outer scope
         }
     }
@@ -274,9 +269,9 @@ public class TreeST {
             v = q.poll();
             //  For extracting ALL hash value keys from hashtable --> https://www.w3schools.blog/get-all-keys-from-hashtable-in-java#:~:text=We%20can%20use%20keySet(),Set%20object%20with%20all%20keys.
             Set<String> keys = v.hashTable.keySet();
-            for(String key: keys){
+            for (String key : keys) {
                 // Put data in a row to print elegantly in a table format
-                String[] row = new String[] {key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized), Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope)};
+                String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized), Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope)};
                 System.out.format("%4s%15s%15s%15s%15s%n", row);
             }
 
@@ -290,6 +285,45 @@ public class TreeST {
                 }
             }
         }
+    }
+
+    // Check for warnings using BFS
+    public static void checkWarnings(TreeST tree, ScopeNode v, boolean[] discovered) {
+        // create a queue for doing BFS
+        Queue<ScopeNode> q = new ArrayDeque<>();
+
+        // mark the source vertex as discovered
+        discovered[v.scope] = true;
+
+        // enqueue source vertex
+        q.add(v);
+
+        // loop till queue is empty
+        while (!q.isEmpty()) {
+            // dequeue front node and print it
+            v = q.poll();
+            //  For extracting ALL hash value keys from hashtable --> https://www.w3schools.blog/get-all-keys-from-hashtable-in-java#:~:text=We%20can%20use%20keySet(),Set%20object%20with%20all%20keys.
+            Set<String> keys = v.hashTable.keySet();
+            for (String key : keys) {
+                if (v.hashTable.get(key).isInitialized == true & v.hashTable.get(key).isUsed == false){
+                    System.out.println("SEMANTIC ANALYSIS [WARNING]: -------> The identifier " + v.hashTable.get(key).token.s + " was declared and initialized but never used at " +
+                            v.hashTable.get(key).token.line_number + ", char " + v.hashTable.get(key).token.character_number);
+                    numWarnings = numWarnings + 1;
+                }
+            }
+
+
+            // do for every edge (v, u)
+            for (ScopeNode u : v.children) {
+                if (!discovered[u.scope]) {
+                    // mark it as discovered and enqueue it
+                    discovered[u.scope] = true;
+                    q.add(u);
+                }
+            }
+        }
+    }
+}
 
 //    public static void processNode(Node node){
 //        switch (node.name){
@@ -404,7 +438,3 @@ public class TreeST {
 //
 //
 //    }
-
-
-    }
-}

@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test3" beforeDir="false" afterPath="$PROJECT_DIR$/src/test3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,13 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00089" summary="-Minor edits to Parser&#10;-Added boolOp() method and refactored">
-      <created>1647135958491</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1647135958491</updated>
     </task>
     <task id="LOCAL-00090" summary="-Refactored Tree Class&#10;-Debugging Tree Class">
       <created>1647135996964</created>
@@ -430,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649620593071</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant">
+      <created>1649631933075</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1649631933075</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +457,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
     <MESSAGE value="- Made idDetails for Hashtable of ids in symbol table/tree" />
     <MESSAGE value="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type" />
     <MESSAGE value="- Creating a tree from the AST for the symbol table" />
@@ -483,6 +481,7 @@
     <MESSAGE value="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)" />
     <MESSAGE value="- Implemented and testing BFS on treeST" />
     <MESSAGE value="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()" />
+    <MESSAGE value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
   </component>
 </project>

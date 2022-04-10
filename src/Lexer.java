@@ -558,8 +558,12 @@ public class Lexer {
                         // For Symbol Table
                         TreeST treeST = new TreeST(abstractST.ast);
                         System.out.println("------------------------------------------------------------");
-                        System.out.println("SEMANTIC ANALYSIS for Program " + program_num);
+                        System.out.println("Beginning SEMANTIC ANALYSIS for Program " + program_num);
                         treeST.buildSymbolTree(); // build Symbol Tree from ast.root
+
+                        // Check for warnings by doing a BFS on symbol tree
+                        boolean[] discovered = new boolean[treeST.scopeNum]; //make sure all values are false
+                        treeST.checkWarnings(treeST, treeST.root, discovered);
 
                         if (treeST.numErrors > 0){
                             System.out.println("SEMANTIC ANALYSIS -------> SEMANTIC ANALYSIS terminated UNSUCCESSFULLY");
@@ -576,7 +580,7 @@ public class Lexer {
                             System.out.println("SYMBOL TABLE");
                             System.out.println("------------");
                             // For BFS input
-                            boolean[] discovered = new boolean[treeST.scopeNum]; //make sure all values are false
+                            discovered = new boolean[treeST.scopeNum]; //make sure all values are false
                             // Header of table
                             String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope"};
                             System.out.format("%4s%15s%15s%15s%15s%n", row);
