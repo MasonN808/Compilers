@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LineSepDebug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +63,16 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Compiler808">
     <configuration name="Compiler808" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Compiler808" />
+      <module name="Compilers_Local" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LineSepDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LineSepDebug" />
       <module name="Compilers_Local" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -72,6 +81,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Compiler808" />
+        <item itemvalue="Application.LineSepDebug" />
       </list>
     </recent_temporary>
   </component>
@@ -83,13 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00093" summary="-Modified test1">
-      <created>1647138599116</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1647138599116</updated>
     </task>
     <task id="LOCAL-00094" summary="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()">
       <created>1647138665071</created>
@@ -427,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649633713327</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="- Deleted a ton of nonworking commented out code">
+      <created>1649633917333</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1649633917333</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,7 +465,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Minor initializations of files" />
     <MESSAGE value="- Getting symbol table tree to work" />
     <MESSAGE value="- Deleted commented section" />
     <MESSAGE value="- More edits" />
@@ -480,6 +489,7 @@
     <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
     <MESSAGE value="- Added line number column to symbol table" />
     <MESSAGE value="- Added warning for declared but uninitialized" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added warning for declared but uninitialized" />
+    <MESSAGE value="- Deleted a ton of nonworking commented out code" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Deleted a ton of nonworking commented out code" />
   </component>
 </project>

@@ -30,7 +30,7 @@ public class Lexer {
     public static int num_warnings = 0;
     public static int program_num = 0;
 
-    public static boolean WINDOWS = false;
+    public static boolean maybeWINDOWS = false;
 
     public static int current_index = 0; // Initialize index
     public static int printed_last_index = 0; // The index to be printed
@@ -140,8 +140,8 @@ public class Lexer {
     public ArrayList<Token> get_token_stream(String s, boolean verbose) {
 
         //Check for line break character count
-        if (System.lineSeparator().length()==2){//Windows
-            WINDOWS = true;
+        if (System.lineSeparator().length()==2){//maybeWINDOWS
+            maybeWINDOWS = true;
         }
 
         ArrayList<Token> tokenStreamAggregate = new ArrayList<Token>(); // Initialize the tokenStream that will output ALL tokenStreams
@@ -199,8 +199,8 @@ public class Lexer {
             }
 
             // case of current_char is line break
-            if (current_char==(System.lineSeparator().charAt(0)) & current_string.length() == 1 & !EOP_found) {
-//                if (WINDOWS){ // We do this sine lineSeparator is two char long
+            if (current_char == (System.lineSeparator().charAt(0)) & current_string.length() == 1 & !EOP_found) {
+//                if (maybeWINDOWS){ // We do this sine lineSeparator is two char long
 //                    current_index += 1;
 //                }
                 current_line += 1;
@@ -210,7 +210,7 @@ public class Lexer {
             }
 
             if (current_char==(System.lineSeparator().charAt(0)) & current_string.length() == 1 & EOP_found) {
-                if (WINDOWS){
+                if (maybeWINDOWS){
                     current_index += 1;
                 }
                 break;
@@ -370,7 +370,7 @@ public class Lexer {
 //                 Does not register the current string is not of these types
                 else if ((t_type == Compiler808.Grammar.QUOTE | t_type == Compiler808.Grammar.L_BRACE | t_type == Compiler808.Grammar.R_BRACE | t_type == Compiler808.Grammar.L_PARENTH | t_type == Compiler808.Grammar.R_PARENTH | t_type == Compiler808.Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
                     if (t_type == Compiler808.Grammar.QUOTE) {
-                        close_quote_found = !close_quote_found; // TODO: check for unterminated quote
+                        close_quote_found = !close_quote_found;
                     }
                     // Case a: unequal number of L_BRACE and R_BRACE
                     // Case b: R_BRACE with no previous L_BRACE
@@ -616,7 +616,7 @@ public class Lexer {
                     while (temp_index < s.length() & !found){
                         char temp_char = s.charAt(temp_index);
                         if (!String.valueOf(temp_char).matches("[ ]") & !String.valueOf(temp_char).matches("[\\t]") & temp_char!=(System.lineSeparator().charAt(0))){
-                            if (WINDOWS){
+                            if (maybeWINDOWS){
                                 if (temp_char != (System.lineSeparator().charAt(1)) & temp_index < s.length()-1){
                                     found = true;
                                 }
