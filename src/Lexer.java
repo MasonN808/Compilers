@@ -554,18 +554,34 @@ public class Lexer {
                         System.out.println("------------------------------------------------------------");
                         System.out.println("AST for Program " + program_num);
                         System.out.println(abstractST.ast.traverse(abstractST.ast.root, 0, ""));
+
+                        // For Symbol Table
+                        TreeST treeST = new TreeST(abstractST.ast);
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("SYMBOL TABLE for Program " + program_num);
+                        treeST.buildSymbolTable(); // build table from ast.root
+
+                        if (treeST.numErrors > 0){
+                            System.out.println("SYMBOL TABLE -------> SYMBOL TABLE terminated UNSUCCESSFULLY");
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SKIP CODE GEN for program  " + program_num + " since error(s) in Symbol Table");
+                            System.out.println("------------------------------------------------------------");
+                        }
+                        else {
+                            System.out.println("SYMBOL TABLE -------> SYMBOL TABLE finished SUCCESSFULLY");
+                        }
                     }
                     else {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
                         System.out.println("------------------------------------------------------------");
-                        System.out.println("SKIP CST for program " + program_num + " since error in Parse");
+                        System.out.println("SKIP CST for program " + program_num + " since error(s) in Parse");
                         System.out.println("------------------------------------------------------------");
                     }
 
                 }
                 else { // if lex had errors
                     System.out.println("------------------------------------------------------------");
-                    System.out.println("SKIP Parsing program " + program_num + " since error in Lex");
+                    System.out.println("SKIP Parsing program " + program_num + " since error(s) in Lex");
                     System.out.println("------------------------------------------------------------");
                 }
 
