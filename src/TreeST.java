@@ -271,8 +271,8 @@ public class TreeST {
             Set<String> keys = v.hashTable.keySet();
             for (String key : keys) {
                 // Put data in a row to print elegantly in a table format
-                String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized), Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope)};
-                System.out.format("%4s%15s%15s%15s%15s%n", row);
+                String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized), Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope), Integer.toString(v.hashTable.get(key).token.line_number)};
+                System.out.format("%4s%15s%15s%15s%15s%15s%n", row);
             }
 
 

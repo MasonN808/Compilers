@@ -582,8 +582,8 @@ public class Lexer {
                             // For BFS input
                             discovered = new boolean[treeST.scopeNum]; //make sure all values are false
                             // Header of table
-                            String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope"};
-                            System.out.format("%4s%15s%15s%15s%15s%n", row);
+                            String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope", "Line Number"};
+                            System.out.format("%4s%15s%15s%15s%15s%15s%n", row);
                             // Do a Breadth first search on symbol tree
                             treeST.BFS(treeST, treeST.root, discovered);
                             System.out.println("------------------------------------------------------------");
