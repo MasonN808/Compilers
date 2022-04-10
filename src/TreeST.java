@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class TreeST {
-    public static Node root = null;
+    public static ScopeNode root = null;
     public static Node current = null;
     public static TreeST tree = null;
     public static TreeAST ast = null;
@@ -45,12 +45,16 @@ public class TreeST {
     }
 
     public static void processNode(Node node){
+        System.out.println(node.name);
+        System.out.println(currentScope != null);
         switch (node.name) {
             case ("block"):
                 Hashtable<String, idDetails> hashTable = new Hashtable<>(); // Create hashtable in new scope
                 ScopeNode scopeNode = new ScopeNode(hashTable); // Create new scope node
-                if (depth == 0) {
+                if (root == null) {
+                    root = scopeNode;
                     scopeNode.prev = null;
+                    currentScope = scopeNode;
                 } else {
                     scopeNode.prev = currentScope; // set the previous scope to outer scope
                 }
@@ -89,7 +93,7 @@ public class TreeST {
                         numErrors = numErrors + 1;
                     }
                 }
-                if (!checkAssignmentTypes(currentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
+                if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
                     // if type-mismatch occurs in assignment
                     System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + currentScope.hashTable.get(assignedKey.value).type + " at " +
                             assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
@@ -112,7 +116,7 @@ public class TreeST {
                 foundKey = false;
                 // TODO: Maybe make this it's own method
                 tempCurrentScope = currentScope;
-                if (currentScope.hashTable.get(printKey.value) == null) { // if identifier is undeclared in current scope
+                if (tempCurrentScope.hashTable.get(printKey.value) == null) { // if identifier is undeclared in current scope
                     while (tempCurrentScope.prev != null & !foundKey) {
                         if (tempCurrentScope.prev.hashTable.get(printKey.value) != null) {
                             foundKey = true; // Found key in a different scope (we use this key for assignment
@@ -155,7 +159,7 @@ public class TreeST {
                 assignedValue = expr.children.get(1);
                 foundKey = false;
                 tempCurrentScope = currentScope;
-                if (currentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
+                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
                     // check if identifier is undeclared in outer scopes
                     while (tempCurrentScope.prev != null & !foundKey) {
                         if (tempCurrentScope.prev.hashTable.get(assignedKey.value) != null) {
@@ -172,7 +176,7 @@ public class TreeST {
                         numErrors = numErrors + 1;
                     }
                 }
-                if (!checkAssignmentTypes(currentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
+                if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
                     // if type-mismatch occurs in assignment
                     System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + currentScope.hashTable.get(assignedKey.value).type + " at " +
                             assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
@@ -192,7 +196,7 @@ public class TreeST {
                 }
                 break;
             default:
-                System.out.println();
+//                System.out.println();
                 System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> UNCAUGHT ERROR at default case of switch statement");
         }
 
@@ -200,6 +204,7 @@ public class TreeST {
             processNode(each);
         }
         if (node.name.equals("block")){
+            System.out.println("DONE");
             currentScope = currentScope.prev; // Go back up the tree at outer scope
         }
     }

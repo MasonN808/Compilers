@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,13 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00080" summary="-Added CST String output for Tree class">
-      <created>1647116278615</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1647116278615</updated>
     </task>
     <task id="LOCAL-00081" summary="-Deleted some cases">
       <created>1647116294139</created>
@@ -429,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649547193821</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="- Start of debugging">
+      <created>1649549208493</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1649549208493</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +456,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing" />
     <MESSAGE value="-Changed delimiter to output correctly" />
     <MESSAGE value="-Added new parseExprPrint() method to print list of expression for AST output, avoiding printing on certain productions (e.g. printStatement,...)&#10;-Edited where parseExprPrint() is used in place of parseExpr()&#10;-Outputs successfully (NEEDS more testing)" />
     <MESSAGE value="-Edited to print the boolOp in the branch of AST" />
@@ -482,6 +480,7 @@
     <MESSAGE value="- Symbol Tree is looking better" />
     <MESSAGE value="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress" />
     <MESSAGE value="- Added more error exceptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added more error exceptions" />
+    <MESSAGE value="- Start of debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Start of debugging" />
   </component>
 </project>
