@@ -310,6 +310,11 @@ public class TreeST {
                             v.hashTable.get(key).token.line_number + ", char " + v.hashTable.get(key).token.character_number);
                     numWarnings = numWarnings + 1;
                 }
+                if (v.hashTable.get(key).isInitialized == false & v.hashTable.get(key).isUsed == false){
+                    System.out.println("SEMANTIC ANALYSIS [WARNING]: -------> The identifier " + v.hashTable.get(key).token.s + " was declared but never initialized at " +
+                            v.hashTable.get(key).token.line_number + ", char " + v.hashTable.get(key).token.character_number);
+                    numWarnings = numWarnings + 1;
+                }
             }
 
 

@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test3" beforeDir="false" afterPath="$PROJECT_DIR$/src/test3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,13 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00091" summary="-Different test case for testing">
-      <created>1647136014962</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1647136014962</updated>
     </task>
     <task id="LOCAL-00092" summary="-Commented out debugging">
       <created>1647138578292</created>
@@ -430,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649633178504</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="- Added line number column to symbol table">
+      <created>1649633529497</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1649633529497</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +456,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type" />
     <MESSAGE value="- Creating a tree from the AST for the symbol table" />
     <MESSAGE value="- Minor initializations of files" />
     <MESSAGE value="- Getting symbol table tree to work" />
@@ -483,6 +480,7 @@
     <MESSAGE value="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()" />
     <MESSAGE value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
     <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Created warning system&#10;- May need to add more warnings" />
+    <MESSAGE value="- Added line number column to symbol table" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added line number column to symbol table" />
   </component>
 </project>
