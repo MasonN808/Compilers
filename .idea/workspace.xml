@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test3" beforeDir="false" afterPath="$PROJECT_DIR$/src/test3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,20 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00086" summary="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)">
-      <created>1647131716996</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1647131716996</updated>
-    </task>
-    <task id="LOCAL-00087" summary="-Fixed issue with statementList() identifying as leaf node">
-      <created>1647131977427</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1647131977427</updated>
     </task>
     <task id="LOCAL-00088" summary="-Edited Print statements when skipping parse or CST">
       <created>1647132659746</created>
@@ -429,7 +415,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649618282234</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)">
+      <created>1649619970205</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1649619970205</updated>
+    </task>
+    <task id="LOCAL-00136" summary="- Implemented and testing BFS on treeST">
+      <created>1649619994742</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1649619994742</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,8 +457,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Changed output of AST to be less specific" />
-    <MESSAGE value="-Testing using semanticTests" />
     <MESSAGE value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
     <MESSAGE value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
     <MESSAGE value="- Made idDetails for Hashtable of ids in symbol table/tree" />
@@ -482,6 +480,8 @@
     <MESSAGE value="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block" />
     <MESSAGE value="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)" />
     <MESSAGE value="- Added some comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added some comments" />
+    <MESSAGE value="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)" />
+    <MESSAGE value="- Implemented and testing BFS on treeST" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Implemented and testing BFS on treeST" />
   </component>
 </project>

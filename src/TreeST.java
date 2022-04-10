@@ -1,8 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Queue;
+import java.util.*;
 
 public class TreeST {
     public static ScopeNode root = null;
@@ -242,6 +239,7 @@ public class TreeST {
         }
     }
 
+    // An edited implementation of https://www.techiedelight.com/breadth-first-search/ for BFS
     // Perform BFS on the graph starting from vertex `v`
     public static void BFS(TreeST tree, ScopeNode v, boolean[] discovered) {
         // create a queue for doing BFS
@@ -257,7 +255,12 @@ public class TreeST {
         while (!q.isEmpty()) {
             // dequeue front node and print it
             v = q.poll();
-            System.out.print(v.scope + " ");
+            //  For extracting ALL hash value keys from hashtable --> https://www.w3schools.blog/get-all-keys-from-hashtable-in-java#:~:text=We%20can%20use%20keySet(),Set%20object%20with%20all%20keys.
+            Set<String> keys = v.hashTable.keySet();
+            for(String key: keys){
+                System.out.println(key + " " + v.hashTable.get(key).type + " " + v.hashTable.get(key).isInitialized + " " + v.hashTable.get(key).isUsed + " " + v.scope);
+            }
+
 
             // do for every edge (v, u)
             for (ScopeNode u : v.children) {
