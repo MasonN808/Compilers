@@ -1,6 +1,6 @@
 
 public class idDetails {
-    String type = null;
+    String type = null; //type = boolean, string, int
     Token token = null;
     boolean isInitialized = false;
     boolean isUsed = false;

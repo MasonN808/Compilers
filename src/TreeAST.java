@@ -40,6 +40,7 @@ public class TreeAST {
         n.kind = kind;
     }
 
+    // To convert string expressions that are multiple chars into a concatenated string
     public static void addNodeAsStringList(String kind, String label, ArrayList<String> list, Token token) {
         Node n = new Node(); //initialize new Node
         n.name = label;
