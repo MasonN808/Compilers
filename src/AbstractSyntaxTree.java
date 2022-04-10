@@ -150,7 +150,7 @@ public class AbstractSyntaxTree {
             }
             else parseId();
             if (!exprList.isEmpty()){
-                ast.addNodeAsStringList("leaf", "expr", exprList);
+                ast.addNodeAsStringList("leaf", "expr", exprList, tokenStream.get(getIndex()));
                 exprList.clear(); //Clear the arrayList of strings
             }
 

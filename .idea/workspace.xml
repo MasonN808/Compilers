@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,13 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00081" summary="-Deleted some cases">
-      <created>1647116294139</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1647116294139</updated>
     </task>
     <task id="LOCAL-00082" summary="-if error found in parse, the CST wont be shown">
       <created>1647119657861</created>
@@ -428,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649549208493</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="- Working out nullpointer bugs">
+      <created>1649564566798</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1649564566798</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Changed delimiter to output correctly" />
     <MESSAGE value="-Added new parseExprPrint() method to print list of expression for AST output, avoiding printing on certain productions (e.g. printStatement,...)&#10;-Edited where parseExprPrint() is used in place of parseExpr()&#10;-Outputs successfully (NEEDS more testing)" />
     <MESSAGE value="-Edited to print the boolOp in the branch of AST" />
     <MESSAGE value="-Start of test cases for semantic Analysis" />
@@ -481,6 +482,7 @@
     <MESSAGE value="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress" />
     <MESSAGE value="- Added more error exceptions" />
     <MESSAGE value="- Start of debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Start of debugging" />
+    <MESSAGE value="- Working out nullpointer bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Working out nullpointer bugs" />
   </component>
 </project>

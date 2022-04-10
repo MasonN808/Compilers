@@ -22,6 +22,7 @@ public class TreeAST {
         Node n = new Node(); //initialize new Node
         n.name = label;
         n.value = token.s;
+        n.token = token;
         if (root == null) { //case for the first node in tree
             root = n;
             n.parent = null;
@@ -39,11 +40,12 @@ public class TreeAST {
         n.kind = kind;
     }
 
-    public static void addNodeAsStringList(String kind, String label, ArrayList<String> list) {
+    public static void addNodeAsStringList(String kind, String label, ArrayList<String> list, Token token) {
         Node n = new Node(); //initialize new Node
         n.name = label;
         String listString = String.join("", list);
         n.value = listString;
+        n.token = token;
         if (root == null) { //case for the first node in tree
             root = n;
             n.parent = null;
