@@ -24,6 +24,9 @@ public class TreeST {
         this.root = null;
         this.current = null;
         this.depth = 0;
+        this.numErrors = 0;
+        this.scopeNum = 0;
+        this.currentScope = null;
     }
 
     // Created a node class for scopeDisplay to assign pointers to children
@@ -41,7 +44,7 @@ public class TreeST {
         }
     }
 
-    public static void buildSymbolTable() {
+    public static void buildSymbolTree() {
         processNode(ast.root);
     }
 
@@ -87,14 +90,15 @@ public class TreeST {
 //                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
                 boolean foundKey = false;
                 ScopeNode tempCurrentScope = currentScope;
-                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
+                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope try an outer scope
                     while (tempCurrentScope != null & !foundKey) {
-                        tempCurrentScope = tempCurrentScope.prev;
                         if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
 //                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
                             foundKey = true; // Found key in a different scope (we use this key for assignment
                         }
-
+                        else{
+                            tempCurrentScope = tempCurrentScope.prev;
+                        }
                         // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
                     }
                     if (!foundKey) {
@@ -103,8 +107,12 @@ public class TreeST {
                         numErrors = numErrors + 1;
                     }
                 }
-                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
-                System.out.println("DEBUG: " + assignedValue.value);
+                else{
+                    foundKey = true;
+                }
+                // Debugging checking assignment mismatch
+//                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
+//                System.out.println("DEBUG: " + assignedValue.value);
                 if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
                     // if type-mismatch occurs in assignment
                     System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
@@ -126,16 +134,19 @@ public class TreeST {
                 break;
             case ("printStatement"):
                 Node printKey = node.children.get(0);
+//                System.out.println(printKey.value);
                 foundKey = false;
                 // TODO: Maybe make this it's own method
                 tempCurrentScope = currentScope;
                 if (tempCurrentScope.hashTable.get(printKey.value) == null) { // if identifier is undeclared in current scope
-                    while (tempCurrentScope.prev != null & !foundKey) {
-                        if (tempCurrentScope.prev.hashTable.get(printKey.value) != null) {
+                    // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                    while (tempCurrentScope != null & !foundKey) {
+                        if (tempCurrentScope.hashTable.get(printKey.value) != null) {
                             foundKey = true; // Found key in a different scope (we use this key for assignment
                         }
-                        tempCurrentScope = tempCurrentScope.prev;
-                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                        else{
+                            tempCurrentScope = tempCurrentScope.prev;
+                        }
                     }
                     if (!foundKey) {
                         System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
@@ -143,9 +154,13 @@ public class TreeST {
                         numErrors = numErrors + 1;
                     }
                 }
-
+                else{
+                    foundKey = true;
+                }
+                System.out.println("FOUND KEY " + foundKey);
                 // If the key is found in some scope, mark key as isUsed
                 if (foundKey) {
+                    System.out.println("FOUND KEY");
                     // First get original details from hashtable of key
                     // tempCurrentScope is the scope the key value is in
                     String wasType = tempCurrentScope.hashTable.get(printKey.value).type;
@@ -173,21 +188,23 @@ public class TreeST {
                 foundKey = false;
                 tempCurrentScope = currentScope;
                 if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
-                    // check if identifier is undeclared in outer scopes
-                    while (tempCurrentScope.prev != null & !foundKey) {
-                        if (tempCurrentScope.prev.hashTable.get(assignedKey.value) != null) {
-                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
+                    // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                    while (tempCurrentScope != null & !foundKey) {
+                        if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
                             foundKey = true; // Found key in a different scope (we use this key for assignment
                         }
-                        tempCurrentScope = tempCurrentScope.prev;
-                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                        else{
+                            tempCurrentScope = tempCurrentScope.prev;
+                        }
                     }
-                    // if the key is never found mark as undeclared
                     if (!foundKey) {
                         System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
                                 assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
                         numErrors = numErrors + 1;
                     }
+                }
+                else{
+                    foundKey = true;
                 }
                 if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
                     // if type-mismatch occurs in assignment
@@ -210,7 +227,7 @@ public class TreeST {
                 break;
             default:
 //                System.out.println();
-                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> UNCAUGHT ERROR at default case of switch statement");
+//                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> UNCAUGHT ERROR at default case of switch statement");
         }
 
         for (Node each : node.children) {
@@ -258,7 +275,9 @@ public class TreeST {
             //  For extracting ALL hash value keys from hashtable --> https://www.w3schools.blog/get-all-keys-from-hashtable-in-java#:~:text=We%20can%20use%20keySet(),Set%20object%20with%20all%20keys.
             Set<String> keys = v.hashTable.keySet();
             for(String key: keys){
-                System.out.println(key + " " + v.hashTable.get(key).type + " " + v.hashTable.get(key).isInitialized + " " + v.hashTable.get(key).isUsed + " " + v.scope);
+                // Put data in a row to print elegantly in a table format
+                String[] row = new String[] {key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized), Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope)};
+                System.out.format("%4s%15s%15s%15s%15s%n", row);
             }
 
 

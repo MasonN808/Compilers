@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test3" beforeDir="false" afterPath="$PROJECT_DIR$/src/test3" afterDir="false" />
     </list>
@@ -85,13 +86,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00088" summary="-Edited Print statements when skipping parse or CST">
-      <created>1647132659746</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1647132659746</updated>
     </task>
     <task id="LOCAL-00089" summary="-Minor edits to Parser&#10;-Added boolOp() method and refactored">
       <created>1647135958491</created>
@@ -429,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649619994742</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()">
+      <created>1649620593071</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1649620593071</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
     <MESSAGE value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
     <MESSAGE value="- Made idDetails for Hashtable of ids in symbol table/tree" />
     <MESSAGE value="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type" />
@@ -482,6 +482,7 @@
     <MESSAGE value="- Added some comments" />
     <MESSAGE value="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)" />
     <MESSAGE value="- Implemented and testing BFS on treeST" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Implemented and testing BFS on treeST" />
+    <MESSAGE value="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()" />
   </component>
 </project>

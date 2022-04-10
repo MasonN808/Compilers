@@ -558,19 +558,31 @@ public class Lexer {
                         // For Symbol Table
                         TreeST treeST = new TreeST(abstractST.ast);
                         System.out.println("------------------------------------------------------------");
-                        System.out.println("SYMBOL TABLE for Program " + program_num);
-                        treeST.buildSymbolTable(); // build table from ast.root
+                        System.out.println("SEMANTIC ANALYSIS for Program " + program_num);
+                        treeST.buildSymbolTree(); // build Symbol Tree from ast.root
 
                         if (treeST.numErrors > 0){
-                            System.out.println("SYMBOL TABLE -------> SYMBOL TABLE terminated UNSUCCESSFULLY");
+                            System.out.println("SEMANTIC ANALYSIS -------> SEMANTIC ANALYSIS terminated UNSUCCESSFULLY");
                             System.out.println("------------------------------------------------------------");
-                            System.out.println("SKIP CODE GEN for program  " + program_num + " since error(s) in Symbol Table");
+                            System.out.println("SKIP CODE GEN for program  " + program_num + " since error(s) in SEMANTIC ANALYSIS");
                             System.out.println("------------------------------------------------------------");
                         }
                         else {
-                            System.out.println("SYMBOL TABLE -------> SYMBOL TABLE finished SUCCESSFULLY");
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SEMANTIC ANALYSIS -------> SEMANTIC ANALYSIS finished SUCCESSFULLY");
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SYMBOL TABLE -------> printing SYMBOL TABLE");
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SYMBOL TABLE");
+                            System.out.println("------------");
+                            // For BFS input
                             boolean[] discovered = new boolean[treeST.scopeNum]; //make sure all values are false
+                            // Header of table
+                            String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope"};
+                            System.out.format("%4s%15s%15s%15s%15s%n", row);
+                            // Do a Breadth first search on symbol tree
                             treeST.BFS(treeST, treeST.root, discovered);
+                            System.out.println("------------------------------------------------------------");
                         }
                     }
                     else {
