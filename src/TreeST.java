@@ -9,6 +9,7 @@ public class TreeST {
     public static TreeAST ast = null;
 
     public static int numErrors = 0;
+    public static int scopeNum = 0;
 
     public static int depth = 0; //Initialize depth of scopeDisplay
     public static ArrayList<ScopeNode> scopeDisplay; //Initialize an Array list of Scope Nodes to assign children to each node and an INT for depth
@@ -32,6 +33,7 @@ public class TreeST {
         public ArrayList<Node> children = new ArrayList<>();
         public Hashtable<String,idDetails> hashTable;
         public int depth;
+        public int scope;
         public ScopeNode prev = null; // Make pointers to see next scope or previous scope for checking symbol out of valid scope
         public ScopeNode next = null;
 
@@ -46,11 +48,14 @@ public class TreeST {
 
     public static void processNode(Node node){
         System.out.println(node.name);
-        System.out.println(currentScope != null);
+//        System.out.println(currentScope != null);
         switch (node.name) {
             case ("block"):
+                depth = depth + 1; // increase depth of tree // might not need this
                 Hashtable<String, idDetails> hashTable = new Hashtable<>(); // Create hashtable in new scope
                 ScopeNode scopeNode = new ScopeNode(hashTable); // Create new scope node
+                scopeNode.scope = scopeNum;
+                scopeNum = scopeNum + 1;
                 if (root == null) {
                     root = scopeNode;
                     scopeNode.prev = null;
@@ -59,11 +64,11 @@ public class TreeST {
                     scopeNode.prev = currentScope; // set the previous scope to outer scope
                 }
                 currentScope = scopeNode; // reinitialize current scope
-                depth = depth + 1; // increase depth of tree
                 break;
             case ("varDecal"):
                 Node key = node.children.get(1);
                 Node type = node.children.get(0);
+//                System.out.println(type.value);
                 if (currentScope.hashTable.get(key.value) == null) {
                     idDetails details = new idDetails(type.value, false, false, node.token);
                     currentScope.hashTable.put(key.value, details);
@@ -72,10 +77,14 @@ public class TreeST {
                             node.children.get(1).token.line_number + ", char " + node.children.get(1).token.character_number);
                     numErrors = numErrors + 1;
                 }
+                System.out.println("DEBUG: " + currentScope.hashTable.get(key.value).type);
+
                 break;
             case ("assignmentStatement"):
                 Node assignedKey = node.children.get(0);
                 Node assignedValue = node.children.get(1);
+//                System.out.println("DEBUG: " + assignedValue.name);
+//                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
                 boolean foundKey = false;
                 ScopeNode tempCurrentScope = currentScope;
                 if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
@@ -94,7 +103,8 @@ public class TreeST {
                         numErrors = numErrors + 1;
                     }
                 }
-
+                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
+                System.out.println("DEBUG: " + assignedValue.value);
                 if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
                     // if type-mismatch occurs in assignment
                     System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
@@ -103,12 +113,13 @@ public class TreeST {
                 } else { // key found
                     // First get original details from hashtable of key
                     // tempCurrentScope is the scope the key value is in
+                    String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
                     boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
                     boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
                     Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
                     // Then assign accordingly
                     if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                        idDetails details = new idDetails(assignedValue.value, true, wasUsed, wasToken);
+                        idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
                         tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
                     }
                 }
@@ -206,7 +217,7 @@ public class TreeST {
             processNode(each);
         }
         if (node.name.equals("block")){
-            System.out.println("DONE");
+            System.out.println("Block Done");
             currentScope = currentScope.prev; // Go back up the tree at outer scope
         }
     }
@@ -215,8 +226,15 @@ public class TreeST {
         if (Character.toString(assigned.charAt(0)).equals("\"") & type.equals("string")){
             return true;
         }
-        else if ((assigned.charAt(0)) == (int) assigned.charAt(0) & type.equals("int")){
+        else if (type.equals("int")){
+            try {
+                int test = Integer.parseInt(Character.toString(assigned.charAt(0)));
+            } catch (NumberFormatException nfe){
+                return false;
+            }
             return true;
+//            System.out.println("TYPE CHECK ----------> " + assigned.charAt(0) + ", " + (int) assigned.charAt(0));
+//            return true;
         }
         else if ((assigned.equals("false") | assigned.equals("true")) & type.equals("boolean")){
             return true;
@@ -225,6 +243,8 @@ public class TreeST {
             return false;
         }
     }
+
+
 
 //    public static void processNode(Node node){
 //        switch (node.name){
