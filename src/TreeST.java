@@ -79,12 +79,13 @@ public class TreeST {
                 boolean foundKey = false;
                 ScopeNode tempCurrentScope = currentScope;
                 if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
-                    while (tempCurrentScope.prev != null & !foundKey) {
-                        if (tempCurrentScope.prev.hashTable.get(assignedKey.value) != null) {
-                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
+                    while (tempCurrentScope != null & !foundKey) {
+                        tempCurrentScope = tempCurrentScope.prev;
+                        if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
+//                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
                             foundKey = true; // Found key in a different scope (we use this key for assignment
                         }
-                        tempCurrentScope = tempCurrentScope.prev;
+
                         // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
                     }
                     if (!foundKey) {
@@ -93,9 +94,10 @@ public class TreeST {
                         numErrors = numErrors + 1;
                     }
                 }
+
                 if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
                     // if type-mismatch occurs in assignment
-                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + currentScope.hashTable.get(assignedKey.value).type + " at " +
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
                             assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
                     numErrors = numErrors + 1;
                 } else { // key found
