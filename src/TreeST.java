@@ -1,6 +1,8 @@
 import java.lang.reflect.Array;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Queue;
 
 public class TreeST {
     public static ScopeNode root = null;
@@ -9,18 +11,18 @@ public class TreeST {
     public static TreeAST ast = null;
 
     public static int numErrors = 0;
-    public static int scopeNum = 0;
+    public static int scopeNum = 0; // How many scopes/nodes in tree
 
     public static int depth = 0; //Initialize depth of scopeDisplay
     public static ArrayList<ScopeNode> scopeDisplay; //Initialize an Array list of Scope Nodes to assign children to each node and an INT for depth
-    public static Hashtable<String,idDetails> hashTable = new Hashtable<>();
+    public static Hashtable<String, idDetails> hashTable = new Hashtable<>();
     public static ScopeNode currentScope = null; // The current scope node
 
 
 //        idDetails details = new idDetails(type, isInitialized, isUsed, current.token);
 //        ht.put(id, details);
 
-    public TreeST(TreeAST ast){
+    public TreeST(TreeAST ast) {
         this.ast = ast;
         this.root = null;
         this.current = null;
@@ -29,24 +31,24 @@ public class TreeST {
 
     // Created a node class for scopeDisplay to assign pointers to children
     // TODO: might need to assign parent for children (MIGHT)
-    public static class ScopeNode{
-        public ArrayList<Node> children = new ArrayList<>();
-        public Hashtable<String,idDetails> hashTable;
+    public static class ScopeNode {
+        public ArrayList<ScopeNode> children = new ArrayList<>();
+        public Hashtable<String, idDetails> hashTable;
         public int depth;
         public int scope;
         public ScopeNode prev = null; // Make pointers to see next scope or previous scope for checking symbol out of valid scope
         public ScopeNode next = null;
 
-        public ScopeNode(Hashtable<String,idDetails> hashTable){
+        public ScopeNode(Hashtable<String, idDetails> hashTable) {
             this.hashTable = hashTable;
         }
     }
 
-    public static void buildSymbolTable(){
+    public static void buildSymbolTable() {
         processNode(ast.root);
     }
 
-    public static void processNode(Node node){
+    public static void processNode(Node node) {
         System.out.println(node.name);
 //        System.out.println(currentScope != null);
         switch (node.name) {
@@ -61,6 +63,7 @@ public class TreeST {
                     scopeNode.prev = null;
                     currentScope = scopeNode;
                 } else {
+                    currentScope.children.add(scopeNode); // Create the children for current scope/parent scope
                     scopeNode.prev = currentScope; // set the previous scope to outer scope
                 }
                 currentScope = scopeNode; // reinitialize current scope
@@ -213,38 +216,58 @@ public class TreeST {
                 System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> UNCAUGHT ERROR at default case of switch statement");
         }
 
-        for (Node each: node.children){
+        for (Node each : node.children) {
             processNode(each);
         }
-        if (node.name.equals("block")){
+        if (node.name.equals("block")) {
             System.out.println("Block Done");
             currentScope = currentScope.prev; // Go back up the tree at outer scope
         }
     }
 
-    public static boolean checkAssignmentTypes(String type, String assigned){
-        if (Character.toString(assigned.charAt(0)).equals("\"") & type.equals("string")){
+    public static boolean checkAssignmentTypes(String type, String assigned) {
+        if (Character.toString(assigned.charAt(0)).equals("\"") & type.equals("string")) {
             return true;
-        }
-        else if (type.equals("int")){
-            try {
+        } else if (type.equals("int")) {
+            try { // See if String can be parsed to an Int
                 int test = Integer.parseInt(Character.toString(assigned.charAt(0)));
-            } catch (NumberFormatException nfe){
+            } catch (NumberFormatException nfe) { // If exception reached (not an int)
                 return false;
             }
             return true;
-//            System.out.println("TYPE CHECK ----------> " + assigned.charAt(0) + ", " + (int) assigned.charAt(0));
-//            return true;
-        }
-        else if ((assigned.equals("false") | assigned.equals("true")) & type.equals("boolean")){
+        } else if ((assigned.equals("false") | assigned.equals("true")) & type.equals("boolean")) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
+    // Perform BFS on the graph starting from vertex `v`
+    public static void BFS(TreeST tree, ScopeNode v, boolean[] discovered) {
+        // create a queue for doing BFS
+        Queue<ScopeNode> q = new ArrayDeque<>();
 
+        // mark the source vertex as discovered
+        discovered[v.scope] = true;
+
+        // enqueue source vertex
+        q.add(v);
+
+        // loop till queue is empty
+        while (!q.isEmpty()) {
+            // dequeue front node and print it
+            v = q.poll();
+            System.out.print(v.scope + " ");
+
+            // do for every edge (v, u)
+            for (ScopeNode u : v.children) {
+                if (!discovered[u.scope]) {
+                    // mark it as discovered and enqueue it
+                    discovered[u.scope] = true;
+                    q.add(u);
+                }
+            }
+        }
 
 //    public static void processNode(Node node){
 //        switch (node.name){
@@ -290,7 +313,6 @@ public class TreeST {
 //            }
 //        }
 //    }
-
 
 
 //    public static void addNode(String id, String type, boolean isInitialized, boolean isUsed){
@@ -362,4 +384,5 @@ public class TreeST {
 //    }
 
 
+    }
 }

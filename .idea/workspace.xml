@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/idDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/idDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,13 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00085" summary="-More edits for CST implementation">
-      <created>1647130002204</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1647130002205</updated>
     </task>
     <task id="LOCAL-00086" summary="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)">
       <created>1647131716996</created>
@@ -428,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649618269636</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="- Added some comments">
+      <created>1649618282234</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1649618282234</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,7 +457,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Starting symbolTable" />
     <MESSAGE value="-Changed output of AST to be less specific" />
     <MESSAGE value="-Testing using semanticTests" />
     <MESSAGE value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
@@ -481,6 +481,7 @@
     <MESSAGE value="- Added token attribute to node in AST for expressions" />
     <MESSAGE value="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block" />
     <MESSAGE value="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)" />
+    <MESSAGE value="- Added some comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added some comments" />
   </component>
 </project>
