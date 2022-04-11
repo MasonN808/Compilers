@@ -92,6 +92,11 @@ public class TreeST {
 //                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
                 boolean foundKey = false;
                 ScopeNode tempCurrentScope = currentScope;
+                if (assignedValue.name.equals("mixedExpr")){ // the assigned value is of mixed types
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in assigned expression at " +
+                            assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+                    numErrors = numErrors + 1;
+                }
                 if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope try an outer scope
                     while (tempCurrentScope != null & !foundKey) {
                         if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
@@ -117,7 +122,7 @@ public class TreeST {
 //                System.out.println("DEBUG: " + assignedValue.value);
                 if (foundKey){
                     if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
-                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedKey.value).type + "] at " +
                                 assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
                         numErrors = numErrors + 1;
                     }
@@ -211,7 +216,7 @@ public class TreeST {
                         else{
 //                            System.out.println(assignedKey.name);
                             if (!checkAssignmentTypesExpr(assignedKey, assignedValue)){
-                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Did you mean for an " + assignedKey.name + " at " +
+                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Did you mean for an [" + assignedKey.name + "] at " +
                                         assignedValue.token.line_number + ", char " + assignedValue.token.character_number + "?");
                                 numErrors = numErrors + 1;
                             }
@@ -222,7 +227,7 @@ public class TreeST {
                 }
                 if (foundKey){
                     if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
-                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedKey.value).type + "] at " +
                                 assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
                         numErrors = numErrors + 1;
                     }
@@ -345,12 +350,12 @@ public class TreeST {
             Set<String> keys = v.hashTable.keySet();
             for (String key : keys) {
                 if (v.hashTable.get(key).isInitialized == true & v.hashTable.get(key).isUsed == false){
-                    System.out.println("SEMANTIC ANALYSIS [WARNING]: -------> The identifier " + v.hashTable.get(key).token.s + " was declared and initialized but never used at " +
+                    System.out.println("SEMANTIC ANALYSIS [WARNING]: -------> The identifier [" + v.hashTable.get(key).token.s + "] was declared and initialized but never used at " +
                             v.hashTable.get(key).token.line_number + ", char " + v.hashTable.get(key).token.character_number);
                     numWarnings = numWarnings + 1;
                 }
                 if (v.hashTable.get(key).isInitialized == false & v.hashTable.get(key).isUsed == false){
-                    System.out.println("SEMANTIC ANALYSIS [WARNING]: -------> The identifier " + v.hashTable.get(key).token.s + " was declared but never initialized at " +
+                    System.out.println("SEMANTIC ANALYSIS [WARNING]: -------> The identifier [" + v.hashTable.get(key).token.s + "] was declared but never initialized at " +
                             v.hashTable.get(key).token.line_number + ", char " + v.hashTable.get(key).token.character_number);
                     numWarnings = numWarnings + 1;
                 }

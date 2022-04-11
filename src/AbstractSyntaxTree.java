@@ -28,6 +28,13 @@ public class AbstractSyntaxTree {
     public static ArrayList<String> exprList = new ArrayList<>();
 
 
+    public static boolean isInt = false;
+    public static boolean isString = false;
+    public static boolean isBool = false;
+    public static boolean isId = false;
+    public static boolean isMixed = false;  // If there is an expression with mixed types --> becomes a semantic error
+
+
     // Constructor to set new token_stream for parsing
     public AbstractSyntaxTree(ArrayList<Token> tokenStream, boolean verbose){
         this.tokenStream = tokenStream;
@@ -142,20 +149,26 @@ public class AbstractSyntaxTree {
         if (foundError) return;
         else {
             //if (verbose) System.out.println("AST -------> parseExpr() ---->  " +  tokenStream.get(getIndex()).s);
-            boolean isInt = false;
-            boolean isString = false;
-            boolean isBool = false;
-            boolean isId = false;
+
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT){
                 isInt = true;
+                if (isString | isBool | isId){
+                    isMixed = true;
+                }
                 parseIntExpr();
             }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE){
                 isString = true;
+                if (isInt | isBool | isId){
+                    isMixed = true;
+                }
                 parseStringExpr();
             }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
                 isBool = true;
+                if (isString | isInt | isId){
+                    isMixed = true;
+                }
                 parseBooleanExpr();
             }
             else {
@@ -163,23 +176,40 @@ public class AbstractSyntaxTree {
                 parseId();
             }
 
-            if (!exprList.isEmpty() & isId){
+            if (!exprList.isEmpty() & isMixed){
+                ast.addNodeAsStringList("leaf", "mixedExpr", exprList, tokenStream.get(getIndex()));
+                exprList.clear(); //Clear the arrayList of strings
+                resetPointers();
+            }
+            else if (!exprList.isEmpty() & isId){
                 ast.addNodeAsStringList("leaf", "ID", exprList, tokenStream.get(getIndex()));
                 exprList.clear(); //Clear the arrayList of strings
+                resetPointers();
             }
-            if (!exprList.isEmpty() & isInt){
+            else if (!exprList.isEmpty() & isInt){
                 ast.addNodeAsStringList("leaf", "intExpr", exprList, tokenStream.get(getIndex()));
                 exprList.clear(); //Clear the arrayList of strings
+                resetPointers();
             }
-            if (!exprList.isEmpty() & isString){
+            else if (!exprList.isEmpty() & isString){
                 ast.addNodeAsStringList("leaf", "stringExpr", exprList, tokenStream.get(getIndex()));
                 exprList.clear(); //Clear the arrayList of strings
+                resetPointers();
             }
-            if (!exprList.isEmpty() & isBool){
+            else if (!exprList.isEmpty() & isBool){
                 ast.addNodeAsStringList("leaf", "boolExpr", exprList, tokenStream.get(getIndex()));
                 exprList.clear(); //Clear the arrayList of strings
+                resetPointers();
             }
         }
+    }
+
+    public void resetPointers(){
+        isInt = false;
+        isString = false;
+        isBool = false;
+        isId = false;
+        isMixed = false;
     }
 
     public void parseExpr(){

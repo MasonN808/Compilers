@@ -16,9 +16,8 @@
 
 {
  int a {
- boolean b
  a = 1 }
- print(b)
+ print("hi there")
 }$
 
 
@@ -109,3 +108,11 @@
   print("int to int")
   }
   }$
+
+
+  /* A digit is added to something other than a digit */
+  {
+  int a
+  a = 4 + false
+  }$
+
