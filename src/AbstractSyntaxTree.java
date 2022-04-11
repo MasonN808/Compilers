@@ -28,11 +28,11 @@ public class AbstractSyntaxTree {
     public static ArrayList<String> exprList = new ArrayList<>();
 
 
-    public static boolean isInt = false;
-    public static boolean isString = false;
-    public static boolean isBool = false;
-    public static boolean isId = false;
-    public static boolean isMixed = false;  // If there is an expression with mixed types --> becomes a semantic error
+    public boolean isInt = false;
+    public boolean isString = false;
+    public boolean isBool = false;
+    public boolean isId = false;
+    public boolean isMixed = false;  // If there is an expression with mixed types --> becomes a semantic error
 
 
     // Constructor to set new token_stream for parsing
@@ -166,9 +166,9 @@ public class AbstractSyntaxTree {
             }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
                 isBool = true;
-                if (isString | isInt | isId){
-                    isMixed = true;
-                }
+//                if (isString & isInt | isId & isString | isInt & isId){
+//                    isMixed = true;
+//                }
                 parseBooleanExpr();
             }
             else {
@@ -210,6 +210,18 @@ public class AbstractSyntaxTree {
         isBool = false;
         isId = false;
         isMixed = false;
+    }
+
+    public String parseExprReturn(){
+        if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) {
+            return "Int";
+        } else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) {
+            return "String";
+        } else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) {
+            return "Boolean";
+        } else {
+            return "Id";
+        }
     }
 
     public void parseExpr(){
@@ -348,16 +360,16 @@ public class AbstractSyntaxTree {
     public void parseBooleanExpr(){
         if (foundError) return;
         else {
-            //if (verbose) System.out.println("AST -------> parseBooleanExpr() ---->  " +  tokenStream.get(getIndex()).s);
-
-//            ast.addNode("branch", "booleanExpr");
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
-//                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.L_PARENTH);
+                String out1 = parseExprReturn();
                 parseExprPrint();
                 parseBoolOp();
+                String out2 = parseExprReturn();
                 parseExprPrint();
-//                exprList.add(tokenStream.get(getIndex()).s);
+                if (!out1.equals(out2)){
+                    isMixed = true;
+                }
                 match(Compiler808.Grammar.R_PARENTH);
             } else {
                 if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE) {

@@ -4,7 +4,6 @@
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/src/semanticTests" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,13 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00099" summary="-Created new Tree Class for AST to edit tree structure from CST">
-      <created>1649270982301</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1649270982302</updated>
     </task>
     <task id="LOCAL-00100" summary="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method">
       <created>1649271040230</created>
@@ -438,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649650762584</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="- Added a type mismatch error for assigned expression in assignmentStatement">
+      <created>1649652444680</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1649652444680</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Edits to print of booleanExpr" />
     <MESSAGE value="- Redoing symbol tree implementation" />
     <MESSAGE value="- Symbol Tree is looking better" />
     <MESSAGE value="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress" />
@@ -491,6 +489,7 @@
     <MESSAGE value="- Edited to take in integer expressions with operator&#10;- Added more test cases" />
     <MESSAGE value="- A lot more edits based on test cases" />
     <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Able to check type mismatches on any expressions, not just IDs" />
+    <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added a type mismatch error for assigned expression in assignmentStatement" />
   </component>
 </project>

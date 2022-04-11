@@ -116,3 +116,73 @@
   a = 4 + false
   }$
 
+  /* Obviously missing varible decalarations, but still a good test for your tree */
+    {
+      {
+          x = "abc"
+            y = "e"
+            p = "fghijklm"
+            o = "nop"
+            w = "qrstuvwxyz"
+        }
+
+      a = "qrstuvwxyz"
+      b = "nop"
+        c = "e"
+        d = "fghijklm"
+        e = "abc"
+        f = "z"
+        {
+          z = "abcdefghijklmnopqrstuvwxyz"
+        }
+    }$
+
+
+
+/* Semantically incorrect, but make sure your AST structure is correct */
+{
+  /* This is technically syntactically correct, though semantically is full of issues */
+  r = 1 + (true == (1 != "hi"))
+  /* Testing scopes as well... */
+{
+    x = "abc"
+      y = "e"
+      p = 1 + true
+      w = "qrstuvwxyz"
+      /* How 'bout another scope? */
+      {
+          x = 1 + 2 + 3
+          y = 6 + 7
+          p = 1
+
+          /* Tricky, but syntactically valid */
+          o = 9 + (false != ("a" == "a"))
+          w = 4 + 5 + 0
+      }
+  }
+
+  a = 1
+b = 1 + 2
+a = "qrstuvwxyz"
+  d = "fghijklm"
+  e = "abc"
+  f = "z"
+  d = 5 + 6 + 7
+  e = 7 + 8
+  /* Has your computer blown up yet? */
+  {
+      /* Some easy tests now */
+    z = "abcdefghijklmnopqrstuvwxyz"
+      z = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 9
+      z = (true == (false == ("a" != "b")))
+  }
+}$
+
+{
+z = ("true" == (false == ("a" != "b")))
+}$
+
+{
+z = (true == (false == ("a" != "b")))
+}$
+
