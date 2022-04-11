@@ -184,9 +184,9 @@ public class AbstractSyntaxTree {
             exprList.add(tokenStream.get(getIndex()).s);
             match(Compiler808.Grammar.DIGIT);
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP) {
-                exprList.add(tokenStream.get(getIndex()).s);
+//                exprList.add(tokenStream.get(getIndex()).s);
                 parseIntop();
-                parseExpr();
+                parseExprPrint();
             }
 //            ast.moveUp();
         }

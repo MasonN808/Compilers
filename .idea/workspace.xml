@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/src/semanticTests" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,13 +92,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00095" summary="-Added more test cases">
-      <created>1647141590111</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1647141590111</updated>
     </task>
     <task id="LOCAL-00096" summary="-Fixed issue when going to a next program that didn't exist">
       <created>1647141641384</created>
@@ -436,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649634672936</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done">
+      <created>1649639419333</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1649639419333</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,8 +464,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Deleted commented section" />
-    <MESSAGE value="- More edits" />
     <MESSAGE value="- More additions to populating the symbol table (not looking too good)" />
     <MESSAGE value="- More additions to populating the symbol table (looking better)" />
     <MESSAGE value="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)" />
@@ -489,6 +487,8 @@
     <MESSAGE value="- Added warning for declared but uninitialized" />
     <MESSAGE value="- Deleted a ton of nonworking commented out code" />
     <MESSAGE value="- Debugging Line separator issue for MacOS" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Debugging Line separator issue for MacOS" />
+    <MESSAGE value="- Edits using other computer with MacOS" />
+    <MESSAGE value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
   </component>
 </project>
