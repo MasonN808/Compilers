@@ -4,7 +4,6 @@
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/src/semanticTests" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,18 +80,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="" />
+      <changelist id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="" />
       <created>1644291092254</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00072" summary="-Initialized children as empty ArrayList&lt;Token&gt;">
-      <created>1647058578677</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1647058578677</updated>
     </task>
     <task id="LOCAL-00073" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
       <created>1647058610838</created>
@@ -430,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649293846484</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="- Fix this last test case">
+      <created>1649683676722</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1649683676723</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +457,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Fixed issue when going to a next program that didn't exist" />
     <MESSAGE value="-Tested more test cases SUCCESSFULLY" />
     <MESSAGE value="-Getting AST to work" />
     <MESSAGE value="-Created new Tree Class for AST to edit tree structure from CST" />
@@ -483,6 +481,7 @@
     <MESSAGE value="- Getting symbol table tree to work" />
     <MESSAGE value="- Deleted commented section" />
     <MESSAGE value="- More edits" />
-    <option name="LAST_COMMIT_MESSAGE" value="- More edits" />
+    <MESSAGE value="- Fix this last test case" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fix this last test case" />
   </component>
 </project>

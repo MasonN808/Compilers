@@ -252,6 +252,10 @@ public class AbstractSyntaxTree {
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP) {
 //                exprList.add(tokenStream.get(getIndex()).s);
                 parseIntop();
+                String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
+                if (!out1.equals("Int")){
+                    isMixed = true;
+                }
                 parseExprPrint();
             }
 //            ast.moveUp();
@@ -362,7 +366,7 @@ public class AbstractSyntaxTree {
         else {
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
                 match(Compiler808.Grammar.L_PARENTH);
-                String out1 = parseExprReturn();
+                String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
                 parseExprPrint();
                 parseBoolOp();
                 String out2 = parseExprReturn();
