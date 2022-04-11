@@ -178,10 +178,14 @@ a = "qrstuvwxyz"
   }
 }$
 
+
+/* This should ouput error: type mismatch */
 {
 z = ("true" == (false == ("a" != "b")))
 }$
 
+
+/* This should work without type mismatch */
 {
 z = (true == (false == ("a" != "b")))
 }$
