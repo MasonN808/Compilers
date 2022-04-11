@@ -190,3 +190,9 @@ z = ("true" == (false == ("a" != "b")))
 z = (true == (false == ("a" != "b")))
 }$
 
+/* This should work without type mismatch */
+{
+z = 4 + false
+}$
+
+

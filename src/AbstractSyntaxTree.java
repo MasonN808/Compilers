@@ -152,7 +152,7 @@ public class AbstractSyntaxTree {
 
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT){
                 isInt = true;
-                if (isString | isBool | isId){
+                if (isString | !isBool | isId){
                     isMixed = true;
                 }
                 parseIntExpr();

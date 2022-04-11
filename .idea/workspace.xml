@@ -4,6 +4,7 @@
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/src/semanticTests" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,16 +64,9 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Compiler808">
+  <component name="RunManager">
     <configuration name="Compiler808" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Compiler808" />
-      <module name="Compilers_Local" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LineSepDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="LineSepDebug" />
       <module name="Compilers_Local" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -81,18 +75,213 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Compiler808" />
-        <item itemvalue="Application.LineSepDebug" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="" />
+      <changelist id="01b19643-a53e-4f2f-bbd3-5bb6f3d68325" name="Default Changelist" comment="" />
       <created>1644291092254</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
+    </task>
+    <task id="LOCAL-00072" summary="-Initialized children as empty ArrayList&lt;Token&gt;">
+      <created>1647058578677</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1647058578677</updated>
+    </task>
+    <task id="LOCAL-00073" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
+      <created>1647058610838</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1647058610838</updated>
+    </task>
+    <task id="LOCAL-00074" summary="-Edited Testing for Parser implementation of lexer (lexer2)">
+      <created>1647058623705</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1647058623705</updated>
+    </task>
+    <task id="LOCAL-00075" summary="-Edited print statements for Parser&#10;-Edited error print statements for Parser&#10;-added return; in match else block to get out of recursive descent (fixed outofbounds exeception in tokenStream)">
+      <created>1647059426741</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1647059426741</updated>
+    </task>
+    <task id="LOCAL-00076" summary="-Edited print statements for Parser">
+      <created>1647059441926</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1647059441926</updated>
+    </task>
+    <task id="LOCAL-00077" summary="-Added print statement for skipping parse&#10;-Added print statement for summarizing parse">
+      <created>1647060762682</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1647060762682</updated>
+    </task>
+    <task id="LOCAL-00078" summary="-Added foundError boolean&#10;-Added if else blocks for foundError to exit program if match error encountered (NOT WORKING) &lt;----- TODO">
+      <created>1647060848670</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1647060848670</updated>
+    </task>
+    <task id="LOCAL-00079" summary="-Implemented moveUp() does nothing">
+      <created>1647116253548</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116253549</updated>
+    </task>
+    <task id="LOCAL-00080" summary="-Added CST String output for Tree class">
+      <created>1647116278615</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116278615</updated>
+    </task>
+    <task id="LOCAL-00081" summary="-Deleted some cases">
+      <created>1647116294139</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1647116294139</updated>
+    </task>
+    <task id="LOCAL-00082" summary="-if error found in parse, the CST wont be shown">
+      <created>1647119657861</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1647119657861</updated>
+    </task>
+    <task id="LOCAL-00083" summary="-reinitialized index when new instance is made in lex (Fixed issue with parse).  Parse works great, I think.  Now working on CST.">
+      <created>1647119727001</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1647119727001</updated>
+    </task>
+    <task id="LOCAL-00084" summary="-Made new traverse() method that uses depth-first preorder traversal to make CST (In testing)">
+      <created>1647121964257</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1647121964257</updated>
+    </task>
+    <task id="LOCAL-00085" summary="-More edits for CST implementation">
+      <created>1647130002204</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1647130002205</updated>
+    </task>
+    <task id="LOCAL-00086" summary="-added traverse attribute on node (probably don't need)&#10;-More edits to CST (CST shows up) (however, statementList is identified as leaf node ---&gt; should be branch)">
+      <created>1647131716996</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1647131716996</updated>
+    </task>
+    <task id="LOCAL-00087" summary="-Fixed issue with statementList() identifying as leaf node">
+      <created>1647131977427</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1647131977427</updated>
+    </task>
+    <task id="LOCAL-00088" summary="-Edited Print statements when skipping parse or CST">
+      <created>1647132659746</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1647132659746</updated>
+    </task>
+    <task id="LOCAL-00089" summary="-Minor edits to Parser&#10;-Added boolOp() method and refactored">
+      <created>1647135958491</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1647135958491</updated>
+    </task>
+    <task id="LOCAL-00090" summary="-Refactored Tree Class&#10;-Debugging Tree Class">
+      <created>1647135996964</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1647135996964</updated>
+    </task>
+    <task id="LOCAL-00091" summary="-Different test case for testing">
+      <created>1647136014962</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1647136014962</updated>
+    </task>
+    <task id="LOCAL-00092" summary="-Commented out debugging">
+      <created>1647138578292</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138578292</updated>
+    </task>
+    <task id="LOCAL-00093" summary="-Modified test1">
+      <created>1647138599116</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138599116</updated>
+    </task>
+    <task id="LOCAL-00094" summary="-Edited Print statements to be more descriptive&#10;-FIXED ISSUE: added addNode() method to parseStringExpr()">
+      <created>1647138665071</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1647138665071</updated>
+    </task>
+    <task id="LOCAL-00095" summary="-Added more test cases">
+      <created>1647141590111</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141590111</updated>
+    </task>
+    <task id="LOCAL-00096" summary="-Fixed issue when going to a next program that didn't exist">
+      <created>1647141641384</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141641384</updated>
+    </task>
+    <task id="LOCAL-00097" summary="-Tested more test cases SUCCESSFULLY">
+      <created>1647141667331</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1647141667331</updated>
+    </task>
+    <task id="LOCAL-00098" summary="-Getting AST to work">
+      <created>1649224518477</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1649224518477</updated>
+    </task>
+    <task id="LOCAL-00099" summary="-Created new Tree Class for AST to edit tree structure from CST">
+      <created>1649270982301</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1649270982302</updated>
     </task>
     <task id="LOCAL-00100" summary="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method">
       <created>1649271040230</created>
@@ -241,203 +430,7 @@
       <option name="project" value="LOCAL" />
       <updated>1649293846484</updated>
     </task>
-    <task id="LOCAL-00121" summary="- More additions to populating the symbol table (not looking too good)">
-      <created>1649307241813</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1649307241813</updated>
-    </task>
-    <task id="LOCAL-00122" summary="- More additions to populating the symbol table (looking better)">
-      <created>1649379007422</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1649379007422</updated>
-    </task>
-    <task id="LOCAL-00123" summary="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)">
-      <created>1649476025845</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1649476025845</updated>
-    </task>
-    <task id="LOCAL-00124" summary="- Edits to print of booleanExpr">
-      <created>1649476122238</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1649476122238</updated>
-    </task>
-    <task id="LOCAL-00125" summary="- Redoing symbol tree implementation">
-      <created>1649477466530</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1649477466530</updated>
-    </task>
-    <task id="LOCAL-00126" summary="- Symbol Tree is looking better">
-      <created>1649478155799</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1649478155799</updated>
-    </task>
-    <task id="LOCAL-00127" summary="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress">
-      <created>1649540822330</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1649540822330</updated>
-    </task>
-    <task id="LOCAL-00128" summary="- Added more error exceptions">
-      <created>1649547193821</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1649547193821</updated>
-    </task>
-    <task id="LOCAL-00129" summary="- Start of debugging">
-      <created>1649549208493</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1649549208493</updated>
-    </task>
-    <task id="LOCAL-00130" summary="- Working out nullpointer bugs">
-      <created>1649564566798</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1649564566798</updated>
-    </task>
-    <task id="LOCAL-00131" summary="- Added token attribute to node in AST for expressions">
-      <created>1649602961914</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1649602961915</updated>
-    </task>
-    <task id="LOCAL-00132" summary="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block">
-      <created>1649603020596</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1649603020596</updated>
-    </task>
-    <task id="LOCAL-00133" summary="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)">
-      <created>1649618269636</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1649618269636</updated>
-    </task>
-    <task id="LOCAL-00134" summary="- Added some comments">
-      <created>1649618282234</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1649618282234</updated>
-    </task>
-    <task id="LOCAL-00135" summary="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)">
-      <created>1649619970205</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1649619970205</updated>
-    </task>
-    <task id="LOCAL-00136" summary="- Implemented and testing BFS on treeST">
-      <created>1649619994742</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1649619994742</updated>
-    </task>
-    <task id="LOCAL-00137" summary="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()">
-      <created>1649620593071</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1649620593071</updated>
-    </task>
-    <task id="LOCAL-00138" summary="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant">
-      <created>1649631933075</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1649631933075</updated>
-    </task>
-    <task id="LOCAL-00139" summary="- Created warning system&#10;- May need to add more warnings">
-      <created>1649633178504</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1649633178504</updated>
-    </task>
-    <task id="LOCAL-00140" summary="- Added line number column to symbol table">
-      <created>1649633529497</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1649633529497</updated>
-    </task>
-    <task id="LOCAL-00141" summary="- Added warning for declared but uninitialized">
-      <created>1649633713327</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1649633713327</updated>
-    </task>
-    <task id="LOCAL-00142" summary="- Deleted a ton of nonworking commented out code">
-      <created>1649633917333</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1649633917333</updated>
-    </task>
-    <task id="LOCAL-00143" summary="- Debugging Line separator issue for MacOS">
-      <created>1649634672936</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1649634672936</updated>
-    </task>
-    <task id="LOCAL-00144" summary="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done">
-      <created>1649639419333</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1649639419333</updated>
-    </task>
-    <task id="LOCAL-00145" summary="- Edited to take in integer expressions with operator&#10;- Added more test cases">
-      <created>1649645940800</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1649645940800</updated>
-    </task>
-    <task id="LOCAL-00146" summary="- A lot more edits based on test cases">
-      <created>1649649561459</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1649649561459</updated>
-    </task>
-    <task id="LOCAL-00147" summary="- Able to check type mismatches on any expressions, not just IDs">
-      <created>1649650762584</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1649650762584</updated>
-    </task>
-    <task id="LOCAL-00148" summary="- Added a type mismatch error for assigned expression in assignmentStatement">
-      <created>1649652444680</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1649652444680</updated>
-    </task>
-    <option name="localTasksCounter" value="149" />
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,31 +458,31 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Redoing symbol tree implementation" />
-    <MESSAGE value="- Symbol Tree is looking better" />
-    <MESSAGE value="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress" />
-    <MESSAGE value="- Added more error exceptions" />
-    <MESSAGE value="- Start of debugging" />
-    <MESSAGE value="- Working out nullpointer bugs" />
-    <MESSAGE value="- Added token attribute to node in AST for expressions" />
-    <MESSAGE value="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block" />
-    <MESSAGE value="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)" />
-    <MESSAGE value="- Added some comments" />
-    <MESSAGE value="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)" />
-    <MESSAGE value="- Implemented and testing BFS on treeST" />
-    <MESSAGE value="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()" />
-    <MESSAGE value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
-    <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
-    <MESSAGE value="- Added line number column to symbol table" />
-    <MESSAGE value="- Added warning for declared but uninitialized" />
-    <MESSAGE value="- Deleted a ton of nonworking commented out code" />
-    <MESSAGE value="- Debugging Line separator issue for MacOS" />
-    <MESSAGE value="- Edits using other computer with MacOS" />
-    <MESSAGE value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
-    <MESSAGE value="- Edited to take in integer expressions with operator&#10;- Added more test cases" />
-    <MESSAGE value="- A lot more edits based on test cases" />
-    <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
-    <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added a type mismatch error for assigned expression in assignmentStatement" />
+    <MESSAGE value="-Fixed issue when going to a next program that didn't exist" />
+    <MESSAGE value="-Tested more test cases SUCCESSFULLY" />
+    <MESSAGE value="-Getting AST to work" />
+    <MESSAGE value="-Created new Tree Class for AST to edit tree structure from CST" />
+    <MESSAGE value="-Implemented new TreeAST class in AbstractSyntaxTree&#10;-Made edits to match()&#10;-Edited block method" />
+    <MESSAGE value="-Added new token attribute to Node class to keep track of tokens and line number and char number" />
+    <MESSAGE value="-Edits to match slides" />
+    <MESSAGE value="-Generalized to token input&#10;-Added addNodeAsStringList() method to print list of expressions for visualization of AST" />
+    <MESSAGE value="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing" />
+    <MESSAGE value="-Changed delimiter to output correctly" />
+    <MESSAGE value="-Added new parseExprPrint() method to print list of expression for AST output, avoiding printing on certain productions (e.g. printStatement,...)&#10;-Edited where parseExprPrint() is used in place of parseExpr()&#10;-Outputs successfully (NEEDS more testing)" />
+    <MESSAGE value="-Edited to print the boolOp in the branch of AST" />
+    <MESSAGE value="-Start of test cases for semantic Analysis" />
+    <MESSAGE value="-Starting symbolTable" />
+    <MESSAGE value="-Changed output of AST to be less specific" />
+    <MESSAGE value="-Testing using semanticTests" />
+    <MESSAGE value="Merge remote-tracking branch 'origin' into semantic_analysis&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
+    <MESSAGE value="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically" />
+    <MESSAGE value="- Made idDetails for Hashtable of ids in symbol table/tree" />
+    <MESSAGE value="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type" />
+    <MESSAGE value="- Creating a tree from the AST for the symbol table" />
+    <MESSAGE value="- Minor initializations of files" />
+    <MESSAGE value="- Getting symbol table tree to work" />
+    <MESSAGE value="- Deleted commented section" />
+    <MESSAGE value="- More edits" />
+    <option name="LAST_COMMIT_MESSAGE" value="- More edits" />
   </component>
 </project>
