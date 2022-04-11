@@ -156,6 +156,7 @@ public class Lexer {
         System.out.println("LEXING PROGRAM " + program_num);
         while (current_index < s.length() & !EOP_found) {
 //            System.out.println(current_index);
+//            System.out.println(current_index);
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
             String str_current_char = String.valueOf(current_char);
@@ -200,12 +201,12 @@ public class Lexer {
 
             // case of current_char is line break
             if (current_char == (System.lineSeparator().charAt(0)) & current_string.length() == 1 & !EOP_found) {
-//                if (maybeWINDOWS){ // We do this sine lineSeparator is two char long
-//                    current_index += 1;
-//                }
+                if (maybeWINDOWS){ // We do this sine lineSeparator is two char long
+                    current_index += 1;
+                }
                 current_line += 1;
                 printed_current_index = 0;
-                current_index += 1;
+//                current_index += 1;
                 current_string = "";
             }
 
@@ -620,6 +621,9 @@ public class Lexer {
                                 if (temp_char != (System.lineSeparator().charAt(1)) & temp_index < s.length()-1){
                                     found = true;
                                 }
+                            }
+                            else {
+                                found = true;
                             }
 
                         }
