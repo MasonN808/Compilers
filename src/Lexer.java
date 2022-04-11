@@ -30,7 +30,7 @@ public class Lexer {
     public static int num_warnings = 0;
     public static int program_num = 0;
 
-    public static boolean WINDOWS = false;
+    public static boolean maybeWINDOWS = false;
 
     public static int current_index = 0; // Initialize index
     public static int printed_last_index = 0; // The index to be printed
@@ -140,8 +140,8 @@ public class Lexer {
     public ArrayList<Token> get_token_stream(String s, boolean verbose) {
 
         //Check for line break character count
-        if (System.lineSeparator().length()==2){//Windows
-            WINDOWS = true;
+        if (System.lineSeparator().length()==2){//maybeWINDOWS
+            maybeWINDOWS = true;
         }
 
         ArrayList<Token> tokenStreamAggregate = new ArrayList<Token>(); // Initialize the tokenStream that will output ALL tokenStreams
@@ -155,6 +155,7 @@ public class Lexer {
         System.out.println("------------------------------------------------------------");
         System.out.println("LEXING PROGRAM " + program_num);
         while (current_index < s.length() & !EOP_found) {
+//            System.out.println(current_index);
 //            System.out.println(current_index);
             char current_char = s.charAt(current_index); // get the character from the current index of the string
             current_string += current_char; // append the current character to the lexeme for longest match
@@ -199,18 +200,18 @@ public class Lexer {
             }
 
             // case of current_char is line break
-            if (current_char==(System.lineSeparator().charAt(0)) & current_string.length() == 1 & !EOP_found) {
-//                if (WINDOWS){ // We do this sine lineSeparator is two char long
-//                    current_index += 1;
-//                }
+            if (current_char == (System.lineSeparator().charAt(0)) & current_string.length() == 1 & !EOP_found) {
+                if (maybeWINDOWS){ // We do this sine lineSeparator is two char long
+                    current_index += 1;
+                }
                 current_line += 1;
                 printed_current_index = 0;
-                current_index += 1;
+//                current_index += 1;
                 current_string = "";
             }
 
             if (current_char==(System.lineSeparator().charAt(0)) & current_string.length() == 1 & EOP_found) {
-                if (WINDOWS){
+                if (maybeWINDOWS){
                     current_index += 1;
                 }
                 break;
@@ -370,7 +371,7 @@ public class Lexer {
 //                 Does not register the current string is not of these types
                 else if ((t_type == Compiler808.Grammar.QUOTE | t_type == Compiler808.Grammar.L_BRACE | t_type == Compiler808.Grammar.R_BRACE | t_type == Compiler808.Grammar.L_PARENTH | t_type == Compiler808.Grammar.R_PARENTH | t_type == Compiler808.Grammar.ADDITION_OP) & current_string.equals(str_current_char)){
                     if (t_type == Compiler808.Grammar.QUOTE) {
-                        close_quote_found = !close_quote_found; // TODO: check for unterminated quote
+                        close_quote_found = !close_quote_found;
                     }
                     // Case a: unequal number of L_BRACE and R_BRACE
                     // Case b: R_BRACE with no previous L_BRACE
@@ -548,23 +549,58 @@ public class Lexer {
 
                         AbstractSyntaxTree abstractST = new AbstractSyntaxTree(tokenStream, verbose);
                         abstractST.parseProgram();
+                        abstractST.rearrangeTree(abstractST.ast.root); //Rearrange tree for boolOp rearrangement
                         // Assume parser made CST successfully, so don't have to check for errors
                         // For AST
                         System.out.println("------------------------------------------------------------");
                         System.out.println("AST for Program " + program_num);
                         System.out.println(abstractST.ast.traverse(abstractST.ast.root, 0, ""));
+
+                        // For Symbol Table
+                        TreeST treeST = new TreeST(abstractST.ast);
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("Beginning SEMANTIC ANALYSIS for Program " + program_num);
+                        treeST.buildSymbolTree(); // build Symbol Tree from ast.root
+
+                        // Check for warnings by doing a BFS on symbol tree
+                        boolean[] discovered = new boolean[treeST.scopeNum]; //make sure all values are false
+                        treeST.checkWarnings(treeST, treeST.root, discovered);
+
+                        if (treeST.numErrors > 0){
+                            System.out.println("SEMANTIC ANALYSIS -------> SEMANTIC ANALYSIS terminated UNSUCCESSFULLY");
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SKIP CODE GEN for program  " + program_num + " since error(s) in SEMANTIC ANALYSIS");
+                            System.out.println("------------------------------------------------------------");
+                        }
+                        else {
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SEMANTIC ANALYSIS -------> SEMANTIC ANALYSIS finished SUCCESSFULLY");
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SYMBOL TABLE -------> printing SYMBOL TABLE");
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("SYMBOL TABLE");
+                            System.out.println("------------");
+                            // For BFS input
+                            discovered = new boolean[treeST.scopeNum]; //make sure all values are false
+                            // Header of table
+                            String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope", "Line Number"};
+                            System.out.format("%4s%15s%15s%15s%15s%15s%n", row);
+                            // Do a Breadth first search on symbol tree
+                            treeST.BFS(treeST, treeST.root, discovered);
+                            System.out.println("------------------------------------------------------------");
+                        }
                     }
                     else {
                         System.out.println("Parser -------> Parse terminated UNSUCCESSFULLY");
                         System.out.println("------------------------------------------------------------");
-                        System.out.println("SKIP CST for program " + program_num + " since error in Parse");
+                        System.out.println("SKIP CST for program " + program_num + " since error(s) in Parse");
                         System.out.println("------------------------------------------------------------");
                     }
 
                 }
                 else { // if lex had errors
                     System.out.println("------------------------------------------------------------");
-                    System.out.println("SKIP Parsing program " + program_num + " since error in Lex");
+                    System.out.println("SKIP Parsing program " + program_num + " since error(s) in Lex");
                     System.out.println("------------------------------------------------------------");
                 }
 
@@ -581,10 +617,13 @@ public class Lexer {
                     while (temp_index < s.length() & !found){
                         char temp_char = s.charAt(temp_index);
                         if (!String.valueOf(temp_char).matches("[ ]") & !String.valueOf(temp_char).matches("[\\t]") & temp_char!=(System.lineSeparator().charAt(0))){
-                            if (WINDOWS){
+                            if (maybeWINDOWS){
                                 if (temp_char != (System.lineSeparator().charAt(1)) & temp_index < s.length()-1){
                                     found = true;
                                 }
+                            }
+                            else {
+                                found = true;
                             }
 
                         }

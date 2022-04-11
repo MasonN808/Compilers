@@ -4,7 +4,7 @@
   a = 1
   {
     string b
-    a = "a"
+    a = 2
     print(a)
   }
   string b
