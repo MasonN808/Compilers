@@ -130,7 +130,7 @@ public class AbstractSyntaxTree {
             ast.addNode("branch", "printStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.PRINT);
             match(Compiler808.Grammar.L_PARENTH);
-            parseExpr();
+            parseExprPrint();
             match(Compiler808.Grammar.R_PARENTH);
             ast.moveUp();
         }

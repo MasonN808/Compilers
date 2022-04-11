@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/src/semanticTests" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,13 +95,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00096" summary="-Fixed issue when going to a next program that didn't exist">
-      <created>1647141641384</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1647141641384</updated>
     </task>
     <task id="LOCAL-00097" summary="-Tested more test cases SUCCESSFULLY">
       <created>1647141667331</created>
@@ -436,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649639419333</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="- Edited to take in integer expressions with operator&#10;- Added more test cases">
+      <created>1649645940800</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1649645940800</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +467,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- More additions to populating the symbol table (not looking too good)" />
     <MESSAGE value="- More additions to populating the symbol table (looking better)" />
     <MESSAGE value="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)" />
     <MESSAGE value="- Edits to print of booleanExpr" />
@@ -489,6 +491,7 @@
     <MESSAGE value="- Debugging Line separator issue for MacOS" />
     <MESSAGE value="- Edits using other computer with MacOS" />
     <MESSAGE value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
+    <MESSAGE value="- Edited to take in integer expressions with operator&#10;- Added more test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Edited to take in integer expressions with operator&#10;- Added more test cases" />
   </component>
 </project>

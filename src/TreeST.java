@@ -103,9 +103,11 @@ public class TreeST {
                         // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
                     }
                     if (!foundKey) {
-                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
-                                assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
-                        numErrors = numErrors + 1;
+                        if (assignedKey.name.equals("ID")){
+                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                                    assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
+                            numErrors = numErrors + 1;
+                        }
                     }
                 } else {
                     foundKey = true;
@@ -113,24 +115,44 @@ public class TreeST {
                 // Debugging checking assignment mismatch
 //                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
 //                System.out.println("DEBUG: " + assignedValue.value);
-                if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
-                    // if type-mismatch occurs in assignment
-                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
-                            assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
-                    numErrors = numErrors + 1;
-                } else { // key found
-                    // First get original details from hashtable of key
-                    // tempCurrentScope is the scope the key value is in
-                    String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
-                    boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
-                    boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
-                    Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
-                    // Then assign accordingly
-                    if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                        idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
-                        tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
+                if (foundKey){
+                    if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
+                                assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+                        numErrors = numErrors + 1;
+                    }
+                    else { // key found
+                        // First get original details from hashtable of key
+                        // tempCurrentScope is the scope the key value is in
+                        String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
+                        boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
+                        boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
+                        Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
+                        // Then assign accordingly
+                        if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
+                            idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
+                            tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
+                        }
                     }
                 }
+//                if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
+//                    // if type-mismatch occurs in assignment
+//                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
+//                            assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+//                    numErrors = numErrors + 1;
+//                } else { // key found
+//                    // First get original details from hashtable of key
+//                    // tempCurrentScope is the scope the key value is in
+//                    String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
+//                    boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
+//                    boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
+//                    Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
+//                    // Then assign accordingly
+//                    if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
+//                        idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
+//                        tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
+//                    }
+//                }
                 break;
             case ("printStatement"):
                 Node printKey = node.children.get(0);
@@ -148,9 +170,11 @@ public class TreeST {
                         }
                     }
                     if (!foundKey) {
-                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
-                                printKey.token.line_number + ", char " + printKey.token.character_number);
-                        numErrors = numErrors + 1;
+                        if (printKey.name.equals("ID")){
+                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                                    printKey.token.line_number + ", char " + printKey.token.character_number);
+                            numErrors = numErrors + 1;
+                        }
                     }
                 } else {
                     foundKey = true;
@@ -158,6 +182,7 @@ public class TreeST {
 //                System.out.println("FOUND KEY " + foundKey);
                 // If the key is found in some scope, mark key as isUsed
                 if (foundKey) {
+//                    System.out.println(printKey.name);
 //                    System.out.println("FOUND KEY");
                     // First get original details from hashtable of key
                     // tempCurrentScope is the scope the key value is in
@@ -195,29 +220,41 @@ public class TreeST {
                         }
                     }
                     if (!foundKey) {
-                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
-                                assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
-                        numErrors = numErrors + 1;
+                        if (assignedKey.name.equals("ID")){
+                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                                    assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
+                            numErrors = numErrors + 1;
+                        }
+                        else{
+                            System.out.println(assignedKey.name);
+                            if (!checkAssignmentTypesExpr(assignedKey.value, assignedValue.value)){
+                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + assignedKey.type + " at " +
+                                        assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+                                numErrors = numErrors + 1;
+                            }
+                        }
                     }
                 } else {
                     foundKey = true;
                 }
-                if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
-                    // if type-mismatch occurs in assignment
-                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + currentScope.hashTable.get(assignedKey.value).type + " at " +
-                            assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
-                    numErrors = numErrors + 1;
-                } else { // key found
-//                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> UNCAUGHT ERROR at assignmentStatement case ");
-                    // First get original details from hashtable of key
-                    // tempCurrentScope is the scope the key value is in
-                    boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
-                    boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
-                    Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
-                    // Then assign accordingly
-                    if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                        idDetails details = new idDetails(assignedValue.value, true, wasUsed, wasToken);
-                        tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
+                if (foundKey){
+                    if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
+                                assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+                        numErrors = numErrors + 1;
+                    }
+                    else { // key found
+                        // First get original details from hashtable of key
+                        // tempCurrentScope is the scope the key value is in
+                        String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
+                        boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
+                        boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
+                        Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
+                        // Then assign accordingly
+                        if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
+                            idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
+                            tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
+                        }
                     }
                 }
                 break;
@@ -250,6 +287,32 @@ public class TreeST {
         } else {
             return false;
         }
+    }
+
+    // TODO: make a recursive check assignment method for embedded expressions
+    public static boolean checkAssignmentTypesExpr(String expr1, String expr2) {
+        // Both Strings
+        if (Character.toString(expr1.charAt(0)).equals("\"") & Character.toString(expr2.charAt(0)).equals("\"")) {
+            return true;
+        }
+
+        else if ((expr1.equals("false") | expr1.equals("true")) & expr1.equals("boolean")) {
+            return true;
+        }
+
+        try { // See if String can be parsed to an Int
+            int test1 = Integer.parseInt(Character.toString(expr1.charAt(0)));
+        } catch (NumberFormatException nfe) { // If exception reached (not an int)
+            return false;
+        }
+        try { // See if String can be parsed to an Int
+            int test2 = Integer.parseInt(Character.toString(expr2.charAt(0)));
+        } catch (NumberFormatException nfe) { // If exception reached (not an int)
+            return false;
+        }
+//        else if (true) {
+            return true;
+//        }
     }
 
     // An edited implementation of https://www.techiedelight.com/breadth-first-search/ for BFS
