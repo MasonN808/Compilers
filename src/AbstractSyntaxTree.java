@@ -142,19 +142,43 @@ public class AbstractSyntaxTree {
         if (foundError) return;
         else {
             //if (verbose) System.out.println("AST -------> parseExpr() ---->  " +  tokenStream.get(getIndex()).s);
-
-            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT) parseIntExpr();
-            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE) parseStringExpr();
+            boolean isInt = false;
+            boolean isString = false;
+            boolean isBool = false;
+            boolean isId = false;
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT){
+                isInt = true;
+                parseIntExpr();
+            }
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE){
+                isString = true;
+                parseStringExpr();
+            }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
+                isBool = true;
                 parseBooleanExpr();
             }
-            else parseId();
-            if (!exprList.isEmpty()){
-                ast.addNodeAsStringList("leaf", "expr", exprList, tokenStream.get(getIndex()));
-                exprList.clear(); //Clear the arrayList of strings
+            else {
+                isId = true;
+                parseId();
             }
 
-//            ast.moveUp();
+            if (!exprList.isEmpty() & isId){
+                ast.addNodeAsStringList("leaf", "ID", exprList, tokenStream.get(getIndex()));
+                exprList.clear(); //Clear the arrayList of strings
+            }
+            if (!exprList.isEmpty() & isInt){
+                ast.addNodeAsStringList("leaf", "intExpr", exprList, tokenStream.get(getIndex()));
+                exprList.clear(); //Clear the arrayList of strings
+            }
+            if (!exprList.isEmpty() & isString){
+                ast.addNodeAsStringList("leaf", "stringExpr", exprList, tokenStream.get(getIndex()));
+                exprList.clear(); //Clear the arrayList of strings
+            }
+            if (!exprList.isEmpty() & isBool){
+                ast.addNodeAsStringList("leaf", "boolExpr", exprList, tokenStream.get(getIndex()));
+                exprList.clear(); //Clear the arrayList of strings
+            }
         }
     }
 

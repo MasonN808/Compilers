@@ -135,24 +135,6 @@ public class TreeST {
                         }
                     }
                 }
-//                if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value) & foundKey) { // arg[0] and arg[1] will be strings
-//                    // if type-mismatch occurs in assignment
-//                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + tempCurrentScope.hashTable.get(assignedKey.value).type + " at " +
-//                            assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
-//                    numErrors = numErrors + 1;
-//                } else { // key found
-//                    // First get original details from hashtable of key
-//                    // tempCurrentScope is the scope the key value is in
-//                    String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
-//                    boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
-//                    boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
-//                    Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
-//                    // Then assign accordingly
-//                    if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-//                        idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
-//                        tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
-//                    }
-//                }
                 break;
             case ("printStatement"):
                 Node printKey = node.children.get(0);
@@ -203,11 +185,12 @@ public class TreeST {
                     }
                 }
                 break;
-            case ("ifStatement"):
-            case ("whileStatement"):
+
+            case ("ifStatement"), ("whileStatement"):
                 Node expr = node.children.get(0);
                 assignedKey = expr.children.get(0);
                 assignedValue = expr.children.get(1);
+
                 foundKey = false;
                 tempCurrentScope = currentScope;
                 if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
@@ -226,10 +209,10 @@ public class TreeST {
                             numErrors = numErrors + 1;
                         }
                         else{
-                            System.out.println(assignedKey.name);
-                            if (!checkAssignmentTypesExpr(assignedKey.value, assignedValue.value)){
-                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected " + assignedKey.type + " at " +
-                                        assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+//                            System.out.println(assignedKey.name);
+                            if (!checkAssignmentTypesExpr(assignedKey, assignedValue)){
+                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Did you mean for an " + assignedKey.name + " at " +
+                                        assignedValue.token.line_number + ", char " + assignedValue.token.character_number + "?");
                                 numErrors = numErrors + 1;
                             }
                         }
@@ -259,8 +242,7 @@ public class TreeST {
                 }
                 break;
             default:
-//                System.out.println();
-//                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> UNCAUGHT ERROR at default case of switch statement");
+               //Everything else that needs nothing
         }
 
         for (Node each : node.children) {
@@ -289,30 +271,23 @@ public class TreeST {
         }
     }
 
-    // TODO: make a recursive check assignment method for embedded expressions
-    public static boolean checkAssignmentTypesExpr(String expr1, String expr2) {
+    public static boolean checkAssignmentTypesExpr(Node expr1, Node expr2) {
         // Both Strings
-        if (Character.toString(expr1.charAt(0)).equals("\"") & Character.toString(expr2.charAt(0)).equals("\"")) {
+        if (expr1.name.equals("stringExpr") & expr2.name.equals("stringExpr")) {
             return true;
         }
 
-        else if ((expr1.equals("false") | expr1.equals("true")) & expr1.equals("boolean")) {
+        // Both Ints
+        else if (expr1.name.equals("intExpr") & expr2.name.equals("intExpr")) {
             return true;
         }
 
-        try { // See if String can be parsed to an Int
-            int test1 = Integer.parseInt(Character.toString(expr1.charAt(0)));
-        } catch (NumberFormatException nfe) { // If exception reached (not an int)
-            return false;
-        }
-        try { // See if String can be parsed to an Int
-            int test2 = Integer.parseInt(Character.toString(expr2.charAt(0)));
-        } catch (NumberFormatException nfe) { // If exception reached (not an int)
-            return false;
-        }
-//        else if (true) {
+        // Both Bools
+        else if (expr1.name.equals("boolExpr") & expr2.name.equals("boolExpr")) {
             return true;
-//        }
+        }
+
+        else return false;
     }
 
     // An edited implementation of https://www.techiedelight.com/breadth-first-search/ for BFS
