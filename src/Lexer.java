@@ -40,7 +40,6 @@ public class Lexer {
     public Token current_token;
     public boolean debug = false; // For debugging
 
-
     // List out all tokens from our predefined Compiler808.Grammar https://www.labouseur.com/courses/compilers/Compiler808.Grammar.pdf
 
 
@@ -543,9 +542,11 @@ public class Lexer {
                         System.out.println("Parser -------> Parse finished SUCCESSFULLY");
 
                         // For CST
-                        System.out.println("------------------------------------------------------------");
-                        System.out.println("CST for Program " + program_num);
-                        System.out.println(parser.cst.traverse(parser.cst.root, 0, ""));
+                        if (verbose){ //For exculding during semantic analysis tests
+                            System.out.println("------------------------------------------------------------");
+                            System.out.println("CST for Program " + program_num);
+                            System.out.println(parser.cst.traverse(parser.cst.root, 0, ""));
+                        }
 
                         AbstractSyntaxTree abstractST = new AbstractSyntaxTree(tokenStream, verbose);
                         abstractST.parseProgram();

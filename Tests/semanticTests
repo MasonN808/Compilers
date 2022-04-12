@@ -181,16 +181,27 @@ a = "qrstuvwxyz"
 
 /* This should ouput error: type mismatch */
 {
+boolean z
 z = ("true" == (false == ("a" != "b")))
+}$
+
+
+/* This shouldn't work with type mismatch */
+{
+int z
+z = (true == (false == ("a" != "b")))
 }$
 
 
 /* This should work without type mismatch */
 {
+boolean z
 z = (true == (false == ("a" != "b")))
 }$
 
-/* This should work without type mismatch */
+
+
+/* This should not work with type mismatch and undeclared*/
 {
 z = 4 + false
 }$

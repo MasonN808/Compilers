@@ -152,16 +152,16 @@ public class AbstractSyntaxTree {
 
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT){
                 isInt = true;
-                if (isString | !isBool | isId){
-                    isMixed = true;
-                }
+//                if (isString | !isBool | isId){
+//                    isMixed = true;
+//                }
                 parseIntExpr();
             }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE){
                 isString = true;
-                if (isInt | isBool | isId){
-                    isMixed = true;
-                }
+//                if (isInt | isBool | isId){
+//                    isMixed = true;
+//                }
                 parseStringExpr();
             }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
@@ -244,13 +244,9 @@ public class AbstractSyntaxTree {
     public void parseIntExpr(){
         if (foundError) return;
         else {
-            //if (verbose) System.out.println("AST -------> parseIntExpr() ---->  " +  tokenStream.get(getIndex()).s);
-
-//            ast.addNode("branch", "intExpr");
             exprList.add(tokenStream.get(getIndex()).s);
             match(Compiler808.Grammar.DIGIT);
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP) {
-//                exprList.add(tokenStream.get(getIndex()).s);
                 parseIntop();
                 String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
                 if (!out1.equals("Int")){
@@ -258,7 +254,6 @@ public class AbstractSyntaxTree {
                 }
                 parseExprPrint();
             }
-//            ast.moveUp();
         }
     }
 

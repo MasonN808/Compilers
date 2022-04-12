@@ -27,8 +27,8 @@ public class Compiler808 {
         lexer.get_token_stream(content, is_verbose);
 
 
-//        boolean is_verbose = true;
-//        File inFile = new File("src/semanticTests");
+//        boolean is_verbose = false;
+//        File inFile = new File("Tests/semanticTests");
 //
 //        String content = new Scanner(inFile).useDelimiter("\\Z").next();
 //        Lexer lexer = new Lexer();
