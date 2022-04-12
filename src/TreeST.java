@@ -78,8 +78,8 @@ public class TreeST {
                     currentScope.hashTable.put(key.value, details);
                 } else {
                     // CASE: redeclared identifier in same scope
-                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Identifier redeclared error at line " +
-                            node.children.get(1).token.line_number + ", char " + node.children.get(1).token.character_number);
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Identifier [" + key.value + "] redeclared error at line " +
+                            key.token.line_number + ", char " + key.token.character_number);
                     numErrors = numErrors + 1;
                 }
 //                System.out.println("DEBUG: " + currentScope.hashTable.get(key.value).type);
@@ -109,7 +109,7 @@ public class TreeST {
                     }
                     if (!foundKey) {
                         if (assignedKey.name.equals("ID")){
-                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + assignedKey.value + "] at line " +
                                     assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
                             numErrors = numErrors + 1;
                         }
@@ -158,7 +158,7 @@ public class TreeST {
                     }
                     if (!foundKey) {
                         if (printKey.name.equals("ID")){
-                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + printKey.value + "] at line " +
                                     printKey.token.line_number + ", char " + printKey.token.character_number);
                             numErrors = numErrors + 1;
                         }
@@ -209,7 +209,7 @@ public class TreeST {
                     }
                     if (!foundKey) {
                         if (assignedKey.name.equals("ID")){
-                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier at line " +
+                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + assignedKey.value + "] at line " +
                                     assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
                             numErrors = numErrors + 1;
                         }

@@ -1,3 +1,6 @@
+
+/* Program 0 */
+/* No errors */
 {
  int a
  boolean b
@@ -13,7 +16,9 @@
 }$
 
 
-
+/* Program 01 */
+/* No errors */
+/* never used warning for [a] */
 {
  int a {
  a = 1 }
@@ -21,7 +26,8 @@
 }$
 
 
-
+/* Program 02 */
+/* No errors */
 {
  int a {
  boolean b {
@@ -35,10 +41,11 @@
 }$
 
 
-/* test cases from hall of fame projects below */
-
-
+/* Program 03 */
+/* some test cases from hall of fame projects below */
 /* Obviously missing variable declarations, but still a good test for your tree.  Also has long integer expressions*/
+/* Undeclared Identifier errors */
+
   {
     {
         x = 1 + 2 + 3
@@ -61,84 +68,92 @@
   }$
 
 
+/* Program 04 */
+/* Variables being used but not declared first */
+/* Undeclared Error for [b]*/
+/* Uninitialized Warning for [a] */
 
-  /* Variables being used but not declared first */
+{
+int a
+b = 4
+}$
+
+
+/* Program 05 */
+/* Variables being declared again in same scope*/
+/* Redeclared errors */
+{
+int a
+{
+string a
+a = "this is fine"
+}
+boolean a /* this is not fine" */
+}$
+
+
+/* Program 06 */
+/* A variable's type is not compatible with its assignment*/
+/* Type Mismatch Error: Expected [string] */
+{
+string s
+s = 4 + 3
+}$
+
+
+/* Program 07 */
+/* Types do not match in Boolean comparison*/
+{
+int a
+a = 1
+print(a)
+if(4 == false){
+print("this no good")
+}
+if(4 == "hey"){
+print("int to string")
+}
+if(false != "hey"){
+print("bool to string")
+}
+if(4 != 3){
+print("int to int")
+}
+}$
+
+
+
+/* Program 08 */
+/* A digit is added to something other than a digit */
+{
+int a
+a = 4 + false
+}$
+
+
+/* Program 09 */
+/* Obviously missing varible decalarations, but still a good test for your tree */
+{
   {
-  int a
-  b = 4
-  }$
+      x = "abc"
+        y = "e"
+        p = "fghijklm"
+        o = "nop"
+        w = "qrstuvwxyz"
+    }
 
-
-
-  /* Variables being declared again in same scope*/
-  {
-  int a
-  {
-  string a
-  a = "this is fine"
-  }
-  boolean a /* this is not fine" */
-  }$
-
-
-
-  /* A variable's type is not compatible with its assignment*/
-  {
-  string s
-  s = 4 + 3
-  }$
-
-
-
-  /* Types do not match in Boolean comparison*/
-  {
-  int a
-  a = 1
-  print(a)
-  if(4 == false){
-  print("this no good")
-  }
-  if(4 == "hey"){
-  print("int to string")
-  }
-  if(false != "hey"){
-  print("bool to string")
-  }
-  if(4 != 3){
-  print("int to int")
-  }
-  }$
-
-
-  /* A digit is added to something other than a digit */
-  {
-  int a
-  a = 4 + false
-  }$
-
-  /* Obviously missing varible decalarations, but still a good test for your tree */
+  a = "qrstuvwxyz"
+  b = "nop"
+    c = "e"
+    d = "fghijklm"
+    e = "abc"
+    f = "z"
     {
-      {
-          x = "abc"
-            y = "e"
-            p = "fghijklm"
-            o = "nop"
-            w = "qrstuvwxyz"
-        }
+      z = "abcdefghijklmnopqrstuvwxyz"
+    }
+}$
 
-      a = "qrstuvwxyz"
-      b = "nop"
-        c = "e"
-        d = "fghijklm"
-        e = "abc"
-        f = "z"
-        {
-          z = "abcdefghijklmnopqrstuvwxyz"
-        }
-    }$
-
-
-
+/* Program 10 */
 /* Semantically incorrect, but make sure your AST structure is correct */
 {
   /* This is technically syntactically correct, though semantically is full of issues */
@@ -162,8 +177,8 @@
   }
 
   a = 1
-b = 1 + 2
-a = "qrstuvwxyz"
+  b = 1 + 2
+  a = "qrstuvwxyz"
   d = "fghijklm"
   e = "abc"
   f = "z"
@@ -178,29 +193,28 @@ a = "qrstuvwxyz"
   }
 }$
 
-
+/* Program 11 */
 /* This should ouput error: type mismatch */
 {
 boolean z
 z = ("true" == (false == ("a" != "b")))
 }$
 
-
+/* Program 12 */
 /* This shouldn't work with type mismatch */
 {
 int z
 z = (true == (false == ("a" != "b")))
 }$
 
-
+/* Program 13 */
 /* This should work without type mismatch */
 {
 boolean z
 z = (true == (false == ("a" != "b")))
 }$
 
-
-
+/* Program 14 */
 /* This should not work with type mismatch and undeclared*/
 {
 z = 4 + false
