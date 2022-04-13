@@ -4,6 +4,7 @@
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,13 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00105" summary="-Changed delimiter to output correctly">
-      <created>1649275687216</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1649275687216</updated>
     </task>
     <task id="LOCAL-00106" summary="-Added new parseExprPrint() method to print list of expression for AST output, avoiding printing on certain productions (e.g. printStatement,...)&#10;-Edited where parseExprPrint() is used in place of parseExpr()&#10;-Outputs successfully (NEEDS more testing)">
       <created>1649277312119</created>
@@ -440,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649885016613</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java">
+      <created>1649887636610</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1649887636610</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +469,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Working out nullpointer bugs" />
     <MESSAGE value="- Added token attribute to node in AST for expressions" />
     <MESSAGE value="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block" />
     <MESSAGE value="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)" />
@@ -493,6 +493,7 @@
     <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
     <MESSAGE value="- Trying to fix issues with AST" />
     <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed some structure in the AST when boolean expressions are nested" />
+    <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
   </component>
 </project>

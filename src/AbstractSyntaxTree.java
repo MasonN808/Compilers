@@ -233,18 +233,14 @@ public class AbstractSyntaxTree {
                 parseExpr();
 
                 parseBoolOp();
+                createLeafs(); // Create leaves from previous parseExpr for correct tree arrangement
 
-                createLeafs();
                 String out2 = parseExprReturn();
                 if (!out1.equals(out2)){ // Check if the types being operated on are of the same type
                     isMixed = true;
                 }
 
-//                skipMoveUp += 1;
                 parseExprPrint();
-//                if (skipMoveUp != 1){
-//                    ast.moveUp();
-//                }
                 ast.moveUp();
 
                 match(Compiler808.Grammar.R_PARENTH);

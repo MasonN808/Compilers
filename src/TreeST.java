@@ -92,6 +92,8 @@ public class TreeST {
 //                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
                 boolean foundKey = false;
                 ScopeNode tempCurrentScope = currentScope;
+                //Traverse subtree to find mixed expressions or type mismatch
+                boolean isMixed = traverse()
                 if (assignedValue.name.equals("mixedExpr")){ // the assigned value is of mixed types
                     System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in assigned expression at " +
                             assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
@@ -329,6 +331,17 @@ public class TreeST {
                 }
             }
         }
+    }
+
+    // Do a depth-first post-order traversal to find a mixed value in subtree
+    public static boolean traverse(Node node, boolean foundMixed) { // post order traversal
+        if (node.name.equals("mixedExpr")){
+            foundMixed = true;
+        }
+        for (Node each : node.children) {
+            traverse(each, foundMixed);
+        }
+        return foundMixed;
     }
 
     // Check for warnings using BFS
