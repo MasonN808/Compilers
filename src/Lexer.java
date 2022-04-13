@@ -550,7 +550,7 @@ public class Lexer {
 
                         AbstractSyntaxTree abstractST = new AbstractSyntaxTree(tokenStream, verbose);
                         abstractST.parseProgram();
-                        abstractST.rearrangeTree(abstractST.ast.root); //Rearrange tree for boolOp rearrangement
+//                        abstractST.rearrangeTree(abstractST.ast.root); //Rearrange tree for boolOp rearrangement
                         // Assume parser made CST successfully, so don't have to check for errors
                         // For AST
                         System.out.println("------------------------------------------------------------");

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/semanticTests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00104" summary="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing">
-      <created>1649275494198</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1649275494198</updated>
     </task>
     <task id="LOCAL-00105" summary="-Changed delimiter to output correctly">
       <created>1649275687216</created>
@@ -441,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649825659998</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="- Fixed some structure in the AST when boolean expressions are nested">
+      <created>1649885016613</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1649885016613</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -469,7 +468,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Start of debugging" />
     <MESSAGE value="- Working out nullpointer bugs" />
     <MESSAGE value="- Added token attribute to node in AST for expressions" />
     <MESSAGE value="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block" />
@@ -494,6 +492,7 @@
     <MESSAGE value="- Edited more detailed error messages" />
     <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
     <MESSAGE value="- Trying to fix issues with AST" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Trying to fix issues with AST" />
+    <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed some structure in the AST when boolean expressions are nested" />
   </component>
 </project>

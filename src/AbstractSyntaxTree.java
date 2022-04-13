@@ -37,6 +37,7 @@ public class AbstractSyntaxTree {
 
     public boolean inAssignment = false;
     public boolean inBooleanExpr = false;
+    public int skipMoveUp = 0;
 
 
     // Constructor to set new token_stream for parsing
@@ -174,6 +175,28 @@ public class AbstractSyntaxTree {
         }
     }
 
+    public void parseExpr(){
+        if (foundError) return;
+        else {
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT){
+                isInt = true;
+                parseIntExpr();
+            }
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE){
+                isString = true;
+                parseStringExpr();
+            }
+            else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
+                isBool = true;
+                parseBooleanExpr();
+            }
+            else {
+                isId = true;
+                parseId();
+            }
+        }
+    }
+
     public void createLeafs(){
         if (!exprList.isEmpty() & isMixed) {
             ast.addNodeAsStringList("leaf", "mixedExpr", exprList, tokenStream.get(getIndex()));
@@ -207,20 +230,24 @@ public class AbstractSyntaxTree {
 //                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.L_PARENTH);
                 String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
-                parseExprPrint();
+                parseExpr();
 
                 parseBoolOp();
 
+                createLeafs();
                 String out2 = parseExprReturn();
                 if (!out1.equals(out2)){ // Check if the types being operated on are of the same type
                     isMixed = true;
                 }
 
+//                skipMoveUp += 1;
                 parseExprPrint();
+//                if (skipMoveUp != 1){
+//                    ast.moveUp();
+//                }
                 ast.moveUp();
 
                 match(Compiler808.Grammar.R_PARENTH);
-                inBooleanExpr = false;
 
             } else {
                 if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE) {
@@ -416,19 +443,19 @@ public class AbstractSyntaxTree {
         }
     }
 
-    public void rearrangeTree(Node node){// post order traversal
-            for(Node each : node.children){
-                if (each.name.equals("ifStatement")|each.name.equals("whileStatement")) {
-                    Node boolOp = each.children.get(1);
-                    boolOp.children.add(each.children.get(0)); //Add child 0 to child of child 1
-                    boolOp.children.add(each.children.get(2)); //Add child 2 to child of child 1
-                    each.children.get(0).parent = boolOp; //assign the parent of child 0 to be child 1
-                    each.children.get(2).parent = boolOp; //assign the parent of child 2 to be child 1
-                    each.children.remove(2);//remove the children
-                    each.children.remove(0);
-                }
-                rearrangeTree(each);
-            }
-    }
+//    public void rearrangeTree(Node node){// post order traversal
+//            for(Node each : node.children){
+//                if (each.name.equals("ifStatement")|each.name.equals("whileStatement")) {
+//                    Node boolOp = each.children.get(1);
+//                    boolOp.children.add(each.children.get(0)); //Add child 0 to child of child 1
+//                    boolOp.children.add(each.children.get(2)); //Add child 2 to child of child 1
+//                    each.children.get(0).parent = boolOp; //assign the parent of child 0 to be child 1
+//                    each.children.get(2).parent = boolOp; //assign the parent of child 2 to be child 1
+//                    each.children.remove(2);//remove the children
+//                    each.children.remove(0);
+//                }
+//                rearrangeTree(each);
+//            }
+//    }
 
 }
