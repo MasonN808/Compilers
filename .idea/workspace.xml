@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/semanticTests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeAST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeAST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,13 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00103" summary="-Generalized to token input&#10;-Added addNodeAsStringList() method to print list of expressions for visualization of AST">
-      <created>1649275428323</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1649275428323</updated>
     </task>
     <task id="LOCAL-00104" summary="-Added matchValues() Hash set and implemented it&#10;-Added exprList variable to create list of expression for printing">
       <created>1649275494198</created>
@@ -441,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649809992691</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="- Trying to fix issues with AST">
+      <created>1649825659998</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1649825659998</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -469,7 +465,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added more error exceptions" />
     <MESSAGE value="- Start of debugging" />
     <MESSAGE value="- Working out nullpointer bugs" />
     <MESSAGE value="- Added token attribute to node in AST for expressions" />
@@ -494,6 +489,7 @@
     <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
     <MESSAGE value="- Edited more detailed error messages" />
     <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
+    <MESSAGE value="- Trying to fix issues with AST" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Trying to fix issues with AST" />
   </component>
 </project>

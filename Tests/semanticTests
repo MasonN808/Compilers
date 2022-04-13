@@ -227,8 +227,9 @@ z = 4 + false
 /* Program 15 */
 /* This should not work with type mismatch and undeclared*/
 {
-z = 4 + false
-x = 4 + 4
+if(true == (false == ("a" != "b"))){
+int x
+}
 y = (true == (false == ("a" != "b")))
 q = ("true" == (false == ("a" != "b")))
 }$
