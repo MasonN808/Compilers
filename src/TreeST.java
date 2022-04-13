@@ -193,7 +193,7 @@ public class TreeST {
 
             case ("ifStatement"), ("whileStatement"):
                 Node expr = node.children.get(0);
-                assignedKey = expr.children.get(0);
+                assignedKey = expr.children.get(0); //could be Key or a value
                 assignedValue = expr.children.get(1);
 
                 foundKey = false;

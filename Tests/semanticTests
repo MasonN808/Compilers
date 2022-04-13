@@ -51,7 +51,7 @@
         x = 1 + 2 + 3
           y = 6 + 7
           p = 1
-          o = 9 + 8
+          o = 9 + 8 + true
           w = 4 + 5 + 0
       }
 
@@ -200,12 +200,16 @@ boolean z
 z = ("true" == (false == ("a" != "b")))
 }$
 
+
+
 /* Program 12 */
 /* This shouldn't work with type mismatch */
 {
 int z
 z = (true == (false == ("a" != "b")))
 }$
+
+
 
 /* Program 13 */
 /* This should work without type mismatch */
@@ -218,6 +222,15 @@ z = (true == (false == ("a" != "b")))
 /* This should not work with type mismatch and undeclared*/
 {
 z = 4 + false
+}$
+
+/* Program 15 */
+/* This should not work with type mismatch and undeclared*/
+{
+z = 4 + false
+x = 4 + 4
+y = (true == (false == ("a" != "b")))
+q = ("true" == (false == ("a" != "b")))
 }$
 
 

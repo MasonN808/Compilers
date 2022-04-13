@@ -137,6 +137,7 @@ public class AbstractSyntaxTree {
             ast.addNode("branch", "printStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.PRINT);
             match(Compiler808.Grammar.L_PARENTH);
+            resetPointers();
             parseExprPrint();
             match(Compiler808.Grammar.R_PARENTH);
             ast.moveUp();
@@ -152,23 +153,14 @@ public class AbstractSyntaxTree {
 
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.DIGIT){
                 isInt = true;
-//                if (isString | !isBool | isId){
-//                    isMixed = true;
-//                }
                 parseIntExpr();
             }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.QUOTE){
                 isString = true;
-//                if (isInt | isBool | isId){
-//                    isMixed = true;
-//                }
                 parseStringExpr();
             }
             else if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE){
                 isBool = true;
-//                if (isString & isInt | isId & isString | isInt & isId){
-//                    isMixed = true;
-//                }
                 parseBooleanExpr();
             }
             else {
@@ -182,6 +174,7 @@ public class AbstractSyntaxTree {
                 resetPointers();
             }
             else if (!exprList.isEmpty() & isId){
+                System.out.println(tokenStream.get(getIndex()).s);
                 ast.addNodeAsStringList("leaf", "ID", exprList, tokenStream.get(getIndex()));
                 exprList.clear(); //Clear the arrayList of strings
                 resetPointers();
@@ -201,6 +194,7 @@ public class AbstractSyntaxTree {
                 exprList.clear(); //Clear the arrayList of strings
                 resetPointers();
             }
+            resetPointers();
         }
     }
 
