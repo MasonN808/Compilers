@@ -26,6 +26,7 @@ public class AbstractSyntaxTree {
             Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE));
     public static boolean foundError = false;
     public static ArrayList<String> exprList = new ArrayList<>();
+    public static ArrayList<String> exprListTemp = new ArrayList<>();
 
 
     public boolean isInt = false;
@@ -142,6 +143,7 @@ public class AbstractSyntaxTree {
             match(Compiler808.Grammar.L_PARENTH);
             resetPointers();
             parseExprPrint();
+            createLeafs();
             match(Compiler808.Grammar.R_PARENTH);
             ast.moveUp();
         }
@@ -168,32 +170,97 @@ public class AbstractSyntaxTree {
                 isId = true;
                 parseId();
             }
-//            if (!inAssignment) {
-                if (!exprList.isEmpty() & isMixed) {
-                    ast.addNodeAsStringList("leaf", "mixedExpr", exprList, tokenStream.get(getIndex()));
-                    exprList.clear(); //Clear the arrayList of strings
-                    resetPointers();
-                } else if (!exprList.isEmpty() & isId) {
-                    ast.addNodeAsStringList("leaf", "ID", exprList, tokenStream.get(getIndex()));
-                    exprList.clear(); //Clear the arrayList of strings
-                    resetPointers();
-                } else if (!exprList.isEmpty() & isInt) {
-                    ast.addNodeAsStringList("leaf", "intExpr", exprList, tokenStream.get(getIndex()));
-                    exprList.clear(); //Clear the arrayList of strings
-                    resetPointers();
-                } else if (!exprList.isEmpty() & isString) {
-                    ast.addNodeAsStringList("leaf", "stringExpr", exprList, tokenStream.get(getIndex()));
-                    exprList.clear(); //Clear the arrayList of strings
-                    resetPointers();
-                } else if (!exprList.isEmpty() & isBool) {
-                    ast.addNodeAsStringList("leaf", "boolExpr", exprList, tokenStream.get(getIndex()));
-                    exprList.clear(); //Clear the arrayList of strings
-                    resetPointers();
-                }
-                resetPointers();
-//            }
+            createLeafs();
         }
     }
+
+    public void createLeafs(){
+        if (!exprList.isEmpty() & isMixed) {
+            ast.addNodeAsStringList("leaf", "mixedExpr", exprList, tokenStream.get(getIndex()));
+            exprList.clear(); //Clear the arrayList of strings
+            resetPointers();
+        } else if (!exprList.isEmpty() & isId) {
+            ast.addNodeAsStringList("leaf", "ID", exprList, tokenStream.get(getIndex()));
+            exprList.clear(); //Clear the arrayList of strings
+            resetPointers();
+        } else if (!exprList.isEmpty() & isInt) {
+            ast.addNodeAsStringList("leaf", "intExpr", exprList, tokenStream.get(getIndex()));
+            exprList.clear(); //Clear the arrayList of strings
+            resetPointers();
+        } else if (!exprList.isEmpty() & isString) {
+            ast.addNodeAsStringList("leaf", "stringExpr", exprList, tokenStream.get(getIndex()));
+            exprList.clear(); //Clear the arrayList of strings
+            resetPointers();
+        } else if (!exprList.isEmpty() & isBool) {
+            ast.addNodeAsStringList("leaf", "boolExpr", exprList, tokenStream.get(getIndex()));
+            exprList.clear(); //Clear the arrayList of strings
+            resetPointers();
+        }
+        resetPointers();
+    }
+
+    public void parseBooleanExpr(){
+        if (foundError) return;
+        else {
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
+                inBooleanExpr = true; // to concatenate the list of tokens outputted in parseExprPrint
+//                exprList.add(tokenStream.get(getIndex()).s);
+                match(Compiler808.Grammar.L_PARENTH);
+                String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
+                parseExprPrint();
+
+                parseBoolOp();
+
+                String out2 = parseExprReturn();
+                if (!out1.equals(out2)){ // Check if the types being operated on are of the same type
+                    isMixed = true;
+                }
+
+                parseExprPrint();
+                ast.moveUp();
+
+                match(Compiler808.Grammar.R_PARENTH);
+                inBooleanExpr = false;
+
+            } else {
+                if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE) {
+                    exprList.add(tokenStream.get(getIndex()).s);
+                    parseBoolVal();
+                }
+            }
+        }
+    }
+
+
+    public void parseBoolOp(){
+        if (foundError) return;
+        else {
+            ast.addNode("branch", "boolOp", tokenStream.get(getIndex()));
+            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.EQUALITY_OP) {
+                match(Compiler808.Grammar.EQUALITY_OP);
+            } else {
+                match(Compiler808.Grammar.INEQUALITY_OP);
+            }
+//            ast.moveUp();
+        }
+    }
+
+
+    public void parseAssignmentStatement(){
+        if (foundError) return;
+        else {
+            ast.addNode("branch", "assignmentStatement", tokenStream.get(getIndex()));
+            match(Compiler808.Grammar.ID);
+            match(Compiler808.Grammar.ASSIGNMENT_OP);
+//            inAssignment = true;
+            parseExprPrint();
+//            inAssignment = false;
+            ast.moveUp();
+        }
+    }
+
+
+
 
     public void resetPointers(){
         isInt = false;
@@ -279,20 +346,6 @@ public class AbstractSyntaxTree {
         }
     }
 
-    public void parseAssignmentStatement(){
-        if (foundError) return;
-        else {
-            //if (verbose) System.out.println("AST -------> parseAssignmentStatement() ---->  " +  tokenStream.get(getIndex()).s);
-
-            ast.addNode("branch", "assignmentStatement", tokenStream.get(getIndex()));
-            match(Compiler808.Grammar.ID);
-            match(Compiler808.Grammar.ASSIGNMENT_OP);
-//            inAssignment = true;
-            parseExprPrint();
-//            inAssignment = false;
-            ast.moveUp();
-        }
-    }
 
     public void parseVarDecal(){
         if (foundError) return;
@@ -326,59 +379,16 @@ public class AbstractSyntaxTree {
 
             ast.addNode("branch", "ifStatement", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.IF);
+            resetPointers();
             parseBooleanExpr();
             parseBlock();
             ast.moveUp();
         }
     }
 
-    public void parseBooleanExpr(){
-        if (foundError) return;
-        else {
-            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.L_PARENTH) {
-//                inBooleanExpr = true; // to concatenate the list of tokens outputted in parseExprPrint
-                match(Compiler808.Grammar.L_PARENTH);
-                String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
-                parseExprPrint();
-//                if(inAssignment){
-//                    exprList.add(tokenStream.get(getIndex()).s);
-//                }
-                parseBoolOp();
-                String out2 = parseExprReturn();
-                if (!out1.equals(out2)){ // Check if the types being operated on are of the same type
-                    isMixed = true;
-                }
-                parseExprPrint();
 
-                match(Compiler808.Grammar.R_PARENTH);
-            } else {
-                if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE | tokenStream.get(getIndex()).token_type == Compiler808.Grammar.FALSE) {
-                    parseBoolVal();
-                }
-            }
-//            ast.moveUp();
-        }
-    }
 
-    public void parseBoolOp(){
-        if (foundError) return;
-        else {
-            //if (verbose) System.out.println("AST -------> parseBoolOp() ---->  " +  tokenStream.get(getIndex()).s);
-//            if (!inAssignment){
-                ast.addNode("branch", "boolOp", tokenStream.get(getIndex()));
-//            }
-            if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.EQUALITY_OP) {
 
-                match(Compiler808.Grammar.EQUALITY_OP);
-            } else {
-
-                match(Compiler808.Grammar.INEQUALITY_OP);
-            }
-//            if (!inAssignment) {
-                ast.moveUp();
-//            }
-        }
-    }
 
     public void parseBoolVal(){
         if (foundError) return;
@@ -387,10 +397,8 @@ public class AbstractSyntaxTree {
 
 //            ast.addNode("branch", "boolVal", tokenStream.get(getIndex()));
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.TRUE) {
-                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.TRUE);
             } else {
-                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.FALSE);
             }
 //            ast.moveUp();

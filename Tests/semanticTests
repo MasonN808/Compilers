@@ -196,7 +196,7 @@ a = 4 + false
 /* Program 11 */
 /* This should ouput error: type mismatch */
 {
-boolean z
+
 z = ("true" == (false == ("a" != "b")))
 }$
 
@@ -227,11 +227,14 @@ z = 4 + false
 /* Program 15 */
 /* This should not work with type mismatch and undeclared*/
 {
-if(true == (false == ("a" != "b"))){
+v = 5 + false
+q = ("true" == (false == ("a" != "b")))
+
+if("true" == (false == ("a" != "b"))){
 int x
 }
+
 y = (true == (false == ("a" != "b")))
-q = ("true" == (false == ("a" != "b")))
 }$
 
 
