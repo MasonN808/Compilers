@@ -165,7 +165,7 @@ public class Lexer {
 //            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
 //            System.out.println("size of current string: " +  current_string.length());
 
-            // Sets the starting line to be the first instance of a non empty line in the program (advised by Alan 2/15/2022)
+            // Sets the starting line to be the first instance of a non-empty line in the program (advised by Alan 2/15/2022)
             if (!current_string.matches("[ ]") & !current_string.matches("[\\t]") & current_char!=(System.lineSeparator().charAt(0))  & !first_thing_found){
                 first_thing_found = true;
                 current_line = 1;
