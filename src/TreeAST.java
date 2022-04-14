@@ -77,7 +77,7 @@ public class TreeAST {
             System.out.println(traversalResult.concat("[" + node.name + ", " + node.value + "]"));
 //            System.out.println(traversalResult.concat("[" + node.value + "]"));
         } else {
-            if (node.name.equals("boolOp")){
+            if (node.name.equals("boolOp") | node.name.equals("intOp")){
 //                System.out.println(traversalResult.concat("<" + node.name + ", " + node.value + " >"));
                 System.out.println(traversalResult.concat("<" + node.value + ">"));
 

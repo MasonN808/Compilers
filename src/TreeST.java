@@ -86,7 +86,110 @@ public class TreeST {
 
                 break;
             case ("assignmentStatement"):
+                Node assignedID = node.children.get(0);
+                Node assignedExpr = node.children.get(1);
+                // First search for IDs in the boolean expression that may be labelled as mixed
+                // Then search for IDs labelled as IDs and make sure of declarations
+                // Then reassign the IDs as either intExpression, stringExpression, or booleanExpression
+                // Then typeCheck in the boolean expression (locally, unlike in AbstractSyntaxTree.java)
 
+                // Search for IDs in the boolean expression that may be labelled as mixed
+
+                if (assignedExpr.name.equals("mixedExpr")){
+
+                }
+                ArrayList<Node> mixedIdNodes = new ArrayList<>();
+                traverseFind(assignedExpr, mixedIdNodes, "mixedExpr"); // Find nodes labelled as mixedExpr and append to ArrayList()
+//                for (Node i: mixedIdNodes){
+//                    System.out.println(i.value);
+//                }
+                ScopeNode tempCurrentScope = currentScope;
+                for (Node mixedIdNode: mixedIdNodes){ // This only catches IDs that are in some scope; if undeclared, will output undeclared ERROR
+                    boolean foundID = false;
+                    if (tempCurrentScope.hashTable.get(mixedIdNode.value) == null){ //If can't find ID in current scope
+                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                        while (tempCurrentScope != null & !foundID) {
+                            if (tempCurrentScope.hashTable.get(mixedIdNode.value) != null) {
+                                foundID = true; // Found key in a different scope (we use this key for assignment
+                            } else {
+                                // Go up a scope
+                                tempCurrentScope = tempCurrentScope.prev;
+                            }
+                        }
+                        if (!foundID) {
+                            mixedIdNodes.remove(mixedIdNode); // remove the nodes with mixedExpr as their name since not IDs
+                        }
+                    }
+                }
+
+                // We should get an ArrayList of just IdNodes with mixedExpr as their names here but are actually IDs declared in some valid scope
+
+                // First search for IDs in the boolean expression since they may be labelled as mixed
+                ArrayList<Node> idNodes = new ArrayList<>();
+                traverseFind(assignedExpr, idNodes, "ID"); //Finds all nodes with name=="ID" and appends to an ArrayList()
+
+                // Check if all IDs in idNodes are in current scope or outer scope; else, output undeclared ERROR
+                tempCurrentScope = currentScope;
+                for (Node i: idNodes){
+                    boolean foundID = false;
+                    if (tempCurrentScope.hashTable.get(i.value) == null){ //If can't find ID in current scope
+                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                        while (tempCurrentScope != null & !foundID) {
+                            if (tempCurrentScope.hashTable.get(i.value) != null) {
+                                foundID = true; // Found key in a different scope (we use this key for assignment
+                            } else {
+                                // Go up a scope
+                                tempCurrentScope = tempCurrentScope.prev;
+                            }
+                        }
+                        if (!foundID) {
+                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + i.value + "] at line " +
+                                    i.token.line_number + ", char " + i.token.character_number);
+                            numErrors = numErrors + 1;
+                        }
+                    }
+                }
+                tempCurrentScope = currentScope;
+                // Append the two arraylists of IDs
+                idNodes.addAll(mixedIdNodes); //Append all of mixedIdNodes into idNodes // ALL of these IDs are in some scope
+                // Rename each idNode with respect to how they're declared
+                for (Node idNode: idNodes){ // We can get rid of foundID since we know its in a scope
+                    // Check if current/previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+                    while (tempCurrentScope != null) {
+                        if (tempCurrentScope.hashTable.get(idNode.value) != null) {
+                            String declaredType = tempCurrentScope.hashTable.get(idNode.value).type;
+                            switch (declaredType){ // Redefine their names with respect to what type the ID was declared as
+                                case ("int"):
+                                    idNode.name = "intExpr";
+                                case ("string"):
+                                    idNode.name = "stringExpr";
+                                case ("boolean"):
+                                    idNode.name = "boolExpr";
+                            }
+                        } else {
+                            // Go up a scope
+                            tempCurrentScope = tempCurrentScope.prev;
+                        }
+                    }
+                }
+
+                // At this point, we should have a subtree with no ID and possibly some mixed Expr that are actually mixed or possibly mixed due to ID comparison.
+
+                // Do a pseudo parse using depth-first post-order traversal for the branch to see if anymore mixed Expressions
+                // If found a Node, output type mismatch
+                Node testMixed = postOrderFindIsMixed(assignedExpr, "", null);
+                if (testMixed != null){
+                    if (testMixed.name.equals("ID")){ // In the case of an undeclared identifier
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
+                                testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect an undeclared identifier");
+                        numErrors = numErrors + 1;
+                    }
+                    else {
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
+                                testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect [" + testMixed.name + "]");
+                        numErrors = numErrors + 1;
+                    }
+                }
 
 
 //                Node assignedKey = node.children.get(0);
@@ -151,7 +254,7 @@ public class TreeST {
 //                System.out.println(printKey.value);
                 boolean foundKey = false;
                 // TODO: Maybe make this it's own method
-                ScopeNode tempCurrentScope = currentScope;
+                tempCurrentScope = currentScope;
                 if (tempCurrentScope.hashTable.get(printKey.value) == null) { // if identifier is undeclared in current scope
                     // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
                     while (tempCurrentScope != null & !foundKey) {
@@ -198,18 +301,14 @@ public class TreeST {
 
             case ("ifStatement"), ("whileStatement"):
                 Node expr = node.children.get(0);
-//                assignedKey = expr.children.get(0); //could be Key or a value //This is NOT general enough
-//                assignedValue = expr.children.get(1);// and so is this
                 // First search for IDs in the boolean expression that may be labelled as mixed
                 // Then search for IDs labelled as IDs and make sure of declarations
                 // Then reassign the IDs as either intExpression, stringExpression, or booleanExpression
                 // Then typeCheck in the boolean expression (locally, unlike in AbstractSyntaxTree.java)
 
-
-
                 // Search for IDs in the boolean expression that may be labelled as mixed
 
-                ArrayList<Node> mixedIdNodes = new ArrayList<>();
+                mixedIdNodes = new ArrayList<>();
                 traverseFind(expr, mixedIdNodes, "mixedExpr"); // Find nodes labelled as mixedExpr and append to ArrayList()
 
                 tempCurrentScope = currentScope;
@@ -234,7 +333,7 @@ public class TreeST {
                 // We should get an ArrayList of just IdNodes with mixedExpr as their names here but are actually IDs declared in some valid scope
 
                 // First search for IDs in the boolean expression since they may be labelled as mixed
-                ArrayList<Node> idNodes = new ArrayList<>();
+                idNodes = new ArrayList<>();
                 traverseFind(expr, idNodes, "ID"); //Finds all nodes with name=="ID" and appends to an ArrayList()
 
                 // Check if all IDs in idNodes are in current scope or outer scope; else, output undeclared ERROR
@@ -286,11 +385,18 @@ public class TreeST {
 
                 // Do a pseudo parse using depth-first post-order traversal for the branch to see if anymore mixed Expressions
                 // If found a Node, output type mismatch
-                Node testMixed = postOrderFindIsMixed(expr, "", null);
+                testMixed = postOrderFindIsMixed(expr, "", null);
                 if (testMixed != null){
-                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
-                            testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect [" + testMixed.name + "]");
-                    numErrors = numErrors + 1;
+                    if (testMixed.name.equals("ID")){ // In the case of an undeclared identifier
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
+                                testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect an undeclared identifier");
+                        numErrors = numErrors + 1;
+                    }
+                    else {
+                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
+                                testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect [" + testMixed.name + "]");
+                        numErrors = numErrors + 1;
+                    }
                 }
 
 //                foundKey = false;
@@ -479,7 +585,7 @@ public class TreeST {
             String leftChildType = node.children.get(0).name;
 
             isMixed = postOrderFindIsMixed(node.children.get(0), leftChildType, isMixed); // left child
-            System.out.println(leftChildType + "----" + rightChildType);
+//            System.out.println(leftChildType + "----" + rightChildType);
             if (!leftChildType.equals(rightChildType)){
 //                type = "isMixed";
 //                node.children.get(0).name = type;

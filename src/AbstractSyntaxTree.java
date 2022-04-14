@@ -228,13 +228,13 @@ public class AbstractSyntaxTree {
                 inBooleanExpr = true; // to concatenate the list of tokens outputted in parseExprPrint
 //                exprList.add(tokenStream.get(getIndex()).s);
                 match(Compiler808.Grammar.L_PARENTH);
-                String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
+//                String out1 = parseExprReturn(); // To check if both sides of Bool Op are of same type
                 parseExpr();
 
                 parseBoolOp();
                 createLeafs(); // Create leaves from previous parseExpr for correct tree arrangement
 
-                String out2 = parseExprReturn();
+//                String out2 = parseExprReturn();
 //                if (!out1.equals(out2)){ // Check if the types being operated on are of the same type
 //                    isMixed = true;
 //                }
@@ -309,14 +309,19 @@ public class AbstractSyntaxTree {
         if (foundError) return;
         else {
             exprList.add(tokenStream.get(getIndex()).s);
+//            ast.addNode("leaf", "intExpr", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.DIGIT);
             if (tokenStream.get(getIndex()).token_type == Compiler808.Grammar.ADDITION_OP) {
+                ast.addNode("branch", "intOp", tokenStream.get(getIndex()));
                 parseIntop();
-                String out1 = parseExprReturn();
-                if (!out1.equals("Int")){
-                    isMixed = true;
-                }
-                parseExprPrint();
+                createLeafs();
+//                String out1 = parseExprReturn();
+//                if (!out1.equals("Int")){
+//                    isMixed = true;
+//                }
+                parseExpr();
+                createLeafs();
+                ast.moveUp();
             }
         }
     }
@@ -324,10 +329,7 @@ public class AbstractSyntaxTree {
     public void parseIntop(){
         if (foundError) return;
         else {
-            //if (verbose) System.out.println("AST -------> parseIntop() ---->  " +  tokenStream.get(getIndex()).s);
-
-//            ast.addNode("branch", "intop");
-            exprList.add(tokenStream.get(getIndex()).s);
+//            exprList.add(tokenStream.get(getIndex()).s);
             match(Compiler808.Grammar.ADDITION_OP);
 //            ast.moveUp();
         }
