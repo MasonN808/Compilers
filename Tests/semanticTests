@@ -240,4 +240,12 @@ print("string")
 print(false)
 }$
 
+/* Program 16 */
+{
+int f
+f = 1
+int x
+x = 3 + 9 + f
+}$
+
 
