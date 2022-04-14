@@ -230,7 +230,7 @@ z = 4 + false
 v = 5 + false
 q = ("true" == (false == ("a" != "b")))
 
-if("true" == (false == ("a" != "b"))){
+if(a == (false == ("a" != "b"))){
 int x
 }
 

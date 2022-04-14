@@ -22,8 +22,7 @@ public class AbstractSyntaxTree {
     private static final Set<Compiler808.Grammar> statementListValues = new HashSet<Compiler808.Grammar>(Arrays.asList(
             Compiler808.Grammar.PRINT, Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE/*CASE: VarDecal*/,
             Compiler808.Grammar.WHILE, Compiler808.Grammar.IF, Compiler808.Grammar.L_BRACE/*CASE: Block*/));
-    private static final Set<Compiler808.Grammar> matchValues = new HashSet<Compiler808.Grammar>(Arrays.asList(
-            Compiler808.Grammar.ID, Compiler808.Grammar.VARIABLE_TYPE));
+    private static final Set<Compiler808.Grammar> matchValues = new HashSet<Compiler808.Grammar>(Arrays.asList(Compiler808.Grammar.VARIABLE_TYPE));
     public static boolean foundError = false;
     public static ArrayList<String> exprList = new ArrayList<>();
     public static ArrayList<String> exprListTemp = new ArrayList<>();
@@ -273,6 +272,7 @@ public class AbstractSyntaxTree {
         if (foundError) return;
         else {
             ast.addNode("branch", "assignmentStatement", tokenStream.get(getIndex()));
+            ast.addNode("leaf", "ID", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.ID);
             match(Compiler808.Grammar.ASSIGNMENT_OP);
 //            inAssignment = true;
@@ -376,7 +376,9 @@ public class AbstractSyntaxTree {
             //if (verbose) System.out.println("AST -------> parseVarDecal() ---->  " +  tokenStream.get(getIndex()).s);
 
             ast.addNode("branch", "varDecal", tokenStream.get(getIndex()));
+
             match(Compiler808.Grammar.VARIABLE_TYPE);
+            ast.addNode("leaf", "ID", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.ID);
             ast.moveUp();
         }
@@ -434,6 +436,8 @@ public class AbstractSyntaxTree {
             //if (verbose) System.out.println("AST -------> parseId() ---->  " +  tokenStream.get(getIndex()).s);
 
 //            ast.addNode("branch", "id", tokenStream.get(getIndex()));
+            exprList.add(tokenStream.get(getIndex()).s);
+//            ast.addNode("leaf", "ID", tokenStream.get(getIndex()));
             match(Compiler808.Grammar.ID);
 //            ast.moveUp();
         }

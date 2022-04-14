@@ -86,6 +86,9 @@ public class TreeST {
 
                 break;
             case ("assignmentStatement"):
+
+
+
 //                Node assignedKey = node.children.get(0);
 //                Node assignedValue = node.children.get(1);
 ////                System.out.println("DEBUG: " + assignedValue.name);
@@ -289,9 +292,6 @@ public class TreeST {
                             testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect [" + testMixed.name + "]");
                     numErrors = numErrors + 1;
                 }
-
-
-
 
 //                foundKey = false;
 //                tempCurrentScope = currentScope;
