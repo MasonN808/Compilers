@@ -254,9 +254,9 @@ public class TreeST {
 
                     if (foundKey){
                         if (!checkAssignmentTypesExpr(tempCurrentScope.hashTable.get(assignedID.value).type, assignedExprTraverse)){
-                            System.out.println(tempCurrentScope.hashTable.get(assignedID.value).type);
-                            System.out.println(assignedExprTraverse.value);
-                            System.out.println(tempCurrentScope.hashTable.get(assignedID.value).token.s);
+//                            System.out.println(tempCurrentScope.hashTable.get(assignedID.value).type);
+//                            System.out.println(assignedExprTraverse.value);
+//                            System.out.println(tempCurrentScope.hashTable.get(assignedID.value).token.s);
                             System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedID.value).type + "] at " +
                                     tempCurrentScope.hashTable.get(assignedID.value).token.line_number + ", char " + tempCurrentScope.hashTable.get(assignedID.value).token.character_number);
                             numErrors = numErrors + 1;
