@@ -165,7 +165,7 @@ public class Lexer {
 //            System.out.println("Current_String: " + current_string + ", " + current_index);  // DEBUGGING
 //            System.out.println("size of current string: " +  current_string.length());
 
-            // Sets the starting line to be the first instance of a non empty line in the program (advised by Alan 2/15/2022)
+            // Sets the starting line to be the first instance of a non-empty line in the program (advised by Alan 2/15/2022)
             if (!current_string.matches("[ ]") & !current_string.matches("[\\t]") & current_char!=(System.lineSeparator().charAt(0))  & !first_thing_found){
                 first_thing_found = true;
                 current_line = 1;
@@ -550,7 +550,7 @@ public class Lexer {
 
                         AbstractSyntaxTree abstractST = new AbstractSyntaxTree(tokenStream, verbose);
                         abstractST.parseProgram();
-                        abstractST.rearrangeTree(abstractST.ast.root); //Rearrange tree for boolOp rearrangement
+//                        abstractST.rearrangeTree(abstractST.ast.root); //Rearrange tree for boolOp rearrangement
                         // Assume parser made CST successfully, so don't have to check for errors
                         // For AST
                         System.out.println("------------------------------------------------------------");
@@ -585,7 +585,7 @@ public class Lexer {
                             discovered = new boolean[treeST.scopeNum]; //make sure all values are false
                             // Header of table
                             String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope", "Line Number"};
-                            System.out.format("%4s%15s%15s%15s%15s%15s%n", row);
+                            System.out.format("%4s%10s%20s%15s%15s%15s%n", row);
                             // Do a Breadth first search on symbol tree
                             treeST.BFS(treeST, treeST.root, discovered);
                             System.out.println("------------------------------------------------------------");

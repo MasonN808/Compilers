@@ -6,7 +6,7 @@
  boolean b
  {
  string c
- a = 5
+ a = 5 +6 + 0
  b = true /* no comment */
  c = "inta"
  print(c)
@@ -51,7 +51,7 @@
         x = 1 + 2 + 3
           y = 6 + 7
           p = 1
-          o = 9 + 8 + true
+          o = 9 + 8 + "jjj"
           w = 4 + 5 + 0
       }
 
@@ -196,7 +196,7 @@ a = 4 + false
 /* Program 11 */
 /* This should ouput error: type mismatch */
 {
-boolean z
+
 z = ("true" == (false == ("a" != "b")))
 }$
 
@@ -227,10 +227,33 @@ z = 4 + false
 /* Program 15 */
 /* This should not work with type mismatch and undeclared*/
 {
-z = 4 + false
-x = 4 + 4
-y = (true == (false == ("a" != "b")))
+v = 5 + 0 + 8 + o
 q = ("true" == (false == ("a" != "b")))
+
+if(a == (false == ("a" != "b"))){
+int x
+}
+
+y = (true == (false == ("a" != "b")))
+print(y)
+print("string")
+print(false)
+}$
+
+/* Program 16 */
+{
+int f
+f = 1
+int x
+x = 3 + 9 + f
+}$
+
+/* Program 17 */
+{
+boolean f
+f = 1
+int x
+x = 3 + 9 + f
 }$
 
 
