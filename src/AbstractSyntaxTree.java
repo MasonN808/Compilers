@@ -236,9 +236,9 @@ public class AbstractSyntaxTree {
                 createLeafs(); // Create leaves from previous parseExpr for correct tree arrangement
 
                 String out2 = parseExprReturn();
-                if (!out1.equals(out2)){ // Check if the types being operated on are of the same type
-                    isMixed = true;
-                }
+//                if (!out1.equals(out2)){ // Check if the types being operated on are of the same type
+//                    isMixed = true;
+//                }
 
                 parseExprPrint();
                 ast.moveUp();

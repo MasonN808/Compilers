@@ -230,11 +230,6 @@ public class TreeST {
 
                 // We should get an ArrayList of just IdNodes with mixedExpr as their names here but are actually IDs declared in some valid scope
 
-
-
-
-
-
                 // First search for IDs in the boolean expression since they may be labelled as mixed
                 ArrayList<Node> idNodes = new ArrayList<>();
                 traverseFind(expr, idNodes, "ID"); //Finds all nodes with name=="ID" and appends to an ArrayList()
@@ -284,9 +279,11 @@ public class TreeST {
                     }
                 }
 
-                // At this point, we should have a subtree with no ID and possibly some mixed Expr that are actually mixed and should be set as ERROR.
+                // At this point, we should have a subtree with no ID and possibly some mixed Expr that are actually mixed or possibly mixed due to ID comparison.
 
-                // Traverse the subtree again and try to find a mixedExpr; if found, output type mismatch error
+                // Do a pseudo parse using depth-first post-order traversal for the branch to see if anymore mixed Expressions
+
+
 
 
 
@@ -443,16 +440,39 @@ public class TreeST {
         return targetNodes;
     }
 
-    public static Node traverseFindReplace(Node node, Node targetNode, String target) { // post order traversal
-        if (node.name.equals(target)){
-            targetNode = node;
-        }
-        for (Node each : node.children) {
-            traverseFindReplace(each, targetNode, target);
-        }
-        return targetNode;
-    }
+    // Do a depth-first post-order traversal to find a target string in subtree and replace it
+    // Outputs an ArrayList of Nodes in the subtree with the target name
+//    public static Node traverseFindReplace(Node node, Node targetNode, String target) { // post order traversal
+//        if (node.name.equals(target)){
+//            targetNode = node;
+//        }
+//        for (Node each : node.children) {
+//            traverseFindReplace(each, targetNode, target);
+//        }
+//        return targetNode;
+//    }
 
+    // Do a depth-first post-order traversal to find pseudo parse for a mixed expression
+    // Outputs an ArrayList of Nodes in the subtree with the target name
+    // This traversal WILL be on a BINARY subtree
+    // We will to the post-order on the right most child since subtree is organized that way
+    public static String postOrderFindIsMixed(Node node, String type, boolean isMixed) { // post order traversal
+        if (node == null) {
+            return "";
+        }
+
+        String rightChildType = node.children.get(1).name; // This should be intExpr,stringExpr,...
+        postOrderFindIsMixed(node.children.get(1), rightChildType, isMixed); // right child
+
+
+        String leftChildType = node.children.get(0).name;
+        if (!leftChildType.equals(rightChildType)){
+            type = "isMixed";
+            isMixed = true;
+        }
+        postOrderFindIsMixed(node.children.get(0), type, isMixed); // left child
+        return type;
+    }
 
 
     // Check for warnings using BFS
