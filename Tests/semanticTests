@@ -227,7 +227,7 @@ z = 4 + false
 /* Program 15 */
 /* This should not work with type mismatch and undeclared*/
 {
-v = 5 + 0+8+o
+v = 5 + 0 + 8 + o
 q = ("true" == (false == ("a" != "b")))
 
 if(a == (false == ("a" != "b"))){
@@ -243,6 +243,14 @@ print(false)
 /* Program 16 */
 {
 int f
+f = 1
+int x
+x = 3 + 9 + f
+}$
+
+/* Program 17 */
+{
+boolean f
 f = 1
 int x
 x = 3 + 9 + f

@@ -181,6 +181,20 @@ public class TreeST {
                         }
                     }
 
+//                    // Change all boolOps to boolExpr
+//                    ArrayList<Node> boolOps = new ArrayList<>();
+//                    traverseFind(assignedExpr, boolOps, "boolOp");
+//                    for (Node boolOp: boolOps){
+//                        boolOp.name = "boolExpr";
+//                    }
+//
+//                    // Change all intOps to intExpr
+//                    ArrayList<Node> intOps = new ArrayList<>();
+//                    traverseFind(assignedExpr, intOps, "intOp");
+//                    for (Node boolOp: boolOps){
+//                        boolOp.name = "intExpr";
+//                    }
+
                     Node testMixed = postOrderFindIsMixed(assignedExpr, "", null);
 
 //                    for (Node idNode: idNodes){
@@ -242,8 +256,9 @@ public class TreeST {
                         if (!checkAssignmentTypesExpr(tempCurrentScope.hashTable.get(assignedID.value).type, assignedExprTraverse)){
                             System.out.println(tempCurrentScope.hashTable.get(assignedID.value).type);
                             System.out.println(assignedExprTraverse.value);
+                            System.out.println(tempCurrentScope.hashTable.get(assignedID.value).token.s);
                             System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedID.value).type + "] at " +
-                                    assignedExprTraverse.token.line_number + ", char " + assignedExprTraverse.token.character_number);
+                                    tempCurrentScope.hashTable.get(assignedID.value).token.line_number + ", char " + tempCurrentScope.hashTable.get(assignedID.value).token.character_number);
                             numErrors = numErrors + 1;
                         }
                         else { // key found
@@ -434,7 +449,7 @@ public class TreeST {
                     }
                 }
 
-                if (foundUndeclared){
+                if (!foundUndeclared){
                     tempCurrentScope = currentScope;
                     // Append the two arraylists of IDs
                     idNodes.addAll(mixedIdNodes); //Append all of mixedIdNodes into idNodes // ALL of these IDs are in some scope
@@ -465,7 +480,7 @@ public class TreeST {
                     }
 
                     // At this point, we should have a subtree with no ID and possibly some mixed Expr that are actually mixed or possibly mixed due to ID comparison.
-
+                    // If there were noe IDs, we're here by default
                     // Do a pseudo parse using depth-first post-order traversal for the branch to see if anymore mixed Expressions
                     // If found a Node, output type mismatch
                     testMixed = postOrderFindIsMixed(expr, "", null);
@@ -656,6 +671,7 @@ public class TreeST {
     public static Node postOrderFindIsMixed(Node node, String type, Node isMixed) { // post order traversal
         if (node.name.equals("boolOp") | node.name.equals("intOp")){
             assignedExprTraverse = node.children.get(0);
+//            node.name = "boolExpr";
         }
         else {
             assignedExprTraverse = node;
@@ -666,26 +682,31 @@ public class TreeST {
                 return null;
             }
 
+//            if (node.name.equals("boolOp") | node.name.equals("intOp")){ //move name up
+////                node.name = node.children.get(1).name;
+////                rightChildType = node.name;
+//            }
+
             String rightChildType = node.children.get(1).name; // This should be intExpr,stringExpr,...
 //            System.out.println("rightchild: " + rightChildType);
             isMixed = postOrderFindIsMixed(node.children.get(1), rightChildType, isMixed); // right child
 
-            if (node.name.equals("boolOp") | node.name.equals("intOp")){ //move name up
-                node.name = node.children.get(1).name;
-                rightChildType = node.name;
-            }
+
 
             String leftChildType = node.children.get(0).name;
 //            System.out.println("leftchild: " + leftChildType);
 
             isMixed = postOrderFindIsMixed(node.children.get(0), leftChildType, isMixed); // left child
-//            System.out.println(leftChildType + "----" + rightChildType);
-            if (!leftChildType.equals(rightChildType)){
+//            System.out.println(leftChildType + ":" + node.children.get(0).value + "----"+ node.children.get(1).value + ":" + rightChildType);
+            if (!leftChildType.equals(rightChildType) & !rightChildType.equals("boolOp") & !rightChildType.equals("intOp")){
 //                type = "isMixed";
 //                node.children.get(0).name = type;
                 isMixed = node.children.get(0);
             }
-            // get a random child's Type for type checking in assignment Statement since they'll be all the same (maybe)
+            else{ // This fixes the isMixed bug where it make the assigned value mixed eventhough it shouldn't be
+                leftChildType = "boolExpr";
+                rightChildType = "boolExpr";
+            }
 
             return isMixed;
         }
