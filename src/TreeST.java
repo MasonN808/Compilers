@@ -86,69 +86,69 @@ public class TreeST {
 
                 break;
             case ("assignmentStatement"):
-                Node assignedKey = node.children.get(0);
-                Node assignedValue = node.children.get(1);
-//                System.out.println("DEBUG: " + assignedValue.name);
-//                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
-                boolean foundKey = false;
-                ScopeNode tempCurrentScope = currentScope;
-                //Traverse subtree to find mixed expressions or type mismatch
-                Node isMixed = traverseMixed(assignedValue, null); //set the isMixed Node to null
-                if (isMixed != null){ // the assigned value is of mixed types
-                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in assigned expression at " +
-                            isMixed.token.line_number + ", char " + isMixed.token.character_number);
-                    numErrors = numErrors + 1;
-                }
-                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope try an outer scope
-                    while (tempCurrentScope != null & !foundKey) {
-                        if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
-//                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
-                            foundKey = true; // Found key in a different scope (we use this key for assignment
-                        } else {
-                            tempCurrentScope = tempCurrentScope.prev;
-                        }
-                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
-                    }
-                    if (!foundKey) {
-                        if (assignedKey.name.equals("ID")){
-                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + assignedKey.value + "] at line " +
-                                    assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
-                            numErrors = numErrors + 1;
-                        }
-                    }
-                } else {
-                    foundKey = true;
-                }
-                // Debugging checking assignment mismatch
-//                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
-//                System.out.println("DEBUG: " + assignedValue.value);
-                if (foundKey){
-                    if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
-                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedKey.value).type + "] at " +
-                                assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
-                        numErrors = numErrors + 1;
-                    }
-                    else { // key found
-                        // First get original details from hashtable of key
-                        // tempCurrentScope is the scope the key value is in
-                        String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
-                        boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
-                        boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
-                        Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
-                        // Then assign accordingly
-                        if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                            idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
-                            tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
-                        }
-                    }
-                }
+//                Node assignedKey = node.children.get(0);
+//                Node assignedValue = node.children.get(1);
+////                System.out.println("DEBUG: " + assignedValue.name);
+////                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
+//                boolean foundKey = false;
+//                ScopeNode tempCurrentScope = currentScope;
+//                //Traverse subtree to find mixed expressions or type mismatch
+//                Node isMixed = traverseFind(assignedValue, null); //set the isMixed Node to null
+//                if (isMixed != null){ // the assigned value is of mixed types
+//                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in assigned expression at " +
+//                            isMixed.token.line_number + ", char " + isMixed.token.character_number);
+//                    numErrors = numErrors + 1;
+//                }
+//                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope try an outer scope
+//                    while (tempCurrentScope != null & !foundKey) {
+//                        if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
+////                            tempCurrentScope = tempCurrentScope.prev; //redefine tempCurrentScope to be used later
+//                            foundKey = true; // Found key in a different scope (we use this key for assignment
+//                        } else {
+//                            tempCurrentScope = tempCurrentScope.prev;
+//                        }
+//                        // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+//                    }
+//                    if (!foundKey) {
+//                        if (assignedKey.name.equals("ID")){
+//                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + assignedKey.value + "] at line " +
+//                                    assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
+//                            numErrors = numErrors + 1;
+//                        }
+//                    }
+//                } else {
+//                    foundKey = true;
+//                }
+//                // Debugging checking assignment mismatch
+////                System.out.println("DEBUG: " + tempCurrentScope.hashTable.get(assignedKey.value).type);
+////                System.out.println("DEBUG: " + assignedValue.value);
+//                if (foundKey){
+//                    if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
+//                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedKey.value).type + "] at " +
+//                                assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+//                        numErrors = numErrors + 1;
+//                    }
+//                    else { // key found
+//                        // First get original details from hashtable of key
+//                        // tempCurrentScope is the scope the key value is in
+//                        String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
+//                        boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
+//                        boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
+//                        Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
+//                        // Then assign accordingly
+//                        if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
+//                            idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
+//                            tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
+//                        }
+//                    }
+//                }
                 break;
             case ("printStatement"):
                 Node printKey = node.children.get(0);
 //                System.out.println(printKey.value);
-                foundKey = false;
+                boolean foundKey = false;
                 // TODO: Maybe make this it's own method
-                tempCurrentScope = currentScope;
+                ScopeNode tempCurrentScope = currentScope;
                 if (tempCurrentScope.hashTable.get(printKey.value) == null) { // if identifier is undeclared in current scope
                     // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
                     while (tempCurrentScope != null & !foundKey) {
@@ -282,66 +282,72 @@ public class TreeST {
                 // At this point, we should have a subtree with no ID and possibly some mixed Expr that are actually mixed or possibly mixed due to ID comparison.
 
                 // Do a pseudo parse using depth-first post-order traversal for the branch to see if anymore mixed Expressions
+                // If found a Node, output type mismatch
+                Node testMixed = postOrderFindIsMixed(expr, "", null);
+                if (testMixed != null){
+                    System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
+                            testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect [" + testMixed.name + "]");
+                    numErrors = numErrors + 1;
+                }
 
 
 
 
-
-                foundKey = false;
-                tempCurrentScope = currentScope;
-                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
-                    // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
-                    while (tempCurrentScope != null & !foundKey) {
-                        if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
-                            foundKey = true; // Found key in a different scope (we use this key for assignment
-                        } else {
-                            tempCurrentScope = tempCurrentScope.prev;
-                        }
-                    }
-                    if (!foundKey) {
-                        if (assignedKey.name.equals("ID")){
-                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + assignedKey.value + "] at line " +
-                                    assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
-                            numErrors = numErrors + 1;
-                        }
-                        else{
-//                            System.out.println(assignedKey.name);
-//                            if (!checkAssignmentTypesExpr(assignedKey, assignedValue)){
-//                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Did you mean for an [" + assignedKey.name + "] at " +
-//                                        assignedValue.token.line_number + ", char " + assignedValue.token.character_number + "?");
+//                foundKey = false;
+//                tempCurrentScope = currentScope;
+//                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
+//                    // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
+//                    while (tempCurrentScope != null & !foundKey) {
+//                        if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
+//                            foundKey = true; // Found key in a different scope (we use this key for assignment
+//                        } else {
+//                            tempCurrentScope = tempCurrentScope.prev;
+//                        }
+//                    }
+//                    if (!foundKey) {
+//                        if (assignedKey.name.equals("ID")){
+//                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + assignedKey.value + "] at line " +
+//                                    assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
+//                            numErrors = numErrors + 1;
+//                        }
+//                        else{
+////                            System.out.println(assignedKey.name);
+////                            if (!checkAssignmentTypesExpr(assignedKey, assignedValue)){
+////                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Did you mean for an [" + assignedKey.name + "] at " +
+////                                        assignedValue.token.line_number + ", char " + assignedValue.token.character_number + "?");
+////                                numErrors = numErrors + 1;
+////                            }
+//                            isMixed = traverseFind(assignedValue, null, "mixedExpr"); //set the isMixed Node to null
+//                            if (isMixed != null){ // the assigned value is of mixed types
+//                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
+//                                        isMixed.token.line_number + ", char " + isMixed.token.character_number);
 //                                numErrors = numErrors + 1;
 //                            }
-                            isMixed = traverseFind(assignedValue, null, "mixedExpr"); //set the isMixed Node to null
-                            if (isMixed != null){ // the assigned value is of mixed types
-                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
-                                        isMixed.token.line_number + ", char " + isMixed.token.character_number);
-                                numErrors = numErrors + 1;
-                            }
-                        }
-                    }
-                } else {
-                    foundKey = true;
-                }
-                if (foundKey){
-                    if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
-                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedKey.value).type + "] at " +
-                                assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
-                        numErrors = numErrors + 1;
-                    }
-                    else { // key found
-                        // First get original details from hashtable of key
-                        // tempCurrentScope is the scope the key value is in
-                        String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
-                        boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
-                        boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
-                        Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
-                        // Then assign accordingly
-                        if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                            idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
-                            tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
-                        }
-                    }
-                }
+//                        }
+//                    }
+//                } else {
+//                    foundKey = true;
+//                }
+//                if (foundKey){
+//                    if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
+//                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedKey.value).type + "] at " +
+//                                assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
+//                        numErrors = numErrors + 1;
+//                    }
+//                    else { // key found
+//                        // First get original details from hashtable of key
+//                        // tempCurrentScope is the scope the key value is in
+//                        String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
+//                        boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
+//                        boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
+//                        Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
+//                        // Then assign accordingly
+//                        if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
+//                            idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
+//                            tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
+//                        }
+//                    }
+//                }
                 break;
             default:
                //Everything else that needs nothing
@@ -456,22 +462,33 @@ public class TreeST {
     // Outputs an ArrayList of Nodes in the subtree with the target name
     // This traversal WILL be on a BINARY subtree
     // We will to the post-order on the right most child since subtree is organized that way
-    public static String postOrderFindIsMixed(Node node, String type, boolean isMixed) { // post order traversal
-        if (node == null) {
-            return "";
+    public static Node postOrderFindIsMixed(Node node, String type, Node isMixed) { // post order traversal
+        if (isMixed == null){
+            if (node.children.isEmpty()) {
+                return null;
+            }
+
+            String rightChildType = node.children.get(1).name; // This should be intExpr,stringExpr,...
+            isMixed = postOrderFindIsMixed(node.children.get(1), rightChildType, isMixed); // right child
+
+            if (node.name.equals("boolOp")){ //move name up
+                node.name = node.children.get(1).name;
+                rightChildType = node.name;
+            }
+
+            String leftChildType = node.children.get(0).name;
+
+            isMixed = postOrderFindIsMixed(node.children.get(0), leftChildType, isMixed); // left child
+            System.out.println(leftChildType + "----" + rightChildType);
+            if (!leftChildType.equals(rightChildType)){
+//                type = "isMixed";
+//                node.children.get(0).name = type;
+                isMixed = node.children.get(0);
+            }
+            return isMixed;
         }
+        else return isMixed;
 
-        String rightChildType = node.children.get(1).name; // This should be intExpr,stringExpr,...
-        postOrderFindIsMixed(node.children.get(1), rightChildType, isMixed); // right child
-
-
-        String leftChildType = node.children.get(0).name;
-        if (!leftChildType.equals(rightChildType)){
-            type = "isMixed";
-            isMixed = true;
-        }
-        postOrderFindIsMixed(node.children.get(0), type, isMixed); // left child
-        return type;
     }
 
 

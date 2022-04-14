@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00107" summary="-Edited to print the boolOp in the branch of AST">
-      <created>1649277343914</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1649277343914</updated>
     </task>
     <task id="LOCAL-00108" summary="-Start of test cases for semantic Analysis">
       <created>1649278105386</created>
@@ -441,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649889055185</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST">
+      <created>1649898662309</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1649898662309</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -469,7 +468,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block" />
     <MESSAGE value="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)" />
     <MESSAGE value="- Added some comments" />
     <MESSAGE value="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)" />
@@ -494,6 +492,7 @@
     <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
     <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
     <MESSAGE value="- Edits to subtree search for mixedExpr" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Edits to subtree search for mixedExpr" />
+    <MESSAGE value="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST" />
   </component>
 </project>
