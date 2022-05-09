@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class TreeST {
@@ -91,10 +90,14 @@ public class TreeST {
                 assignedExprTraverse = null;
                 Node assignedID = node.children.get(0);
                 Node assignedExpr = node.children.get(1);
-                // First search for IDs in the boolean expression that may be labelled as mixed
-                // Then search for IDs labelled as IDs and make sure of declarations
-                // Then reassign the IDs as either intExpression, stringExpression, or booleanExpression
-                // Then typeCheck in the boolean expression (locally, unlike in AbstractSyntaxTree.java)
+                /*
+                    -Pseudo Code
+                        - First search for IDs in the boolean expression that may be labelled as mixed
+                        - Then search for IDs labelled as IDs and make sure of declarations
+                        - Then reassign the IDs as either intExpression, stringExpression, or booleanExpression
+                        - Then typeCheck in the boolean expression (locally, unlike in AbstractSyntaxTree.java)
+                 */
+
 
                 // Search for IDs in the boolean expression that may be labelled as mixed
 

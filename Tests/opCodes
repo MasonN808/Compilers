@@ -1,0 +1,30 @@
+
+{
+    int a
+    a = 3
+    int b
+    b = 4
+    a = b
+    print(a)
+    if (a == b){
+        print(a)
+    }
+}$
+
+
+
+
+{
+    int a
+    a = 1
+    {
+        int a
+        a = 2
+        print(a)
+    }
+    string b
+    b = "alan"
+    if (a == 1) {
+        print(b)
+    }
+}$
