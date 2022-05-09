@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Tests/opCodes" afterDir="false" />
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +25,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="code_gen" />
+        <entry key="$PROJECT_DIR$" value="semantic_analysis" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -105,6 +101,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
+    </task>
+    <task id="LOCAL-00113" summary="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically">
+      <created>1649282405351</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1649282405351</updated>
+    </task>
+    <task id="LOCAL-00114" summary="- Made idDetails for Hashtable of ids in symbol table/tree">
+      <created>1649292273785</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292273785</updated>
+    </task>
+    <task id="LOCAL-00115" summary="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type">
+      <created>1649292393289</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292393289</updated>
+    </task>
+    <task id="LOCAL-00116" summary="- Creating a tree from the AST for the symbol table">
+      <created>1649292447338</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292447338</updated>
     </task>
     <task id="LOCAL-00117" summary="- Minor initializations of files">
       <created>1649292471165</created>
@@ -421,35 +445,7 @@
       <option name="project" value="LOCAL" />
       <updated>1649913134541</updated>
     </task>
-    <task id="LOCAL-00162" summary="- Works great (some adjustments in error statements and line numbers and char numbers need fixing)&#10;- Works in CMD line">
-      <created>1649916777204</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1649916777204</updated>
-    </task>
-    <task id="LOCAL-00163" summary="- Works great (some adjustments in error statements and line numbers and char numbers need fixing)&#10;- Works in CMD line">
-      <created>1649916933599</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1649916933599</updated>
-    </task>
-    <task id="LOCAL-00164" summary="&#10;- Works in CMD line">
-      <created>1649917144247</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1649917144248</updated>
-    </task>
-    <task id="LOCAL-00165" summary="Initialization of Code Gen project">
-      <created>1652072030021</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1652072030021</updated>
-    </task>
-    <option name="localTasksCounter" value="166" />
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,6 +473,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
+    <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
+    <MESSAGE value="- Added line number column to symbol table" />
     <MESSAGE value="- Added warning for declared but uninitialized" />
     <MESSAGE value="- Deleted a ton of nonworking commented out code" />
     <MESSAGE value="- Debugging Line separator issue for MacOS" />
@@ -499,9 +498,6 @@
     <MESSAGE value="- Fixed AST for assignmentStatement" />
     <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
     <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
-    <MESSAGE value="- Works great (some adjustments in error statements and line numbers and char numbers need fixing)&#10;- Works in CMD line" />
-    <MESSAGE value="&#10;- Works in CMD line" />
-    <MESSAGE value="Initialization of Code Gen project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialization of Code Gen project" />
+    <option name="LAST_COMMIT_MESSAGE" value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
   </component>
 </project>
