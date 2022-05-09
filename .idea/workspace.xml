@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="" />
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +28,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="semantic_analysis" />
+        <entry key="$PROJECT_DIR$" value="code_gen" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -98,13 +104,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00115" summary="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type">
-      <created>1649292393289</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1649292393289</updated>
     </task>
     <task id="LOCAL-00116" summary="- Creating a tree from the AST for the symbol table">
       <created>1649292447338</created>
@@ -442,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649916933599</updated>
     </task>
-    <option name="localTasksCounter" value="164" />
+    <task id="LOCAL-00164" summary="&#10;- Works in CMD line">
+      <created>1649917144247</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1649917144248</updated>
+    </task>
+    <option name="localTasksCounter" value="165" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +476,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
     <MESSAGE value="- Added line number column to symbol table" />
     <MESSAGE value="- Added warning for declared but uninitialized" />
     <MESSAGE value="- Deleted a ton of nonworking commented out code" />
@@ -495,6 +500,7 @@
     <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
     <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
     <MESSAGE value="- Works great (some adjustments in error statements and line numbers and char numbers need fixing)&#10;- Works in CMD line" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Works great (some adjustments in error statements and line numbers and char numbers need fixing)&#10;- Works in CMD line" />
+    <MESSAGE value="&#10;- Works in CMD line" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;- Works in CMD line" />
   </component>
 </project>
