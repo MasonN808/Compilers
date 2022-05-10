@@ -24,6 +24,10 @@ public class CodeGen {
          */
     }
 
+    public static void incrementIndex(int increment){
+        curIndex += increment;
+    }
+
     public static String[][] arrayToMatrix(){
         // TODO: make this
         return null;
