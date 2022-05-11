@@ -9,7 +9,7 @@
  * @since   03-04-2022
  */
 public class DataEntry {
-    public String temp = null;
+    public String temp = null; // Actually only need temp and offset for implementation but rest is useful for debugging and reference
     public String var = null;
     public int scope = 0;
     public int offset = 0;
