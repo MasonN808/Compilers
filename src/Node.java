@@ -22,5 +22,7 @@ public class Node {
     // For AST
     public Hashtable<String,idDetails> ht = null;
     public String type = null; // type of variable
+    // For Code Gen
+    public boolean visited = false;
 
 }
