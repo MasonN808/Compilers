@@ -121,6 +121,13 @@ public class CodeGen {
 
     }
 
+    public static String findMemoryLocation(int index){
+        //TODO: Need this for assignment of strings and the pointers to the memory location in heap
+        return null;
+    }
+
+
+
     public static void incrementIndex(int increment){
         curIndex += increment;
     }

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="-Added TODOs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataEntry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,20 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00127" summary="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress">
-      <created>1649540822330</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1649540822330</updated>
-    </task>
-    <task id="LOCAL-00128" summary="- Added more error exceptions">
-      <created>1649547193821</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1649547193821</updated>
     </task>
     <task id="LOCAL-00129" summary="- Start of debugging">
       <created>1649549208493</created>
@@ -446,7 +430,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652293338982</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="-Added more TODOs&#10;-Implemented the static table into varDecal">
+      <created>1652293997794</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1652293997794</updated>
+    </task>
+    <task id="LOCAL-00177" summary="-Added constructor for DataEntry class for easier implementation">
+      <created>1652294026698</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1652294026698</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -474,8 +472,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
-    <MESSAGE value="- Trying to fix issues with AST" />
     <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
     <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
     <MESSAGE value="- Edits to subtree search for mixedExpr" />
@@ -499,6 +495,8 @@
     <MESSAGE value="-initialized class for opcodes in CodeGen class" />
     <MESSAGE value="-Added some comments" />
     <MESSAGE value="-Added TODOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added TODOs" />
+    <MESSAGE value="-Added more TODOs&#10;-Implemented the static table into varDecal" />
+    <MESSAGE value="-Added constructor for DataEntry class for easier implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added constructor for DataEntry class for easier implementation" />
   </component>
 </project>
