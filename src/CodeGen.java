@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class CodeGen {
     public static String[] opsArray = null; // Might make into matrix
     public static TreeST symbolTable = null;
@@ -22,8 +24,11 @@ public class CodeGen {
                 -Traverse through each node in the AST
                 -Assign particular opt code for certain nodes
          */
-    }
 
+    }
+    public static void varDecal(){
+
+    }
     public static void incrementIndex(int increment){
         curIndex += increment;
     }
@@ -38,6 +43,47 @@ public class CodeGen {
         return null;
     }
 
+    // Adapted from https://stackoverflow.com/questions/16380026/implementing-bfs-in-java
+    public static void BFS(AbstractSyntaxTree tree, Node astRoot) {
+        // create a queue for doing BFS
+        Queue queue = new LinkedList();
+        queue.add(astRoot);
+        System.out.println("AST ROOT:" + astRoot.name); //Debugging
+        astRoot.visited = true;
+        while(!queue.isEmpty()) {
+            Node node = (Node)queue.remove();
+            Node child = null;
+            while((child = getUnvisitedChildNode(node))!=null) {
+                child.visited=true;
+                System.out.println("AST child:" + child); // Debugging
+                queue.add(child);
+            }
+        }
+        // Clear visited property of nodes
+         clearNodes(astRoot);
+    }
+
+    private static void clearNodes(Node root) { // post order traversal since easy to implement
+        root.visited = false; // reset the pointer
+        for (Node each : root.children) {
+            clearNodes(each);
+        }
+    }
+
+    private static Node getUnvisitedChildNode(Node node) {
+        Deque<Node> stack = new ArrayDeque<Node>();
+        for (Node child: node.children){
+            if (!child.visited){
+                stack.add(child);
+            }
+        }
+        // To prevent null pointer
+        Node out = null;
+        if (!stack.isEmpty()){
+            out = stack.pop(); // TODO: make sure this pops correctly (check order)
+        }
+        return out;
+    }
 
 
 }
