@@ -79,7 +79,7 @@ public class CodeGen {
         incrementIndex(1);
 
         OpCode opCode1 = new OpCode();
-        opCode1.code = "00"; // Set to default?
+        opCode1.code = "00"; // Set to default?  TODO: what if it's a string?
         opsArray[curIndex] = opCode1;
         incrementIndex(1);
 
@@ -103,6 +103,8 @@ public class CodeGen {
 
     }
     public static void codeGenAssignment(){
+        //TODO: access the symbol table to check the type and get the value
+        //TODO: need to fix getting the value from TreeST
 
     }
     public static void codeGenPrint(){

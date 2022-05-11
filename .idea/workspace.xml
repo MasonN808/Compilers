@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/OpCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataEntry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,27 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00123" summary="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)">
-      <created>1649476025845</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1649476025845</updated>
-    </task>
-    <task id="LOCAL-00124" summary="- Edits to print of booleanExpr">
-      <created>1649476122238</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1649476122238</updated>
-    </task>
-    <task id="LOCAL-00125" summary="- Redoing symbol tree implementation">
-      <created>1649477466530</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1649477466530</updated>
     </task>
     <task id="LOCAL-00126" summary="- Symbol Tree is looking better">
       <created>1649478155799</created>
@@ -447,7 +423,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652290813380</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="-Writing var decal opcode sequence&#10;-Will need the ST for assignment statements to check for type and value&#10;-0Implemented Opcode object to store the value of the code as a string and a pointer to a different opcode (specifically for strings stored in the heap)">
+      <created>1652293130152</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1652293130152</updated>
+    </task>
+    <task id="LOCAL-00173" summary="-initialized class for opcodes in CodeGen class">
+      <created>1652293222888</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1652293222888</updated>
+    </task>
+    <task id="LOCAL-00174" summary="-Added some comments">
+      <created>1652293234667</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1652293234667</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,9 +472,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
-    <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
-    <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
     <MESSAGE value="- Edited more detailed error messages" />
     <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
     <MESSAGE value="- Trying to fix issues with AST" />
@@ -500,6 +494,9 @@
     <MESSAGE value="-Added value attribute to idDetails (not sure if we need it later on)" />
     <MESSAGE value="-Some edits to implement the value in hashtables/symbol tables" />
     <MESSAGE value="-Some refactoring&#10;-Added the value appended to hashtable (needs further debugging)" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Some refactoring&#10;-Added the value appended to hashtable (needs further debugging)" />
+    <MESSAGE value="-Writing var decal opcode sequence&#10;-Will need the ST for assignment statements to check for type and value&#10;-0Implemented Opcode object to store the value of the code as a string and a pointer to a different opcode (specifically for strings stored in the heap)" />
+    <MESSAGE value="-initialized class for opcodes in CodeGen class" />
+    <MESSAGE value="-Added some comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added some comments" />
   </component>
 </project>
