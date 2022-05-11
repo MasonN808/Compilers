@@ -500,63 +500,6 @@ public class TreeST {
                         }
                     }
                 }
-
-
-//                foundKey = false;
-//                tempCurrentScope = currentScope;
-//                if (tempCurrentScope.hashTable.get(assignedKey.value) == null) { // if identifier is undeclared in current scope
-//                    // Check if previous (outer) scope declared the variable being assigned and keep going to outer scope until no scopes left
-//                    while (tempCurrentScope != null & !foundKey) {
-//                        if (tempCurrentScope.hashTable.get(assignedKey.value) != null) {
-//                            foundKey = true; // Found key in a different scope (we use this key for assignment
-//                        } else {
-//                            tempCurrentScope = tempCurrentScope.prev;
-//                        }
-//                    }
-//                    if (!foundKey) {
-//                        if (assignedKey.name.equals("ID")){
-//                            System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Undeclared Identifier [" + assignedKey.value + "] at line " +
-//                                    assignedKey.token.line_number + ", char " + assignedKey.token.character_number);
-//                            numErrors = numErrors + 1;
-//                        }
-//                        else{
-////                            System.out.println(assignedKey.name);
-////                            if (!checkAssignmentTypesExpr(assignedKey, assignedValue)){
-////                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Did you mean for an [" + assignedKey.name + "] at " +
-////                                        assignedValue.token.line_number + ", char " + assignedValue.token.character_number + "?");
-////                                numErrors = numErrors + 1;
-////                            }
-//                            isMixed = traverseFind(assignedValue, null, "mixedExpr"); //set the isMixed Node to null
-//                            if (isMixed != null){ // the assigned value is of mixed types
-//                                System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in boolean expression at " +
-//                                        isMixed.token.line_number + ", char " + isMixed.token.character_number);
-//                                numErrors = numErrors + 1;
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    foundKey = true;
-//                }
-//                if (foundKey){
-//                    if (!checkAssignmentTypes(tempCurrentScope.hashTable.get(assignedKey.value).type, assignedValue.value)){
-//                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch: Expected [" + tempCurrentScope.hashTable.get(assignedKey.value).type + "] at " +
-//                                assignedValue.token.line_number + ", char " + assignedValue.token.character_number);
-//                        numErrors = numErrors + 1;
-//                    }
-//                    else { // key found
-//                        // First get original details from hashtable of key
-//                        // tempCurrentScope is the scope the key value is in
-//                        String wasType = tempCurrentScope.hashTable.get(assignedKey.value).type;
-//                        boolean wasInitialized = tempCurrentScope.hashTable.get(assignedKey.value).isInitialized;
-//                        boolean wasUsed = tempCurrentScope.hashTable.get(assignedKey.value).isUsed;
-//                        Token wasToken = tempCurrentScope.hashTable.get(assignedKey.value).token;
-//                        // Then assign accordingly
-//                        if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-//                            idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
-//                            tempCurrentScope.hashTable.put(assignedKey.value, details); // Remake the hashvalue with edits to idDetails
-//                        }
-//                    }
-//                }
                 break;
             default:
                //Everything else that needs nothing
