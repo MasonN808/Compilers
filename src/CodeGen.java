@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.util.*;
 
 public class CodeGen {
@@ -42,6 +43,7 @@ public class CodeGen {
             case ("varDecal"):
                 Node type = node.children.get(0);
                 Node key = node.children.get(1);
+                codeGenVarDecal();
                 break;
             case ("assignmentStatement"):
                 Node assignedID = node.children.get(0);
@@ -73,6 +75,8 @@ public class CodeGen {
         }
     }
     public static void codeGenVarDecal(){
+        // TODO: Actually, pull the values from symbol table here ---> if we add the ID names in
+        //  DataEntry object for staticData arrayList
         OpCode opCode0 = new OpCode();
         opCode0.code = "A9"; // Load the accumulator with a constant
         opsArray[curIndex] = opCode0;
@@ -94,17 +98,20 @@ public class CodeGen {
         incrementIndex(1);
 
         OpCode opCode4 = new OpCode();
-        opCode4.code = "XX"; // Could be set to 00?
+        opCode4.code = "XX"; // TODO: Could be set to 00?
         opsArray[curIndex] = opCode4;
         incrementIndex(1);
 
+        // add a data entry to the Static data table to be replace later for backpatching
+        DataEntry dataEntry = new DataEntry(opCode3.code, numTemps);
+        staticData.add(dataEntry);
 
         incrementNumTemps(1); // Go up a temp value for next declaration
 
     }
     public static void codeGenAssignment(){
-        //TODO: access the symbol table to check the type and get the value
-        //TODO: need to fix getting the value from TreeST
+        // TODO: access the symbol table to check the type and get the value
+        // TODO: need to fix getting the value from TreeST
 
     }
     public static void codeGenPrint(){

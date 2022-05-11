@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="-Added TODOs">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataEntry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00126" summary="- Symbol Tree is looking better">
-      <created>1649478155799</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1649478155799</updated>
     </task>
     <task id="LOCAL-00127" summary="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress">
       <created>1649540822330</created>
@@ -444,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652293234667</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="-Added TODOs">
+      <created>1652293338982</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1652293338982</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +474,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Edited more detailed error messages" />
     <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
     <MESSAGE value="- Trying to fix issues with AST" />
     <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
@@ -497,6 +498,7 @@
     <MESSAGE value="-Writing var decal opcode sequence&#10;-Will need the ST for assignment statements to check for type and value&#10;-0Implemented Opcode object to store the value of the code as a string and a pointer to a different opcode (specifically for strings stored in the heap)" />
     <MESSAGE value="-initialized class for opcodes in CodeGen class" />
     <MESSAGE value="-Added some comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added some comments" />
+    <MESSAGE value="-Added TODOs" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added TODOs" />
   </component>
 </project>
