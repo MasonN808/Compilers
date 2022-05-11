@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/idDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/idDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataEntry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,41 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00118" summary="- Getting symbol table tree to work">
-      <created>1649293357174</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1649293357174</updated>
-    </task>
-    <task id="LOCAL-00119" summary="- Deleted commented section">
-      <created>1649293834545</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1649293834545</updated>
-    </task>
-    <task id="LOCAL-00120" summary="- More edits">
-      <created>1649293846484</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1649293846484</updated>
-    </task>
-    <task id="LOCAL-00121" summary="- More additions to populating the symbol table (not looking too good)">
-      <created>1649307241813</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1649307241813</updated>
-    </task>
-    <task id="LOCAL-00122" summary="- More additions to populating the symbol table (looking better)">
-      <created>1649379007422</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1649379007422</updated>
     </task>
     <task id="LOCAL-00123" summary="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)">
       <created>1649476025845</created>
@@ -449,7 +412,42 @@
       <option name="project" value="LOCAL" />
       <updated>1652282604293</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="-Added staticData arrayList&#10;-refactored the quasi-BFS">
+      <created>1652290651678</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1652290651678</updated>
+    </task>
+    <task id="LOCAL-00168" summary="-Initialized for entries in static data arraylist">
+      <created>1652290688904</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1652290688904</updated>
+    </task>
+    <task id="LOCAL-00169" summary="-Added value attribute to idDetails (not sure if we need it later on)">
+      <created>1652290715621</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1652290715621</updated>
+    </task>
+    <task id="LOCAL-00170" summary="-Some edits to implement the value in hashtables/symbol tables">
+      <created>1652290759650</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1652290759650</updated>
+    </task>
+    <task id="LOCAL-00171" summary="-Some refactoring&#10;-Added the value appended to hashtable (needs further debugging)">
+      <created>1652290813380</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1652290813380</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,11 +475,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Debugging Line separator issue for MacOS" />
-    <MESSAGE value="- Edits using other computer with MacOS" />
-    <MESSAGE value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
-    <MESSAGE value="- Edited to take in integer expressions with operator&#10;- Added more test cases" />
-    <MESSAGE value="- A lot more edits based on test cases" />
     <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
     <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
     <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
@@ -502,6 +495,11 @@
     <MESSAGE value="-Added BFS for traversing AST" />
     <MESSAGE value="-Imported Pseudo-BFS implementation from TreeST" />
     <MESSAGE value="-Refactored TreeST by deleting tons of comments and debugging code" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Refactored TreeST by deleting tons of comments and debugging code" />
+    <MESSAGE value="-Added staticData arrayList&#10;-refactored the quasi-BFS" />
+    <MESSAGE value="-Initialized for entries in static data arraylist" />
+    <MESSAGE value="-Added value attribute to idDetails (not sure if we need it later on)" />
+    <MESSAGE value="-Some edits to implement the value in hashtables/symbol tables" />
+    <MESSAGE value="-Some refactoring&#10;-Added the value appended to hashtable (needs further debugging)" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Some refactoring&#10;-Added the value appended to hashtable (needs further debugging)" />
   </component>
 </project>

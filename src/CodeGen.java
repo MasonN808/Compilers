@@ -1,20 +1,20 @@
 import java.util.*;
 
 public class CodeGen {
-    public static String[] opsArray = null; // Might make into matrix
+    public static OpCode[] opsArray = null; // Might make into matrix
     public static TreeST symbolTable = null;
     public static TreeAST ast = null;
     public static int curIndex = 0;
     public static TreeST.ScopeNode root = null;
     public static TreeST.ScopeNode currentScope = null;
     public static ArrayList<DataEntry> staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
-
+    public static int numTemps = 0;
 
     public static int numErrors = 0; // Keep track of errors in code gen
 
     public CodeGen(TreeST symbolTable, TreeAST ast){
         // Reset opsArray to empty string of certain length
-        this.opsArray = new String[256]; // TODO: make sure 256 is the right length and not 255
+        this.opsArray = new OpCode[256]; // TODO: make sure 256 is the right length and not 255
         this.symbolTable = symbolTable; // Might not actually need the symbol table since semantic completed successfully (prereq)'
         this.root = symbolTable.root;
         this.ast = ast;
@@ -73,11 +73,51 @@ public class CodeGen {
         }
     }
     public static void codeGenVarDecal(){
+        OpCode opCode0 = new OpCode();
+        opCode0.code = "A9"; // Load the accumulator with a constant
+        opsArray[curIndex] = opCode0;
+        incrementIndex(1);
+
+        OpCode opCode1 = new OpCode();
+        opCode1.code = "00"; // Set to default?
+        opsArray[curIndex] = opCode1;
+        incrementIndex(1);
+
+        OpCode opCode2 = new OpCode();
+        opCode2.code = "8D"; // Store the accumulator in memory
+        opsArray[curIndex] = opCode2;
+        incrementIndex(1);
+
+        OpCode opCode3 = new OpCode();
+        opCode3.code = "T" + numTemps;
+        opsArray[curIndex] = opCode3;
+        incrementIndex(1);
+
+        OpCode opCode4 = new OpCode();
+        opCode4.code = "XX"; // Could be set to 00?
+        opsArray[curIndex] = opCode4;
+        incrementIndex(1);
+
+
+        incrementNumTemps(1); // Go up a temp value for next declaration
+
+    }
+    public static void codeGenAssignment(){
+
+    }
+    public static void codeGenPrint(){
+
+    }
+    public static void codeGenVarIf(){
 
     }
 
     public static void incrementIndex(int increment){
         curIndex += increment;
+    }
+
+    public static void incrementNumTemps(int increment){
+        numTemps += increment;
     }
 
     public static String[][] arrayToMatrix(){
