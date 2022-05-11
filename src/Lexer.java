@@ -589,8 +589,9 @@ public class Lexer {
                             // Do a Breadth first search on symbol tree
                             treeST.BFS(treeST, treeST.root, discovered);
                             System.out.println("------------------------------------------------------------");
-                            CodeGen opsMatrix = new CodeGen(treeST, abstractST.ast);
-                            if (opsMatrix.numErrors > 0){
+                            CodeGen codeGen = new CodeGen(treeST, abstractST.ast);
+                            codeGen.generateOpCodes();
+                            if (codeGen.numErrors > 0){
                                 // TODO: RESUME 5/9
                             }
                         }
