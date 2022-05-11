@@ -13,4 +13,9 @@ public class DataEntry {
     public String var = null;
     public int scope = 0;
     public int offset = 0;
+
+    public DataEntry(String temp, int offset){
+        this.temp = temp;
+        this.offset = offset;
+    }
 }
