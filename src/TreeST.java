@@ -455,7 +455,8 @@ public class TreeST {
                 // Put data in a row to print elegantly in a table format
                 String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized),
                         Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope),
-                        Integer.toString(v.hashTable.get(key).token.line_number),  (v.hashTable.get(key).value)}; // TODO: assign values in hashtable for code gen. and debug
+                        Integer.toString(v.hashTable.get(key).token.line_number),  (v.hashTable.get(key).value)};
+                // TODO: assign values in hashtable for code gen. and debug
                 System.out.format("%4s%10s%20s%15s%15s%15s%15s%n", row);
             }
 
