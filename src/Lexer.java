@@ -588,11 +588,17 @@ public class Lexer {
                             System.out.format("%4s%10s%20s%15s%15s%15s%15s%n", row);
                             // Do a Breadth first search on symbol tree
                             treeST.BFS(treeST, treeST.root, discovered);
+
+                            // Code Gen
                             System.out.println("------------------------------------------------------------");
+                            System.out.println("Beginning CODE GEN for Program " + program_num);
                             CodeGen codeGen = new CodeGen(treeST, abstractST.ast);
-//                            codeGen.generateOpCodes();
+                            codeGen.generateOpCodes();
                             if (codeGen.numErrors > 0){
-                                // TODO: RESUME 5/9
+                                System.out.println("CODE GEN -------> CODE GEN terminated UNSUCCESSFULLY");
+                            }
+                            else{
+                                System.out.println("CODE GEN -------> CODE GEN finished SUCCESSFULLY");
                             }
                         }
                     }
