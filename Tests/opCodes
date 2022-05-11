@@ -37,13 +37,13 @@
         a = 2
         print(a)
         {
-            int a
-            a = 2
-            print(a)
+            int d
+            d = 2
+            print(d)
             {
                 int a
                 a = 2
-                print(a)
+                print(d)
             }
         }
         int b

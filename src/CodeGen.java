@@ -15,12 +15,21 @@ public class CodeGen {
 
     public static int numErrors = 0; // Keep track of errors in code gen
 
+    public static final int OPS_MATRIX_HEIGHT = 32;
+    public static final int OPS_MATRIX_WIDTH = 8;
+
+
     public CodeGen(TreeST symbolTable, TreeAST ast){
         // Reset opsArray to empty string of certain length
         this.opsArray = new OpCode[256]; // TODO: make sure 256 is the right length and not 255
         this.symbolTable = symbolTable; // Might not actually need the symbol table since semantic completed successfully (prereq)'
 //        this.stRoot = null;
         this.ast = ast;
+        this.numErrors = 0; // reset the errors
+        this.childIndex = 0; // reset the childIndex
+        this.numTemps = 0; // reset the numTemps
+        this.curIndex = 0; // reset the current index pointer
+
     }
 
     public static void generateOpCodes() {
@@ -33,6 +42,11 @@ public class CodeGen {
                 -Assign particular opt code for certain nodes
          */
         processNode(ast.root);
+
+        //DEBUGGING
+        printMatrix(arrayToMatrix());
+        System.out.println(opsArray);
+        printOpsArray();
     }
 
     public static void processNode(Node node) {
@@ -46,14 +60,14 @@ public class CodeGen {
                     // Get the scope for the current block
                     try{
                         currentScope = currentScope.children.get(childIndex);
-//                        childIndex += 1;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
-                System.out.println();
-                printScope(currentScope);
+                // Debugging
+//                System.out.println();
+//                printScope(currentScope);
                 break;
             case ("varDecal"):
                 Node type = node.children.get(0);
@@ -149,9 +163,40 @@ public class CodeGen {
         numTemps += increment;
     }
 
-    public static String[][] arrayToMatrix(){
-        // TODO: make this
-        return null;
+
+    // To convert the ops array to a matrix
+    // Citation: https://stackoverflow.com/questions/5134555/how-to-convert-a-1d-array-to-2d-array
+    public static OpCode[][] arrayToMatrix(){
+        OpCode opsMatrix[][] = new OpCode[OPS_MATRIX_HEIGHT][OPS_MATRIX_WIDTH];
+        for(int i = 0; i < OPS_MATRIX_HEIGHT; i++){
+            for(int j = 0; j < OPS_MATRIX_WIDTH; j++){
+                // TODO: REMOVE THIS LATER ---> Just for debugging wiht null values
+                if (opsArray[(i*OPS_MATRIX_WIDTH) + j] == null){
+                    OpCode opCode = new OpCode();
+                    opCode.code = "NULL";
+                    opsArray[(i*OPS_MATRIX_WIDTH) + j] = opCode;
+                }
+                opsMatrix[i][j] = opsArray[(i*OPS_MATRIX_WIDTH) + j];
+            }
+        }
+        return opsMatrix;
+    }
+
+    // To print the opsMatrix in matrix form
+    public static void printMatrix(OpCode[][] opsMatrix){
+        for(int i = 0; i < OPS_MATRIX_HEIGHT; i++){
+            for(int j = 0; j < OPS_MATRIX_WIDTH; j++){
+                System.out.print(opsMatrix[i][j].code + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // To print the ops array
+    public static void printOpsArray(){
+        for(int i = 0; i < opsArray.length; i++){
+            System.out.print(opsArray[i].code + " ");
+        }
     }
 
     public static String[] replaceTemp(){

@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/opCodes" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpCode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,27 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00130" summary="- Working out nullpointer bugs">
-      <created>1649564566798</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1649564566798</updated>
-    </task>
-    <task id="LOCAL-00131" summary="- Added token attribute to node in AST for expressions">
-      <created>1649602961914</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1649602961915</updated>
-    </task>
-    <task id="LOCAL-00132" summary="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block">
-      <created>1649603020596</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1649603020596</updated>
     </task>
     <task id="LOCAL-00133" summary="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)">
       <created>1649618269636</created>
@@ -448,7 +426,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652294410147</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="- I think the scope nodes are properly implemented into the &quot;block&quot;s case&#10;- moved the childIndex to below the recursive statement line 80&#10;- Added printScope() method for debugging and visualizing the scopes">
+      <created>1652303323327</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1652303323327</updated>
+    </task>
+    <task id="LOCAL-00180" summary="- Added some comments for Code Gen&#10;- Implemented the error for Code Gen, but still need to do so in Code Gen class (TODO)">
+      <created>1652303368870</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1652303368870</updated>
+    </task>
+    <task id="LOCAL-00181" summary="- Reformatted line 458 and added TODO">
+      <created>1652303401614</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1652303401614</updated>
+    </task>
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -476,9 +475,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
-    <MESSAGE value="- Edits to subtree search for mixedExpr" />
-    <MESSAGE value="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST" />
     <MESSAGE value="- postOrderFindIsMixed in TreeST IS WORKING" />
     <MESSAGE value="- Fixed bug where start of boolean expression with ID as first token becomes a branch instead of a leaf under the boolOp" />
     <MESSAGE value="- Fixed AST for assignmentStatement" />
@@ -501,6 +497,9 @@
     <MESSAGE value="-Added more TODOs&#10;-Implemented the static table into varDecal" />
     <MESSAGE value="-Added constructor for DataEntry class for easier implementation" />
     <MESSAGE value="-Added a findMemoryLocation() method to find the memory in array given index for assignment fo strings and the pointers to the memory location in the heap ----&gt; Used mainly in assignmentOpCode generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added a findMemoryLocation() method to find the memory in array given index for assignment fo strings and the pointers to the memory location in the heap ----&gt; Used mainly in assignmentOpCode generator" />
+    <MESSAGE value="- I think the scope nodes are properly implemented into the &quot;block&quot;s case&#10;- moved the childIndex to below the recursive statement line 80&#10;- Added printScope() method for debugging and visualizing the scopes" />
+    <MESSAGE value="- Added some comments for Code Gen&#10;- Implemented the error for Code Gen, but still need to do so in Code Gen class (TODO)" />
+    <MESSAGE value="- Reformatted line 458 and added TODO" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Reformatted line 458 and added TODO" />
   </component>
 </project>
