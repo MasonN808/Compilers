@@ -75,7 +75,7 @@ public class TreeST {
                 Node key = node.children.get(1);
 //                System.out.println(type.value);
                 if (currentScope.hashTable.get(key.value) == null) {
-                    idDetails details = new idDetails(type.value, false, false, key.token);
+                    idDetails details = new idDetails(type.value, false, false, key.token, null);
                     currentScope.hashTable.put(key.value, details);
                 } else {
                     // CASE: redeclared identifier in same scope
@@ -90,6 +90,7 @@ public class TreeST {
                 assignedExprTraverse = null;
                 Node assignedID = node.children.get(0);
                 Node assignedExpr = node.children.get(1);
+                System.out.println(assignedExpr);
                 /*
                     -Pseudo Code
                         - First search for IDs in the boolean expression that may be labelled as mixed
@@ -162,7 +163,6 @@ public class TreeST {
                         if (testMixed.name.equals("ID")){ // In the case of an undeclared identifier
                             System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in assignment statement at " +
                                     testMixed.token.line_number + ", char " + testMixed.token.character_number + ". Didn't expect an undeclared identifier");
-                            numErrors = numErrors + 1;
                         }
                         else {
 //                        System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in assignment statement at " +
@@ -170,8 +170,8 @@ public class TreeST {
                             System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Type Mismatch in assignment statement at " +
                                     testMixed.token.line_number + ", char " + testMixed.token.character_number);
 //                            System.out.println(testMixed.name);
-                            numErrors = numErrors + 1;
                         }
+                        numErrors = numErrors + 1;
                     }
                 }
 
@@ -215,9 +215,10 @@ public class TreeST {
                             boolean wasInitialized = tempCurrentScope.hashTable.get(assignedID.value).isInitialized;
                             boolean wasUsed = tempCurrentScope.hashTable.get(assignedID.value).isUsed;
                             Token wasToken = tempCurrentScope.hashTable.get(assignedID.value).token;
+                            String wasValue = tempCurrentScope.hashTable.get(assignedID.value).value;
                             // Then assign accordingly
                             if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                                idDetails details = new idDetails(wasType, true, wasUsed, wasToken);
+                                idDetails details = new idDetails(wasType, true, wasUsed, wasToken, wasValue);
                                 tempCurrentScope.hashTable.put(assignedID.value, details); // Remake the hashvalue with edits to idDetails
                             }
                         }
@@ -258,6 +259,8 @@ public class TreeST {
                     boolean wasInitialized = tempCurrentScope.hashTable.get(printKey.value).isInitialized;
                     boolean wasUsed = tempCurrentScope.hashTable.get(printKey.value).isUsed;
                     Token wasToken = tempCurrentScope.hashTable.get(printKey.value).token;
+                    String wasValue = tempCurrentScope.hashTable.get(printKey.value).value;
+
                     // check if key was not initialized but is being used
                     if (wasInitialized == false) {
                         System.out.println("SEMANTIC ANALYSIS [ERROR]: -------> Uninitialized Identifier while being used at " +
@@ -266,7 +269,7 @@ public class TreeST {
                     }
                     // Then assign accordingly
                     if (wasUsed == false) { // mark key as is Initialized and keep wasUsed the same
-                        idDetails details = new idDetails(wasType, wasInitialized, true, wasToken);
+                        idDetails details = new idDetails(wasType, wasInitialized, true, wasToken, wasValue);
                         tempCurrentScope.hashTable.put(printKey.value, details); // Remake the hashvalue with edits to idDetails
                     }
                 }
@@ -450,8 +453,10 @@ public class TreeST {
             Set<String> keys = v.hashTable.keySet();
             for (String key : keys) {
                 // Put data in a row to print elegantly in a table format
-                String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized), Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope), Integer.toString(v.hashTable.get(key).token.line_number)};
-                System.out.format("%4s%10s%20s%15s%15s%15s%n", row);
+                String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized),
+                        Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope),
+                        Integer.toString(v.hashTable.get(key).token.line_number),  (v.hashTable.get(key).value)}; // TODO: assign values in hashtable for code gen. and debug
+                System.out.format("%4s%10s%20s%15s%15s%15s%15s%n", row);
             }
 
 
