@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/opCodes" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +104,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00129" summary="- Start of debugging">
-      <created>1649549208493</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1649549208493</updated>
     </task>
     <task id="LOCAL-00130" summary="- Working out nullpointer bugs">
       <created>1649564566798</created>
@@ -444,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652294026698</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="-Added a findMemoryLocation() method to find the memory in array given index for assignment fo strings and the pointers to the memory location in the heap ----&gt; Used mainly in assignmentOpCode generator">
+      <created>1652294410147</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1652294410147</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +476,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
     <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
     <MESSAGE value="- Edits to subtree search for mixedExpr" />
     <MESSAGE value="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST" />
@@ -497,6 +500,7 @@
     <MESSAGE value="-Added TODOs" />
     <MESSAGE value="-Added more TODOs&#10;-Implemented the static table into varDecal" />
     <MESSAGE value="-Added constructor for DataEntry class for easier implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added constructor for DataEntry class for easier implementation" />
+    <MESSAGE value="-Added a findMemoryLocation() method to find the memory in array given index for assignment fo strings and the pointers to the memory location in the heap ----&gt; Used mainly in assignmentOpCode generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added a findMemoryLocation() method to find the memory in array given index for assignment fo strings and the pointers to the memory location in the heap ----&gt; Used mainly in assignmentOpCode generator" />
   </component>
 </project>

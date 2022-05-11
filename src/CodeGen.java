@@ -6,10 +6,12 @@ public class CodeGen {
     public static TreeST symbolTable = null;
     public static TreeAST ast = null;
     public static int curIndex = 0;
-    public static TreeST.ScopeNode root = null;
+    public static TreeST.ScopeNode stRoot = null;
     public static TreeST.ScopeNode currentScope = null;
     public static ArrayList<DataEntry> staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
     public static int numTemps = 0;
+
+    public static int childIndex = 0;
 
     public static int numErrors = 0; // Keep track of errors in code gen
 
@@ -17,7 +19,7 @@ public class CodeGen {
         // Reset opsArray to empty string of certain length
         this.opsArray = new OpCode[256]; // TODO: make sure 256 is the right length and not 255
         this.symbolTable = symbolTable; // Might not actually need the symbol table since semantic completed successfully (prereq)'
-        this.root = symbolTable.root;
+//        this.stRoot = null;
         this.ast = ast;
     }
 
@@ -30,15 +32,28 @@ public class CodeGen {
                 -Traverse through each node in the AST
                 -Assign particular opt code for certain nodes
          */
-        currentScope = symbolTable.root;
         processNode(ast.root);
     }
 
     public static void processNode(Node node) {
-
         switch (node.name) {
             case ("block"):
+                // first block instance
+                if (currentScope == null){
+                    currentScope = symbolTable.root;
+                }
+                else{
+                    // Get the scope for the current block
+                    try{
+                        currentScope = currentScope.children.get(childIndex);
+//                        childIndex += 1;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
 
+                System.out.println();
+                printScope(currentScope);
                 break;
             case ("varDecal"):
                 Node type = node.children.get(0);
@@ -48,13 +63,6 @@ public class CodeGen {
             case ("assignmentStatement"):
                 Node assignedID = node.children.get(0);
                 Node assignedExpr = node.children.get(1);
-            /*
-                -Pseudo Code
-                    - First search for IDs in the boolean expression that may be labelled as mixed
-                    - Then search for IDs labelled as IDs and make sure of declarations
-                    - Then reassign the IDs as either intExpression, stringExpression, or booleanExpression
-                    - Then typeCheck in the boolean expression (locally, unlike in AbstractSyntaxTree.java)
-             */
                 break;
             case ("printStatement"):
                 Node printKey = node.children.get(0);
@@ -69,9 +77,15 @@ public class CodeGen {
 
         for (Node each : node.children) {
             processNode(each);
+            if (each.name == "block"){
+                childIndex += 1;
+            }
         }
+
         if (node.name.equals("block")) {
-            root = root.prev; // Go back up the tree at outer scope
+            // Go back up the tree at outer scope
+            currentScope = currentScope.prev;
+            childIndex = 0; // reset the child index
         }
     }
     public static void codeGenVarDecal(){
@@ -112,7 +126,6 @@ public class CodeGen {
     public static void codeGenAssignment(){
         // TODO: access the symbol table to check the type and get the value
         // TODO: need to fix getting the value from TreeST
-
     }
     public static void codeGenPrint(){
 
@@ -188,5 +201,18 @@ public class CodeGen {
         return out;
     }
 
+    // Mainly for debugging
+    // Prints the the data in the current scopeNode
+    public static void printScope(TreeST.ScopeNode v){
+        Set<String> keys = v.hashTable.keySet();
+        for (String key : keys) {
+            // Put data in a row to print elegantly in a table format
+            String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized),
+                    Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope),
+                    Integer.toString(v.hashTable.get(key).token.line_number),  (v.hashTable.get(key).value)};
+            // TODO: assign values in hashtable for code gen. and debug
+            System.out.format("%4s%10s%20s%15s%15s%15s%15s%n", row);
+        }
+    }
 
 }
