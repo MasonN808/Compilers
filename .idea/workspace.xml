@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/opCodes" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,27 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00135" summary="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)">
-      <created>1649619970205</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1649619970205</updated>
-    </task>
-    <task id="LOCAL-00136" summary="- Implemented and testing BFS on treeST">
-      <created>1649619994742</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1649619994742</updated>
-    </task>
-    <task id="LOCAL-00137" summary="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()">
-      <created>1649620593071</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1649620593071</updated>
     </task>
     <task id="LOCAL-00138" summary="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant">
       <created>1649631933075</created>
@@ -447,7 +424,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652307295533</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="- Starting codeGen for assignment statements&#10;- some refactoring">
+      <created>1652319322703</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1652319322703</updated>
+    </task>
+    <task id="LOCAL-00185" summary="- added an int expression">
+      <created>1652319337790</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1652319337790</updated>
+    </task>
+    <task id="LOCAL-00186" summary="- added a string value to try and print expressions on assignment statements (not working)(might not need it)">
+      <created>1652319391365</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1652319391365</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,9 +473,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
-    <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
-    <MESSAGE value="-Deleted large commented sections" />
     <MESSAGE value="-Created new visited attribute for BFS in code gen" />
     <MESSAGE value="-Added BFS for traversing AST" />
     <MESSAGE value="-Imported Pseudo-BFS implementation from TreeST" />
@@ -500,6 +495,9 @@
     <MESSAGE value="- Able to print the opMatrix with correct format&#10;    -VarDecal seems to be working via the printed matrix&#10;    -Added final variables for width and height of matrix&#10;- Resettled the pointers in constructor since it messed up later programs if rerun&#10;- Added following debugging methods:&#10;    -arrayToMatrix()&#10;    -printMatrix()&#10;    -printOpsArray()" />
     <MESSAGE value="- Able to print the opMatrix with correct format&#10;    -VarDecal seems to be working via the printed matrix&#10;    -Added final variables for width and height of matrix&#10;- Resettled the pointers in constructor since it messed up later programs if rerun&#10;- Added following debugging methods:&#10;    -arrayToMatrix()&#10;    -printMatrix()&#10;    -printOpsArray()&#10;- Also added embedded scopes in opCodes.txt file" />
     <MESSAGE value="- Started a constructor, but realized it would've made things a bit messy" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Started a constructor, but realized it would've made things a bit messy" />
+    <MESSAGE value="- Starting codeGen for assignment statements&#10;- some refactoring" />
+    <MESSAGE value="- added an int expression" />
+    <MESSAGE value="- added a string value to try and print expressions on assignment statements (not working)(might not need it)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- added a string value to try and print expressions on assignment statements (not working)(might not need it)" />
   </component>
 </project>

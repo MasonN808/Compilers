@@ -29,6 +29,7 @@ public class CodeGen {
         this.childIndex = 0; // reset the childIndex
         this.numTemps = 0; // reset the numTemps
         this.curIndex = 0; // reset the current index pointer
+        this.lastStackIndex = 0; //TODO: finish this
 
     }
 
@@ -112,6 +113,17 @@ public class CodeGen {
             childIndex = 0; // reset the child index
         }
     }
+
+    public static void checkCollisions(){
+//        if ()
+        //TODO: finish this
+    }
+
+    public static void initBoolInHeap(){
+        //TODO: finish this
+    }
+
+
     public static void codeGenVarDecal(){
         // TODO: Actually, pull the values from symbol table here ---> if we add the ID names in
         //  DataEntry object for staticData arrayList
@@ -158,7 +170,7 @@ public class CodeGen {
             //TODO: continue
         }
         else if (currentScope.hashTable.get(assignedID.value).type.equals("int")){
-            //TODO: continue
+
         }
         else{ // Assume it's of boolean type
 
