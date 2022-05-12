@@ -29,7 +29,7 @@ public class CodeGen {
         this.childIndex = 0; // reset the childIndex
         this.numTemps = 0; // reset the numTemps
         this.curIndex = 0; // reset the current index pointer
-        this.lastStackIndex = 0; //TODO: finish this
+//        this.lastStackIndex = 0; //TODO: finish this
 
     }
 
@@ -114,13 +114,47 @@ public class CodeGen {
         }
     }
 
-    public static void checkCollisions(){
-//        if ()
-        //TODO: finish this
+    public static void checkStackOverflow(int index){
+        if (opsArray[index].code != null){
+            System.out.println("CODE GEN [ERROR]: Stack Overflow --> Heap overflowed into stack"); //Stack overflow error
+        }
     }
 
     public static void initBoolInHeap(){
-        //TODO: finish this
+
+        opsArray[opsArray.length];
+    }
+
+    public static void addInHeap(String newString, int index){
+        // Create a stack to reverse the string
+        Stack<Character> stack = new Stack<Character>();
+
+        // Traverse the String and push the character one by
+        // one into the Stack
+        for (int i = 0; i < newString.length(); i++) {
+            // push the character into the Stack
+            stack.push(newString.charAt(i));
+        }
+
+        // Now Pop the Characters from the stack until it
+        // becomes empty
+
+        //create break after each string
+        OpCode opCode0 = new OpCode();
+        opCode0.code = "00";
+        opsArray[index] = opCode0;
+        index -= index; //reduce index
+
+        int i = 0;
+        while (!stack.isEmpty()) { // popping element until
+            // stack become empty
+            // get the character from the top of the stack
+            OpCode opCode1 = new OpCode();
+            opCode1.code = Integer.toHexString((int) stack.pop()); // Transforms from char to hex
+            opsArray[index] = opCode1;
+            index -= 1;
+
+        }
     }
 
 
@@ -167,7 +201,7 @@ public class CodeGen {
         Node assignedExpr = node.children.get(1);
         // get certain attributes from key values (i.e., the IDs in certain scopes)
         if (currentScope.hashTable.get(assignedID.value).type.equals("string")){
-            //TODO: continue
+
         }
         else if (currentScope.hashTable.get(assignedID.value).type.equals("int")){
 
@@ -189,10 +223,10 @@ public class CodeGen {
 
     }
 
-    public static String findMemoryLocation(int index){
-        //TODO: Need this for assignment of strings and the pointers to the memory location in heap
-        return null;
-    }
+//    public static String findMemoryLocation(int index){
+//        //Need this for assignment of strings and the pointers to the memory location in heap
+//        return Integer.toHexString(index);
+//    }
 
 
 

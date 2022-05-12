@@ -445,19 +445,5 @@ public class AbstractSyntaxTree {
         }
     }
 
-//    public void rearrangeTree(Node node){// post order traversal
-//            for(Node each : node.children){
-//                if (each.name.equals("ifStatement")|each.name.equals("whileStatement")) {
-//                    Node boolOp = each.children.get(1);
-//                    boolOp.children.add(each.children.get(0)); //Add child 0 to child of child 1
-//                    boolOp.children.add(each.children.get(2)); //Add child 2 to child of child 1
-//                    each.children.get(0).parent = boolOp; //assign the parent of child 0 to be child 1
-//                    each.children.get(2).parent = boolOp; //assign the parent of child 2 to be child 1
-//                    each.children.remove(2);//remove the children
-//                    each.children.remove(0);
-//                }
-//                rearrangeTree(each);
-//            }
-//    }
 
 }

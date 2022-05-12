@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,6 +102,181 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
+    </task>
+    <task id="LOCAL-00113" summary="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically">
+      <created>1649282405351</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1649282405351</updated>
+    </task>
+    <task id="LOCAL-00114" summary="- Made idDetails for Hashtable of ids in symbol table/tree">
+      <created>1649292273785</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292273785</updated>
+    </task>
+    <task id="LOCAL-00115" summary="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type">
+      <created>1649292393289</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292393289</updated>
+    </task>
+    <task id="LOCAL-00116" summary="- Creating a tree from the AST for the symbol table">
+      <created>1649292447338</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292447338</updated>
+    </task>
+    <task id="LOCAL-00117" summary="- Minor initializations of files">
+      <created>1649292471165</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1649292471165</updated>
+    </task>
+    <task id="LOCAL-00118" summary="- Getting symbol table tree to work">
+      <created>1649293357174</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1649293357174</updated>
+    </task>
+    <task id="LOCAL-00119" summary="- Deleted commented section">
+      <created>1649293834545</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1649293834545</updated>
+    </task>
+    <task id="LOCAL-00120" summary="- More edits">
+      <created>1649293846484</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1649293846484</updated>
+    </task>
+    <task id="LOCAL-00121" summary="- More additions to populating the symbol table (not looking too good)">
+      <created>1649307241813</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1649307241813</updated>
+    </task>
+    <task id="LOCAL-00122" summary="- More additions to populating the symbol table (looking better)">
+      <created>1649379007422</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1649379007422</updated>
+    </task>
+    <task id="LOCAL-00123" summary="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)">
+      <created>1649476025845</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1649476025845</updated>
+    </task>
+    <task id="LOCAL-00124" summary="- Edits to print of booleanExpr">
+      <created>1649476122238</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1649476122238</updated>
+    </task>
+    <task id="LOCAL-00125" summary="- Redoing symbol tree implementation">
+      <created>1649477466530</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1649477466530</updated>
+    </task>
+    <task id="LOCAL-00126" summary="- Symbol Tree is looking better">
+      <created>1649478155799</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1649478155799</updated>
+    </task>
+    <task id="LOCAL-00127" summary="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress">
+      <created>1649540822330</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1649540822330</updated>
+    </task>
+    <task id="LOCAL-00128" summary="- Added more error exceptions">
+      <created>1649547193821</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1649547193821</updated>
+    </task>
+    <task id="LOCAL-00129" summary="- Start of debugging">
+      <created>1649549208493</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1649549208493</updated>
+    </task>
+    <task id="LOCAL-00130" summary="- Working out nullpointer bugs">
+      <created>1649564566798</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1649564566798</updated>
+    </task>
+    <task id="LOCAL-00131" summary="- Added token attribute to node in AST for expressions">
+      <created>1649602961914</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1649602961915</updated>
+    </task>
+    <task id="LOCAL-00132" summary="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block">
+      <created>1649603020596</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1649603020596</updated>
+    </task>
+    <task id="LOCAL-00133" summary="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)">
+      <created>1649618269636</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1649618269636</updated>
+    </task>
+    <task id="LOCAL-00134" summary="- Added some comments">
+      <created>1649618282234</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1649618282234</updated>
+    </task>
+    <task id="LOCAL-00135" summary="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)">
+      <created>1649619970205</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1649619970205</updated>
+    </task>
+    <task id="LOCAL-00136" summary="- Implemented and testing BFS on treeST">
+      <created>1649619994742</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1649619994742</updated>
+    </task>
+    <task id="LOCAL-00137" summary="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()">
+      <created>1649620593071</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1649620593071</updated>
     </task>
     <task id="LOCAL-00138" summary="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant">
       <created>1649631933075</created>
@@ -270,182 +446,7 @@
       <option name="project" value="LOCAL" />
       <updated>1649913134541</updated>
     </task>
-    <task id="LOCAL-00162" summary="-Deleted large commented sections">
-      <created>1652281776231</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1652281776231</updated>
-    </task>
-    <task id="LOCAL-00163" summary="-Created new visited attribute for BFS in code gen">
-      <created>1652281814924</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1652281814924</updated>
-    </task>
-    <task id="LOCAL-00164" summary="-Added BFS for traversing AST">
-      <created>1652281842077</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1652281842077</updated>
-    </task>
-    <task id="LOCAL-00165" summary="-Imported Pseudo-BFS implementation from TreeST">
-      <created>1652282379698</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1652282379698</updated>
-    </task>
-    <task id="LOCAL-00166" summary="-Refactored TreeST by deleting tons of comments and debugging code">
-      <created>1652282604293</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1652282604293</updated>
-    </task>
-    <task id="LOCAL-00167" summary="-Added staticData arrayList&#10;-refactored the quasi-BFS">
-      <created>1652290651678</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1652290651678</updated>
-    </task>
-    <task id="LOCAL-00168" summary="-Initialized for entries in static data arraylist">
-      <created>1652290688904</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1652290688904</updated>
-    </task>
-    <task id="LOCAL-00169" summary="-Added value attribute to idDetails (not sure if we need it later on)">
-      <created>1652290715621</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1652290715621</updated>
-    </task>
-    <task id="LOCAL-00170" summary="-Some edits to implement the value in hashtables/symbol tables">
-      <created>1652290759650</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1652290759650</updated>
-    </task>
-    <task id="LOCAL-00171" summary="-Some refactoring&#10;-Added the value appended to hashtable (needs further debugging)">
-      <created>1652290813380</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1652290813380</updated>
-    </task>
-    <task id="LOCAL-00172" summary="-Writing var decal opcode sequence&#10;-Will need the ST for assignment statements to check for type and value&#10;-0Implemented Opcode object to store the value of the code as a string and a pointer to a different opcode (specifically for strings stored in the heap)">
-      <created>1652293130152</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1652293130152</updated>
-    </task>
-    <task id="LOCAL-00173" summary="-initialized class for opcodes in CodeGen class">
-      <created>1652293222888</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1652293222888</updated>
-    </task>
-    <task id="LOCAL-00174" summary="-Added some comments">
-      <created>1652293234667</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1652293234667</updated>
-    </task>
-    <task id="LOCAL-00175" summary="-Added TODOs">
-      <created>1652293338982</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1652293338982</updated>
-    </task>
-    <task id="LOCAL-00176" summary="-Added more TODOs&#10;-Implemented the static table into varDecal">
-      <created>1652293997794</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1652293997794</updated>
-    </task>
-    <task id="LOCAL-00177" summary="-Added constructor for DataEntry class for easier implementation">
-      <created>1652294026698</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1652294026698</updated>
-    </task>
-    <task id="LOCAL-00178" summary="-Added a findMemoryLocation() method to find the memory in array given index for assignment fo strings and the pointers to the memory location in the heap ----&gt; Used mainly in assignmentOpCode generator">
-      <created>1652294410147</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1652294410147</updated>
-    </task>
-    <task id="LOCAL-00179" summary="- I think the scope nodes are properly implemented into the &quot;block&quot;s case&#10;- moved the childIndex to below the recursive statement line 80&#10;- Added printScope() method for debugging and visualizing the scopes">
-      <created>1652303323327</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1652303323327</updated>
-    </task>
-    <task id="LOCAL-00180" summary="- Added some comments for Code Gen&#10;- Implemented the error for Code Gen, but still need to do so in Code Gen class (TODO)">
-      <created>1652303368870</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1652303368870</updated>
-    </task>
-    <task id="LOCAL-00181" summary="- Reformatted line 458 and added TODO">
-      <created>1652303401614</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1652303401614</updated>
-    </task>
-    <task id="LOCAL-00182" summary="- Able to print the opMatrix with correct format&#10;    -VarDecal seems to be working via the printed matrix&#10;    -Added final variables for width and height of matrix&#10;- Resettled the pointers in constructor since it messed up later programs if rerun&#10;- Added following debugging methods:&#10;    -arrayToMatrix()&#10;    -printMatrix()&#10;    -printOpsArray()&#10;- Also added embedded scopes in opCodes.txt file">
-      <created>1652307260217</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1652307260217</updated>
-    </task>
-    <task id="LOCAL-00183" summary="- Started a constructor, but realized it would've made things a bit messy">
-      <created>1652307295533</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1652307295533</updated>
-    </task>
-    <task id="LOCAL-00184" summary="- Starting codeGen for assignment statements&#10;- some refactoring">
-      <created>1652319322703</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1652319322703</updated>
-    </task>
-    <task id="LOCAL-00185" summary="- added an int expression">
-      <created>1652319337790</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1652319337790</updated>
-    </task>
-    <task id="LOCAL-00186" summary="- added a string value to try and print expressions on assignment statements (not working)(might not need it)">
-      <created>1652319391365</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1652319391365</updated>
-    </task>
-    <option name="localTasksCounter" value="187" />
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,31 +474,31 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Created new visited attribute for BFS in code gen" />
-    <MESSAGE value="-Added BFS for traversing AST" />
-    <MESSAGE value="-Imported Pseudo-BFS implementation from TreeST" />
-    <MESSAGE value="-Refactored TreeST by deleting tons of comments and debugging code" />
-    <MESSAGE value="-Added staticData arrayList&#10;-refactored the quasi-BFS" />
-    <MESSAGE value="-Initialized for entries in static data arraylist" />
-    <MESSAGE value="-Added value attribute to idDetails (not sure if we need it later on)" />
-    <MESSAGE value="-Some edits to implement the value in hashtables/symbol tables" />
-    <MESSAGE value="-Some refactoring&#10;-Added the value appended to hashtable (needs further debugging)" />
-    <MESSAGE value="-Writing var decal opcode sequence&#10;-Will need the ST for assignment statements to check for type and value&#10;-0Implemented Opcode object to store the value of the code as a string and a pointer to a different opcode (specifically for strings stored in the heap)" />
-    <MESSAGE value="-initialized class for opcodes in CodeGen class" />
-    <MESSAGE value="-Added some comments" />
-    <MESSAGE value="-Added TODOs" />
-    <MESSAGE value="-Added more TODOs&#10;-Implemented the static table into varDecal" />
-    <MESSAGE value="-Added constructor for DataEntry class for easier implementation" />
-    <MESSAGE value="-Added a findMemoryLocation() method to find the memory in array given index for assignment fo strings and the pointers to the memory location in the heap ----&gt; Used mainly in assignmentOpCode generator" />
-    <MESSAGE value="- I think the scope nodes are properly implemented into the &quot;block&quot;s case&#10;- moved the childIndex to below the recursive statement line 80&#10;- Added printScope() method for debugging and visualizing the scopes" />
-    <MESSAGE value="- Added some comments for Code Gen&#10;- Implemented the error for Code Gen, but still need to do so in Code Gen class (TODO)" />
-    <MESSAGE value="- Reformatted line 458 and added TODO" />
-    <MESSAGE value="- Able to print the opMatrix with correct format&#10;    -VarDecal seems to be working via the printed matrix&#10;    -Added final variables for width and height of matrix&#10;- Resettled the pointers in constructor since it messed up later programs if rerun&#10;- Added following debugging methods:&#10;    -arrayToMatrix()&#10;    -printMatrix()&#10;    -printOpsArray()" />
-    <MESSAGE value="- Able to print the opMatrix with correct format&#10;    -VarDecal seems to be working via the printed matrix&#10;    -Added final variables for width and height of matrix&#10;- Resettled the pointers in constructor since it messed up later programs if rerun&#10;- Added following debugging methods:&#10;    -arrayToMatrix()&#10;    -printMatrix()&#10;    -printOpsArray()&#10;- Also added embedded scopes in opCodes.txt file" />
-    <MESSAGE value="- Started a constructor, but realized it would've made things a bit messy" />
-    <MESSAGE value="- Starting codeGen for assignment statements&#10;- some refactoring" />
-    <MESSAGE value="- added an int expression" />
-    <MESSAGE value="- added a string value to try and print expressions on assignment statements (not working)(might not need it)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- added a string value to try and print expressions on assignment statements (not working)(might not need it)" />
+    <MESSAGE value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
+    <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
+    <MESSAGE value="- Added line number column to symbol table" />
+    <MESSAGE value="- Added warning for declared but uninitialized" />
+    <MESSAGE value="- Deleted a ton of nonworking commented out code" />
+    <MESSAGE value="- Debugging Line separator issue for MacOS" />
+    <MESSAGE value="- Edits using other computer with MacOS" />
+    <MESSAGE value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
+    <MESSAGE value="- Edited to take in integer expressions with operator&#10;- Added more test cases" />
+    <MESSAGE value="- A lot more edits based on test cases" />
+    <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
+    <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
+    <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
+    <MESSAGE value="- Edited more detailed error messages" />
+    <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
+    <MESSAGE value="- Trying to fix issues with AST" />
+    <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
+    <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
+    <MESSAGE value="- Edits to subtree search for mixedExpr" />
+    <MESSAGE value="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST" />
+    <MESSAGE value="- postOrderFindIsMixed in TreeST IS WORKING" />
+    <MESSAGE value="- Fixed bug where start of boolean expression with ID as first token becomes a branch instead of a leaf under the boolOp" />
+    <MESSAGE value="- Fixed AST for assignmentStatement" />
+    <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
+    <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
   </component>
 </project>
