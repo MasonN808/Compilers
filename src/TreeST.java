@@ -218,7 +218,7 @@ public class TreeST {
                             String wasValue = tempCurrentScope.hashTable.get(assignedID.value).value;
                             // Then assign accordingly
                             if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                                idDetails details = new idDetails(wasType, true, wasUsed, wasToken, wasValue);
+                                idDetails details = new idDetails(wasType, true, wasUsed, wasToken, assignedExpr.value);
                                 tempCurrentScope.hashTable.put(assignedID.value, details); // Remake the hashvalue with edits to idDetails
                             }
                         }
