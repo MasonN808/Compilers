@@ -46,7 +46,7 @@ public class CodeGen {
         //DEBUGGING
         printMatrix(arrayToMatrix());
         System.out.println(opsArray);
-        printOpsArray();
+//        printOpsArray();
     }
 
     public static void processNode(Node node) {
@@ -69,22 +69,31 @@ public class CodeGen {
 //                System.out.println();
 //                printScope(currentScope);
                 break;
+
             case ("varDecal"):
                 Node type = node.children.get(0);
                 Node key = node.children.get(1);
                 codeGenVarDecal();
                 break;
+
             case ("assignmentStatement"):
                 Node assignedID = node.children.get(0);
                 Node assignedExpr = node.children.get(1);
+                codeGenAssignment(node);
                 break;
+
             case ("printStatement"):
                 Node printKey = node.children.get(0);
                 break;
 
-            case ("ifStatement"), ("whileStatement"):
+            case ("ifStatement"):
                 Node expr = node.children.get(0);
                 break;
+
+            case ("whileStatement"):
+//                Node expr = node.children.get(0);
+                break;
+
             default:
                 //Everything else that needs nothing
         }
@@ -92,6 +101,7 @@ public class CodeGen {
         for (Node each : node.children) {
             processNode(each);
             if (each.name == "block"){
+                //Go to next child
                 childIndex += 1;
             }
         }
@@ -111,7 +121,7 @@ public class CodeGen {
         incrementIndex(1);
 
         OpCode opCode1 = new OpCode();
-        opCode1.code = "00"; // Set to default?  TODO: what if it's a string?
+        opCode1.code = "00"; // Set to NUL
         opsArray[curIndex] = opCode1;
         incrementIndex(1);
 
@@ -137,14 +147,33 @@ public class CodeGen {
         incrementNumTemps(1); // Go up a temp value for next declaration
 
     }
-    public static void codeGenAssignment(){
+    public static void codeGenAssignment(Node node){
         // TODO: access the symbol table to check the type and get the value
         // TODO: need to fix getting the value from TreeST
+
+        Node assignedID = node.children.get(0);
+        Node assignedExpr = node.children.get(1);
+        // get certain attributes from key values (i.e., the IDs in certain scopes)
+        if (currentScope.hashTable.get(assignedID.value).type.equals("string")){
+            //TODO: continue
+        }
+        else if (currentScope.hashTable.get(assignedID.value).type.equals("int")){
+            //TODO: continue
+        }
+        else{ // Assume it's of boolean type
+
+        }
+
     }
     public static void codeGenPrint(){
 
     }
-    public static void codeGenVarIf(){
+
+    public static void codeGenIf(){
+
+    }
+
+    public static void codeGenWhile(){
 
     }
 
