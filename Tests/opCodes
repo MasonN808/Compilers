@@ -42,7 +42,7 @@
             print(d)
             {
                 int a
-                a = 2
+                a = 2 + d
                 print(d)
             }
         }
