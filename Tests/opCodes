@@ -58,3 +58,8 @@
         print(b)
     }
 }$
+
+{
+string a
+a = "test"
+}$

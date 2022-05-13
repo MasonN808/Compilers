@@ -75,7 +75,7 @@ public class TreeST {
                 Node key = node.children.get(1);
 //                System.out.println(type.value);
                 if (currentScope.hashTable.get(key.value) == null) {
-                    idDetails details = new idDetails(type.value, false, false, key.token, null);
+                    idDetails details = new idDetails(type.value, false, false, key.token, currentScope.scope, null);
                     currentScope.hashTable.put(key.value, details);
                 } else {
                     // CASE: redeclared identifier in same scope
@@ -218,7 +218,7 @@ public class TreeST {
                             String wasValue = tempCurrentScope.hashTable.get(assignedID.value).value;
                             // Then assign accordingly
                             if (wasInitialized == false) { // mark key as is Initialized and keep wasUsed the same
-                                idDetails details = new idDetails(wasType, true, wasUsed, wasToken, assignedExpr.value);
+                                idDetails details = new idDetails(wasType, true, wasUsed, wasToken, currentScope.scope, assignedExpr.value);
                                 tempCurrentScope.hashTable.put(assignedID.value, details); // Remake the hashvalue with edits to idDetails
                             }
                         }
@@ -269,7 +269,7 @@ public class TreeST {
                     }
                     // Then assign accordingly
                     if (wasUsed == false) { // mark key as is Initialized and keep wasUsed the same
-                        idDetails details = new idDetails(wasType, wasInitialized, true, wasToken, wasValue);
+                        idDetails details = new idDetails(wasType, wasInitialized, true, wasToken, currentScope.scope, wasValue);
                         tempCurrentScope.hashTable.put(printKey.value, details); // Remake the hashvalue with edits to idDetails
                     }
                 }

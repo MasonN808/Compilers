@@ -34,6 +34,7 @@ public class CodeGen {
 //        this.lastStackIndex = 0; //TODO: finish this
         this.heapIndex = opsArray.length - 1; // -1, since length is one greater than index
         this.staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
+        this.currentScope = null;
 
 
     }
@@ -66,14 +67,13 @@ public class CodeGen {
 //                System.out.println(opsArray[i].code +" "+ curIndex);
                 if (opsArray[i].code.equals(element.temp)){
                     opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
-                    OpCode opCode1 = opCode;
-                    opCode1.code = "STA";
-                    opsArray[curIndex] = opCode1;
-                    incrementIndex(1);
-
-                    break; // break out of first for loop
                 }
             }
+            // For Debugging to see the static variables
+            OpCode opCode1 = opCode;
+            opCode1.code = "STA"; // TODO: Change to 00 when submitting
+            opsArray[curIndex] = opCode1;
+            incrementIndex(1);
         }
 
         // OpMatrix final output
@@ -105,14 +105,10 @@ public class CodeGen {
                 break;
 
             case ("varDecal"):
-                Node type = node.children.get(0);
-                Node key = node.children.get(1);
-                codeGenVarDecal();
+                codeGenVarDecal(node);
                 break;
 
             case ("assignmentStatement"):
-                Node assignedID = node.children.get(0);
-                Node assignedExpr = node.children.get(1);
                 codeGenAssignment(node);
                 break;
 
@@ -196,9 +192,13 @@ public class CodeGen {
     }
 
 
-    public static void codeGenVarDecal(){
+    public static void codeGenVarDecal(Node node){
         // TODO: Actually, pull the values from symbol table here ---> if we add the ID names in
         //  DataEntry object for staticData arrayList
+
+        Node type = node.children.get(0);
+        Node key = node.children.get(1);
+
         OpCode opCode0 = new OpCode();
         opCode0.code = "A9"; // Load the accumulator with a constant
         opsArray[curIndex] = opCode0;
@@ -220,12 +220,12 @@ public class CodeGen {
         incrementIndex(1);
 
         OpCode opCode4 = new OpCode();
-        opCode4.code = "00"; // TODO: Could be set to 00?
+        opCode4.code = "00";
         opsArray[curIndex] = opCode4;
         incrementIndex(1);
 
         // add a data entry to the Static data table to be replace later for backpatching
-        DataEntry dataEntry = new DataEntry(opCode3.code, numTemps);
+        DataEntry dataEntry = new DataEntry(opCode3.code, key.value, currentScope.scope, numTemps);
         staticData.add(dataEntry);
 
         incrementNumTemps(1); // Go up a temp value for next declaration
@@ -239,6 +239,49 @@ public class CodeGen {
         Node assignedExpr = node.children.get(1);
         // get certain attributes from key values (i.e., the IDs in certain scopes)
         if (currentScope.hashTable.get(assignedID.value).type.equals("string")){
+            assignedExpr.value = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
+            addInHeap(assignedExpr.value, heapIndex); //
+
+            OpCode opCode0 = new OpCode();
+            opCode0.code = "A9"; // Load the accumulator with a constant
+            opsArray[curIndex] = opCode0;
+            incrementIndex(1);
+
+            OpCode opCode1 = new OpCode();
+            opCode1.code = Integer.toHexString(heapIndex).toUpperCase(); // Get the location of the string in heap
+            opsArray[curIndex] = opCode1;
+            incrementIndex(1);
+
+            OpCode opCode2 = new OpCode();
+            opCode2.code = "8D"; // Store the accumulator in memory
+            opsArray[curIndex] = opCode2;
+            incrementIndex(1);
+
+            // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+            String temp = null;
+            for (DataEntry entry: staticData){
+                if (entry.var.equals(assignedID.value)
+                        & entry.scope == currentScope.scope){ // Check value is in there and scope are equivalent
+                    temp = entry.temp;
+                }
+            }
+
+
+            OpCode opCode3 = new OpCode();
+            opCode3.code = temp;
+            opsArray[curIndex] = opCode3;
+            incrementIndex(1);
+
+            OpCode opCode4 = new OpCode();
+            opCode4.code = "00";
+            opsArray[curIndex] = opCode4;
+            incrementIndex(1);
+
+            // add a data entry to the Static data table to be replace later for backpatching
+//            DataEntry dataEntry = new DataEntry(opCode3.code, assignedID.value, currentScope.scope, numTemps);
+//            staticData.add(dataEntry);
+
+//            incrementNumTemps(1); // Go up a temp value for next declaration
 
         }
         else if (currentScope.hashTable.get(assignedID.value).type.equals("int")){
@@ -371,6 +414,24 @@ public class CodeGen {
             // TODO: assign values in hashtable for code gen. and debug
             System.out.format("%4s%10s%20s%15s%15s%15s%15s%n", row);
         }
+    }
+
+    // Used in deleting quotes from string: assignment statement
+    public static String removeFirstandLast(String str){
+        // Creating a StringBuilder object
+        StringBuilder sb = new StringBuilder(str);
+
+        // Removing the last character
+        // of a string
+        sb.deleteCharAt(str.length() - 1);
+
+        // Removing the first character
+        // of a string
+        sb.deleteCharAt(0);
+
+        // Converting StringBuilder into a string
+        // and return the modified string
+        return sb.toString();
     }
 
 }

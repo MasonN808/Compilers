@@ -14,8 +14,10 @@ public class DataEntry {
     public int scope = 0;
     public int offset = 0;
 
-    public DataEntry(String temp, int offset){
+    public DataEntry(String temp, String var, int scope, int offset){
         this.temp = temp;
+        this.var = var;
+        this.scope = scope;
         this.offset = offset;
     }
 }
