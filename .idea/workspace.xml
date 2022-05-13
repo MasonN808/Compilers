@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,13 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00113" summary="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically">
-      <created>1649282405351</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1649282405351</updated>
     </task>
     <task id="LOCAL-00114" summary="- Made idDetails for Hashtable of ids in symbol table/tree">
       <created>1649292273785</created>
@@ -446,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649913134541</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="-Created sack overflow error&#10;-added a method to add strings into the heap">
+      <created>1652399349554</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1652399349554</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -474,7 +473,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
     <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
     <MESSAGE value="- Added line number column to symbol table" />
     <MESSAGE value="- Added warning for declared but uninitialized" />
@@ -499,6 +497,7 @@
     <MESSAGE value="- Fixed AST for assignmentStatement" />
     <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
     <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
+    <MESSAGE value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
   </component>
 </project>

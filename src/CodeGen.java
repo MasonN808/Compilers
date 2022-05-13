@@ -13,6 +13,8 @@ public class CodeGen {
 
     public static int childIndex = 0;
 
+    public static int heapIndex;
+
     public static int numErrors = 0; // Keep track of errors in code gen
 
     public static final int OPS_MATRIX_HEIGHT = 32;
@@ -30,6 +32,7 @@ public class CodeGen {
         this.numTemps = 0; // reset the numTemps
         this.curIndex = 0; // reset the current index pointer
 //        this.lastStackIndex = 0; //TODO: finish this
+        this.heapIndex = opsArray.length - 1; // -1, since length is one greater than index
 
     }
 
@@ -42,11 +45,15 @@ public class CodeGen {
                 -Traverse through each node in the AST
                 -Assign particular opt code for certain nodes
          */
+
+        System.out.println();
+        initFalseTrueInHeap(); // set true and false in heap
         processNode(ast.root);
 
-        //DEBUGGING
+        // OpMatrix final output
         printMatrix(arrayToMatrix());
-        System.out.println(opsArray);
+        // Debugging
+//        System.out.println(opsArray);
 //        printOpsArray();
     }
 
@@ -120,9 +127,9 @@ public class CodeGen {
         }
     }
 
-    public static void initBoolInHeap(){
-
-        opsArray[opsArray.length];
+    public static void initFalseTrueInHeap(){
+        addInHeap("false", heapIndex);
+        addInHeap("true", heapIndex);
     }
 
     public static void addInHeap(String newString, int index){
@@ -143,18 +150,23 @@ public class CodeGen {
         OpCode opCode0 = new OpCode();
         opCode0.code = "00";
         opsArray[index] = opCode0;
-        index -= index; //reduce index
+        index -= 1; //reduce index
 
         int i = 0;
         while (!stack.isEmpty()) { // popping element until
             // stack become empty
             // get the character from the top of the stack
             OpCode opCode1 = new OpCode();
-            opCode1.code = Integer.toHexString((int) stack.pop()); // Transforms from char to hex
+            // Transforms from char to hex
+            // Uppercase since lower case originally for hex with letters
+            opCode1.code = Integer.toHexString((int) stack.pop()).toUpperCase();
+
             opsArray[index] = opCode1;
             index -= 1;
 
         }
+
+        heapIndex = index; // Reassign heapIndex for next String
     }
 
 
