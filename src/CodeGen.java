@@ -326,6 +326,59 @@ public class CodeGen {
                     }
                 }
 
+                // Scan the static Data table
+                // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+//                String temp = null;
+                ArrayList<DataEntry> validEntries = new ArrayList<>();
+                for (DataEntry entry: staticData){
+                    if (entry.var.equals(node.value)){
+                        validEntries.add(entry);
+                    }
+                }
+                if (validEntries.size() == 1){
+                    temp = validEntries.get(0).temp;
+                    OpCode opCode6 = new OpCode();
+                    opCode6.code = temp;
+                    opsArray[curIndex] = opCode6;
+                    incrementIndex(1);
+                }
+                else { // Takes into account multiple ids with same name in different scopes
+                    ArrayList<Integer> scopeDifferences = new ArrayList<>();
+                    for (DataEntry entry : validEntries) {
+                        int difference = 0;
+                        TreeST.ScopeNode tempScope = currentScope;
+                        while (tempScope != null) {
+                            difference += 1;
+                            if (entry.scope == tempScope.scope) {
+                                scopeDifferences.add(difference);
+                                found = true;
+                                break;
+                            } else {
+                                tempScope = tempScope.prev;
+                            }
+                        }
+                        if (!found) {
+                            scopeDifferences.add(100);
+                        }
+                        found = false;
+                    }
+                    if (!scopeDifferences.isEmpty()) {
+                        int minimum = scopeDifferences.get(0);
+                        int minIndex = 0;
+                        for (int i = 1; i < scopeDifferences.size(); i++) {
+                            if (minimum > scopeDifferences.get(i)) {
+                                minimum = scopeDifferences.get(i);
+                                minIndex = i;
+                            }
+                        }
+                        temp = validEntries.get(minIndex).temp;
+                        OpCode opCode6 = new OpCode();
+                        opCode6.code = temp;
+                        opsArray[curIndex] = opCode6;
+                        incrementIndex(1);
+                    }
+                }
+
                 OpCode opCode6 = new OpCode();
                 opCode6.code = temp;
 //                System.out.println(temp);
@@ -343,6 +396,9 @@ public class CodeGen {
 //        }
 
     }
+
+
+
     public static void codeGenPrint(Node node){
         Node printKey = node.children.get(0);
 
