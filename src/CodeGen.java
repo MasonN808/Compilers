@@ -22,6 +22,9 @@ public class CodeGen {
 
     public static boolean POTfirst = true;
 
+    public static boolean found = false;
+
+
 
     public CodeGen(TreeST symbolTable, TreeAST ast){
         // Reset opsArray to empty string of certain length
@@ -130,11 +133,11 @@ public class CodeGen {
                 break;
 
             case ("printStatement"):
-                Node printKey = node.children.get(0);
+                codeGenPrint(node);
                 break;
 
             case ("ifStatement"):
-                Node expr = node.children.get(0);
+                codeGenIf(node);
                 break;
 
             case ("whileStatement"):
@@ -196,7 +199,6 @@ public class CodeGen {
         opsArray[index] = opCode0;
 //        index += 1;
 
-        int i = 0;
         while (!stack.isEmpty()) { // popping element until
             index -= 1;
             // stack become empty
@@ -206,7 +208,7 @@ public class CodeGen {
             // Uppercase since lower case originally for hex with letters
             opCode1.code = Integer.toHexString((int) stack.pop()).toUpperCase();
             opsArray[index] = opCode1;
-            System.out.println(opCode1.code);
+//            System.out.println(opCode1.code);
         }
         heapIndex = index; // Reassign heapIndex for next String
 
@@ -269,11 +271,11 @@ public class CodeGen {
             incrementIndex(1);
 
             OpCode opCode1 = new OpCode();
-            System.out.println(heapIndex);
+//            System.out.println(heapIndex);
             opCode1.code = Integer.toHexString(heapIndex).toUpperCase(); // Get the location of the string in heap
             opsArray[curIndex] = opCode1;
             incrementIndex(1);
-            System.out.println(opCode1.code);
+//            System.out.println(opCode1.code);
 
             OpCode opCode2 = new OpCode();
             opCode2.code = "8D"; // Store the accumulator in memory
@@ -300,7 +302,7 @@ public class CodeGen {
             incrementIndex(1);
         }
         else if (currentScope.hashTable.get(assignedID.value).type.equals("int")){
-            if (currentScope.hashTable.get(assignedID.value).value.equals("+")){ // Do a post order traversal
+//            if (currentScope.hashTable.get(assignedID.value).value.equals("+")){ // Do a post order traversal
                 POT(assignedExpr, assignedID);
                 POTfirst = true;  //reset pointer
 
@@ -320,6 +322,7 @@ public class CodeGen {
 
                 OpCode opCode6 = new OpCode();
                 opCode6.code = temp;
+//                System.out.println(temp);
                 opsArray[curIndex] = opCode6;
                 incrementIndex(1);
 
@@ -327,18 +330,70 @@ public class CodeGen {
                 opCode7.code = "00";
                 opsArray[curIndex] = opCode7;
                 incrementIndex(1);
+//            }
+        }
+//        else{ // Assume it's of boolean type
+//
+//        }
+
+    }
+    public static void codeGenPrint(Node node){
+        Node printKey = node.children.get(0);
+
+        OpCode opCode5 = new OpCode();
+        opCode5.code = "AC"; // Store the accumulator in memory
+        opsArray[curIndex] = opCode5;
+        incrementIndex(1);
+
+        // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+        String temp = null;
+        for (DataEntry entry: staticData){
+            if (entry.var.equals(printKey.value)
+                    & entry.scope == currentScope.scope){ // Check value is in there and scope are equivalent
+                temp = entry.temp;
             }
         }
-        else{ // Assume it's of boolean type
 
+
+
+        OpCode opCode6 = new OpCode();
+        opCode6.code = temp;
+        opsArray[curIndex] = opCode6;
+        incrementIndex(1);
+
+        OpCode opCode4 = new OpCode();
+        opCode4.code = "00"; // Store the accumulator in memory
+        opsArray[curIndex] = opCode4;
+        incrementIndex(1);
+
+        OpCode opCode7 = new OpCode();
+        opCode7.code = "A2";
+        opsArray[curIndex] = opCode7;
+        incrementIndex(1);
+
+        if (currentScope.hashTable.get(printKey.value).type.equals("int")){
+            OpCode opCode8 = new OpCode();
+            opCode8.code = "01";
+            opsArray[curIndex] = opCode8;
+            incrementIndex(1);
         }
+        else if (currentScope.hashTable.get(printKey.value).type.equals("string")){
+            OpCode opCode8 = new OpCode();
+            opCode8.code = "02";
+            opsArray[curIndex] = opCode8;
+            incrementIndex(1);
+        };
+
+
+        OpCode opCode9 = new OpCode();
+        opCode9.code = "FF";
+        opsArray[curIndex] = opCode9;
+        incrementIndex(1);
 
     }
-    public static void codeGenPrint(){
 
-    }
-
-    public static void codeGenIf(){
+    public static void codeGenIf(Node node){
+        Node expr = node.children.get(0);
 
     }
 
@@ -376,20 +431,20 @@ public class CodeGen {
                 incrementIndex(1);
 //                if (!node.value.equals("+")) {
 
-                    OpCode opCode5 = new OpCode();
-                    opCode5.code = "8D"; // Store the accumulator in memory
-                    opsArray[curIndex] = opCode5;
-                    incrementIndex(1);
+                OpCode opCode5 = new OpCode();
+                opCode5.code = "8D"; // Store the accumulator in memory
+                opsArray[curIndex] = opCode5;
+                incrementIndex(1);
 
-                    OpCode opCode6 = new OpCode();
-                    opCode6.code = "00";
-                    opsArray[curIndex] = opCode6;
-                    incrementIndex(1);
+                OpCode opCode6 = new OpCode();
+                opCode6.code = "00";
+                opsArray[curIndex] = opCode6;
+                incrementIndex(1);
 
-                    OpCode opCode7 = new OpCode();
-                    opCode7.code = "00";
-                    opsArray[curIndex] = opCode7;
-                    incrementIndex(1);
+                OpCode opCode7 = new OpCode();
+                opCode7.code = "00";
+                opsArray[curIndex] = opCode7;
+                incrementIndex(1);
 //                }
             }
             else{
@@ -399,20 +454,82 @@ public class CodeGen {
                 incrementIndex(1);
 
                 // TODO: scan for ids
-                if (node.name.equals("ID")){
-                    System.out.println("FOUND");
+                if (node.name.equals("intExpr") & !isNumeric(node.value)){
+//                    System.out.println(node.value);
+                    // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+                    String temp = null;
+                    ArrayList<DataEntry> validEntries = new ArrayList<>();
+                    for (DataEntry entry: staticData){
+                        if (entry.var.equals(node.value)){
+                            validEntries.add(entry);
+                        }
+                    }
+                    if (validEntries.size() == 1){
+                        temp = validEntries.get(0).temp;
+                        OpCode opCode6 = new OpCode();
+                        opCode6.code = temp;
+                        opsArray[curIndex] = opCode6;
+                        incrementIndex(1);
+                    }
+                    else { // Takes into account multiple ids with same name in different scopes
+                        ArrayList<Integer> scopeDifferences = new ArrayList<>();
+                        for (DataEntry entry : validEntries) {
+                            int difference = 0;
+                            TreeST.ScopeNode tempScope = currentScope;
+                            while (tempScope != null) {
+                                difference += 1;
+                                if (entry.scope == tempScope.scope) {
+                                    scopeDifferences.add(difference);
+                                    found = true;
+                                    break;
+                                } else {
+                                    tempScope = tempScope.prev;
+                                }
+                            }
+                            if (!found) {
+                                scopeDifferences.add(100);
+                            }
+                            found = false;
+                        }
+                        if (!scopeDifferences.isEmpty()) {
+                            int minimum = scopeDifferences.get(0);
+                            int minIndex = 0;
+                            for (int i = 1; i < scopeDifferences.size(); i++) {
+                                if (minimum > scopeDifferences.get(i)) {
+                                    minimum = scopeDifferences.get(i);
+                                    minIndex = i;
+                                }
+                            }
+                            temp = validEntries.get(minIndex).temp;
+                            OpCode opCode6 = new OpCode();
+                            opCode6.code = temp;
+                            opsArray[curIndex] = opCode6;
+                            incrementIndex(1);
+                        }
+                    }
                 }
+//                else if ()
+                else if (node.name.equals("stringExpr")){
 
+                }
+                else if (node.name.equals("boolExpr")){
 
-                OpCode opCode1 = new OpCode();
-                if(Integer.toHexString(Integer.parseInt(node.value)).length() == 1){ // Add a leading 0
-                    opCode1.code = '0' + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
                 }
                 else{
-                    opCode1.code = Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    System.out.println(node.value);
+                    OpCode opCode1 = new OpCode();
+                    if(Integer.toHexString(Integer.parseInt(node.value)).length() == 1){ // Add a leading 0
+                        opCode1.code = '0' + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    }
+                    else{
+                        opCode1.code = Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    }
+                    opsArray[curIndex] = opCode1;
+                    incrementIndex(1);
                 }
-                opsArray[curIndex] = opCode1;
-                incrementIndex(1);
+
+
+
 
                 if (POTfirst){
                     OpCode opCode5 = new OpCode();
@@ -560,6 +677,18 @@ public class CodeGen {
         // Converting StringBuilder into a string
         // and return the modified string
         return sb.toString();
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
 }

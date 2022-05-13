@@ -1,4 +1,9 @@
 {
 int a
-a = 1 + 2+ 3 +4
+int d
+string c
+c = "fail"
+d = 1
+a = 1 + 2+ d
+print(d)
 }$
