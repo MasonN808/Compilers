@@ -20,6 +20,8 @@ public class CodeGen {
     public static final int OPS_MATRIX_HEIGHT = 32;
     public static final int OPS_MATRIX_WIDTH = 8;
 
+    public static boolean POTfirst = true;
+
 
     public CodeGen(TreeST symbolTable, TreeAST ast){
         // Reset opsArray to empty string of certain length
@@ -35,6 +37,8 @@ public class CodeGen {
         this.heapIndex = opsArray.length;
         this.staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
         this.currentScope = null;
+        this.POTfirst = true;
+
 
 
     }
@@ -298,6 +302,8 @@ public class CodeGen {
         else if (currentScope.hashTable.get(assignedID.value).type.equals("int")){
             if (currentScope.hashTable.get(assignedID.value).value.equals("+")){ // Do a post order traversal
                 POT(assignedExpr, assignedID);
+                POTfirst = true;  //reset pointer
+
                 OpCode opCode5 = new OpCode();
                 opCode5.code = "8D"; // Store the accumulator in memory
                 opsArray[curIndex] = opCode5;
@@ -347,65 +353,90 @@ public class CodeGen {
 
     // Adapted from https://stackoverflow.com/questions/19338009/traversing-a-non-binary-tree-in-java
     public static void POT(Node node, Node id) { // post order traversal
-//        System.out.println(node.value);
+        if (node != null) {
+            if (!node.children.isEmpty()) {
+                POT(node.children.get(1), id);
+                POT(node.children.get(0), id);
+            }
 
+            if (node.value.equals("+")){
+                OpCode opCode2 = new OpCode();
+                opCode2.code = "6D"; // Store the accumulator in memory
+                opsArray[curIndex] = opCode2;
+                incrementIndex(1);
 
-        for (Node each : node.children) {
-            POT(each, id);
-        }
-        System.out.println(node.value);
+                OpCode opCode3 = new OpCode();
+                opCode3.code = "00";
+                opsArray[curIndex] = opCode3;
+                incrementIndex(1);
 
-        if (node.value.equals("+")){
-            OpCode opCode2 = new OpCode();
-            opCode2.code = "6D"; // Store the accumulator in memory
-            opsArray[curIndex] = opCode2;
-            incrementIndex(1);
+                OpCode opCode4 = new OpCode();
+                opCode4.code = "00";
+                opsArray[curIndex] = opCode4;
+                incrementIndex(1);
+//                if (!node.value.equals("+")) {
 
-            OpCode opCode3 = new OpCode();
-            opCode3.code = "00";
-            opsArray[curIndex] = opCode3;
-            incrementIndex(1);
+                    OpCode opCode5 = new OpCode();
+                    opCode5.code = "8D"; // Store the accumulator in memory
+                    opsArray[curIndex] = opCode5;
+                    incrementIndex(1);
 
-            OpCode opCode4 = new OpCode();
-            opCode4.code = "00";
-            opsArray[curIndex] = opCode4;
-            incrementIndex(1);
-        }
-        else{
-            OpCode opCode0 = new OpCode();
-            opCode0.code = "A9"; // Load the accumulator with a constant
-            opsArray[curIndex] = opCode0;
-            incrementIndex(1);
+                    OpCode opCode6 = new OpCode();
+                    opCode6.code = "00";
+                    opsArray[curIndex] = opCode6;
+                    incrementIndex(1);
 
-            // TODO: scan for ids
-            OpCode opCode1 = new OpCode();
-            if(Integer.toHexString(Integer.parseInt(node.value)).length() == 1){ // Add a leading 0
-                opCode1.code = '0' + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    OpCode opCode7 = new OpCode();
+                    opCode7.code = "00";
+                    opsArray[curIndex] = opCode7;
+                    incrementIndex(1);
+//                }
             }
             else{
-                opCode1.code = Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                OpCode opCode0 = new OpCode();
+                opCode0.code = "A9"; // Load the accumulator with a constant
+                opsArray[curIndex] = opCode0;
+                incrementIndex(1);
+
+                // TODO: scan for ids
+                if (node.name.equals("ID")){
+                    System.out.println("FOUND");
+                }
+
+
+                OpCode opCode1 = new OpCode();
+                if(Integer.toHexString(Integer.parseInt(node.value)).length() == 1){ // Add a leading 0
+                    opCode1.code = '0' + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                }
+                else{
+                    opCode1.code = Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                }
+                opsArray[curIndex] = opCode1;
+                incrementIndex(1);
+
+                if (POTfirst){
+                    OpCode opCode5 = new OpCode();
+                    opCode5.code = "8D"; // Store the accumulator in memory
+                    opsArray[curIndex] = opCode5;
+                    incrementIndex(1);
+
+                    OpCode opCode6 = new OpCode();
+                    opCode6.code = "00";
+                    opsArray[curIndex] = opCode6;
+                    incrementIndex(1);
+
+                    OpCode opCode7 = new OpCode();
+                    opCode7.code = "00";
+                    opsArray[curIndex] = opCode7;
+                    incrementIndex(1);
+                    POTfirst = false;
+                }
+
+
             }
-//            opCode1.code = Integer.toHexString(Integer.parseInt(node.value));
-            opsArray[curIndex] = opCode1;
-            incrementIndex(1);
         }
-        OpCode opCode2 = new OpCode();
-        opCode2.code = "8D"; // Store the accumulator in memory
-        opsArray[curIndex] = opCode2;
-        incrementIndex(1);
-
-        OpCode opCode3 = new OpCode();
-        opCode3.code = "00";
-        opsArray[curIndex] = opCode3;
-        incrementIndex(1);
-
-        OpCode opCode4 = new OpCode();
-        opCode4.code = "00";
-        opsArray[curIndex] = opCode4;
-        incrementIndex(1);
 
 
-//        return traversalResult;
     }
 
     public static void incrementIndex(int increment){
