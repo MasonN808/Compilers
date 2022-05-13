@@ -33,6 +33,8 @@ public class CodeGen {
         this.curIndex = 0; // reset the current index pointer
 //        this.lastStackIndex = 0; //TODO: finish this
         this.heapIndex = opsArray.length - 1; // -1, since length is one greater than index
+        this.staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
+
 
     }
 
@@ -45,10 +47,34 @@ public class CodeGen {
                 -Traverse through each node in the AST
                 -Assign particular opt code for certain nodes
          */
+        // NOTE: ALWAYS increment index AFTER operation
 
         System.out.println();
         initFalseTrueInHeap(); // set true and false in heap
         processNode(ast.root);
+
+        // Add break at end of code
+        OpCode opCode = new OpCode();
+        opCode.code = "00";
+        opsArray[curIndex] = opCode;
+        incrementIndex(1);
+
+
+        //Back Patching
+        for (DataEntry element: staticData){ // Loop through all elements in staticData
+            for (int i = 0; i < curIndex; i++){ // Loop through entire code area; note, doesn't go past static or heap
+//                System.out.println(opsArray[i].code +" "+ curIndex);
+                if (opsArray[i].code.equals(element.temp)){
+                    opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    OpCode opCode1 = opCode;
+                    opCode1.code = "STA";
+                    opsArray[curIndex] = opCode1;
+                    incrementIndex(1);
+
+                    break; // break out of first for loop
+                }
+            }
+        }
 
         // OpMatrix final output
         printMatrix(arrayToMatrix());
@@ -194,7 +220,7 @@ public class CodeGen {
         incrementIndex(1);
 
         OpCode opCode4 = new OpCode();
-        opCode4.code = "XX"; // TODO: Could be set to 00?
+        opCode4.code = "00"; // TODO: Could be set to 00?
         opsArray[curIndex] = opCode4;
         incrementIndex(1);
 
@@ -246,7 +272,7 @@ public class CodeGen {
         curIndex += increment;
     }
 
-    public static void incrementNumTemps(int increment){
+    public static void incrementNumTemps(int increment){ //TODO: might just use the length of Static table array instead dynamically
         numTemps += increment;
     }
 

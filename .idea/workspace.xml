@@ -102,13 +102,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00114" summary="- Made idDetails for Hashtable of ids in symbol table/tree">
-      <created>1649292273785</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1649292273785</updated>
-    </task>
     <task id="LOCAL-00115" summary="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type">
       <created>1649292393289</created>
       <option name="number" value="00115" />
@@ -445,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652399349554</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="-Added &quot;true&quot; and &quot;false&quot; into heap">
+      <created>1652400060887</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1652400060888</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +473,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
     <MESSAGE value="- Added line number column to symbol table" />
     <MESSAGE value="- Added warning for declared but uninitialized" />
     <MESSAGE value="- Deleted a ton of nonworking commented out code" />
@@ -498,6 +497,7 @@
     <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
     <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
     <MESSAGE value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
+    <MESSAGE value="-Added &quot;true&quot; and &quot;false&quot; into heap" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added &quot;true&quot; and &quot;false&quot; into heap" />
   </component>
 </project>
