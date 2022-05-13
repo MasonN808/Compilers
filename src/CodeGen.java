@@ -9,6 +9,8 @@ public class CodeGen {
     public static TreeST.ScopeNode stRoot = null;
     public static TreeST.ScopeNode currentScope = null;
     public static ArrayList<DataEntry> staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
+    public static ArrayList<JumpEntry> jumps = new ArrayList<>(); // Used to store the jumps for if statements
+
     public static int numTemps = 0;
 
     public static int childIndex = 0;
@@ -23,6 +25,8 @@ public class CodeGen {
     public static boolean POTfirst = true;
 
     public static boolean found = false;
+
+    public static int numJumps = 0;
 
 
 
@@ -41,6 +45,8 @@ public class CodeGen {
         this.staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
         this.currentScope = null;
         this.POTfirst = true;
+        this.jumps = new ArrayList<>();
+        this.numJumps = 0;
 
 
 
@@ -394,6 +400,125 @@ public class CodeGen {
 
     public static void codeGenIf(Node node){
         Node expr = node.children.get(0);
+        numJumps += 1; // for number of jump variables
+        // Check what type first child is ==> embedded if statements not supported
+        if (expr.children.get(0).name.equals("intExpr")){
+            OpCode code = new OpCode();
+            code.code = "AC";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(0).value));
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "A9";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(1).value));
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "8D";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "EC";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "A9";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "D0";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(1).value));
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "A9";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(0).value));
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "A2";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "8D";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "EC";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "00";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "D0";
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+            code.code = "J" + numJumps;
+            opsArray[curIndex] = code;
+            incrementIndex(1);
+
+        }else if (expr.children.get(0).name.equals("boolExpr")){
+
+        }else if (expr.children.get(0).name.equals("stringExpr")){
+
+        }
+        if (expr.value.equals("==")){
+            expr.children.get(0);
+        }
+        else{
+
+        }
 
     }
 

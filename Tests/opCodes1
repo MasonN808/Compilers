@@ -7,3 +7,11 @@ d = 1
 a = 1 + 2+ d
 print(d)
 }$
+
+{
+int a
+a = 1
+if (true!=((1 == 2)==false)){
+print(a)
+}
+}$
