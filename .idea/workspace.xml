@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,13 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00117" summary="- Minor initializations of files">
-      <created>1649292471165</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1649292471165</updated>
     </task>
     <task id="LOCAL-00118" summary="- Getting symbol table tree to work">
       <created>1649293357174</created>
@@ -445,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652407091694</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="I think the pointers from heap works now">
+      <created>1652408994199</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1652408994199</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +472,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Deleted a ton of nonworking commented out code" />
     <MESSAGE value="- Debugging Line separator issue for MacOS" />
     <MESSAGE value="- Edits using other computer with MacOS" />
     <MESSAGE value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
@@ -498,6 +496,7 @@
     <MESSAGE value="-Added &quot;true&quot; and &quot;false&quot; into heap" />
     <MESSAGE value="-Added backpatching (works)" />
     <MESSAGE value="-Updated backpatching (works better)&#10;-Edited data entry implementation&#10;-Major Edits to the string case for assignment&#10;-added other attributes to constructor of dataEntry&#10;-added scope to IdDetails, although unneeded&#10;-changes to hashtable due to edits in IdDetails" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Updated backpatching (works better)&#10;-Edited data entry implementation&#10;-Major Edits to the string case for assignment&#10;-added other attributes to constructor of dataEntry&#10;-added scope to IdDetails, although unneeded&#10;-changes to hashtable due to edits in IdDetails" />
+    <MESSAGE value="I think the pointers from heap works now" />
+    <option name="LAST_COMMIT_MESSAGE" value="I think the pointers from heap works now" />
   </component>
 </project>

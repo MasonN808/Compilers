@@ -32,7 +32,7 @@ public class CodeGen {
         this.numTemps = 0; // reset the numTemps
         this.curIndex = 0; // reset the current index pointer
 //        this.lastStackIndex = 0; //TODO: finish this
-        this.heapIndex = opsArray.length - 1; // -1, since length is one greater than index
+        this.heapIndex = opsArray.length;
         this.staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
         this.currentScope = null;
 
@@ -164,11 +164,11 @@ public class CodeGen {
 
     public static void initFalseTrueInHeap(){
         addInHeap("false", heapIndex);
-        System.out.println(heapIndex);
-        System.out.println(opsArray[heapIndex].code);
+//        System.out.println(heapIndex);
+//        System.out.println(opsArray[heapIndex].code);
         addInHeap("true", heapIndex);
-        System.out.println(heapIndex);
-        System.out.println(opsArray[heapIndex].code);
+//        System.out.println(heapIndex);
+//        System.out.println(opsArray[heapIndex].code);
 
     }
 
@@ -185,15 +185,16 @@ public class CodeGen {
 
         // Now Pop the Characters from the stack until it
         // becomes empty
-
+        index -= 1;
         //create break after each string
         OpCode opCode0 = new OpCode();
         opCode0.code = "00";
         opsArray[index] = opCode0;
-        index -= 1; //reduce index
+//        index += 1;
 
         int i = 0;
         while (!stack.isEmpty()) { // popping element until
+            index -= 1;
             // stack become empty
             // get the character from the top of the stack
             OpCode opCode1 = new OpCode();
@@ -201,12 +202,9 @@ public class CodeGen {
             // Uppercase since lower case originally for hex with letters
             opCode1.code = Integer.toHexString((int) stack.pop()).toUpperCase();
             opsArray[index] = opCode1;
-            index -= 1;
+            System.out.println(opCode1.code);
         }
-        index += 1; // to stabilize last index -= 1
         heapIndex = index; // Reassign heapIndex for next String
-        System.out.println(heapIndex);
-//        System.out.println(opsArray[heapIndex].code);
 
     }
 
