@@ -66,15 +66,28 @@ public class CodeGen {
             for (int i = 0; i < curIndex; i++){ // Loop through entire code area; note, doesn't go past static or heap
 //                System.out.println(opsArray[i].code +" "+ curIndex);
                 if (opsArray[i].code.equals(element.temp)){
-                    opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    if(Integer.toHexString(curIndex).length() == 1){ // Add a leading 0
+                        opsArray[i].code = '0' + Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    }
+                    else{
+                        opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    }
                 }
             }
             // For Debugging to see the static variables
             OpCode opCode1 = opCode;
-            opCode1.code = "STA"; // TODO: Change to 00 when submitting
+            opCode1.code = "00"; // TODO: Change to 00 when submitting
             opsArray[curIndex] = opCode1;
             incrementIndex(1);
         }
+
+        // Fill the rest
+        for (int i = 0; i < opsArray.length; i++)
+            if (opsArray[i] == null){
+                OpCode opCode1 = new OpCode();
+                opCode1.code = "00";
+                opsArray[i] = opCode1;
+            }
 
         // OpMatrix final output
         printMatrix(arrayToMatrix());
@@ -151,7 +164,12 @@ public class CodeGen {
 
     public static void initFalseTrueInHeap(){
         addInHeap("false", heapIndex);
+        System.out.println(heapIndex);
+        System.out.println(opsArray[heapIndex].code);
         addInHeap("true", heapIndex);
+        System.out.println(heapIndex);
+        System.out.println(opsArray[heapIndex].code);
+
     }
 
     public static void addInHeap(String newString, int index){
@@ -182,13 +200,14 @@ public class CodeGen {
             // Transforms from char to hex
             // Uppercase since lower case originally for hex with letters
             opCode1.code = Integer.toHexString((int) stack.pop()).toUpperCase();
-
             opsArray[index] = opCode1;
             index -= 1;
-
         }
-
+        index += 1; // to stabilize last index -= 1
         heapIndex = index; // Reassign heapIndex for next String
+        System.out.println(heapIndex);
+//        System.out.println(opsArray[heapIndex].code);
+
     }
 
 
@@ -248,9 +267,11 @@ public class CodeGen {
             incrementIndex(1);
 
             OpCode opCode1 = new OpCode();
+            System.out.println(heapIndex);
             opCode1.code = Integer.toHexString(heapIndex).toUpperCase(); // Get the location of the string in heap
             opsArray[curIndex] = opCode1;
             incrementIndex(1);
+            System.out.println(opCode1.code);
 
             OpCode opCode2 = new OpCode();
             opCode2.code = "8D"; // Store the accumulator in memory
@@ -265,7 +286,6 @@ public class CodeGen {
                     temp = entry.temp;
                 }
             }
-
 
             OpCode opCode3 = new OpCode();
             opCode3.code = temp;
