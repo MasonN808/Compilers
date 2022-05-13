@@ -294,16 +294,34 @@ public class CodeGen {
             opCode4.code = "00";
             opsArray[curIndex] = opCode4;
             incrementIndex(1);
-
-            // add a data entry to the Static data table to be replace later for backpatching
-//            DataEntry dataEntry = new DataEntry(opCode3.code, assignedID.value, currentScope.scope, numTemps);
-//            staticData.add(dataEntry);
-
-//            incrementNumTemps(1); // Go up a temp value for next declaration
-
         }
         else if (currentScope.hashTable.get(assignedID.value).type.equals("int")){
+            if (currentScope.hashTable.get(assignedID.value).value.equals("+")){ // Do a post order traversal
+                POT(assignedExpr, assignedID);
+                OpCode opCode5 = new OpCode();
+                opCode5.code = "8D"; // Store the accumulator in memory
+                opsArray[curIndex] = opCode5;
+                incrementIndex(1);
 
+                // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+                String temp = null;
+                for (DataEntry entry: staticData){
+                    if (entry.var.equals(assignedID.value)
+                            & entry.scope == currentScope.scope){ // Check value is in there and scope are equivalent
+                        temp = entry.temp;
+                    }
+                }
+
+                OpCode opCode6 = new OpCode();
+                opCode6.code = temp;
+                opsArray[curIndex] = opCode6;
+                incrementIndex(1);
+
+                OpCode opCode7 = new OpCode();
+                opCode7.code = "00";
+                opsArray[curIndex] = opCode7;
+                incrementIndex(1);
+            }
         }
         else{ // Assume it's of boolean type
 
@@ -327,7 +345,68 @@ public class CodeGen {
 //        return Integer.toHexString(index);
 //    }
 
+    // Adapted from https://stackoverflow.com/questions/19338009/traversing-a-non-binary-tree-in-java
+    public static void POT(Node node, Node id) { // post order traversal
+//        System.out.println(node.value);
 
+
+        for (Node each : node.children) {
+            POT(each, id);
+        }
+        System.out.println(node.value);
+
+        if (node.value.equals("+")){
+            OpCode opCode2 = new OpCode();
+            opCode2.code = "6D"; // Store the accumulator in memory
+            opsArray[curIndex] = opCode2;
+            incrementIndex(1);
+
+            OpCode opCode3 = new OpCode();
+            opCode3.code = "00";
+            opsArray[curIndex] = opCode3;
+            incrementIndex(1);
+
+            OpCode opCode4 = new OpCode();
+            opCode4.code = "00";
+            opsArray[curIndex] = opCode4;
+            incrementIndex(1);
+        }
+        else{
+            OpCode opCode0 = new OpCode();
+            opCode0.code = "A9"; // Load the accumulator with a constant
+            opsArray[curIndex] = opCode0;
+            incrementIndex(1);
+
+            // TODO: scan for ids
+            OpCode opCode1 = new OpCode();
+            if(Integer.toHexString(Integer.parseInt(node.value)).length() == 1){ // Add a leading 0
+                opCode1.code = '0' + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+            }
+            else{
+                opCode1.code = Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
+            }
+//            opCode1.code = Integer.toHexString(Integer.parseInt(node.value));
+            opsArray[curIndex] = opCode1;
+            incrementIndex(1);
+        }
+        OpCode opCode2 = new OpCode();
+        opCode2.code = "8D"; // Store the accumulator in memory
+        opsArray[curIndex] = opCode2;
+        incrementIndex(1);
+
+        OpCode opCode3 = new OpCode();
+        opCode3.code = "00";
+        opsArray[curIndex] = opCode3;
+        incrementIndex(1);
+
+        OpCode opCode4 = new OpCode();
+        opCode4.code = "00";
+        opsArray[curIndex] = opCode4;
+        incrementIndex(1);
+
+
+//        return traversalResult;
+    }
 
     public static void incrementIndex(int increment){
         curIndex += increment;
