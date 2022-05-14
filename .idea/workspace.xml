@@ -4,8 +4,6 @@
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,13 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00124" summary="- Edits to print of booleanExpr">
-      <created>1649476122238</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1649476122238</updated>
     </task>
     <task id="LOCAL-00125" summary="- Redoing symbol tree implementation">
       <created>1649477466530</created>
@@ -447,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652435499441</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="-Added print statements for verbose mode&#10;-On an airplane">
+      <created>1652557482006</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1652557482007</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +473,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- A lot more edits based on test cases" />
     <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
     <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
     <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
@@ -500,6 +497,7 @@
     <MESSAGE value="Making assignment op code generator more dynamic&#10;-checking ids in int expressions now" />
     <MESSAGE value="-int exprs work without ids implementing that now" />
     <MESSAGE value="-More" />
-    <option name="LAST_COMMIT_MESSAGE" value="-More" />
+    <MESSAGE value="-Added print statements for verbose mode&#10;-On an airplane" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added print statements for verbose mode&#10;-On an airplane" />
   </component>
 </project>

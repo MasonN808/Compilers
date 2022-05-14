@@ -54,6 +54,11 @@ public class CodeGen {
 
     }
 
+
+    /**
+     * Starts the generation of Op Code, does the backpatching, fills the unused memory with 00,
+     * and prints the runtime stack as a matrix // TODO: make sure "runtime stack" is corect
+     */
     public static void generateOpCodes() {
         /*
             -Important Pre-requisites:
@@ -120,6 +125,8 @@ public class CodeGen {
         // OpMatrix final output
         if (verbose){
             System.out.println("CODE GEN -------> Outputting Matrix of 256 bit Op Codes");
+            System.out.println("------------------------------------------------------------");
+
         }
         printMatrix(arrayToMatrix());
         // Debugging
@@ -127,95 +134,123 @@ public class CodeGen {
 //        printOpsArray();
     }
 
+    /**
+     * Processes each node in the AST that are either blocks, varDecals, assignments,
+     * if statements, or while statements
+     * @param node a node in the AST
+     */
     public static void processNode(Node node) {
-        switch (node.name) {
-            case ("block"):
-                if (verbose){
-                    System.out.println("CODE GEN -------> Entering block on line " + node.token.line_number);
-                }
-                // first block instance
-                if (currentScope == null){
-                    currentScope = symbolTable.root;
-                }
-                else{
-                    // Get the scope for the current block
-                    try{
-                        currentScope = currentScope.children.get(childIndex);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        if (numErrors == 0) {
+            switch (node.name) {
+                case ("block"):
+                    if (verbose) {
+                        System.out.println("CODE GEN -------> Entering block on line " + node.token.line_number);
                     }
-                }
-                if (verbose) {
-                    System.out.println("CODE GEN -------> Current Scope: " + currentScope.scope);
-                }
+                    // first block instance
+                    if (currentScope == null) {
+                        currentScope = symbolTable.root;
+                    } else {
+                        // Get the scope for the current block
+                        try {
+                            currentScope = currentScope.children.get(childIndex);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (verbose) {
+                        System.out.println("CODE GEN -------> Current Scope: " + currentScope.scope);
+                    }
 
-                // Debugging
+                    // Debugging
 //                System.out.println();
 //                printScope(currentScope);
-                break;
+                    break;
 
-            case ("varDecal"):
-                Node id = node.children.get(0); // Pulling the id being declared in varDecal Statement
-                if (verbose){
-                    System.out.println("CODE GEN -------> Generating Op Codes for VARIABLE DECLARATION on line " + id.token.line_number);
-                }
-                codeGenVarDecal(node);
-                break;
+                case ("varDecal"):
+                    Node id = node.children.get(0); // Pulling the id being declared in varDecal Statement
+                    if (verbose) {
+                        System.out.println("CODE GEN -------> Generating Op Codes for VARIABLE DECLARATION on line " + id.token.line_number);
+                    }
+                    codeGenVarDecal(node);
+                    break;
 
-            case ("assignmentStatement"):
-                id = node.children.get(0); // Pulling the variable being declared in varDecal Statement
-                if (verbose){
-                    System.out.println("CODE GEN -------> Generating Op Codes for ASSIGNMENT STATEMENT on line " + id.token.line_number);
-                }
-                codeGenAssignment(node);
-                break;
+                case ("assignmentStatement"):
+                    id = node.children.get(0); // Pulling the variable being declared in varDecal Statement
+                    if (verbose) {
+                        System.out.println("CODE GEN -------> Generating Op Codes for ASSIGNMENT STATEMENT on line " + id.token.line_number);
+                    }
+                    codeGenAssignment(node);
+                    break;
 
-            case ("printStatement"):
-                if (verbose){
-                    System.out.println("CODE GEN -------> Generating Op Codes for PRINT STATEMENT on line " + node.token.line_number);
-                }
-                codeGenPrint(node);
-                break;
+                case ("printStatement"):
+                    if (verbose) {
+                        System.out.println("CODE GEN -------> Generating Op Codes for PRINT STATEMENT on line " + node.token.line_number);
+                    }
+                    codeGenPrint(node);
+                    break;
 
-            case ("ifStatement"):
-                if (verbose){
-                    System.out.println("CODE GEN -------> Generating Op Codes for IF STATEMENT on line " + node.token.line_number);
-                }
-                codeGenIf(node);
-                break;
+                case ("ifStatement"):
+                    if (verbose) {
+                        System.out.println("CODE GEN -------> Generating Op Codes for IF STATEMENT on line " + node.token.line_number);
+                    }
+                    codeGenIf(node);
+                    break;
 
-            case ("whileStatement"):
-                if (verbose){
-                    System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
-                }
+                case ("whileStatement"):
+                    if (verbose) {
+                        System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
+                    }
 //                Node expr = node.children.get(0);
-                break;
+                    break;
 
-            default:
-                //Everything else that needs nothing
-        }
+                default:
+                    //Everything else that needs nothing
+            }
 
-        for (Node each : node.children) {
-            processNode(each);
-            if (each.name == "block"){
-                //Go to next child
-                childIndex += 1;
+            // If not known already --> doing a Pseudo-breadth-first traversal
+            //                          (pseudo since we go deeper in the tree for every block node)
+            for (Node each : node.children) {
+                processNode(each);
+                if (each.name == "block") {
+                    //Go to next child
+                    childIndex += 1;
+                }
+            }
+
+            if (node.name.equals("block")) {
+                // Go back up the tree at outer scope
+                currentScope = currentScope.prev;
+                childIndex = 0; // reset the child index
             }
         }
-
-        if (node.name.equals("block")) {
-            // Go back up the tree at outer scope
-            currentScope = currentScope.prev;
-            childIndex = 0; // reset the child index
-        }
     }
 
-    public static void checkStackOverflow(int index){
+    /**
+     * Checks to see if the memory space at the particular of the Ops Array is occupied;
+     * if so, we output stack overflow error
+     * @param index The current index of the Op Array
+     * @return boolean
+     */
+    public static boolean checkStackOverflow(int index, String space){
         if (opsArray[index].code != null){
-            System.out.println("CODE GEN [ERROR]: Stack Overflow --> Heap overflowed into stack"); //Stack overflow error
+            if (space.equals("heap")){
+                System.out.println("CODE GEN [ERROR]: -------> Stack Overflow --> Heap overflowed into Stack"); //Stack overflow error
+            }
+            else if (space.equals("stack")){
+                System.out.println("CODE GEN [ERROR]: -------> Stack Overflow --> Stack overflowed into Heap"); //Stack overflow error
+            }
+            numErrors += 1;
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
+    /**
+     * Fills the heap with the strings "true" and "false" for future reference
+     * in Boolean statements and expressions
+     */
     public static void initFalseTrueInHeap(){
         addInHeap("false", heapIndex);
 //        System.out.println(heapIndex);
@@ -223,9 +258,14 @@ public class CodeGen {
         addInHeap("true", heapIndex);
 //        System.out.println(heapIndex);
 //        System.out.println(opsArray[heapIndex].code);
-
     }
 
+    /**
+     * Adds a string in the heap at the current heap index (index in the heap), and
+     * sets current heapIndex to be the first Char of the added string.  Additionally,
+     * it checks for stack overflow
+     * @param index The current index of the Op Array
+     */
     public static void addInHeap(String newString, int index){
         // Create a stack to reverse the string
         Stack<Character> stack = new Stack<Character>();
@@ -254,7 +294,12 @@ public class CodeGen {
             // Transforms from char to hex
             // Uppercase since lower case originally for hex with letters
             opCode1.code = Integer.toHexString((int) stack.pop()).toUpperCase();
-            opsArray[index] = opCode1;
+            if (!checkStackOverflow(index, "heap")){
+                opsArray[index] = opCode1;
+            }
+            else {
+                break;
+            }
 //            System.out.println(opCode1.code);
         }
         heapIndex = index; // Reassign heapIndex for next String
