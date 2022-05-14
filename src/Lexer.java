@@ -592,12 +592,14 @@ public class Lexer {
                             // Code Gen
                             System.out.println("------------------------------------------------------------");
                             System.out.println("Beginning CODE GEN for Program " + program_num);
-                            CodeGen codeGen = new CodeGen(treeST, abstractST.ast);
+                            CodeGen codeGen = new CodeGen(treeST, abstractST.ast, true); //TODO: change true back to verbose
                             codeGen.generateOpCodes();
                             if (codeGen.numErrors > 0){
+                                System.out.println("------------------------------------------------------------");
                                 System.out.println("CODE GEN -------> CODE GEN terminated UNSUCCESSFULLY");
                             }
                             else{
+                                System.out.println("------------------------------------------------------------");
                                 System.out.println("CODE GEN -------> CODE GEN finished SUCCESSFULLY");
                             }
                         }

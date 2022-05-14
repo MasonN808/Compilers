@@ -2,6 +2,7 @@ import javax.xml.crypto.Data;
 import java.util.*;
 
 public class CodeGen {
+    public static boolean verbose = false;
     public static OpCode[] opsArray = null; // Might make into matrix
     public static TreeST symbolTable = null;
     public static TreeAST ast = null;
@@ -30,7 +31,7 @@ public class CodeGen {
 
 
 
-    public CodeGen(TreeST symbolTable, TreeAST ast){
+    public CodeGen(TreeST symbolTable, TreeAST ast, boolean verbose){
         // Reset opsArray to empty string of certain length
         this.opsArray = new OpCode[256]; // TODO: make sure 256 is the right length and not 255
         this.symbolTable = symbolTable; // Might not actually need the symbol table since semantic completed successfully (prereq)'
@@ -47,6 +48,7 @@ public class CodeGen {
         this.POTfirst = true;
         this.jumps = new ArrayList<>();
         this.numJumps = 0;
+        this.verbose = verbose;
 
 
 
@@ -73,7 +75,9 @@ public class CodeGen {
         opsArray[curIndex] = opCode;
         incrementIndex(1);
 
-
+        if (verbose){
+            System.out.println("CODE GEN -------> Beginning Backpatching");
+        }
         //Back Patching
         for (DataEntry element: staticData){ // Loop through all elements in staticData
             for (int i = 0; i < curIndex; i++){ // Loop through entire code area; note, doesn't go past static or heap
@@ -87,13 +91,20 @@ public class CodeGen {
                     }
                 }
             }
+
             // For Debugging to see the static variables
             OpCode opCode1 = opCode;
-            opCode1.code = "00"; // TODO: Change to 00 when submitting
+            opCode1.code = "00";
             opsArray[curIndex] = opCode1;
             incrementIndex(1);
         }
+        if (verbose){
+            System.out.println("CODE GEN -------> Ending Backpatching");
+        }
 
+        if (verbose){
+            System.out.println("CODE GEN -------> Filling Empty Memory with 00");
+        }
         // Fill the rest
         for (int i = 0; i < opsArray.length; i++)
             if (opsArray[i] == null){
@@ -102,7 +113,14 @@ public class CodeGen {
                 opsArray[i] = opCode1;
             }
 
+        if (verbose){
+            System.out.println("CODE GEN -------> Done Filling");
+        }
+
         // OpMatrix final output
+        if (verbose){
+            System.out.println("CODE GEN -------> Outputting Matrix of 256 bit Op Codes");
+        }
         printMatrix(arrayToMatrix());
         // Debugging
 //        System.out.println(opsArray);
@@ -112,6 +130,9 @@ public class CodeGen {
     public static void processNode(Node node) {
         switch (node.name) {
             case ("block"):
+                if (verbose){
+                    System.out.println("CODE GEN -------> Entering block on line " + node.token.line_number);
+                }
                 // first block instance
                 if (currentScope == null){
                     currentScope = symbolTable.root;
@@ -124,6 +145,9 @@ public class CodeGen {
                         e.printStackTrace();
                     }
                 }
+                if (verbose) {
+                    System.out.println("CODE GEN -------> Current Scope: " + currentScope.scope);
+                }
 
                 // Debugging
 //                System.out.println();
@@ -131,22 +155,39 @@ public class CodeGen {
                 break;
 
             case ("varDecal"):
+                Node id = node.children.get(0); // Pulling the id being declared in varDecal Statement
+                if (verbose){
+                    System.out.println("CODE GEN -------> Generating Op Codes for VARIABLE DECLARATION on line " + id.token.line_number);
+                }
                 codeGenVarDecal(node);
                 break;
 
             case ("assignmentStatement"):
+                id = node.children.get(0); // Pulling the variable being declared in varDecal Statement
+                if (verbose){
+                    System.out.println("CODE GEN -------> Generating Op Codes for ASSIGNMENT STATEMENT on line " + id.token.line_number);
+                }
                 codeGenAssignment(node);
                 break;
 
             case ("printStatement"):
+                if (verbose){
+                    System.out.println("CODE GEN -------> Generating Op Codes for PRINT STATEMENT on line " + node.token.line_number);
+                }
                 codeGenPrint(node);
                 break;
 
             case ("ifStatement"):
+                if (verbose){
+                    System.out.println("CODE GEN -------> Generating Op Codes for IF STATEMENT on line " + node.token.line_number);
+                }
                 codeGenIf(node);
                 break;
 
             case ("whileStatement"):
+                if (verbose){
+                    System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
+                }
 //                Node expr = node.children.get(0);
                 break;
 

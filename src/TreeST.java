@@ -90,7 +90,7 @@ public class TreeST {
                 assignedExprTraverse = null;
                 Node assignedID = node.children.get(0);
                 Node assignedExpr = node.children.get(1);
-                System.out.println(assignedExpr);
+//                System.out.println(assignedExpr.value);
                 /*
                     -Pseudo Code
                         - First search for IDs in the boolean expression that may be labelled as mixed
