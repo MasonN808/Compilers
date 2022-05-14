@@ -232,7 +232,7 @@ public class CodeGen {
      * @return boolean
      */
     public static boolean checkStackOverflow(int index, String space){
-        if (opsArray[index].code != null){
+        if (opsArray[index] != null){
             if (space.equals("heap")){
                 System.out.println("CODE GEN [ERROR]: -------> Stack Overflow --> Heap overflowed into Stack"); //Stack overflow error
             }
@@ -306,7 +306,10 @@ public class CodeGen {
 
     }
 
-
+    /**
+     * Generates Op Codes for variable declaration
+     * @param node The current node in the AST
+     */
     public static void codeGenVarDecal(Node node){
         // TODO: Actually, pull the values from symbol table here ---> if we add the ID names in
         //  DataEntry object for staticData arrayList
@@ -346,6 +349,11 @@ public class CodeGen {
         incrementNumTemps(1); // Go up a temp value for next declaration
 
     }
+
+    /**
+     * Generates Op Codes for assignment statement
+     * @param node The current node in the AST
+     */
     public static void codeGenAssignment(Node node){
         // TODO: access the symbol table to check the type and get the value
         // TODO: need to fix getting the value from TreeST
@@ -484,7 +492,10 @@ public class CodeGen {
     }
 
 
-
+    /**
+     * Generates Op Codes for print statement
+     * @param node The current node in the AST
+     */
     public static void codeGenPrint(Node node){
         Node printKey = node.children.get(0);
 
@@ -540,6 +551,10 @@ public class CodeGen {
 
     }
 
+    /**
+     * Generates Op Codes for if statement
+     * @param node The current node in the AST
+     */
     public static void codeGenIf(Node node){
         Node expr = node.children.get(0);
         numJumps += 1; // for number of jump variables
@@ -664,7 +679,11 @@ public class CodeGen {
 
     }
 
-    public static void codeGenWhile(){
+    /**
+     * Generates Op Codes for while statement
+     * @param node The current node in the AST
+     */
+    public static void codeGenWhile(Node node){
 
     }
 
@@ -673,6 +692,13 @@ public class CodeGen {
 //        return Integer.toHexString(index);
 //    }
 
+
+    /**
+     * Does a depth-first post-order traversal
+     * (Mainly for lengthy/embedded int and boolean expressions in the AST).
+     * Also allows us to check for IDs in the expressions
+     * @param node The current node in the AST
+     */
     // Adapted from https://stackoverflow.com/questions/19338009/traversing-a-non-binary-tree-in-java
     public static void POT(Node node, Node id) { // post order traversal
         if (node != null) {
@@ -775,7 +801,6 @@ public class CodeGen {
                         }
                     }
                 }
-//                else if ()
                 else if (node.name.equals("stringExpr")){
 
                 }
@@ -783,7 +808,7 @@ public class CodeGen {
 
                 }
                 else{
-                    System.out.println(node.value);
+//                    System.out.println(node.name);
                     OpCode opCode1 = new OpCode();
                     if(Integer.toHexString(Integer.parseInt(node.value)).length() == 1){ // Add a leading 0
                         opCode1.code = '0' + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Replace the temp value with pointer to static memory after code
@@ -823,15 +848,26 @@ public class CodeGen {
 
     }
 
+    /**
+     * Increments the current Index
+     * @param increment The amount to increment
+     */
     public static void incrementIndex(int increment){
         curIndex += increment;
     }
 
+    /**
+     * Increments the number of Temp variables in the static table
+     * @param increment The amount to increment
+     */
     public static void incrementNumTemps(int increment){ //TODO: might just use the length of Static table array instead dynamically
         numTemps += increment;
     }
 
-
+    /**
+     * Converts the Ops array to a matrix
+     * @return OpCode[][] A matrix
+     */
     // To convert the ops array to a matrix
     // Citation: https://stackoverflow.com/questions/5134555/how-to-convert-a-1d-array-to-2d-array
     public static OpCode[][] arrayToMatrix(){
@@ -850,6 +886,10 @@ public class CodeGen {
         return opsMatrix;
     }
 
+    /**
+     * Prints the Op code Matrix using system print method
+     * @param opsMatrix The Op code matrix
+     */
     // To print the opsMatrix in matrix form
     public static void printMatrix(OpCode[][] opsMatrix){
         for(int i = 0; i < OPS_MATRIX_HEIGHT; i++){
@@ -860,18 +900,26 @@ public class CodeGen {
         }
     }
 
-    // To print the ops array
+    /**
+     * Prints the Ops Array (mainly for debugging)
+     */
     public static void printOpsArray(){
         for(int i = 0; i < opsArray.length; i++){
             System.out.print(opsArray[i].code + " ");
         }
     }
 
+    // TODO: take the backpatching code from before and input here
     public static String[] replaceTemp(){
         // TODO: make this
         return null;
     }
 
+    /**
+     * Pseudo Breadth-First Traversal on the AST (might delete later since unneeded)
+     * @param tree The AST
+     * @param astRoot root of the AST
+     */
     // Adapted from https://stackoverflow.com/questions/16380026/implementing-bfs-in-java
     public static void BFS(AbstractSyntaxTree tree, Node astRoot) {
         // create a queue for doing BFS
@@ -892,6 +940,10 @@ public class CodeGen {
          clearNodes(astRoot);
     }
 
+    /**
+     * Used in BFS to reset pointers
+     * @param root The current node in the AST
+     */
     private static void clearNodes(Node root) { // post order traversal since easy to implement
         root.visited = false; // reset the pointer
         for (Node each : root.children) {
@@ -899,6 +951,10 @@ public class CodeGen {
         }
     }
 
+    /**
+     * Used in BFS to visit the unvisited children
+     * @param node The current node in the AST
+     */
     private static Node getUnvisitedChildNode(Node node) {
         Deque<Node> stack = new ArrayDeque<Node>();
         for (Node child: node.children){
@@ -913,9 +969,11 @@ public class CodeGen {
         }
         return out;
     }
-
-    // Mainly for debugging
-    // Prints the the data in the current scopeNode
+    /**
+     * Prints the the data in the current scopeNode
+     * (Mainly for debugging)
+     * @param v A scopeNode object
+     */
     public static void printScope(TreeST.ScopeNode v){
         Set<String> keys = v.hashTable.keySet();
         for (String key : keys) {
@@ -928,7 +986,10 @@ public class CodeGen {
         }
     }
 
-    // Used in deleting quotes from string: assignment statement
+    /**
+     * Used in deleting quotes from string mainly in assignment statement and print statement
+     * @param str A String
+     */
     public static String removeFirstandLast(String str){
         // Creating a StringBuilder object
         StringBuilder sb = new StringBuilder(str);
@@ -946,6 +1007,11 @@ public class CodeGen {
         return sb.toString();
     }
 
+    /**
+     * Checks to see if String is numeric
+     * @param strNum a Sting
+     * @return boolean
+     */
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;

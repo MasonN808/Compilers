@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +44,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -101,13 +104,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00125" summary="- Redoing symbol tree implementation">
-      <created>1649477466530</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1649477466530</updated>
     </task>
     <task id="LOCAL-00126" summary="- Symbol Tree is looking better">
       <created>1649478155799</created>
@@ -445,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652557482007</updated>
     </task>
-    <option name="localTasksCounter" value="174" />
+    <task id="LOCAL-00174" summary="- Added method information&#10;- implemented the stack overflow error">
+      <created>1652559683342</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1652559683342</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +476,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
     <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
     <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
     <MESSAGE value="- Edited more detailed error messages" />
@@ -498,6 +500,7 @@
     <MESSAGE value="-int exprs work without ids implementing that now" />
     <MESSAGE value="-More" />
     <MESSAGE value="-Added print statements for verbose mode&#10;-On an airplane" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added print statements for verbose mode&#10;-On an airplane" />
+    <MESSAGE value="- Added method information&#10;- implemented the stack overflow error" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added method information&#10;- implemented the stack overflow error" />
   </component>
 </project>
