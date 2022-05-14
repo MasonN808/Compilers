@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00126" summary="- Symbol Tree is looking better">
-      <created>1649478155799</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1649478155799</updated>
     </task>
     <task id="LOCAL-00127" summary="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress">
       <created>1649540822330</created>
@@ -448,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652559683342</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="- Added more method information">
+      <created>1652561026421</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1652561026422</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -476,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
     <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
     <MESSAGE value="- Edited more detailed error messages" />
     <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
@@ -501,6 +502,7 @@
     <MESSAGE value="-More" />
     <MESSAGE value="-Added print statements for verbose mode&#10;-On an airplane" />
     <MESSAGE value="- Added method information&#10;- implemented the stack overflow error" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added method information&#10;- implemented the stack overflow error" />
+    <MESSAGE value="- Added more method information" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added more method information" />
   </component>
 </project>

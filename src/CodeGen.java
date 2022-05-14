@@ -49,9 +49,6 @@ public class CodeGen {
         this.jumps = new ArrayList<>();
         this.numJumps = 0;
         this.verbose = verbose;
-
-
-
     }
 
 
@@ -73,65 +70,70 @@ public class CodeGen {
         System.out.println();
         initFalseTrueInHeap(); // set true and false in heap
         processNode(ast.root);
-
-        // Add break at end of code
-        OpCode opCode = new OpCode();
-        opCode.code = "00";
-        opsArray[curIndex] = opCode;
-        incrementIndex(1);
-
-        if (verbose){
-            System.out.println("CODE GEN -------> Beginning Backpatching");
+        if (numErrors > 0){
+            System.out.println("------------------------------------------------------------");
+            System.out.println("CODE GEN -------> CODE GEN terminated UNSUCCESSFULLY");
         }
-        //Back Patching
-        for (DataEntry element: staticData){ // Loop through all elements in staticData
-            for (int i = 0; i < curIndex; i++){ // Loop through entire code area; note, doesn't go past static or heap
+        else{
+            // Add break at end of code
+            OpCode opCode = new OpCode();
+            opCode.code = "00";
+            opsArray[curIndex] = opCode;
+            incrementIndex(1);
+
+            if (verbose){
+                System.out.println("CODE GEN -------> Beginning Backpatching");
+            }
+            //Back Patching
+            for (DataEntry element: staticData){ // Loop through all elements in staticData
+                for (int i = 0; i < curIndex; i++){ // Loop through entire code area; note, doesn't go past static or heap
 //                System.out.println(opsArray[i].code +" "+ curIndex);
-                if (opsArray[i].code.equals(element.temp)){
-                    if(Integer.toHexString(curIndex).length() == 1){ // Add a leading 0
-                        opsArray[i].code = '0' + Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
-                    }
-                    else{
-                        opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    if (opsArray[i].code.equals(element.temp)){
+                        if(Integer.toHexString(curIndex).length() == 1){ // Add a leading 0
+                            opsArray[i].code = '0' + Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                        }
+                        else{
+                            opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                        }
                     }
                 }
-            }
 
-            // For Debugging to see the static variables
-            OpCode opCode1 = opCode;
-            opCode1.code = "00";
-            opsArray[curIndex] = opCode1;
-            incrementIndex(1);
-        }
-        if (verbose){
-            System.out.println("CODE GEN -------> Ending Backpatching");
-        }
-
-        if (verbose){
-            System.out.println("CODE GEN -------> Filling Empty Memory with 00");
-        }
-        // Fill the rest
-        for (int i = 0; i < opsArray.length; i++)
-            if (opsArray[i] == null){
-                OpCode opCode1 = new OpCode();
+                // For Debugging to see the static variables
+                OpCode opCode1 = opCode;
                 opCode1.code = "00";
-                opsArray[i] = opCode1;
+                opsArray[curIndex] = opCode1;
+                incrementIndex(1);
+            }
+            if (verbose){
+                System.out.println("CODE GEN -------> Ending Backpatching");
             }
 
-        if (verbose){
-            System.out.println("CODE GEN -------> Done Filling");
-        }
+            if (verbose){
+                System.out.println("CODE GEN -------> Filling Empty Memory with 00");
+            }
+            // Fill the rest
+            for (int i = 0; i < opsArray.length; i++)
+                if (opsArray[i] == null){
+                    OpCode opCode1 = new OpCode();
+                    opCode1.code = "00";
+                    opsArray[i] = opCode1;
+                }
 
-        // OpMatrix final output
-        if (verbose){
-            System.out.println("CODE GEN -------> Outputting Matrix of 256 bit Op Codes");
+            if (verbose){
+                System.out.println("CODE GEN -------> Done Filling");
+            }
+
+            // OpMatrix final output
+            if (verbose){
+                System.out.println("CODE GEN -------> Outputting Matrix of 256 bit Op Codes");
+                System.out.println("------------------------------------------------------------");
+
+            }
+            printMatrix(arrayToMatrix());
+
             System.out.println("------------------------------------------------------------");
-
+            System.out.println("CODE GEN -------> CODE GEN finished SUCCESSFULLY");
         }
-        printMatrix(arrayToMatrix());
-        // Debugging
-//        System.out.println(opsArray);
-//        printOpsArray();
     }
 
     /**
@@ -317,15 +319,25 @@ public class CodeGen {
         Node type = node.children.get(0);
         Node key = node.children.get(1);
 
+        // initialize the opcode that we'll be using
         OpCode opCode0 = new OpCode();
-        opCode0.code = "A9"; // Load the accumulator with a constant
-        opsArray[curIndex] = opCode0;
-        incrementIndex(1);
 
-        OpCode opCode1 = new OpCode();
-        opCode1.code = "00"; // Set to NUL
-        opsArray[curIndex] = opCode1;
-        incrementIndex(1);
+        opCode0.code = "A9"; // Load the accumulator with a constant
+        if (!checkStackOverflow(curIndex, "stack")){
+            opsArray[curIndex] = opCode0;
+            System.out.println("CODE GEN -------> A9");
+            incrementIndex(1);
+        }
+
+
+
+
+        opCode0.code = "00"; // Set to NUL
+        if (!checkStackOverflow(curIndex, "stack")){
+            opsArray[curIndex] = opCode0;
+            System.out.println("CODE GEN -------> 00");
+            incrementIndex(1);
+        }
 
         OpCode opCode2 = new OpCode();
         opCode2.code = "8D"; // Store the accumulator in memory
