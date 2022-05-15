@@ -84,26 +84,10 @@ public class CodeGen {
             if (verbose){
                 System.out.println("CODE GEN -------> Beginning Backpatching");
             }
-            //Back Patching
-            for (DataEntry element: staticData){ // Loop through all elements in staticData
-                for (int i = 0; i < curIndex; i++){ // Loop through entire code area; note, doesn't go past static or heap
-//                System.out.println(opsArray[i].code +" "+ curIndex);
-                    if (opsArray[i].code.equals(element.temp)){
-                        if(Integer.toHexString(curIndex).length() == 1){ // Add a leading 0
-                            opsArray[i].code = '0' + Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
-                        }
-                        else{
-                            opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
-                        }
-                    }
-                }
 
-                // For Debugging to see the static variables
-                OpCode opCode1 = opCode;
-                opCode1.code = "00";
-                opsArray[curIndex] = opCode1;
-                incrementIndex(1);
-            }
+            //Backpatching here
+            backpatch();
+
             if (verbose){
                 System.out.println("CODE GEN -------> Ending Backpatching");
             }
@@ -133,6 +117,32 @@ public class CodeGen {
 
             System.out.println("------------------------------------------------------------");
             System.out.println("CODE GEN -------> CODE GEN finished SUCCESSFULLY");
+        }
+    }
+
+    /**
+     * Backpatching through jumps and static tables //TODO: implement the backpatching for jump table
+     */
+    private static void backpatch() {
+        //Back Patching
+        for (DataEntry element: staticData){ // Loop through all elements in staticData
+            for (int i = 0; i < curIndex; i++){ // Loop through entire code area; note, doesn't go past static or heap
+//                System.out.println(opsArray[i].code +" "+ curIndex);
+                if (opsArray[i].code.equals(element.temp)){
+                    if(Integer.toHexString(curIndex).length() == 1){ // Add a leading 0
+                        opsArray[i].code = '0' + Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    }
+                    else{
+                        opsArray[i].code = Integer.toHexString(curIndex).toUpperCase(); // Replace the temp value with pointer to static memory after code
+                    }
+                }
+            }
+
+            // For Debugging to see the static variables
+            OpCode opCode1 = new OpCode();
+            opCode1.code = "ST";
+            opsArray[curIndex] = opCode1;
+            incrementIndex(1);
         }
     }
 
@@ -313,9 +323,6 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void codeGenVarDecal(Node node){
-        // TODO: Actually, pull the values from symbol table here ---> if we add the ID names in
-        //  DataEntry object for staticData arrayList
-
         Node type = node.children.get(0);
         Node key = node.children.get(1);
 
@@ -329,30 +336,37 @@ public class CodeGen {
             incrementIndex(1);
         }
 
-
-
-
-        opCode0.code = "00"; // Set to NUL
+        OpCode opCode1 = new OpCode();
+        opCode1.code = "00"; // Set to NUL
         if (!checkStackOverflow(curIndex, "stack")){
-            opsArray[curIndex] = opCode0;
+            opsArray[curIndex] = opCode1;
             System.out.println("CODE GEN -------> 00");
             incrementIndex(1);
         }
 
         OpCode opCode2 = new OpCode();
         opCode2.code = "8D"; // Store the accumulator in memory
-        opsArray[curIndex] = opCode2;
-        incrementIndex(1);
+        if (!checkStackOverflow(curIndex, "stack")){
+            opsArray[curIndex] = opCode2;
+            System.out.println("CODE GEN -------> 8D");
+            incrementIndex(1);
+        }
 
         OpCode opCode3 = new OpCode();
         opCode3.code = "T" + numTemps;
-        opsArray[curIndex] = opCode3;
-        incrementIndex(1);
+        if (!checkStackOverflow(curIndex, "stack")){
+            opsArray[curIndex] = opCode3;
+            System.out.println("CODE GEN -------> T " + numTemps);
+            incrementIndex(1);
+        }
 
         OpCode opCode4 = new OpCode();
         opCode4.code = "00";
-        opsArray[curIndex] = opCode4;
-        incrementIndex(1);
+        if (!checkStackOverflow(curIndex, "stack")){
+            opsArray[curIndex] = opCode4;
+            System.out.println("CODE GEN -------> T " + numTemps);
+            incrementIndex(1);
+        }
 
         // add a data entry to the Static data table to be replace later for backpatching
         DataEntry dataEntry = new DataEntry(opCode3.code, key.value, currentScope.scope, numTemps);

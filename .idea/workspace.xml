@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00127" summary="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress">
-      <created>1649540822330</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1649540822330</updated>
     </task>
     <task id="LOCAL-00128" summary="- Added more error exceptions">
       <created>1649547193821</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652561026422</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="- Added check heap overflow when assigining Op codes&#10;- Still on plane&#10;- Finishing at home">
+      <created>1652562041022</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1652562041022</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
     <MESSAGE value="- Edited more detailed error messages" />
     <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
     <MESSAGE value="- Trying to fix issues with AST" />
@@ -503,6 +502,7 @@
     <MESSAGE value="-Added print statements for verbose mode&#10;-On an airplane" />
     <MESSAGE value="- Added method information&#10;- implemented the stack overflow error" />
     <MESSAGE value="- Added more method information" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added more method information" />
+    <MESSAGE value="- Added check heap overflow when assigining Op codes&#10;- Still on plane&#10;- Finishing at home" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added check heap overflow when assigining Op codes&#10;- Still on plane&#10;- Finishing at home" />
   </component>
 </project>
