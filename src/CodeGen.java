@@ -146,7 +146,7 @@ public class CodeGen {
 
             // For Debugging to see the static variables
             OpCode opCode1 = new OpCode();
-            opCode1.code = "ST";
+            opCode1.code = "00";
             opsArray[curIndex] = opCode1;
             incrementIndex(1);
         }
@@ -391,11 +391,13 @@ public class CodeGen {
         Node assignedExpr = node.children.get(1);
 
         TreeST.ScopeNode tempScope = currentScope;
+        System.out.println("temp 1: "+  tempScope.scope);
         boolean idFound = false;
+        // Look for the ID in the symbol table
         while (tempScope != null & !idFound){ // Doing a while loop to find the ID from assignedID in some previous scope (or even current scope)
             if (tempScope.hashTable.get(assignedID.value) != null) { // make sure the query from the hashtable isn't null
                 if (tempScope.hashTable.get(assignedID.value).type.equals("string")) { // if the id being assigned is of string type
-                    idFound = true;
+                    idFound = true; // To get out of the while loop
                     String tempAssignedExprValue = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
                     addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
 
@@ -423,9 +425,9 @@ public class CodeGen {
                         incrementIndex(1);
                     }
 
-                    // Check for the assigned ID in static table of the current scope to assign temp value --> should be in there
+                    // Check for the assigned ID in static table of the temporary scope
+                    // where the ID was found to assign the temp value
                     String temp = null;
-                    //TODO: make valid for all scopes (CODE WRITTEN SOMEWHERE BELOW WITH WHILE LOOP)
                     for (DataEntry entry : staticData) {
                         if (entry.var.equals(assignedID.value)
                                 & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
@@ -449,7 +451,8 @@ public class CodeGen {
                         incrementIndex(1);
                     }
                 }
-                if (tempScope.hashTable.get(assignedID.value).type.equals("int")){ // if the id being assigned is of int type
+                else if (tempScope.hashTable.get(assignedID.value).type.equals("int")){ // if the id being assigned is of int type
+                    idFound = true; // To get out of the while loop
                     POT(assignedExpr, assignedID); // Doing a depth-first post-order traversal on assigned expression (RHS)
                     POTfirst = true;  //reset pointer
 
@@ -462,56 +465,66 @@ public class CodeGen {
                     }
 
 
-                    // Scan the static Data table
-                    // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+//                    // Scan the static Data table
+//                    // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+//                    String temp = null;
+//                    ArrayList<DataEntry> validEntries = new ArrayList<>();
+//                    for (DataEntry entry: staticData){
+//                        if (entry.var.equals(node.value) & entry.scope == currentScope.scope){
+//                            // Found best case-scenario
+//                            temp = entry.temp;
+//                            break;
+//                        }
+//                        //
+//                        else if (entry.var.equals(node.value)){
+//                            // check if a variable in static entry matches the current
+//                            // assigned id (note: could be in non-compatible scope)
+//                            validEntries.add(entry);
+//                        }
+//                    }
+//                    if (validEntries.size() == 1){ //
+//                        temp = validEntries.get(0).temp; // get the only valid entry that's at 0 index
+//                    }
+//                    else { // Takes into account multiple ids with same value/name in same/different scopes
+//                        ArrayList<Integer> scopeDifferences = new ArrayList<>();
+//                        for (DataEntry entry : validEntries) {
+//                            int difference = 0;
+//                            tempScope = currentScope; // create a copy of current scope
+//                            while (tempScope != null) { // keep going up the symbol tree until found the correct scope
+//                                difference += 1;
+//                                if (entry.scope == tempScope.scope) {
+//                                    scopeDifferences.add(difference); // add the difference/depth to the array
+//                                    found = true;
+//                                    break;
+//                                } else {
+//                                    tempScope = tempScope.prev;
+//                                }
+//                            }
+//                            if (!found) {
+//                                scopeDifferences.add(100);
+//                            }
+//                            found = false; // reset pointer
+//                        }
+//                        if (!scopeDifferences.isEmpty()) { // if differences array is not empty (should be)
+//                            int minimum = scopeDifferences.get(0);
+//                            int minIndex = 0;
+//                            for (int i = 1; i < scopeDifferences.size(); i++) {
+//                                if (minimum > scopeDifferences.get(i)) {
+//                                    minimum = scopeDifferences.get(i);
+//                                    minIndex = i;
+//                                }
+//                            }
+//                            temp = validEntries.get(minIndex).temp; // get the id that is closest to current scope
+//                        }
+//                    }
+
+                    // Check for the assigned ID in static table of the temporary scope
+                    // where the ID was found to assign the temp value
                     String temp = null;
-                    ArrayList<DataEntry> validEntries = new ArrayList<>();
-                    for (DataEntry entry: staticData){
-                        if (entry.var.equals(node.value) & entry.scope == currentScope.scope){
-                            // Found best case-scenario
+                    for (DataEntry entry : staticData) {
+                        if (entry.var.equals(assignedID.value)
+                                & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
                             temp = entry.temp;
-                            break;
-                        }
-                        //
-                        else if (entry.var.equals(node.value)){
-                            // check if a variable in static entry matches the current
-                            // assigned id (note: could be in non-compatible scope)
-                            validEntries.add(entry);
-                        }
-                    }
-                    if (validEntries.size() == 1){ //
-                        temp = validEntries.get(0).temp; // get the only valid entry that's at 0 index
-                    }
-                    else { // Takes into account multiple ids with same value/name in same/different scopes
-                        ArrayList<Integer> scopeDifferences = new ArrayList<>();
-                        for (DataEntry entry : validEntries) {
-                            int difference = 0;
-                            tempScope = currentScope; // create a copy of current scope
-                            while (tempScope != null) { // keep going up the symbol tree until found the correct scope
-                                difference += 1;
-                                if (entry.scope == tempScope.scope) {
-                                    scopeDifferences.add(difference); // add the difference/depth to the array
-                                    found = true;
-                                    break;
-                                } else {
-                                    tempScope = tempScope.prev;
-                                }
-                            }
-                            if (!found) {
-                                scopeDifferences.add(100);
-                            }
-                            found = false; // reset pointer
-                        }
-                        if (!scopeDifferences.isEmpty()) { // if differences array is not empty (should be)
-                            int minimum = scopeDifferences.get(0);
-                            int minIndex = 0;
-                            for (int i = 1; i < scopeDifferences.size(); i++) {
-                                if (minimum > scopeDifferences.get(i)) {
-                                    minimum = scopeDifferences.get(i);
-                                    minIndex = i;
-                                }
-                            }
-                            temp = validEntries.get(minIndex).temp; // get the id that is closest to current scope
                         }
                     }
 
@@ -533,7 +546,7 @@ public class CodeGen {
                 }
 
                 else{ // if the id being assigned is of boolean type
-
+                    idFound = true; // To get out of the while loop
                 }
             }
             tempScope = tempScope.prev; // Go up a scope if didn't find it
@@ -650,6 +663,42 @@ public class CodeGen {
                 incrementIndex(1);
             }
         }
+        // TODO: take into account + operator later
+        else if (printKey.name.equals("intExpr")){ // if printing an int (not an id of type int)
+            OpCode opCode6 = new OpCode();
+            opCode6.code = "A0"; // Load the Y register with a constant
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode6;
+                System.out.println("CODE GEN -------> A0 -------> Load the Y register with a constant");
+                incrementIndex(1);
+            }
+
+            OpCode opCode7 = new OpCode();
+            opCode7.code = "0" + Integer.toHexString(Integer.parseInt(printKey.value)).toUpperCase(); // Convert printKey.value to int then turn to hex
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode7;
+                System.out.println("CODE GEN -------> 0" + Integer.toHexString(Integer.parseInt(printKey.value)).toUpperCase() + " -------> Int constant");
+                incrementIndex(1);
+            }
+
+            OpCode opCode8 = new OpCode();
+            opCode8.code = "A2"; // Load the X register with a constant
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode8;
+                System.out.println("CODE GEN -------> A2 -------> Load the X register with a constant");
+                incrementIndex(1);
+            }
+
+            OpCode opCode9 = new OpCode();
+            opCode9.code = "01"; // Print the integer stored in the Y register
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode9;
+                System.out.println("CODE GEN -------> 01 -------> Print the integer stored in the Y register");
+                incrementIndex(1);
+            }
+        }
+        // TODO: take into account == and != operator later
+
 
 
         OpCode opCode6 = new OpCode();

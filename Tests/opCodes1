@@ -59,8 +59,61 @@ a = 1
 }$
 
 /* WORKS verified with JUICE*/
-/* Simple int variable declaration and assignment */
+/* Embedded blocks */
+/* Should print "string" */
 {
 string a
 a = "string"
+    {
+        int a
+        a = 9
+        {
+            string a
+            a = "print this"
+        }
+    }
+print(a)
 }$
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* Embedded blocks */
+/* Should print "print this9string" */
+{
+string a
+a = "string"
+    {
+        int a
+        a = 9
+        {
+            string a
+            a = "print this"
+            print(a)
+        }
+        print(a)
+    }
+print(a)
+}$
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* Embedded blocks with alternating printing string literals, digits, ids referencing digits, and ids referencing strings*/
+/* Should print "print thisfirst9string" */
+{
+string a
+a = "string"
+    {
+        int a
+        a = 9
+        {
+            string a
+            a = "print this"
+            print(a)
+            {
+                print("first")
+            }
+        }
+        print(9)
+    }
+print(a)
+}$
+
+
