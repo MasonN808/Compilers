@@ -18,8 +18,8 @@ a = 2
     }
 }$
 
-
 /* WORKS verified with JUICE*/
+/* assigned and declared in different scopes */
 {
 string a
 {
@@ -27,7 +27,40 @@ string a
 }
 }$
 
+
+
+/* WORKS verified with JUICE*/
+/* Printing a string literal */
+{
+string a
+{
+    a = "string"
+}
+print("this should print")
+}$
+
+
+
+/* WORKS verified with JUICE*/
+/* Printing an ID */
+{
+string a
+{
+    a = "string"
+}
+print(a)
+}$
+
+/* WORKS verified with JUICE*/
+/* Simple int variable declaration and assignment */
 {
 int a
 a = 1
+}$
+
+/* WORKS verified with JUICE*/
+/* Simple int variable declaration and assignment */
+{
+string a
+a = "string"
 }$

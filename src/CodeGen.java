@@ -338,7 +338,7 @@ public class CodeGen {
         opCode0.code = "A9"; // Load the accumulator with a constant
         if (!checkStackOverflow(curIndex, "stack")){
             opsArray[curIndex] = opCode0;
-            System.out.println("CODE GEN -------> A9");
+            System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
             incrementIndex(1);
         }
 
@@ -346,7 +346,7 @@ public class CodeGen {
         opCode1.code = "00"; // Set to NUL
         if (!checkStackOverflow(curIndex, "stack")){
             opsArray[curIndex] = opCode1;
-            System.out.println("CODE GEN -------> 00");
+            System.out.println("CODE GEN -------> 00 -------> Break");
             incrementIndex(1);
         }
 
@@ -354,7 +354,7 @@ public class CodeGen {
         opCode2.code = "8D"; // Store the accumulator in memory
         if (!checkStackOverflow(curIndex, "stack")){
             opsArray[curIndex] = opCode2;
-            System.out.println("CODE GEN -------> 8D");
+            System.out.println("CODE GEN -------> 8D -------> Store the accumulator in memory");
             incrementIndex(1);
         }
 
@@ -362,7 +362,7 @@ public class CodeGen {
         opCode3.code = "T" + numTemps;
         if (!checkStackOverflow(curIndex, "stack")){
             opsArray[curIndex] = opCode3;
-            System.out.println("CODE GEN -------> T" + numTemps);
+            System.out.println("CODE GEN -------> T" + numTemps + " -------> Temporary memory location before backpatching");
             incrementIndex(1);
         }
 
@@ -370,7 +370,7 @@ public class CodeGen {
         opCode4.code = "00";
         if (!checkStackOverflow(curIndex, "stack")){
             opsArray[curIndex] = opCode4;
-            System.out.println("CODE GEN -------> 00");
+            System.out.println("CODE GEN -------> 00 -------> Break");
             incrementIndex(1);
         }
 
@@ -396,14 +396,14 @@ public class CodeGen {
             if (tempScope.hashTable.get(assignedID.value) != null) { // make sure the query from the hashtable isn't null
                 if (tempScope.hashTable.get(assignedID.value).type.equals("string")) { // if the id being assigned is of string type
                     idFound = true;
-                    assignedExpr.value = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
-                    addInHeap(assignedExpr.value, heapIndex); // add the string into the heap
+                    String tempAssignedExprValue = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
+                    addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
 
                     OpCode opCode0 = new OpCode();
                     opCode0.code = "A9"; // Load the accumulator with a constant
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode0;
-                        System.out.println("CODE GEN -------> A9");
+                        System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
                         incrementIndex(1);
                     }
 
@@ -411,7 +411,7 @@ public class CodeGen {
                     opCode1.code = Integer.toHexString(heapIndex).toUpperCase(); // Get the location of the string in heap
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode1;
-                        System.out.println("CODE GEN -------> " + Integer.toHexString(heapIndex).toUpperCase());
+                        System.out.println("CODE GEN -------> " + Integer.toHexString(heapIndex).toUpperCase() + " -------> Memory Location in Heap");
                         incrementIndex(1);
                     }
 
@@ -419,12 +419,13 @@ public class CodeGen {
                     opCode2.code = "8D"; // Store the accumulator in memory
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode2;
-                        System.out.println("CODE GEN -------> 8D");
+                        System.out.println("CODE GEN -------> 8D -------> Store the accumulator in memory");
                         incrementIndex(1);
                     }
 
                     // Check for the assigned ID in static table of the current scope to assign temp value --> should be in there
                     String temp = null;
+                    //TODO: make valid for all scopes (CODE WRITTEN SOMEWHERE BELOW WITH WHILE LOOP)
                     for (DataEntry entry : staticData) {
                         if (entry.var.equals(assignedID.value)
                                 & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
@@ -436,7 +437,7 @@ public class CodeGen {
                     opCode3.code = temp;
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode3;
-                        System.out.println("CODE GEN -------> " + temp);
+                        System.out.println("CODE GEN -------> " + temp + " -------> ID Memory Location");
                         incrementIndex(1);
                     }
 
@@ -444,7 +445,7 @@ public class CodeGen {
                     opCode4.code = "00";
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode4;
-                        System.out.println("CODE GEN -------> 00");
+                        System.out.println("CODE GEN -------> 00 -------> Break");
                         incrementIndex(1);
                     }
                 }
@@ -456,7 +457,7 @@ public class CodeGen {
                     opCode5.code = "8D"; // Store the accumulator in memory
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode5;
-                        System.out.println("CODE GEN -------> 8D");
+                        System.out.println("CODE GEN -------> 8D -------> Store the accumulator in memory");
                         incrementIndex(1);
                     }
 
@@ -518,15 +519,15 @@ public class CodeGen {
                     opCode6.code = temp;
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode6;
-                        System.out.println("CODE GEN -------> " + temp);
+                        System.out.println("CODE GEN -------> " + temp + " -------> ID Memory Location");
                         incrementIndex(1);
                     }
 
                     OpCode opCode7 = new OpCode();
-                    opCode7.code = "00";
+                    opCode7.code = "00"; // Break
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode7;
-                        System.out.println("CODE GEN -------> 00");
+                        System.out.println("CODE GEN -------> 00 -------> Break");
                         incrementIndex(1);
                     }
                 }
@@ -548,55 +549,116 @@ public class CodeGen {
     public static void codeGenPrint(Node node){
         Node printKey = node.children.get(0);
 
-        OpCode opCode5 = new OpCode();
-        opCode5.code = "AC"; // Store the accumulator in memory
-        opsArray[curIndex] = opCode5;
-        incrementIndex(1);
+        if (printKey.name.equals("ID")) { // If printing an ID
+            OpCode opCode0 = new OpCode();
+            opCode0.code = "AC"; // Load the Y register from memory
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode0;
+                System.out.println("CODE GEN -------> AC -------> Load the Y register from memory");
+                incrementIndex(1);
+            }
 
-        // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
-        String temp = null;
-        for (DataEntry entry: staticData){
-            if (entry.var.equals(printKey.value)
-                    & entry.scope == currentScope.scope){ // Check value is in there and scope are equivalent
-                temp = entry.temp;
+            // Check for the assigned ID in static table of the current scope to assign temp value--> should be in there
+            String temp = null;
+            TreeST.ScopeNode tempScope = currentScope;
+            boolean idFound = false;
+            while (tempScope != null & !idFound) { // Doing a while loop to find the variable entry in static data in some previous scope (or even current scope)
+                for (DataEntry entry : staticData) {
+                    if (entry.var.equals(printKey.value) & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
+                        temp = entry.temp;
+                        idFound = true;
+                    }
+                }
+                tempScope = tempScope.prev; //go up a scope if nothing found
+            }
+
+            OpCode opCode1 = new OpCode();
+            opCode1.code = temp;
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode1;
+                System.out.println("CODE GEN -------> " + temp + " -------> ID Memory Location");
+                incrementIndex(1);
+            }
+
+            OpCode opCode2 = new OpCode();
+            opCode2.code = "00"; // Break
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode2;
+                System.out.println("CODE GEN -------> 00 -------> Break");
+                incrementIndex(1);
+            }
+
+            OpCode opCode3 = new OpCode();
+            opCode3.code = "A2"; // Load the X register with a constant
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode3;
+                System.out.println("CODE GEN -------> A2 -------> Load the X register with a constant");
+                incrementIndex(1);
+            }
+
+            if (currentScope.hashTable.get(printKey.value).type.equals("int")) {
+                OpCode opCode4 = new OpCode();
+                opCode4.code = "01"; // Print the integer stored in the Y register
+                if (!checkStackOverflow(curIndex, "stack")) {
+                    opsArray[curIndex] = opCode4;
+                    System.out.println("CODE GEN -------> 01 -------> Print the integer stored in the Y register");
+                    incrementIndex(1);
+                }
+            } else if (currentScope.hashTable.get(printKey.value).type.equals("string")) {
+                OpCode opCode5 = new OpCode();
+                opCode5.code = "02";
+                if (!checkStackOverflow(curIndex, "stack")) {
+                    opsArray[curIndex] = opCode5;
+                    System.out.println("CODE GEN -------> 02 -------> Print the 00-terminated string stored at the address in the Y register");
+                    incrementIndex(1);
+                }
+            }
+        }
+        else if (printKey.name.equals("stringExpr")){ // if printing a string (not an id of type string)
+            OpCode opCode6 = new OpCode();
+            opCode6.code = "A0"; // Load the Y register from memory
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode6;
+                System.out.println("CODE GEN -------> A0 -------> Load the Y register from memory");
+                incrementIndex(1);
+            }
+            String tempPrintKeyValue = removeFirstandLast(printKey.value);
+            addInHeap(tempPrintKeyValue, heapIndex); // add the print string into the heap
+
+
+            OpCode opCode7 = new OpCode();
+            opCode7.code = Integer.toHexString(heapIndex).toUpperCase(); // Get the location of the string in the heap
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode7;
+                System.out.println("CODE GEN -------> " + Integer.toHexString(heapIndex).toUpperCase() + " -------> Memory Location in Heap");
+                incrementIndex(1);
+            }
+
+            OpCode opCode8 = new OpCode();
+            opCode8.code = "A2"; // Load the X register with a constant
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode8;
+                System.out.println("CODE GEN -------> A2 -------> Load the X register with a constant");
+                incrementIndex(1);
+            }
+
+            OpCode opCode9 = new OpCode();
+            opCode9.code = "02"; // Print the 00-terminated string stored at the address in the Y register
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode9;
+                System.out.println("CODE GEN -------> 02 -------> Print the 00-terminated string stored at the address in the Y register");
+                incrementIndex(1);
             }
         }
 
 
-
         OpCode opCode6 = new OpCode();
-        opCode6.code = temp;
-        opsArray[curIndex] = opCode6;
-        incrementIndex(1);
-
-        OpCode opCode4 = new OpCode();
-        opCode4.code = "00"; // Store the accumulator in memory
-        opsArray[curIndex] = opCode4;
-        incrementIndex(1);
-
-        OpCode opCode7 = new OpCode();
-        opCode7.code = "A2";
-        opsArray[curIndex] = opCode7;
-        incrementIndex(1);
-
-        if (currentScope.hashTable.get(printKey.value).type.equals("int")){
-            OpCode opCode8 = new OpCode();
-            opCode8.code = "01";
-            opsArray[curIndex] = opCode8;
+        opCode6.code = "FF"; // System Call
+        if (!checkStackOverflow(curIndex, "stack")) {
+            opsArray[curIndex] = opCode6;
+            System.out.println("CODE GEN -------> FF -------> System Call");
             incrementIndex(1);
         }
-        else if (currentScope.hashTable.get(printKey.value).type.equals("string")){
-            OpCode opCode8 = new OpCode();
-            opCode8.code = "02";
-            opsArray[curIndex] = opCode8;
-            incrementIndex(1);
-        };
-
-
-        OpCode opCode9 = new OpCode();
-        opCode9.code = "FF";
-        opsArray[curIndex] = opCode9;
-        incrementIndex(1);
 
     }
 
@@ -869,23 +931,23 @@ public class CodeGen {
                     incrementIndex(1);
                 }
 
-                if (POTfirst){
-                    OpCode opCode5 = new OpCode();
-                    opCode5.code = "8D"; // Store the accumulator in memory
-                    opsArray[curIndex] = opCode5;
-                    incrementIndex(1);
-
-                    OpCode opCode6 = new OpCode();
-                    opCode6.code = "00";
-                    opsArray[curIndex] = opCode6;
-                    incrementIndex(1);
-
-                    OpCode opCode7 = new OpCode();
-                    opCode7.code = "00";
-                    opsArray[curIndex] = opCode7;
-                    incrementIndex(1);
-                    POTfirst = false;
-                }
+//                if (POTfirst){
+//                    OpCode opCode5 = new OpCode();
+//                    opCode5.code = "8D"; // Store the accumulator in memory
+//                    opsArray[curIndex] = opCode5;
+//                    incrementIndex(1);
+//
+//                    OpCode opCode6 = new OpCode();
+//                    opCode6.code = "00";
+//                    opsArray[curIndex] = opCode6;
+//                    incrementIndex(1);
+//
+//                    OpCode opCode7 = new OpCode();
+//                    opCode7.code = "00";
+//                    opsArray[curIndex] = opCode7;
+//                    incrementIndex(1);
+//                    POTfirst = false;
+//                }
 
 
             }

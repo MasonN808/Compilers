@@ -107,13 +107,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00130" summary="- Working out nullpointer bugs">
-      <created>1649564566798</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1649564566798</updated>
-    </task>
     <task id="LOCAL-00131" summary="- Added token attribute to node in AST for expressions">
       <created>1649602961914</created>
       <option name="number" value="00131" />
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652600174930</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="- About to completely redo the depth first post-order traversal method, POT()">
+      <created>1652600870497</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1652600870497</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Trying to fix issues with AST" />
     <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
     <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
     <MESSAGE value="- Edits to subtree search for mixedExpr" />
@@ -503,6 +502,7 @@
     <MESSAGE value="- Added check heap overflow when assigining Op codes&#10;- Still on plane&#10;- Finishing at home" />
     <MESSAGE value="- Made own method for backpatching&#10;- Edited the heapoverflow in vardecals" />
     <MESSAGE value="- Completely redid assignment op codes&#10;- Needs more dubugging&#10;- The following now works:&#10;{&#10; string a&#10; {&#10;     a = &quot;string&quot;&#10; }&#10; }$" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Completely redid assignment op codes&#10;- Needs more dubugging&#10;- The following now works:&#10;{&#10; string a&#10; {&#10;     a = &quot;string&quot;&#10; }&#10; }$" />
+    <MESSAGE value="- About to completely redo the depth first post-order traversal method, POT()" />
+    <option name="LAST_COMMIT_MESSAGE" value="- About to completely redo the depth first post-order traversal method, POT()" />
   </component>
 </project>
