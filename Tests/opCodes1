@@ -19,16 +19,15 @@ a = 2
 }$
 
 
-{
-int a
-a = 1
-}$
-
-
 /* WORKS verified with JUICE*/
 {
 string a
 {
     a = "string"
 }
+}$
+
+{
+int a
+a = 1
 }$

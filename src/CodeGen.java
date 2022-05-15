@@ -387,9 +387,6 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void codeGenAssignment(Node node){
-        // TODO: access the symbol table to check the type and get the value
-        // TODO: need to fix getting the value from TreeST
-
         Node assignedID = node.children.get(0);
         Node assignedExpr = node.children.get(1);
 
@@ -437,22 +434,31 @@ public class CodeGen {
 
                     OpCode opCode3 = new OpCode();
                     opCode3.code = temp;
-                    opsArray[curIndex] = opCode3;
-                    incrementIndex(1);
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode3;
+                        System.out.println("CODE GEN -------> " + temp);
+                        incrementIndex(1);
+                    }
 
                     OpCode opCode4 = new OpCode();
                     opCode4.code = "00";
-                    opsArray[curIndex] = opCode4;
-                    incrementIndex(1);
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode4;
+                        System.out.println("CODE GEN -------> 00");
+                        incrementIndex(1);
+                    }
                 }
                 if (tempScope.hashTable.get(assignedID.value).type.equals("int")){ // if the id being assigned is of int type
-                    POT(assignedExpr, assignedID);
+                    POT(assignedExpr, assignedID); // Doing a depth-first post-order traversal on assigned expression (RHS)
                     POTfirst = true;  //reset pointer
 
                     OpCode opCode5 = new OpCode();
                     opCode5.code = "8D"; // Store the accumulator in memory
-                    opsArray[curIndex] = opCode5;
-                    incrementIndex(1);
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode5;
+                        System.out.println("CODE GEN -------> 8D");
+                        incrementIndex(1);
+                    }
 
 
                     // Scan the static Data table
@@ -505,27 +511,27 @@ public class CodeGen {
                                 }
                             }
                             temp = validEntries.get(minIndex).temp; // get the id that is closest to current scope
-//                        OpCode opCode6 = new OpCode();
-//                        opCode6.code = temp;
-//                        opsArray[curIndex] = opCode6;
-//                        incrementIndex(1);
                         }
                     }
 
                     OpCode opCode6 = new OpCode();
                     opCode6.code = temp;
-//                System.out.println(temp);
-                    opsArray[curIndex] = opCode6;
-                    incrementIndex(1);
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode6;
+                        System.out.println("CODE GEN -------> " + temp);
+                        incrementIndex(1);
+                    }
 
                     OpCode opCode7 = new OpCode();
                     opCode7.code = "00";
-                    opsArray[curIndex] = opCode7;
-                    incrementIndex(1);
-//            }
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode7;
+                        System.out.println("CODE GEN -------> 00");
+                        incrementIndex(1);
+                    }
                 }
 
-                else{ // if the id being assigned is of string type
+                else{ // if the id being assigned is of boolean type
 
                 }
             }
