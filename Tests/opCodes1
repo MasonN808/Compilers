@@ -17,7 +17,18 @@ a = 2
         print(a)
     }
 }$
+
+
 {
 int a
-a = 2
+a = 1
+}$
+
+
+/* WORKS verified with JUICE*/
+{
+string a
+{
+    a = "string"
+}
 }$
