@@ -970,13 +970,21 @@ public class CodeGen {
 //                            incrementIndex(1);
 //                        }
 //                    }
+
+                    OpCode opCode0 = new OpCode();
+                    opCode0.code = "AD"; // Load the accumulator from memory
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode0;
+                        System.out.println("CODE GEN -------> AD -------> Load the accumulator from memory");
+                        incrementIndex(1);
+                    }
                     // Check for the assigned ID in static table of the current scope to assign temp value
                     String temp = null;
                     TreeST.ScopeNode tempScope = currentScope;
                     boolean idFound = false;
                     while (tempScope != null & !idFound) { // Doing a while loop to find the variable entry in static data in some previous scope (or even current scope)
                         for (DataEntry entry : staticData) {
-                            if (entry.var.equals(id.value) & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
+                            if (entry.var.equals(node.value) & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
                                 temp = entry.temp;
                                 idFound = true;
                             }
@@ -984,23 +992,55 @@ public class CodeGen {
                         tempScope = tempScope.prev; //go up a scope if nothing found
                     }
 
+                    OpCode opCode1 = new OpCode();
+                    opCode1.code = temp;
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode1;
+                        System.out.println("CODE GEN -------> " + temp + " -------> Temporary memory location");
+                        incrementIndex(1);
+                    }
+                    OpCode opCode2 = new OpCode();
+                    opCode2.code = "00";
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode2;
+                        System.out.println("CODE GEN -------> 00 -------> Break");
+                        incrementIndex(1);
+                    }
+
+                    // Now store the accumulator in memory at 00
+                    OpCode opCode5 = new OpCode();
+                    opCode5.code = "8D";
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode5;
+                        System.out.println("CODE GEN -------> 8D -------> Store the accumulator in memory");
+                        incrementIndex(1);
+                    }
                     OpCode opCode6 = new OpCode();
-                    opCode6.code = temp;
+                    opCode6.code = "00";
                     if (!checkStackOverflow(curIndex, "stack")) {
                         opsArray[curIndex] = opCode6;
-                        System.out.println("CODE GEN -------> " + temp + " -------> Temporary memory location");
+                        System.out.println("CODE GEN -------> 00 -------> Memory Location for accumulator");
+                        incrementIndex(1);
+                    }
+                    OpCode opCode7 = new OpCode();
+                    opCode7.code = "00";
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode7;
+                        System.out.println("CODE GEN -------> 00 -------> Break");
                         incrementIndex(1);
                     }
                 }
 
                 else if (node.name.equals("intExpr")) { // for non id intExprs (i.e., + and digit)
                     if (node.parent != null) {
-                        if (node.parent.name.equals("intOp") & !POTfirstDigit) { // For addition operator
-
+                        if (node.parent.name.equals("intOp") & !POTfirstDigit) { // For children of addition operator and not the first digit
                             OpCode opCode0 = new OpCode();
                             opCode0.code = "A9"; // Load the accumulator with a constant
-                            opsArray[curIndex] = opCode0;
-                            incrementIndex(1);
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode0;
+                                System.out.println("CODE GEN -------> 0" + opCode0.code + " -------> Load the accumulator with a constant");
+                                incrementIndex(1);
+                            }
 
                             OpCode opCode1 = new OpCode();
                             opCode1.code = "0" + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Load this constant to accumulator
@@ -1057,11 +1097,15 @@ public class CodeGen {
                                 incrementIndex(1);
                             }
                         }
+
                         else if (node.parent.name.equals("intOp")){ // IS the first digit so store it in memory location
                             OpCode opCode0 = new OpCode();
                             opCode0.code = "A9"; // Load the accumulator with a constant
-                            opsArray[curIndex] = opCode0;
-                            incrementIndex(1);
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode0;
+                                System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
+                                incrementIndex(1);
+                            }
 
                             OpCode opCode1 = new OpCode();
                             opCode1.code = "0" + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Load this constant to accumulator
@@ -1095,6 +1139,25 @@ public class CodeGen {
                                 incrementIndex(1);
                             }
                             POTfirstDigit = false; // set to false since just traversed the first/deepest digit to store initial memory
+                        }
+                        else { // catch all the assignments for only digits
+                            OpCode opCode0 = new OpCode();
+                            opCode0.code = "A9"; // Load the accumulator with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode0;
+                                System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
+                                incrementIndex(1);
+                            }
+
+                            OpCode opCode1 = new OpCode();
+                            opCode1.code = "0" + Integer.toHexString(Integer.parseInt(node.value)).toUpperCase(); // Load this constant to accumulator
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode1;
+                                System.out.println("CODE GEN -------> 0" + opCode1.code + " -------> Load this constant to accumulator");
+                                incrementIndex(1);
+                            }
+                            POTfirstDigit = false; // set to false since just traversed the first/deepest id to store initial memory
+
                         }
 
                     }
