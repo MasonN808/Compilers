@@ -116,4 +116,25 @@ a = "string"
 print(a)
 }$
 
+/* WORKS verified with JUICE and SVEG OS*/
+/* integer assignment with + operator on no IDs*/
+/* Should print 10*/
+{
+int a
+a = 1+2+3+4
+print(a)
+}$
+
+/* NOT YET WORKS verified with JUICE and SVEG OS*/
+/* integer assignment with + operator on one ID*/
+/* Should print 10*/
+{
+int a
+int b
+b = 2
+a = 1+2+2+b
+print(a)
+}$
+
+
 
