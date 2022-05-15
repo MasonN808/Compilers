@@ -127,7 +127,7 @@ print(a)
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* integer assignment with + operator on one ID*/
-/* Should print 10*/
+/* Should print 7*/
 {
 int a
 int b
@@ -137,13 +137,33 @@ print(a)
 }$
 
 /* WORKS verified with JUICE and SVEG OS*/
-/* integer assignment with + operator on one ID*/
-/* Should print 10*/
+/* integer assignment with + operator on one ID in print statement*/
+/* Should print 7*/
 {
 int b
 b = 2
 print(1+2+2+b)
 }$
 
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* simple boolean assignment and printing ID*/
+/* Should print false*/
+{
+boolean a
+a = false
+print(a)
+}$
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* simple boolean assignment and printing boolean literal*/
+/* Should print false*/
+{
+boolean a
+a = false
+print(false)
+}$
+
+/* Next cases: embedded boolean statements, if statements, while statements*/
 
 
