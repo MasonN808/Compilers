@@ -136,5 +136,14 @@ a = 1+2+2+b
 print(a)
 }$
 
+/* WORKS verified with JUICE and SVEG OS*/
+/* integer assignment with + operator on one ID*/
+/* Should print 10*/
+{
+int b
+b = 2
+print(1+2+2+b)
+}$
+
 
 
