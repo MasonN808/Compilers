@@ -107,13 +107,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00136" summary="- Implemented and testing BFS on treeST">
-      <created>1649619994742</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1649619994742</updated>
-    </task>
     <task id="LOCAL-00137" summary="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()">
       <created>1649620593071</created>
       <option name="number" value="00137" />
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652641598392</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="- Takes into account simple boolean assignments">
+      <created>1652645276690</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1652645276690</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Fixed bug where start of boolean expression with ID as first token becomes a branch instead of a leaf under the boolOp" />
     <MESSAGE value="- Fixed AST for assignmentStatement" />
     <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
     <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
@@ -503,6 +502,7 @@
     <MESSAGE value="- Working on assignment of digits with ids in intexpression&#10;- Next is boolean ops" />
     <MESSAGE value="- assignment of digits with ids in intexpression works now&#10;- Now is boolean ops" />
     <MESSAGE value="- refactored POT&#10;- Now working on boolean ops" />
-    <option name="LAST_COMMIT_MESSAGE" value="- refactored POT&#10;- Now working on boolean ops" />
+    <MESSAGE value="- Takes into account simple boolean assignments" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Takes into account simple boolean assignments" />
   </component>
 </project>

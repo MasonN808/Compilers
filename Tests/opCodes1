@@ -164,6 +164,6 @@ a = false
 print(false)
 }$
 
-/* Next cases: embedded boolean statements, if statements, while statements*/
+/* Next cases: embedded boolean statements, if statements, while statements */
 
 

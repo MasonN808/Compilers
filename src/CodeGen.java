@@ -704,6 +704,49 @@ public class CodeGen {
         }
         else if (printKey.name.equals("boolExpr")) {// For boolean expressions
             // TODO: take into account == and != operator later
+            //Very similar to the stringExpr if statement, just changing the Temp value to the memory location of boolean
+            OpCode opCode6 = new OpCode();
+            opCode6.code = "A0"; // Load the Y register from memory
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode6;
+                System.out.println("CODE GEN -------> A0 -------> Load the Y register from memory");
+                incrementIndex(1);
+            }
+            if (printKey.value.equals("false")) {
+                OpCode opCode7 = new OpCode();
+                opCode7.code = FALSE_LOCATION; // Get the location of the string in the heap
+                if (!checkStackOverflow(curIndex, "stack")) {
+                    opsArray[curIndex] = opCode7;
+                    System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory Location in Heap");
+                    incrementIndex(1);
+                }
+            }
+            else if (printKey.value.equals("true")){
+                OpCode opCode7 = new OpCode();
+                opCode7.code = TRUE_LOCATION; // Get the location of the string in the heap
+                if (!checkStackOverflow(curIndex, "stack")) {
+                    opsArray[curIndex] = opCode7;
+                    System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory Location in Heap");
+                    incrementIndex(1);
+                }
+            }
+
+            OpCode opCode8 = new OpCode();
+            opCode8.code = "A2"; // Load the X register with a constant
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode8;
+                System.out.println("CODE GEN -------> A2 -------> Load the X register with a constant");
+                incrementIndex(1);
+            }
+
+            OpCode opCode9 = new OpCode();
+            opCode9.code = "02"; // Print the 00-terminated string stored at the address in the Y register
+            if (!checkStackOverflow(curIndex, "stack")) {
+                opsArray[curIndex] = opCode9;
+                System.out.println("CODE GEN -------> 02 -------> Print the 00-terminated string stored at the address in the Y register");
+                incrementIndex(1);
+            }
+
         }
 
 
