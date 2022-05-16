@@ -166,4 +166,21 @@ print(false)
 
 /* Next cases: embedded boolean statements, if statements, while statements */
 
+/* WORKS verified with JUICE and SVEG OS*/
+/* More complicated boolean assignment with equality boolean operator and printing ID*/
+/* Should print false*/
+{
+boolean a
+a = (false == true)
+print(a)
+}$
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* More complicated boolean assignment with inequality boolean operator and printing ID*/
+/* Should print true*/
+{
+boolean a
+a = (false != true)
+print(a)
+}$
 

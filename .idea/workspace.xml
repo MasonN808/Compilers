@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JumpEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JumpEntry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00137" summary="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()">
-      <created>1649620593071</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1649620593071</updated>
     </task>
     <task id="LOCAL-00138" summary="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant">
       <created>1649631933075</created>
@@ -450,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652645276690</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)">
+      <created>1652646514454</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1652646514454</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +479,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Fixed AST for assignmentStatement" />
     <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
     <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
     <MESSAGE value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
@@ -503,6 +503,7 @@
     <MESSAGE value="- assignment of digits with ids in intexpression works now&#10;- Now is boolean ops" />
     <MESSAGE value="- refactored POT&#10;- Now working on boolean ops" />
     <MESSAGE value="- Takes into account simple boolean assignments" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Takes into account simple boolean assignments" />
+    <MESSAGE value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
   </component>
 </project>
