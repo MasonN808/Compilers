@@ -270,7 +270,7 @@ public class CodeGen {
                     if (verbose) {
                         System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
                     }
-//                Node expr = node.children.get(0);
+                    codeGenWhile(node);
                     break;
 
                 default:
@@ -828,26 +828,9 @@ public class CodeGen {
      */
     public static void codeGenIf(Node node){
         inIf = true;
-//        System.out.println(inIf);
         Node expr = node.children.get(0);
         numJumps += 1; // for number of jump variables
         POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
-
-
-        // Check what type first child is ==> embedded if statements not supported
-//        if (expr.children.get(0).name.equals("intExpr")){
-//
-//        }else if (expr.children.get(0).name.equals("boolExpr")){
-//
-//        }else if (expr.children.get(0).name.equals("stringExpr")){
-//
-//        }
-//        if (expr.value.equals("==")){
-//            expr.children.get(0);
-//        }
-//        else{
-//
-//        }
         inIf = false;
 
     }
@@ -857,14 +840,12 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void codeGenWhile(Node node){
-
+        inWhile = true;
+        Node expr = node.children.get(0);
+        numJumps += 1; // for number of jump variables
+        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
+        inWhile = false;
     }
-
-//    public static String findMemoryLocation(int index){
-//        //Need this for assignment of strings and the pointers to the memory location in heap
-//        return Integer.toHexString(index);
-//    }
-
 
     /**
      * Does a depth-first post-order traversal
