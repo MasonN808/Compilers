@@ -835,123 +835,19 @@ public class CodeGen {
 
 
         // Check what type first child is ==> embedded if statements not supported
-        if (expr.children.get(0).name.equals("intExpr")){
-//            OpCode code = new OpCode();
-//            code.code = "AC";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
+//        if (expr.children.get(0).name.equals("intExpr")){
 //
-//            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(0).value));
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
+//        }else if (expr.children.get(0).name.equals("boolExpr")){
 //
-//            code.code = "A9";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
+//        }else if (expr.children.get(0).name.equals("stringExpr")){
 //
-//            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(1).value));
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
+//        }
+//        if (expr.value.equals("==")){
+//            expr.children.get(0);
+//        }
+//        else{
 //
-//            code.code = "8D";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "EC";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "A9";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "D0";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(1).value));
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "A9";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = Integer.toHexString(Integer.parseInt(expr.children.get(0).value));
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "A2";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "8D";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "EC";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "00";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "D0";
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-//
-//            code.code = "J" + numJumps;
-//            opsArray[curIndex] = code;
-//            incrementIndex(1);
-
-        }else if (expr.children.get(0).name.equals("boolExpr")){
-
-        }else if (expr.children.get(0).name.equals("stringExpr")){
-
-        }
-        if (expr.value.equals("==")){
-            expr.children.get(0);
-        }
-        else{
-
-        }
+//        }
         inIf = false;
 
     }

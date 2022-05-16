@@ -69,3 +69,9 @@ a = "test"
 int a
 a = 1 + 2+ 3
 }$
+
+{
+boolean a
+a = (false == (2 == 4))
+print(a)
+}$

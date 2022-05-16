@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/opCodes" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
     </list>
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00141" summary="- Added warning for declared but uninitialized">
-      <created>1649633713327</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1649633713327</updated>
     </task>
     <task id="LOCAL-00142" summary="- Deleted a ton of nonworking commented out code">
       <created>1649633917333</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652672452832</updated>
     </task>
-    <option name="localTasksCounter" value="190" />
+    <task id="LOCAL-00190" summary="- Simple if statement works&#10;- Issues with inequality operator in if statement">
+      <created>1652688635371</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1652688635371</updated>
+    </task>
+    <option name="localTasksCounter" value="191" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added &quot;true&quot; and &quot;false&quot; into heap" />
     <MESSAGE value="-Added backpatching (works)" />
     <MESSAGE value="-Updated backpatching (works better)&#10;-Edited data entry implementation&#10;-Major Edits to the string case for assignment&#10;-added other attributes to constructor of dataEntry&#10;-added scope to IdDetails, although unneeded&#10;-changes to hashtable due to edits in IdDetails" />
     <MESSAGE value="I think the pointers from heap works now" />
@@ -503,6 +502,7 @@
     <MESSAGE value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
     <MESSAGE value="- Inequality operator is now recognized on simple boolean expressions" />
     <MESSAGE value="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing" />
+    <MESSAGE value="- Simple if statement works&#10;- Issues with inequality operator in if statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Simple if statement works&#10;- Issues with inequality operator in if statement" />
   </component>
 </project>

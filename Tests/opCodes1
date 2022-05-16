@@ -253,3 +253,14 @@ print(a)
         print(a)
     }
 }$
+
+/* NOT YET WORKS verified with JUICE and SVEG OS*/
+/* inequality boolean operator in if statement and printing id*/
+/* Should print hi*/
+{
+    string a
+    a = "hi"
+    if ( a == "hi"){
+        print(a)
+    }
+}$
