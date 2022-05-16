@@ -217,3 +217,39 @@ print((false != true))
 /* Next cases: embedded boolean statements*/
 
 
+/* NOT YET WORKS verified with JUICE and SVEG OS*/
+/* inequality boolean operator on int expressions and printing id*/
+/* Should print true*/
+{
+boolean a
+a = (false == (1+2 != 3+4))
+print(a)
+}$
+
+
+
+/* Next cases: if statements*/
+
+
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* equality boolean operator in if statement and printing id*/
+/* Should print false*/
+{
+    boolean a
+    a = false
+    if (a == false){
+        print(a)
+    }
+}$
+
+/* NOT YET WORKS verified with JUICE and SVEG OS*/
+/* inequality boolean operator in if statement and printing id*/
+/* Should print true*/
+{
+    boolean a
+    a = true
+    if (a != false){
+        print(a)
+    }
+}$

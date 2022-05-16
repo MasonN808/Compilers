@@ -107,13 +107,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00140" summary="- Added line number column to symbol table">
-      <created>1649633529497</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1649633529497</updated>
-    </task>
     <task id="LOCAL-00141" summary="- Added warning for declared but uninitialized">
       <created>1649633713327</created>
       <option name="number" value="00141" />
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652667723513</updated>
     </task>
-    <option name="localTasksCounter" value="189" />
+    <task id="LOCAL-00189" summary="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing">
+      <created>1652672452832</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1652672452832</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
     <MESSAGE value="-Added &quot;true&quot; and &quot;false&quot; into heap" />
     <MESSAGE value="-Added backpatching (works)" />
     <MESSAGE value="-Updated backpatching (works better)&#10;-Edited data entry implementation&#10;-Major Edits to the string case for assignment&#10;-added other attributes to constructor of dataEntry&#10;-added scope to IdDetails, although unneeded&#10;-changes to hashtable due to edits in IdDetails" />
@@ -503,6 +502,7 @@
     <MESSAGE value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
     <MESSAGE value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
     <MESSAGE value="- Inequality operator is now recognized on simple boolean expressions" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Inequality operator is now recognized on simple boolean expressions" />
+    <MESSAGE value="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing" />
   </component>
 </project>
