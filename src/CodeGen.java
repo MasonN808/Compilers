@@ -777,6 +777,67 @@ public class CodeGen {
     }
 
     /**
+     * Does a Quasi-Breadth First in-order traversal for embedded boolean expressions
+     * @param node The current node in the AST
+     */
+    public static void QBFS(Node node){
+        /*
+            Pseudo Code:
+                1) Do QBFS on boolean expression
+                2) if found boolean expression, go deeper in the tree
+                3) if found int expr go to POT(), else stay in QBFS
+         */
+        // TODO: 5/16 finish this
+        switch (node.name) {
+            case ("boolOp"):
+                if (verbose) {
+                    System.out.println("CODE GEN -------> Entering boolOp on line " + node.token.line_number);
+                }
+
+                break;
+
+            case ("ID"):
+                Node id = node.children.get(0); // Pulling the id being declared in varDecal Statement
+                if (verbose) {
+                    System.out.println("CODE GEN -------> Generating Op Codes for ID in boolean expression on line " + id.token.line_number);
+                }
+//                codeGenVarDecal(node);
+                break;
+
+            case ("stringExpr"):
+                id = node.children.get(0); // Pulling the variable being declared in varDecal Statement
+                if (verbose) {
+                    System.out.println("CODE GEN -------> Generating Op Codes for string expression in boolean expression on line " + id.token.line_number);
+                }
+//                codeGenAssignment(node);
+                break;
+
+            case ("boolExpr"):
+                if (verbose) {
+                    System.out.println("CODE GEN -------> Generating Op Codes for boolean expression in boolean expression on line " + node.token.line_number);
+                }
+//                codeGenPrint(node);
+                break;
+
+            default:
+                //Everything else that needs nothing
+        }
+
+        // If not known already --> doing a Quasi-breadth-first traversal
+        //                          (quasi/pseudo since we go deeper in the tree for every boolOp node)
+        for (Node each : node.children) {
+            processNode(each);
+        }
+
+        if (node.name.equals("block")) {
+            // Go back up the tree at outer scope
+            currentScope = currentScope.prev;
+            childIndex = 0; // reset the child index
+        }
+
+    }
+
+    /**
      * Finds the Memory location of the id being queried
      * @param node The current node in the AST
      */
