@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JumpEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JumpEntry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00138" summary="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant">
-      <created>1649631933075</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1649631933075</updated>
     </task>
     <task id="LOCAL-00139" summary="- Created warning system&#10;- May need to add more warnings">
       <created>1649633178504</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652646514454</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values">
+      <created>1652666504607</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1652666504607</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
     <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
     <MESSAGE value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
     <MESSAGE value="-Added &quot;true&quot; and &quot;false&quot; into heap" />
@@ -504,6 +502,7 @@
     <MESSAGE value="- refactored POT&#10;- Now working on boolean ops" />
     <MESSAGE value="- Takes into account simple boolean assignments" />
     <MESSAGE value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
+    <MESSAGE value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
+    <option name="LAST_COMMIT_MESSAGE" value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
   </component>
 </project>

@@ -60,6 +60,7 @@ public class CodeGen {
         this.numJumps = 0;
         this.verbose = verbose;
         this.POTfirstDigit = true;
+        this.jumpValue = 0;
     }
 
 
@@ -1276,7 +1277,7 @@ public class CodeGen {
                         opCode4.code = "EC"; // Compare the byte in memory to the X register
                         if (!checkStackOverflow(curIndex, "stack")) {
                             opsArray[curIndex] = opCode4;
-                            System.out.println("CODE GEN -------> 00 -------> Compare the byte in memory to the X register");
+                            System.out.println("CODE GEN -------> EC -------> Compare the byte in memory to the X register");
                             incrementIndex(1);
                         }
 
@@ -1304,20 +1305,39 @@ public class CodeGen {
                             incrementIndex(1);
                         }
 
-                        // We use false (but could use true)
-                        OpCode opCode8= new OpCode();
-                        opCode8.code = FALSE_LOCATION; // Load the accumulator with a constant
-                        if (!checkStackOverflow(curIndex, "stack")) {
-                            opsArray[curIndex] = opCode8;
-                            System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory location of false string in heap");
-                            incrementIndex(1);
+                        // We use false for equality operator
+                        if (node.parent.value.equals("==")){
+                            OpCode opCode8= new OpCode();
+                            opCode8.code = FALSE_LOCATION; // Load the accumulator with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode8;
+                                System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory location of false string in heap");
+                                incrementIndex(1);
+                            }
+                        }
+                        else { // for inequality operator
+                            OpCode opCode12= new OpCode();
+                            opCode12.code = TRUE_LOCATION; // Load the accumulator with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode12;
+                                System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory location of false string in heap");
+                                incrementIndex(1);
+                            }
                         }
 
+//                        OpCode opCode8= new OpCode();
+//                        opCode8.code = FALSE_LOCATION; // Load the accumulator with a constant
+//                        if (!checkStackOverflow(curIndex, "stack")) {
+//                            opsArray[curIndex] = opCode8;
+//                            System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory location of false string in heap");
+//                            incrementIndex(1);
+//                        }
+
                         OpCode opCode9= new OpCode();
-                        opCode9.code = "D0"; // Branch n bytes if Z flag = 0 from EC op code before
+                        opCode9.code = "D0"; // Branch n bytes if Z flag = 0 from EC op code before (e.g., false)
                         if (!checkStackOverflow(curIndex, "stack")) {
                             opsArray[curIndex] = opCode9;
-                            System.out.println("CODE GEN -------> D0 -------> Branch n bytes if Z flag = 0");
+                            System.out.println("CODE GEN -------> D0 -------> Branch n bytes if Z flag = 0 (e.g., false)");
                             incrementIndex(1);
                         }
 
@@ -1339,15 +1359,35 @@ public class CodeGen {
                         }
                         incrementJumpsValue(1); // increase the jump value
 
-                        // We use false (but could use true)
-                        OpCode opCode12= new OpCode();
-                        opCode12.code = FALSE_LOCATION; // Load the accumulator with a constant
-                        if (!checkStackOverflow(curIndex, "stack")) {
-                            opsArray[curIndex] = opCode12;
-                            System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory location of false string in heap");
-                            incrementIndex(1);
+                        // We use false for equality operator
+                        if (node.parent.value.equals("==")){
+                            OpCode opCode12= new OpCode();
+                            opCode12.code = TRUE_LOCATION; // Load the accumulator with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode12;
+                                System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory location of false string in heap");
+                                incrementIndex(1);
+                            }
+                        }
+                        else { // for inequality operator
+                            OpCode opCode8= new OpCode();
+                            opCode8.code = FALSE_LOCATION; // Load the accumulator with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode8;
+                                System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory location of false string in heap");
+                                incrementIndex(1);
+                            }
                         }
                         incrementJumpsValue(1);
+
+//                        OpCode opCode12= new OpCode();
+//                        opCode12.code = TRUE_LOCATION; // Load the accumulator with a constant
+//                        if (!checkStackOverflow(curIndex, "stack")) {
+//                            opsArray[curIndex] = opCode12;
+//                            System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory location of false string in heap");
+//                            incrementIndex(1);
+//                        }
+//                        incrementJumpsValue(1);
 
 
                         // add a data entry to the Jumps data table to be replace later for backpatching

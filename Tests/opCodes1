@@ -176,11 +176,20 @@ print(a)
 }$
 
 /* WORKS verified with JUICE and SVEG OS*/
-/* More complicated boolean assignment with inequality boolean operator and printing ID*/
+/* equality boolean operator and printing ID*/
 /* Should print true*/
 {
 boolean a
-a = (false != true)
+a = (true == true)
+print(a)
+}$
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* inequality boolean operator and printing ID*/
+/* Should print false*/
+{
+boolean a
+a = (true != true)
 print(a)
 }$
 
