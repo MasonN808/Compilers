@@ -1559,4 +1559,18 @@ public class CodeGen {
         return true;
     }
 
+    /**
+     * Adds an op code to the run-time environment
+     * @param codeString the code being added
+     */
+    public static void addCode(String codeString){
+        OpCode opCode = new OpCode();
+        opCode.code = codeString; // Load the accumulator with a constant
+        if (!checkStackOverflow(curIndex, "stack")) {
+            opsArray[curIndex] = opCode;
+            System.out.println("CODE GEN -------> " + codeString + " -------> Memory location of false string in heap");
+            incrementIndex(1);
+        }
+    }
+
 }
