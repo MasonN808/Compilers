@@ -72,6 +72,14 @@ a = 1 + 2+ 3
 
 {
 boolean a
-a = (false == (2 == 4))
+a = (false == ((2 == 4) != true))
 print(a)
+}$
+
+{
+    string a
+    a = "hi"
+    if ( a == "hi"){
+        print(a)
+    }
 }$

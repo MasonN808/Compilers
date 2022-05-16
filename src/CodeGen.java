@@ -552,7 +552,6 @@ public class CodeGen {
                 }
 
                 else if (tempScope.hashTable.get(assignedID.value).type.equals("boolean")) { // if the id being assigned is of boolean type
-                    //TODO finish this 9:41 am 5/15 just copied the int expr if block
                     secondPass = false; // Reset the pointer
                     idFound = true; // To get out of the while loop
                     POT(assignedExpr, assignedID); // Doing a depth-first post-order traversal on assigned expression (RHS)
@@ -1069,11 +1068,11 @@ public class CodeGen {
                         }
                         else {
                             // TODO finish this for complex boolean expressions
-//                            evalBooleanExpr();
+//                            evalBooleanExpr(); // Should output a position in memory referencing true or false
 //                            POT(node, id);
                         }
                     }
-                    else {
+                    else { // This is the second pass so do this : in node with boolOp == and != as parent
                         if (node.value.length() == 1 & Character.isLetter(node.value.charAt(0))){ // For the ID case in boolean expression
                             queryMemoryFromID(node);
                             OpCode opCode4 = new OpCode();

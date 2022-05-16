@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly&#10;- Will continue to work on the bugs until graded">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/opCodes" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
@@ -105,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00143" summary="- Debugging Line separator issue for MacOS">
-      <created>1649634672936</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1649634672936</updated>
     </task>
     <task id="LOCAL-00144" summary="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done">
       <created>1649639419333</created>
@@ -449,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652689262556</updated>
     </task>
-    <option name="localTasksCounter" value="192" />
+    <task id="LOCAL-00192" summary="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly&#10;- Will continue to work on the bugs until graded">
+      <created>1652690021950</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1652690021950</updated>
+    </task>
+    <option name="localTasksCounter" value="193" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +479,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Updated backpatching (works better)&#10;-Edited data entry implementation&#10;-Major Edits to the string case for assignment&#10;-added other attributes to constructor of dataEntry&#10;-added scope to IdDetails, although unneeded&#10;-changes to hashtable due to edits in IdDetails" />
     <MESSAGE value="I think the pointers from heap works now" />
     <MESSAGE value="Fixed pointer from heap: had to fix indexing issue" />
     <MESSAGE value="Making assignment op code generator more dynamic&#10;-checking ids in int expressions now" />
@@ -502,6 +503,7 @@
     <MESSAGE value="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing" />
     <MESSAGE value="- Simple if statement works&#10;- Issues with inequality operator in if statement" />
     <MESSAGE value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly" />
+    <MESSAGE value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly&#10;- Will continue to work on the bugs until graded" />
+    <option name="LAST_COMMIT_MESSAGE" value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly&#10;- Will continue to work on the bugs until graded" />
   </component>
 </project>
