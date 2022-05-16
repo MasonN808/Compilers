@@ -37,7 +37,7 @@ public class CodeGen {
     public static final String TRUE_LOCATION = "F5";
 
     public static boolean secondPass = false; // Used in POT() for boolean expressions block
-
+    public static boolean inPrint = false;
 
 
 
@@ -56,11 +56,15 @@ public class CodeGen {
         this.staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
         this.currentScope = null;
         this.POTfirst = true;
-        this.jumps = new ArrayList<>();
-        this.numJumps = 0;
         this.verbose = verbose;
         this.POTfirstDigit = true;
         this.jumpValue = 0;
+        this.numJumps = 0;
+        this.jumps = new ArrayList<>();
+        this.secondPass = false;
+        this.inPrint = false;
+
+
     }
 
 
@@ -586,6 +590,7 @@ public class CodeGen {
      */
     public static void codeGenPrint(Node node){
         Node printKey = node.children.get(0);
+        inPrint = true;
 
         if (printKey.name.equals("ID")) { // If printing an ID
             OpCode opCode0 = new OpCode();
@@ -688,9 +693,9 @@ public class CodeGen {
                 System.out.println("CODE GEN -------> 02 -------> Print the 00-terminated string stored at the address in the Y register");
                 incrementIndex(1);
             }
-        }
 
-        else if (printKey.name.equals("intExpr")){ // for integer Expressions
+        }
+        else if (printKey.name.equals("intExpr") | printKey.name.equals("intOp")){ // for integer Expressions // TODO: BUGS
             POT(printKey, null);
 
             OpCode opCode0 = new OpCode();
@@ -733,33 +738,54 @@ public class CodeGen {
                 incrementIndex(1);
             }
         }
-        else if (printKey.name.equals("boolExpr")) {// For boolean expressions
-            // TODO: take into account == and != operator later
+        else if (printKey.name.equals("boolExpr") | printKey.name.equals("boolOp")) {// For boolean expressions
             //Very similar to the stringExpr if statement, just changing the Temp value to the memory location of boolean
-            OpCode opCode6 = new OpCode();
-            opCode6.code = "A0"; // Load the Y register from memory
-            if (!checkStackOverflow(curIndex, "stack")) {
-                opsArray[curIndex] = opCode6;
-                System.out.println("CODE GEN -------> A0 -------> Load the Y register from memory");
-                incrementIndex(1);
-            }
-            if (printKey.value.equals("false")) {
-                OpCode opCode7 = new OpCode();
-                opCode7.code = FALSE_LOCATION; // Get the location of the string in the heap
+            if (printKey.value.equals("false") | printKey.value.equals("true")) { // For the simple boolean case with no boolean operators
+                OpCode opCode6 = new OpCode();
+                opCode6.code = "A0"; // Load the Y register from memory
                 if (!checkStackOverflow(curIndex, "stack")) {
-                    opsArray[curIndex] = opCode7;
-                    System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory Location in Heap");
+                    opsArray[curIndex] = opCode6;
+                    System.out.println("CODE GEN -------> A0 -------> Load the Y register from memory");
                     incrementIndex(1);
                 }
-            }
-            else if (printKey.value.equals("true")){
-                OpCode opCode7 = new OpCode();
-                opCode7.code = TRUE_LOCATION; // Get the location of the string in the heap
-                if (!checkStackOverflow(curIndex, "stack")) {
-                    opsArray[curIndex] = opCode7;
-                    System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory Location in Heap");
-                    incrementIndex(1);
+                if (printKey.value.equals("false")) {
+                    OpCode opCode7 = new OpCode();
+                    opCode7.code = FALSE_LOCATION; // Get the location of the string in the heap
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode7;
+                        System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory Location in Heap");
+                        incrementIndex(1);
+                    }
+                } else if (printKey.value.equals("true")) {
+                    OpCode opCode7 = new OpCode();
+                    opCode7.code = TRUE_LOCATION; // Get the location of the string in the heap
+                    if (!checkStackOverflow(curIndex, "stack")) {
+                        opsArray[curIndex] = opCode7;
+                        System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory Location in Heap");
+                        incrementIndex(1);
+                    }
                 }
+
+//                OpCode opCode8 = new OpCode();
+//                opCode8.code = "A2"; // Load the X register with a constant
+//                if (!checkStackOverflow(curIndex, "stack")) {
+//                    opsArray[curIndex] = opCode8;
+//                    System.out.println("CODE GEN -------> A2 -------> Load the X register with a constant");
+//                    incrementIndex(1);
+//                }
+//
+//                OpCode opCode9 = new OpCode();
+//                opCode9.code = "02"; // Print the 00-terminated string stored at the address in the Y register
+//                if (!checkStackOverflow(curIndex, "stack")) {
+//                    opsArray[curIndex] = opCode9;
+//                    System.out.println("CODE GEN -------> 02 -------> Print the 00-terminated string stored at the address in the Y register");
+//                    incrementIndex(1);
+//                }
+            }
+            else{ // For more complicated boolean expressions with boolean operators and embedded boolean expressions
+                System.out.println("LSJFKL");
+
+                POT(printKey, null);
             }
 
             OpCode opCode8 = new OpCode();
@@ -777,10 +803,7 @@ public class CodeGen {
                 System.out.println("CODE GEN -------> 02 -------> Print the 00-terminated string stored at the address in the Y register");
                 incrementIndex(1);
             }
-
         }
-
-
 
         OpCode opCode6 = new OpCode();
         opCode6.code = "FF"; // System Call
@@ -790,6 +813,8 @@ public class CodeGen {
             incrementIndex(1);
         }
 
+        // Reset pointer
+        inPrint = false;
     }
 
     /**
@@ -1130,14 +1155,12 @@ public class CodeGen {
                             System.out.println("CODE GEN -------> " + opCode1.code + " -------> Load this constant to accumulator");
                             incrementIndex(1);
                         }
-                        POTfirstDigit = false; // set to false since just traversed the first/deepest id to store initial memory
+//                        POTfirstDigit = false; // set to false since just traversed the first/deepest id to store initial memory
 
                     }
 
                 }
             } else if (node.name.equals("boolExpr")) {
-                //TODO finish this
-//                System.out.println(node.value);
                 if ((node.value.equals("false") | node.value.equals("true")) & (!node.parent.value.equals("==") & !node.parent.value.equals("!="))) {
                     // For simple boolean expressions with no boolean operators
 
@@ -1297,15 +1320,27 @@ public class CodeGen {
                             incrementIndex(1);
                         }
 
-                        OpCode opCode7 = new OpCode();
-                        opCode7.code = "A9"; // Load the accumulator with a constant
-                        if (!checkStackOverflow(curIndex, "stack")) {
-                            opsArray[curIndex] = opCode7;
-                            System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
-                            incrementIndex(1);
+                        if (inPrint){
+                            OpCode opCode7 = new OpCode();
+                            opCode7.code = "A0"; // Load the Y register with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode7;
+                                System.out.println("CODE GEN -------> A0 -------> Load the Y register with a constant");
+                                incrementIndex(1);
+                            }
+                        }
+                        else {
+                            OpCode opCode7 = new OpCode();
+                            opCode7.code = "A9"; // Load the accumulator with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode7;
+                                System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
+                                incrementIndex(1);
+                            }
                         }
 
                         // We use false for equality operator
+                        // This takes into account differing boolean operators
                         if (node.parent.value.equals("==")){
                             OpCode opCode8= new OpCode();
                             opCode8.code = FALSE_LOCATION; // Load the accumulator with a constant
@@ -1325,14 +1360,6 @@ public class CodeGen {
                             }
                         }
 
-//                        OpCode opCode8= new OpCode();
-//                        opCode8.code = FALSE_LOCATION; // Load the accumulator with a constant
-//                        if (!checkStackOverflow(curIndex, "stack")) {
-//                            opsArray[curIndex] = opCode8;
-//                            System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory location of false string in heap");
-//                            incrementIndex(1);
-//                        }
-
                         OpCode opCode9= new OpCode();
                         opCode9.code = "D0"; // Branch n bytes if Z flag = 0 from EC op code before (e.g., false)
                         if (!checkStackOverflow(curIndex, "stack")) {
@@ -1345,18 +1372,35 @@ public class CodeGen {
                         opCode10.code = "J" + numJumps; // Branch n bytes if Z flag = 0 from EC op code before
                         if (!checkStackOverflow(curIndex, "stack")) {
                             opsArray[curIndex] = opCode10;
-                            System.out.println("CODE GEN -------> " + numJumps + " -------> Branch n bytes if Z flag = 0");
+                            System.out.println("CODE GEN -------> n -------> Branch n bytes if Z flag = 0");
                             incrementIndex(1);
                         }
 
-
-                        OpCode opCode11 = new OpCode();
-                        opCode11.code = "A9"; // Load the accumulator with a constant
-                        if (!checkStackOverflow(curIndex, "stack")) {
-                            opsArray[curIndex] = opCode11;
-                            System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
-                            incrementIndex(1);
+                        if (inPrint){
+                            OpCode opCode7 = new OpCode();
+                            opCode7.code = "A0"; // Load the Y register with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode7;
+                                System.out.println("CODE GEN -------> A0 -------> Load the Y register with a constant");
+                                incrementIndex(1);
+                            }
                         }
+                        else {
+                            OpCode opCode7 = new OpCode();
+                            opCode7.code = "A9"; // Load the accumulator with a constant
+                            if (!checkStackOverflow(curIndex, "stack")) {
+                                opsArray[curIndex] = opCode7;
+                                System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
+                                incrementIndex(1);
+                            }
+                        }
+//                        OpCode opCode11 = new OpCode();
+//                        opCode11.code = "A9"; // Load the accumulator with a constant
+//                        if (!checkStackOverflow(curIndex, "stack")) {
+//                            opsArray[curIndex] = opCode11;
+//                            System.out.println("CODE GEN -------> A9 -------> Load the accumulator with a constant");
+//                            incrementIndex(1);
+//                        }
                         incrementJumpsValue(1); // increase the jump value
 
                         // We use false for equality operator
@@ -1380,46 +1424,12 @@ public class CodeGen {
                         }
                         incrementJumpsValue(1);
 
-//                        OpCode opCode12= new OpCode();
-//                        opCode12.code = TRUE_LOCATION; // Load the accumulator with a constant
-//                        if (!checkStackOverflow(curIndex, "stack")) {
-//                            opsArray[curIndex] = opCode12;
-//                            System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory location of false string in heap");
-//                            incrementIndex(1);
-//                        }
-//                        incrementJumpsValue(1);
-
-
                         // add a data entry to the Jumps data table to be replace later for backpatching
                         JumpEntry jumpEntry = new JumpEntry(opCode10.code, jumpValue);
                         jumps.add(jumpEntry);
 
                         incrementNumJumps(1); // Go up a temp value for next declaration
                     }
-
-//                    if (node.value.equals("false") | node.value.equals("true")){ // if either side of operator is false or true, a simple case
-//                        if (node.value.equals("false")){
-//                            OpCode opCode1= new OpCode();
-//                            opCode1.code = FALSE_LOCATION; // Load the accumulator with a constant
-//                            if (!checkStackOverflow(curIndex, "stack")) {
-//                                opsArray[curIndex] = opCode1;
-//                                System.out.println("CODE GEN -------> " + FALSE_LOCATION + " -------> Memory location of false string in heap");
-//                                incrementIndex(1);
-//                            }
-//                        }
-//                        else {
-//                            OpCode opCode1= new OpCode();
-//                            opCode1.code = TRUE_LOCATION; // Load the accumulator with a constant
-//                            if (!checkStackOverflow(curIndex, "stack")) {
-//                                opsArray[curIndex] = opCode1;
-//                                System.out.println("CODE GEN -------> " + TRUE_LOCATION + " -------> Memory location of false string in heap");
-//                                incrementIndex(1);
-//                            }
-//                        }
-//                    }
-//                    else {
-//                        // TODO finish this for complex boolean expressions
-//                    }
                 }
 
             } else if (!node.name.equals("intOp") & !node.name.equals("boolOp")){ //Since we do nothing if intOp is traversed

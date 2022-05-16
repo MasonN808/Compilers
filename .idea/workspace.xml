@@ -107,13 +107,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00139" summary="- Created warning system&#10;- May need to add more warnings">
-      <created>1649633178504</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1649633178504</updated>
-    </task>
     <task id="LOCAL-00140" summary="- Added line number column to symbol table">
       <created>1649633529497</created>
       <option name="number" value="00140" />
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652666504607</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="- Inequality operator is now recognized on simple boolean expressions">
+      <created>1652667723513</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1652667723513</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
     <MESSAGE value="-Created sack overflow error&#10;-added a method to add strings into the heap" />
     <MESSAGE value="-Added &quot;true&quot; and &quot;false&quot; into heap" />
     <MESSAGE value="-Added backpatching (works)" />
@@ -503,6 +502,7 @@
     <MESSAGE value="- Takes into account simple boolean assignments" />
     <MESSAGE value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
     <MESSAGE value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
-    <option name="LAST_COMMIT_MESSAGE" value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
+    <MESSAGE value="- Inequality operator is now recognized on simple boolean expressions" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Inequality operator is now recognized on simple boolean expressions" />
   </component>
 </project>

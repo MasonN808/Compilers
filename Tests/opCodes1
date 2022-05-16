@@ -145,6 +145,16 @@ b = 2
 print(1+2+2+b)
 }$
 
+/* WORKS verified with JUICE and SVEG OS*/
+/* integer assignment with + operator while printing assignment*/
+/* Should print 6*/
+{
+int a
+a = 1
+print(1+2+3)
+}$
+
+
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* simple boolean assignment and printing ID*/
@@ -164,7 +174,7 @@ a = false
 print(false)
 }$
 
-/* Next cases: embedded boolean statements, if statements, while statements */
+/* Next cases: boolean statements with boolean operators, embedded boolean statements, if statements, while statements */
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* More complicated boolean assignment with equality boolean operator and printing ID*/
@@ -184,6 +194,7 @@ a = (true == true)
 print(a)
 }$
 
+
 /* WORKS verified with JUICE and SVEG OS*/
 /* inequality boolean operator and printing ID*/
 /* Should print false*/
@@ -192,4 +203,17 @@ boolean a
 a = (true != true)
 print(a)
 }$
+
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* inequality boolean operator and printing boolean literal*/
+/* Should print true*/
+{
+print((false != true))
+}$
+
+
+
+/* Next cases: embedded boolean statements*/
+
 
