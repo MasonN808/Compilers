@@ -264,3 +264,33 @@ print(a)
         print(a)
     }
 }$
+
+{
+string a
+a = "false"
+if ("false" == a){
+print(a)
+}
+}$
+
+{
+string a
+a = "hi"
+if ("hi" == a){
+print(a)
+}
+}$
+
+{
+int a
+a = 1+2+3
+print(a)
+}$
+
+{
+int a
+a = 3
+if (1+2 == a){
+print(a)
+}
+}$

@@ -592,7 +592,12 @@ public class Lexer {
                             // Code Gen
                             System.out.println("------------------------------------------------------------");
                             System.out.println("Beginning CODE GEN for Program " + program_num);
-                            CodeGen codeGen = new CodeGen(treeST, abstractST.ast, true); //TODO: change true back to verbose
+                            // make another ast for code gen since semantic messes with the ast
+                            AbstractSyntaxTree abstractST1 = new AbstractSyntaxTree(tokenStream, verbose);
+                            abstractST.parseProgram();
+//                            System.out.println(abstractST1.ast.traverse(abstractST1.ast.root, 0, ""));
+
+                            CodeGen codeGen = new CodeGen(treeST, abstractST1.ast, true); //TODO: change true back to verbose
                             codeGen.generateOpCodes();
                         }
                     }

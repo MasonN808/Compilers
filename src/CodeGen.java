@@ -80,6 +80,7 @@ public class CodeGen {
         this.tempJumpVariable = null;
         this.inBoolExpr = false;
         this.setFirstRegister = false;
+        this.strings = new ArrayList<>();
 
     }
 
@@ -390,7 +391,7 @@ public class CodeGen {
         }
         heapIndex = index; // Reassign heapIndex for next String
 
-        StringEntry stringEntry = new StringEntry(newString, digitToHex(heapIndex));
+        StringEntry stringEntry = new StringEntry(newString, Integer.toHexString(heapIndex).toUpperCase());
         strings.add(stringEntry); // add a string entry for later referral in boolean expressions and possibly other statements
 
     }
@@ -602,7 +603,8 @@ public class CodeGen {
         inIf = true;
         Node expr = node.children.get(0);
         numJumps += 1; // for number of jump variables
-        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
+//        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
+        QBFS(expr);
         inIf = false;
 
     }
@@ -666,7 +668,7 @@ public class CodeGen {
 
                 }
             } else if (node.name.equals("boolExpr")) {
-
+                // TODO put QBFS HERE
                 if ((node.value.equals("false") | node.value.equals("true")) & (!node.parent.value.equals("==") & !node.parent.value.equals("!="))) {
                     // For simple boolean expressions with no boolean operators
                     addCode("A9", "Load the accumulator with a constant"); // Initialize
@@ -803,6 +805,7 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void QBFS(Node node){
+        System.out.println("IN QBFS node.name is "+ node.name + " " + node.value);
         /*
             Pseudo Code:
                 1) Do QBFS on boolean expression
@@ -852,6 +855,7 @@ public class CodeGen {
                     addCode("A2", "Load the X register with a constant");
                     //Find the string in heap if it exists, else create it
                     if (findStringInMemory(node.value) == null) { // Implies that the string being assigned is not in heap
+//                        System.out.println(node.value);
                         String tempAssignedExprValue = removeFirstandLast(node.value); // remove the quotes from the string
                         addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
                         addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
@@ -889,7 +893,38 @@ public class CodeGen {
                 }
 
                 setFirstRegister = !setFirstRegister;
+                break;
 
+            case ("intExpr"):
+                if (verbose) {
+                    System.out.println("CODE GEN -------> Generating Op Codes for int expression in boolean expression");
+                }
+                if (!setFirstRegister) { // e.g. 3 == a
+                    addCode("A2", "Load the X register with a constant");
+                    // convert the int to hex and load it to register
+                    addCode(digitToHex(Integer.parseInt(node.value)), "Constant to be loaded to X register");
+
+                }
+                else { // e.g. a == 3
+                    addCode("A9", "Load the accumulator with a constant");
+                    // convert the int to hex and load it to register
+                    addCode(digitToHex(Integer.parseInt(node.value)), "Constant to be loaded to X register");
+                    addCode("8D", "Store the accumulator in memory");
+                    addCode("00", "Store the accumulator here");
+                    addCode("00", "Break");
+                    addCode("EC", "Compare the byte in memory to the X register");
+                    addCode("00", "Compare from this memory location");
+                    addCode("00", "Break");
+
+                    addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
+                    addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
+
+                    if (inIf){
+                        tempJumpVariable = "J" + numJumps;
+                    }
+                }
+
+                setFirstRegister = !setFirstRegister;
                 break;
 
             case ("boolExpr"):
@@ -905,14 +940,9 @@ public class CodeGen {
         // If not known already --> doing a Quasi-breadth-first traversal
         //                          (quasi/pseudo since we go deeper in the tree for every boolOp node)
         for (Node each : node.children) {
-            processNode(each);
+//            System.out.println("Visited child");
+            QBFS(each);
         }
-
-//        if (node.name.equals("block")) {
-//            // Go back up the tree at outer scope
-//            currentScope = currentScope.prev;
-//            childIndex = 0; // reset the child index
-//        }
 
     }
 
@@ -921,7 +951,7 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void queryMemoryFromID(Node node, String where){
-        if (where.equals("bool")){ // This just finds the memory location and outputs it
+        if (where!= null && where.equals("bool")){ // This just finds the memory location and outputs it
             // Check for the assigned ID in static table of the current scope to assign temp value
             String temp = null;
             TreeST.ScopeNode tempScope = currentScope;
@@ -1197,7 +1227,10 @@ public class CodeGen {
      * @return memory location or null
      */
     public static String findStringInMemory(String target){
+        //remove quotes from target
+        target = removeFirstandLast(target);
         for (StringEntry entry: strings){
+//            System.out.println(entry.string);
             if (target.equals(entry.string)){
                 return entry.memory; // returns the memory location of the target string
             }
