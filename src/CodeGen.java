@@ -45,6 +45,7 @@ public class CodeGen {
     public static int jumpDifference = 0;
     public static String tempJumpVariable = null;
     public static boolean inBoolExpr = false;
+    public static boolean setFirstRegister = false;
 
 
 
@@ -78,6 +79,7 @@ public class CodeGen {
         this.jumpDifference = 0;
         this.tempJumpVariable = null;
         this.inBoolExpr = false;
+        this.setFirstRegister = false;
 
     }
 
@@ -430,13 +432,11 @@ public class CodeGen {
             if (tempScope.hashTable.get(assignedID.value) != null) { // make sure the query from the hashtable isn't null
                 if (tempScope.hashTable.get(assignedID.value).type.equals("string")) { // if the id being assigned is of string type
                     idFound = true; // To get out of the while loop
-                    if (findStringInMemory(assignedExpr.value) == null) { // Implies that the string being assigned is not in heap
-                        String tempAssignedExprValue = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
-                        addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
-                    }
 
                     addCode("A9", "Load the accumulator with a constant");
                     if (findStringInMemory(assignedExpr.value) == null) { // Implies that the string being assigned is not in heap
+                        String tempAssignedExprValue = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
+                        addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
                         addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
                     }
                     else{
@@ -635,7 +635,7 @@ public class CodeGen {
 //            System.out.println(node.value);
             // For digits and Ids
             if ((node.name.equals("intExpr") & !isNumeric(node.value)) | node.name.equals("ID")) { // Then its an ID in the int expression
-                queryMemoryFromID(node);
+                queryMemoryFromID(node, null);
 
             } else if (node.name.equals("intExpr")) { // for non id intExprs (i.e., + and digit)
                 if (node.parent != null) {
@@ -666,6 +666,7 @@ public class CodeGen {
 
                 }
             } else if (node.name.equals("boolExpr")) {
+
                 if ((node.value.equals("false") | node.value.equals("true")) & (!node.parent.value.equals("==") & !node.parent.value.equals("!="))) {
                     // For simple boolean expressions with no boolean operators
                     addCode("A9", "Load the accumulator with a constant"); // Initialize
@@ -708,7 +709,7 @@ public class CodeGen {
                     else { // This is the second pass so do this : in node with boolOp == and != as parent
                         if (node.value.length() == 1 & Character.isLetter(node.value.charAt(0))){ // For the ID case in boolean expression
 
-                            queryMemoryFromID(node); // Generates op codes that finds the static memory for the ID
+                            queryMemoryFromID(node, null); // Generates op codes that finds the static memory for the ID
                             addCode("EC", "Compare the byte in memory to the X register");
                             addCode("00", "Compare from this memory location");
                             addCode("00", "Break");
@@ -818,46 +819,82 @@ public class CodeGen {
                 break;
 
             case ("ID"):
-                Node id = node.children.get(0); // Pulling the id being declared in varDecal Statement
                 if (verbose) {
-                    System.out.println("CODE GEN -------> Generating Op Codes for ID in boolean expression on line " + id.token.line_number);
+                    System.out.println("CODE GEN -------> Generating Op Codes for ID in boolean expression");
+                }
+                if (!setFirstRegister) { // e.g. a == "some string"
+                    addCode("AE", "Load the X register from Memory");
+                    queryMemoryFromID(node, "bool"); // Generates op code for that static memory of the ID
+
+                }
+                else { // e.g. "some string" == a
+                    addCode("EC", "Compare the byte in memory to the X register");
+                    queryMemoryFromID(node, "bool");
+
+                    addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
+                    addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
+
+                    if (inIf){
+                        //moved to processNode() method since the scope is not relevant here
+                        tempJumpVariable = "J" + numJumps;
+                    }
                 }
 
-                queryMemoryFromID(node); // Generates op codes that finds the static memory for the ID
-                addCode("EC", "Compare the byte in memory to the X register");
-                addCode("00", "Compare from this memory location");
-                addCode("00", "Break");
+                setFirstRegister = !setFirstRegister;
 
                 break;
 
             case ("stringExpr"):
-                id = node.children.get(0); // Pulling the variable being declared in varDecal Statement
                 if (verbose) {
-                    System.out.println("CODE GEN -------> Generating Op Codes for string expression in boolean expression on line " + id.token.line_number);
+                    System.out.println("CODE GEN -------> Generating Op Codes for string expression in boolean expression");
                 }
-                if (findStringInMemory(node.value) == null) { // Implies that the string being assigned is not in heap
-                    String tempNodeValue = removeFirstandLast(node.value); // remove the quotes from the string
-                    addInHeap(tempNodeValue, heapIndex); // add the string into the heap
+                if (!setFirstRegister) { // e.g. "some string" == a
+                    addCode("A2", "Load the X register with a constant");
+                    //Find the string in heap if it exists, else create it
+                    if (findStringInMemory(node.value) == null) { // Implies that the string being assigned is not in heap
+                        String tempAssignedExprValue = removeFirstandLast(node.value); // remove the quotes from the string
+                        addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
+                        addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
+                    }
+                    else{
+                        addCode(findStringInMemory(node.value), "Memory Location in Heap from previous string generation in heap"); // Get the location of the string in heap
+                    }
+
+                }
+                else { // e.g. a == "some string"
+                    addCode("A9", "Load the accumulator with a constant");
+
+                    if (findStringInMemory(node.value) == null) { // Implies that the string being assigned is not in heap
+                        String tempNodeValue = removeFirstandLast(node.value); // remove the quotes from the string
+                        addInHeap(tempNodeValue, heapIndex); // add the string into the heap
+                        addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
+                    }
+                    else{
+                        addCode(findStringInMemory(node.value), "Memory Location in Heap from previous string generation in heap"); // Get the location of the string in heap
+                    }
+                    addCode("8D", "Store the accumulator in memory");
+                    addCode("00", "Store the accumulator here");
+                    addCode("00", "Break");
+                    addCode("EC", "Compare the byte in memory to the X register");
+                    addCode("00", "Compare from this memory location");
+                    addCode("00", "Break");
+
+                    addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
+                    addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
+
+                    if (inIf){
+                        //moved to processNode() method since the scope is not relevant here
+                        tempJumpVariable = "J" + numJumps;
+                    }
                 }
 
-                addCode("A9", "Load the accumulator with a constant");
-                if (findStringInMemory(node.value) == null) { // Implies that the string being assigned is not in heap
-                    addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
-                }
-                else{
-                    addCode(findStringInMemory(node.value), "Memory Location in Heap from previous string generation in heap"); // Get the location of the string in heap
-                }
-                addCode("8D", "Store the accumulator in memory");
-                addCode("00", "Store the accumulator here");
-                addCode("00", "Break");
+                setFirstRegister = !setFirstRegister;
 
-
-//                codeGenAssignment(node);
                 break;
 
             case ("boolExpr"):
                 if (verbose) {
-                    System.out.println("CODE GEN -------> Generating Op Codes for boolean expression in boolean expression on line " + node.token.line_number);
+                    System.out.println("CODE GEN -------> Generating Op Codes for boolean expression in boolean expression");
                 }
                 break;
 
@@ -871,11 +908,11 @@ public class CodeGen {
             processNode(each);
         }
 
-        if (node.name.equals("block")) {
-            // Go back up the tree at outer scope
-            currentScope = currentScope.prev;
-            childIndex = 0; // reset the child index
-        }
+//        if (node.name.equals("block")) {
+//            // Go back up the tree at outer scope
+//            currentScope = currentScope.prev;
+//            childIndex = 0; // reset the child index
+//        }
 
     }
 
@@ -883,32 +920,50 @@ public class CodeGen {
      * Finds the Memory location of the id being queried
      * @param node The current node in the AST
      */
-    public static void queryMemoryFromID(Node node){
-        if (inIf){
-            addCode("AE", "Load the X register from memory"); // for comparisons with the x register
-        }
-        else{
-            addCode("AD", "Load the accumulator from memory");
-        }
-
-        // Check for the assigned ID in static table of the current scope to assign temp value
-        String temp = null;
-        TreeST.ScopeNode tempScope = currentScope;
-        boolean idFound = false;
-        while (tempScope != null & !idFound) { // Doing a while loop to find the variable entry in static data in some previous scope (or even current scope)
-            for (DataEntry entry : staticData) {
-                if (entry.var.equals(node.value) & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
-                    temp = entry.temp;
-                    idFound = true;
+    public static void queryMemoryFromID(Node node, String where){
+        if (where.equals("bool")){ // This just finds the memory location and outputs it
+            // Check for the assigned ID in static table of the current scope to assign temp value
+            String temp = null;
+            TreeST.ScopeNode tempScope = currentScope;
+            boolean idFound = false;
+            while (tempScope != null & !idFound) { // Doing a while loop to find the variable entry in static data in some previous scope (or even current scope)
+                for (DataEntry entry : staticData) {
+                    if (entry.var.equals(node.value) & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
+                        temp = entry.temp;
+                        idFound = true;
+                    }
                 }
+                tempScope = tempScope.prev; //go up a scope if nothing found
             }
-            tempScope = tempScope.prev; //go up a scope if nothing found
+            addCode(temp, "Temporary Memory Location");
+            addCode("00", "Break");
         }
-        addCode(temp, "Temporary Memory Location");
-        addCode("00", "Break");
-        addCode("8D", "Store the accumulator in memory");
-        addCode("00", "Memory Location for Storage in Accumulator");
-        addCode("00", "Break");
+        else {
+            if (inIf) {
+                addCode("AE", "Load the X register from memory"); // for comparisons with the x register
+            } else {
+                addCode("AD", "Load the accumulator from memory");
+            }
+
+            // Check for the assigned ID in static table of the current scope to assign temp value
+            String temp = null;
+            TreeST.ScopeNode tempScope = currentScope;
+            boolean idFound = false;
+            while (tempScope != null & !idFound) { // Doing a while loop to find the variable entry in static data in some previous scope (or even current scope)
+                for (DataEntry entry : staticData) {
+                    if (entry.var.equals(node.value) & entry.scope == tempScope.scope) { // Check value is in there and scope are equivalent
+                        temp = entry.temp;
+                        idFound = true;
+                    }
+                }
+                tempScope = tempScope.prev; //go up a scope if nothing found
+            }
+            addCode(temp, "Temporary Memory Location");
+            addCode("00", "Break");
+            addCode("8D", "Store the accumulator in memory");
+            addCode("00", "Memory Location for Storage in Accumulator");
+            addCode("00", "Break");
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00149" summary="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now">
-      <created>1649798881927</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1649798881927</updated>
     </task>
     <task id="LOCAL-00150" summary="- Edited more detailed error messages">
       <created>1649806685169</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652746506549</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="- Added more code for the stringExpr">
+      <created>1652747188820</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1652747188820</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Added print statements for verbose mode&#10;-On an airplane" />
     <MESSAGE value="- Added method information&#10;- implemented the stack overflow error" />
     <MESSAGE value="- Added more method information" />
     <MESSAGE value="- Added check heap overflow when assigining Op codes&#10;- Still on plane&#10;- Finishing at home" />
@@ -503,6 +502,23 @@
     <MESSAGE value="- Completely refactored code and logic reducing 500 lines" />
     <MESSAGE value="- Initialized Quasi Breadth first in order traversal for embedded boolean expressions" />
     <MESSAGE value="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)" />
+    <MESSAGE value="- Added more code for the stringExpr" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added more code for the stringExpr" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/CodeGen.java</url>
+          <line>726</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/CodeGen.java</url>
+          <line>710</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
