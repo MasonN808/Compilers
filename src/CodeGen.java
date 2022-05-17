@@ -835,7 +835,23 @@ public class CodeGen {
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for string expression in boolean expression on line " + id.token.line_number);
                 }
-                findStringInMemory(node.value);
+                if (findStringInMemory(node.value) == null) { // Implies that the string being assigned is not in heap
+                    String tempNodeValue = removeFirstandLast(node.value); // remove the quotes from the string
+                    addInHeap(tempNodeValue, heapIndex); // add the string into the heap
+                }
+
+                addCode("A9", "Load the accumulator with a constant");
+                if (findStringInMemory(node.value) == null) { // Implies that the string being assigned is not in heap
+                    addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
+                }
+                else{
+                    addCode(findStringInMemory(node.value), "Memory Location in Heap from previous string generation in heap"); // Get the location of the string in heap
+                }
+                addCode("8D", "Store the accumulator in memory");
+                addCode("00", "Store the accumulator here");
+                addCode("00", "Break");
+
+
 //                codeGenAssignment(node);
                 break;
 
@@ -843,7 +859,6 @@ public class CodeGen {
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for boolean expression in boolean expression on line " + node.token.line_number);
                 }
-//                codeGenPrint(node);
                 break;
 
             default:

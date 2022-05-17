@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/StringEntry.java" afterDir="false" />
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00148" summary="- Added a type mismatch error for assigned expression in assignmentStatement">
-      <created>1649652444680</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1649652444680</updated>
     </task>
     <task id="LOCAL-00149" summary="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now">
       <created>1649798881927</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652741075892</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)">
+      <created>1652746506549</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1652746506549</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-More" />
     <MESSAGE value="-Added print statements for verbose mode&#10;-On an airplane" />
     <MESSAGE value="- Added method information&#10;- implemented the stack overflow error" />
     <MESSAGE value="- Added more method information" />
@@ -503,6 +502,7 @@
     <MESSAGE value="- About to do some major refactoring to reduce complexity of code for better dubugging" />
     <MESSAGE value="- Completely refactored code and logic reducing 500 lines" />
     <MESSAGE value="- Initialized Quasi Breadth first in order traversal for embedded boolean expressions" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Initialized Quasi Breadth first in order traversal for embedded boolean expressions" />
+    <MESSAGE value="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)" />
   </component>
 </project>
