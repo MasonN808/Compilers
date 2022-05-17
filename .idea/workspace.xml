@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
@@ -107,20 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00158" summary="- Fixed bug where start of boolean expression with ID as first token becomes a branch instead of a leaf under the boolOp">
-      <created>1649903489257</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1649903489257</updated>
-    </task>
-    <task id="LOCAL-00159" summary="- Fixed AST for assignmentStatement">
-      <created>1649905985258</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1649905985258</updated>
     </task>
     <task id="LOCAL-00160" summary="- More Major edits for error and bugs (e.g. added breaks to switch statements)">
       <created>1649909074132</created>
@@ -451,7 +436,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652822677037</updated>
     </task>
-    <option name="localTasksCounter" value="207" />
+    <task id="LOCAL-00207" summary="- Got the while loop to loop back but opcodes are wrong in the loop (fixing)&#10;- runs in console">
+      <created>1652825433391</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1652825433392</updated>
+    </task>
+    <task id="LOCAL-00208" summary="- While loop fixed!  however endless loop continues&#10;- runs in console">
+      <created>1652826244510</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1652826244510</updated>
+    </task>
+    <option name="localTasksCounter" value="209" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,8 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- assignment of digits with ids in intexpression works now&#10;- Now is boolean ops" />
-    <MESSAGE value="- refactored POT&#10;- Now working on boolean ops" />
     <MESSAGE value="- Takes into account simple boolean assignments" />
     <MESSAGE value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
     <MESSAGE value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
@@ -504,6 +501,8 @@
     <MESSAGE value="- ISSUE FIXED only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator&#10;- Moving onto while loops" />
     <MESSAGE value="- Added more test cases&#10;- some issues in jumping in while loop" />
     <MESSAGE value="- Fixed POTFirstDigit pointer that conintually did carry in other statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed POTFirstDigit pointer that conintually did carry in other statements" />
+    <MESSAGE value="- Got the while loop to loop back but opcodes are wrong in the loop (fixing)&#10;- runs in console" />
+    <MESSAGE value="- While loop fixed!  however endless loop continues&#10;- runs in console" />
+    <option name="LAST_COMMIT_MESSAGE" value="- While loop fixed!  however endless loop continues&#10;- runs in console" />
   </component>
 </project>

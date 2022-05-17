@@ -309,7 +309,12 @@ public class CodeGen {
                 if ((node.name.equals("block") & (node.parent.name.equals("ifStatement")) | (node.name.equals("block") & node.parent.name.equals("whileStatement")))) {
 //                    System.out.println(startJumpIndex);
                     System.out.println(curIndex + "--" + startJumpIndex);
-                    jumpDifference = curIndex - startJumpIndex;
+                    if (node.parent.name.equals("whileStatement")){ // need to add the op codes that involve the loop around
+                        jumpDifference = curIndex - startJumpIndex + 12;
+                    }
+                    else {
+                        jumpDifference = curIndex - startJumpIndex;
+                    }
                     System.out.println("JUMP DIFFERENCE: " + jumpDifference);
                     // find the number of stuff in the block to see how far to jump ahead
                     JumpEntry jumpEntry = new JumpEntry(tempJumpVariable, jumpDifference); //jump Difference from processNode()
