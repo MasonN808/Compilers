@@ -243,19 +243,32 @@ print(a)
     }
 }$
 
-/* NOT YET WORKS verified with JUICE and SVEG OS*/
-/* inequality boolean operator in if statement and printing id*/
-/* Should print true*/
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* equality boolean operator comparing ints in if statement and printing id*/
+/* Should print 3*/
 {
-    boolean a
-    a = true
-    if (a != false){
-        print(a)
-    }
+int a
+a = 3
+if (a == 1+2){
+print(a)
+}
 }$
 
-/* NOT YET WORKS verified with JUICE and SVEG OS*/
-/* inequality boolean operator in if statement and printing id*/
+/* WORKS verified with JUICE and SVEG OS*/
+/* checking for commutativity*/
+/* Should print 3*/
+{
+int a
+a = 3
+if (1+2 == a){
+print(a)
+}
+}$
+
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* equality boolean operator comparing strings in if statement and printing id*/
 /* Should print hi*/
 {
     string a
@@ -265,31 +278,47 @@ print(a)
     }
 }$
 
+/* WORKS verified with JUICE and SVEG OS*/
+/* check commutativity*/
+/* Should print hi*/
 {
-string a
-a = "false"
-if ("false" == a){
-print(a)
-}
+    string a
+    a = "hi"
+    if ( "hi" == a){
+        print(a)
+    }
 }$
 
+
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* equality boolean operator comparing booleans in if statement and printing id*/
+/* Should print false*/
 {
-string a
-a = "hi"
-if ("hi" == a){
-print(a)
-}
+    boolean a
+    a = false
+    if (a == false){
+        print(a)
+    }
 }$
 
+/* WORKS verified with JUICE and SVEG OS*/
+/* inequality boolean operator in if statement comparing booleans and printing id*/
+/* Should print true*/
+{
+    boolean a
+    a = true
+    if (a != false){
+        print(a)
+    }
+}$
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* checking for commutativity*/
+/* Should print 3*/
 {
 int a
-a = 1+2+3
-print(a)
-}$
-
-{
-int a
-a = 3
+a = 4
 if (1+2 == a){
 print(a)
 }

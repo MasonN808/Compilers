@@ -46,6 +46,7 @@ public class CodeGen {
     public static String tempJumpVariable = null;
     public static boolean inBoolExpr = false;
     public static boolean setFirstRegister = false;
+    public static boolean complexIntExpr = false;
 
 
 
@@ -81,6 +82,7 @@ public class CodeGen {
         this.inBoolExpr = false;
         this.setFirstRegister = false;
         this.strings = new ArrayList<>();
+        this.complexIntExpr = false;
 
     }
 
@@ -812,7 +814,6 @@ public class CodeGen {
                 2) if found boolean expression, go deeper in the tree
                 3) if found int expr go to POT(), else stay in QBFS
          */
-        // TODO: 5/16 finish this
         switch (node.name) {
             case ("boolOp"):
                 if (verbose) {
@@ -833,6 +834,10 @@ public class CodeGen {
                 else { // e.g. "some string" == a
                     addCode("EC", "Compare the byte in memory to the X register");
                     queryMemoryFromID(node, "bool");
+
+                    if (node.parent.value.equals("!=")){
+                        generateInequalityOpCodes();
+                    }
 
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                     addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
@@ -883,6 +888,10 @@ public class CodeGen {
                     addCode("00", "Compare from this memory location");
                     addCode("00", "Break");
 
+                    if (node.parent.value.equals("!=")){
+                        generateInequalityOpCodes();
+                    }
+
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                     addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
@@ -895,36 +904,74 @@ public class CodeGen {
                 setFirstRegister = !setFirstRegister;
                 break;
 
-            case ("intExpr"):
+            case ("intExpr"): // TODO : how to find inequality operator in this tree
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for int expression in boolean expression");
                 }
-                if (!setFirstRegister) { // e.g. 3 == a //TODO work on int expressions with operators
-                    addCode("A2", "Load the X register with a constant");
-                    // convert the int to hex and load it to register
-                    addCode(digitToHex(Integer.parseInt(node.value)), "Constant to be loaded to X register");
+                if (!setFirstRegister && !complexIntExpr) { // e.g. 3 == a
+                    if (node.parent != null && node.parent.name.equals("intOp")){
+                        POT(node.parent, null); // for int expressions with intOp use POT method
+                        complexIntExpr = true;
+                    }
+//                    System.out.println("<" + node.name + ", " + node.value + ">");
+                    else {
+                        addCode("A2", "Load the X register with a constant");
+                        // convert the int to hex and load it to register
+                        addCode(digitToHex(Integer.parseInt(node.value)), "Constant to be loaded to X register");
+                    }
 
                 }
-                else { // e.g. a == 3
-                    addCode("A9", "Load the accumulator with a constant");
-                    // convert the int to hex and load it to register
-                    addCode(digitToHex(Integer.parseInt(node.value)), "Constant to be loaded to X register");
-                    addCode("8D", "Store the accumulator in memory");
-                    addCode("00", "Store the accumulator here");
-                    addCode("00", "Break");
-                    addCode("EC", "Compare the byte in memory to the X register");
-                    addCode("00", "Compare from this memory location");
-                    addCode("00", "Break");
+                else if (setFirstRegister){ // e.g. a == 3 // We don't do this if complex integer expression because did in POT
+                    if (node.parent != null && !node.parent.name.equals("intOp")) {
+                        addCode("A9", "Load the accumulator with a constant");
+                        // convert the int to hex and load it to register
+                        addCode(digitToHex(Integer.parseInt(node.value)), "Constant to be loaded to X register");
+                        addCode("8D", "Store the accumulator in memory");
+                        addCode("00", "Store the accumulator here");
+                        addCode("00", "Break");
+                        addCode("EC", "Compare the byte in memory to the X register");
+                        addCode("00", "Compare from this memory location");
+                        addCode("00", "Break");
 
-                    addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
-                    addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
+                        if (node.parent.value.equals("!=")){
+                            generateInequalityOpCodes();
+                        }
 
-                    if (inIf){
-                        tempJumpVariable = "J" + numJumps;
+                        addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
+                        addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
+
+                        if (inIf) {
+                            tempJumpVariable = "J" + numJumps;
+                        }
+                    }
+                    else if (node.parent != null && node.parent.name.equals("intOp") && !complexIntExpr){
+                        POT(node.parent, null);
+                        complexIntExpr = true;
+                        addCode("EC", "Compare the byte in memory to the X register");
+                        addCode("00", "Compare from this memory location");
+                        addCode("00", "Break");
+
+                        if (node.parent.value.equals("!=")){
+                            generateInequalityOpCodes();
+                        }
+
+                        addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
+                        addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
+
+                        if (inIf){
+                            tempJumpVariable = "J" + numJumps;
+                        }
                     }
                 }
+                //reset pointers
+//                if (complexIntExpr){
+//
+//                }
 
-                setFirstRegister = !setFirstRegister;
+
+//                setFirstRegister = !setFirstRegister;
+
+
                 break;
 
             case ("boolExpr"):
@@ -956,6 +1003,10 @@ public class CodeGen {
                     addCode("00", "Compare from this memory location");
                     addCode("00", "Break");
 
+                    if (node.parent.value.equals("!=")){
+                        generateInequalityOpCodes();
+                    }
+
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                     addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
@@ -975,7 +1026,20 @@ public class CodeGen {
         //                          (quasi/pseudo since we go deeper in the tree for every boolOp node)
         for (Node each : node.children) {
 //            System.out.println("Visited child");
+            System.out.println("<" + each.name + ", " + each.value + ">");
+
             QBFS(each);
+        }
+        if (node.name.equals("intOp")){
+            System.out.println(complexIntExpr);
+            if (complexIntExpr){
+                setFirstRegister = true;
+            }
+            else {
+                setFirstRegister = !setFirstRegister;
+            }
+
+            complexIntExpr = false;
         }
 
     }
@@ -1271,5 +1335,28 @@ public class CodeGen {
         }
         return null; // if didn't find any location
     }
+
+    /**
+     * Generates Op codes if inequality
+     */
+    public static void generateInequalityOpCodes(){
+        addCode("A9", "Load the accumulator with a constant");
+        addCode("00", "Load it with integer 0 for false");
+        addCode("D0", "Branch n bytes if Z flag = 0");
+        addCode("02", "branch 2 bytes");
+        addCode("A9", "Load the accumulator with a constant");
+        addCode("01", "Load it with integer 1 for true");
+        addCode("A2", "Load the X register with a constant");
+        addCode("00", "Load it with integer 0 for false");
+        addCode("8D", "Store the accumulator in memory");
+        addCode("00", "Store it here");
+        addCode("00", "Break");
+        addCode("EC", "Compare a byte in memory to the X reg");
+        addCode("00", "memory to be compared withe the X reg");
+        addCode("00", "Break");
+
+
+    }
+
 
 }
