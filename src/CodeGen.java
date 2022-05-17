@@ -1409,7 +1409,22 @@ public class CodeGen {
      * Generates Op codes if in while loop to negate the equality or inequality
      */
     public static void generateWhileOpCodes(String where){
-        if (where != null && !where.equals("end")) {
+        if (where != null && where.equals("end")) {
+            addCode("A9", "Load the accumulator with a constant");
+            addCode("00", "Load it with integer 1 for true");
+            addCode("8D", "Store the accumulator in memory");
+            addCode("00", "Store it here");
+            addCode("00", "Break");
+            addCode("A2", "Load the X register with a constant");
+            addCode("01", "Load it with integer 1 for true");
+            addCode("EC", "Compare a byte in memory to the X reg");
+            addCode("00", "memory to be compared withe the X reg");
+            addCode("00", "Break");
+            addCode("D0", "Branch n bytes if z flag 0");
+            addCode(Integer.toHexString(255 - curIndex + startWhileIndex).toUpperCase(), "number of bytes to jump");
+
+        }
+        else{
             addCode("A9", "Load the accumulator with a constant");
             addCode("01", "Load it with integer 1 for true");
             addCode("D0", "Branch n bytes if Z flag = 0");
@@ -1424,21 +1439,6 @@ public class CodeGen {
             addCode("EC", "Compare a byte in memory to the X reg");
             addCode("00", "memory to be compared withe the X reg");
             addCode("00", "Break");
-        }
-        else{
-            addCode("A9", "Load the accumulator with a constant");
-            addCode("00", "Load it with integer 1 for true");
-            addCode("8D", "Store the accumulator in memory");
-            addCode("00", "Store it here");
-            addCode("00", "Break");
-            addCode("A2", "Load the X register with a constant");
-            addCode("01", "Load it with integer 1 for true");
-            addCode("EC", "Compare a byte in memory to the X reg");
-            addCode("00", "memory to be compared withe the X reg");
-            addCode("00", "Break");
-            addCode("D0", "Branch n bytes if z flag 0");
-            addCode(Integer.toHexString(255 - curIndex + startWhileIndex).toUpperCase(), "number of bytes to jump");
-
         }
 
 
