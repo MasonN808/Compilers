@@ -155,7 +155,6 @@ print(1+2+3)
 }$
 
 
-
 /* WORKS verified with JUICE and SVEG OS*/
 /* simple boolean assignment and printing ID*/
 /* Should print false*/
@@ -323,4 +322,18 @@ if (a == 1+2){
 print(a)
 }
 }$
+
+/* NOT YET WORKS*/
+
+{
+int a
+a = 3
+while (a != 9){
+a = 2 + a
+print(a)
+}
+}$
+
+
+
 

@@ -280,6 +280,7 @@ public class CodeGen {
                     }
                     codeGenWhile(node);
                     inBoolExpr = false;
+                    startJumpIndex = curIndex;
 
                     break;
 
@@ -297,8 +298,9 @@ public class CodeGen {
                 }
             }
             if (node.parent != null) {
-                if (node.name.equals("block") & node.parent.name.equals("ifStatement")) {
-                    jumpDifference = curIndex - startJumpIndex; //TODO check that it works
+                if ((node.name.equals("block") & (node.parent.name.equals("ifStatement")) | (node.name.equals("block") & node.parent.name.equals("whileStatement")))) {
+//                    System.out.println(startJumpIndex);
+                    jumpDifference = curIndex - startJumpIndex;
 //                    System.out.println("JUMP DIFFERENCE: " + jumpDifference);
                     // find the number of stuff in the block to see how far to jump ahead
                     JumpEntry jumpEntry = new JumpEntry(tempJumpVariable, jumpDifference); //jump Difference from processNode()
@@ -565,7 +567,7 @@ public class CodeGen {
             addCode("A2", "Load the X register with a constant");
             addCode("02", "Print the 00-terminated string stored at the address in the Y register");
         }
-        else if (printKey.name.equals("intExpr") | printKey.name.equals("intOp")){ // for integer Expressions // TODO: BUGS
+        else if (printKey.name.equals("intExpr") | printKey.name.equals("intOp")){ // for integer Expressions
             POT(printKey, null);
             addCode("AC", "Load the Y register from memory");
             addCode("00", "Memory Location being loaded into Y register");
@@ -585,8 +587,7 @@ public class CodeGen {
                 }
             }
             else{ // For more complicated boolean expressions with boolean operators and embedded boolean expressions
-                // TODO: finish this
-                POT(printKey, null);
+                QBFS(printKey);
             }
             addCode("A2", "Load the X register with a constant");
             addCode("02", "Print the 00-terminated string stored at the address in the Y register");
@@ -617,9 +618,9 @@ public class CodeGen {
      */
     public static void codeGenWhile(Node node){
         inWhile = true;
-        Node expr = node.children.get(0);
         numJumps += 1; // for number of jump variables
-        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
+//        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
+        QBFS(node);
         inWhile = false;
     }
 
@@ -632,14 +633,28 @@ public class CodeGen {
     // Adapted from https://stackoverflow.com/questions/19338009/traversing-a-non-binary-tree-in-java
     public static void POT(Node node, Node id) { // post order traversal
         if (node != null) {
+//            System.out.println("POT" + node.name + node.value);
             if (!node.children.isEmpty()) {
                 POT(node.children.get(1), id);
                 POT(node.children.get(0), id);
             }
 //            System.out.println(node.value);
             // For digits and Ids
-            if ((node.name.equals("intExpr") & !isNumeric(node.value)) | node.name.equals("ID")) { // Then its an ID in the int expression
+            if (node.name.equals("ID")) { // Then its an ID in the int expression
                 queryMemoryFromID(node, null);
+                if (!POTfirstDigit){
+                    addCode("6D", "Add with carry");
+                    addCode("00", "Adds digit in this memory location to accumulator via carry" );//TODO: may need to add a temp value here for more complex expressions
+                    addCode("00", "Break");
+
+                    addCode("8D", "Store the accumulator in memory");
+                    addCode("00", "Memory Location for accumulator");
+                    addCode("00", "Break");
+                }
+                else{
+                    POTfirstDigit = false;
+                }
+
 
             } else if (node.name.equals("intExpr")) { // for non id intExprs (i.e., + and digit)
                 if (node.parent != null) {
@@ -758,7 +773,7 @@ public class CodeGen {
                         addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                         addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
-                        if (inIf){
+                        if (inIf | inWhile){
                             //moved to processNode() method since the scope is not relevant here
                             tempJumpVariable = "J" + numJumps;
                         }
@@ -807,7 +822,7 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void QBFS(Node node){
-        System.out.println("IN QBFS node.name is "+ node.name + " " + node.value);
+//        System.out.println("IN QBFS node.name is "+ node.name + " " + node.value);
         /*
             Pseudo Code:
                 1) Do QBFS on boolean expression
@@ -838,11 +853,14 @@ public class CodeGen {
                     if (node.parent.value.equals("!=")){
                         generateInequalityOpCodes();
                     }
+                    if(inWhile){
+                        generateWhileOpCodes();
+                    }
 
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                     addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
-                    if (inIf){
+                    if (inIf | inWhile){
                         //moved to processNode() method since the scope is not relevant here
                         tempJumpVariable = "J" + numJumps;
                     }
@@ -891,11 +909,14 @@ public class CodeGen {
                     if (node.parent.value.equals("!=")){
                         generateInequalityOpCodes();
                     }
+                    if(inWhile){
+                        generateWhileOpCodes();
+                    }
 
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                     addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
-                    if (inIf){
+                    if (inIf | inWhile){
                         //moved to processNode() method since the scope is not relevant here
                         tempJumpVariable = "J" + numJumps;
                     }
@@ -936,11 +957,14 @@ public class CodeGen {
                         if (node.parent.value.equals("!=")){
                             generateInequalityOpCodes();
                         }
+                        if(inWhile){
+                            generateWhileOpCodes();
+                        }
 
                         addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                         addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
-                        if (inIf) {
+                        if (inIf | inWhile) {
                             tempJumpVariable = "J" + numJumps;
                         }
                     }
@@ -954,11 +978,14 @@ public class CodeGen {
                         if (node.parent.value.equals("!=")){
                             generateInequalityOpCodes();
                         }
+                        if(inWhile){
+                            generateWhileOpCodes();
+                        }
 
                         addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                         addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
-                        if (inIf){
+                        if (inIf | inWhile){
                             tempJumpVariable = "J" + numJumps;
                         }
                     }
@@ -1006,11 +1033,14 @@ public class CodeGen {
                     if (node.parent.value.equals("!=")){
                         generateInequalityOpCodes();
                     }
+                    if(inWhile){
+                        generateWhileOpCodes();
+                    }
 
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
                     addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
 
-                    if (inIf){
+                    if (inIf | inWhile){
                         tempJumpVariable = "J" + numJumps;
                     }
                 }
@@ -1026,7 +1056,7 @@ public class CodeGen {
         //                          (quasi/pseudo since we go deeper in the tree for every boolOp node)
         for (Node each : node.children) {
 //            System.out.println("Visited child");
-            System.out.println("<" + each.name + ", " + each.value + ">");
+//            System.out.println("<" + each.name + ", " + each.value + ">");
             if (!each.name.equals("block")) { // don't go in block statement
                 QBFS(each);
             }
@@ -1068,7 +1098,7 @@ public class CodeGen {
             addCode("00", "Break");
         }
         else {
-            if (inIf) {
+            if (inIf | inWhile) {
                 addCode("AE", "Load the X register from memory"); // for comparisons with the x register
             } else {
                 addCode("AD", "Load the accumulator from memory");
@@ -1358,6 +1388,29 @@ public class CodeGen {
 
 
     }
+
+    /**
+     * Generates Op codes if in while loop to negate the equality or inequality
+     */
+    public static void generateWhileOpCodes(){
+        addCode("A9", "Load the accumulator with a constant");
+        addCode("01", "Load it with integer 0 for false");
+        addCode("D0", "Branch n bytes if Z flag = 0");
+        addCode("02", "branch 2 bytes");
+        addCode("A9", "Load the accumulator with a constant");
+        addCode("00", "Load it with integer 1 for true");
+        addCode("A2", "Load the X register with a constant");
+        addCode("00", "Load it with integer 0 for false");
+        addCode("8D", "Store the accumulator in memory");
+        addCode("00", "Store it here");
+        addCode("00", "Break");
+        addCode("EC", "Compare a byte in memory to the X reg");
+        addCode("00", "memory to be compared withe the X reg");
+        addCode("00", "Break");
+
+
+    }
+
 
 
 }

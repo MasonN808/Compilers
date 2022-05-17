@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- ISSUE FIXED only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator&#10;- Moving onto while loops">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00155" summary="- Edits to subtree search for mixedExpr">
-      <created>1649889055185</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1649889055185</updated>
     </task>
     <task id="LOCAL-00156" summary="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST">
       <created>1649898662309</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652778182091</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="- ISSUE FIXED only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator&#10;- Moving onto while loops">
+      <created>1652778663584</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1652778663584</updated>
+    </task>
+    <option name="localTasksCounter" value="205" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Now about to completely redo the depth first post-order traversal method, POT()&#10;- Made significant edits in print to allow for literals&#10;- Added meaningful verbose mode" />
     <MESSAGE value="- Now about to completely redo the depth first post-order traversal method, POT()&#10;- Significant progress in embedded blocks with differing declarations and assignments with print statements&#10;- Working on more complicated assignments and boolean expressions" />
     <MESSAGE value="- Working on assignment of digits with ids in intexpression&#10;- Next is boolean ops" />
     <MESSAGE value="- assignment of digits with ids in intexpression works now&#10;- Now is boolean ops" />
@@ -503,6 +502,7 @@
     <MESSAGE value="- boolean statements compatable with boolean expressions (not embedded) (commutativity holds for all simple cases)" />
     <MESSAGE value="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion" />
     <MESSAGE value="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator" />
+    <MESSAGE value="- ISSUE FIXED only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator&#10;- Moving onto while loops" />
+    <option name="LAST_COMMIT_MESSAGE" value="- ISSUE FIXED only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator&#10;- Moving onto while loops" />
   </component>
 </project>
