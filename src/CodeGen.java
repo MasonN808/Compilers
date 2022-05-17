@@ -229,10 +229,11 @@ public class CodeGen {
                         currentScope = symbolTable.root;
                     } else {
                         // Get the scope for the current block
+//                        System.out.println("TEST:" + currentScope.scope);
                         try {
                             currentScope = currentScope.children.get(childIndex);
                         } catch (Exception e) {
-                            e.printStackTrace();
+//                            e.printStackTrace();
                         }
                     }
                     if (verbose) {
@@ -271,6 +272,7 @@ public class CodeGen {
                     break;
 
                 case ("ifStatement"):
+                    setFirstRegister = false;
                     POTfirstDigit = true;
                     if (verbose) {
                         System.out.println("CODE GEN -------> Generating Op Codes for IF STATEMENT on line " + node.token.line_number);
@@ -289,7 +291,7 @@ public class CodeGen {
                     codeGenWhile(node);
                     inBoolExpr = false;
                     startJumpIndex = curIndex;
-
+                    setFirstRegister = false;
                     break;
 
                 default:
@@ -308,14 +310,14 @@ public class CodeGen {
             if (node.parent != null) {
                 if ((node.name.equals("block") & (node.parent.name.equals("ifStatement")) | (node.name.equals("block") & node.parent.name.equals("whileStatement")))) {
 //                    System.out.println(startJumpIndex);
-                    System.out.println(curIndex + "--" + startJumpIndex);
+//                    System.out.println(curIndex + "--" + startJumpIndex);
                     if (node.parent.name.equals("whileStatement")){ // need to add the op codes that involve the loop around
                         jumpDifference = curIndex - startJumpIndex + 12;
                     }
                     else {
                         jumpDifference = curIndex - startJumpIndex;
                     }
-                    System.out.println("JUMP DIFFERENCE: " + jumpDifference);
+//                    System.out.println("JUMP DIFFERENCE: " + jumpDifference);
                     // find the number of stuff in the block to see how far to jump ahead
                     JumpEntry jumpEntry = new JumpEntry(tempJumpVariable, jumpDifference); //jump Difference from processNode()
                     jumps.add(jumpEntry);
@@ -325,9 +327,13 @@ public class CodeGen {
             if (node.name.equals("whileStatement")){
                 generateWhileOpCodes("end");
             }
+
             if (node.name.equals("block")) {
+//                System.out.println(currentScope.scope);
                 // Go back up the tree at outer scope
-                currentScope = currentScope.prev;
+                if (currentScope.prev != null) { // if you hit the root
+                    currentScope = currentScope.prev;
+                }
                 childIndex = 0; // reset the child index
             }
         }

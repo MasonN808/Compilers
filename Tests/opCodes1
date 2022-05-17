@@ -334,15 +334,20 @@ print(a)
 }
 }$
 
-
+/* Next cases: While statements*/
 
 {
 int a
 a = 3
 while (a != 9){
-a = 2 + a
-print(a)
+    a = 2 + a
+    print(a)
+}
+
+{
+    while (a != 9+6){
+        a = 1 + a
+        print(a)
+    }
 }
 }$
-
-
