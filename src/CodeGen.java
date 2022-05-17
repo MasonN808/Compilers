@@ -606,7 +606,7 @@ public class CodeGen {
         Node expr = node.children.get(0);
         numJumps += 1; // for number of jump variables
 //        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
-        QBFS(expr);
+        QBFS(node);
         inIf = false;
 
     }
@@ -1027,8 +1027,9 @@ public class CodeGen {
         for (Node each : node.children) {
 //            System.out.println("Visited child");
             System.out.println("<" + each.name + ", " + each.value + ">");
-
-            QBFS(each);
+            if (!each.name.equals("block")) { // don't go in block statement
+                QBFS(each);
+            }
         }
         if (node.name.equals("intOp")){
             System.out.println(complexIntExpr);
