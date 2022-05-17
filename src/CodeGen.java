@@ -248,6 +248,8 @@ public class CodeGen {
                     break;
 
                 case ("assignmentStatement"):
+                    //reset pot first digit
+                    POTfirstDigit = true;
                     id = node.children.get(0); // Pulling the variable being declared in varDecal Statement
                     if (verbose) {
                         System.out.println("CODE GEN -------> Generating Op Codes for ASSIGNMENT STATEMENT on line " + id.token.line_number);
@@ -257,6 +259,7 @@ public class CodeGen {
                     break;
 
                 case ("printStatement"):
+                    POTfirstDigit = true;
                     if (verbose) {
                         System.out.println("CODE GEN -------> Generating Op Codes for PRINT STATEMENT on line " + node.token.line_number);
                     }
@@ -266,6 +269,7 @@ public class CodeGen {
                     break;
 
                 case ("ifStatement"):
+                    POTfirstDigit = true;
                     if (verbose) {
                         System.out.println("CODE GEN -------> Generating Op Codes for IF STATEMENT on line " + node.token.line_number);
                     }
@@ -275,6 +279,7 @@ public class CodeGen {
                     break;
 
                 case ("whileStatement"):
+                    POTfirstDigit = true;
                     if (verbose) {
                         System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
                     }
