@@ -323,7 +323,18 @@ print(a)
 }
 }$
 
-/* NOT YET WORKS*/
+/* WORKS verified with JUICE and SVEG OS*/
+/* Should print 6*/
+{
+int a
+a = 4
+if (a != 1+2){
+a = 2 + a
+print(a)
+}
+}$
+
+
 
 {
 int a
@@ -333,21 +344,5 @@ a = 2 + a
 print(a)
 }
 }$
-
-{
-int a
-a = 3
-if (a == 1+2){
-a = 2 + a
-print(a)
-}
-}$
-
-{
-int a
-a = 3
-a = 2 + a
-print(a)
-}
 
 

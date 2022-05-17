@@ -47,6 +47,7 @@ public class CodeGen {
     public static boolean inBoolExpr = false;
     public static boolean setFirstRegister = false;
     public static boolean complexIntExpr = false;
+    public static int startWhileIndex = 0;
 
 
 
@@ -83,6 +84,7 @@ public class CodeGen {
         this.setFirstRegister = false;
         this.strings = new ArrayList<>();
         this.complexIntExpr = false;
+        this.startWhileIndex = 0;
 
     }
 
@@ -283,6 +285,7 @@ public class CodeGen {
                     if (verbose) {
                         System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
                     }
+                    startWhileIndex = curIndex;
                     codeGenWhile(node);
                     inBoolExpr = false;
                     startJumpIndex = curIndex;
@@ -305,13 +308,17 @@ public class CodeGen {
             if (node.parent != null) {
                 if ((node.name.equals("block") & (node.parent.name.equals("ifStatement")) | (node.name.equals("block") & node.parent.name.equals("whileStatement")))) {
 //                    System.out.println(startJumpIndex);
+                    System.out.println(curIndex + "--" + startJumpIndex);
                     jumpDifference = curIndex - startJumpIndex;
-//                    System.out.println("JUMP DIFFERENCE: " + jumpDifference);
+                    System.out.println("JUMP DIFFERENCE: " + jumpDifference);
                     // find the number of stuff in the block to see how far to jump ahead
                     JumpEntry jumpEntry = new JumpEntry(tempJumpVariable, jumpDifference); //jump Difference from processNode()
                     jumps.add(jumpEntry);
                     incrementNumJumps(1); // Go up a temp value for next declaration
                 }
+            }
+            if (node.name.equals("whileStatement")){
+                generateWhileOpCodes("end");
             }
             if (node.name.equals("block")) {
                 // Go back up the tree at outer scope
@@ -859,7 +866,7 @@ public class CodeGen {
                         generateInequalityOpCodes();
                     }
                     if(inWhile){
-                        generateWhileOpCodes();
+                        generateWhileOpCodes(null);
                     }
 
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
@@ -915,7 +922,7 @@ public class CodeGen {
                         generateInequalityOpCodes();
                     }
                     if(inWhile){
-                        generateWhileOpCodes();
+                        generateWhileOpCodes(null);
                     }
 
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
@@ -931,6 +938,7 @@ public class CodeGen {
                 break;
 
             case ("intExpr"): // TODO : how to find inequality operator in this tree
+
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for int expression in boolean expression");
                 }
@@ -963,7 +971,7 @@ public class CodeGen {
                             generateInequalityOpCodes();
                         }
                         if(inWhile){
-                            generateWhileOpCodes();
+                            generateWhileOpCodes(null);
                         }
 
                         addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
@@ -979,12 +987,13 @@ public class CodeGen {
                         addCode("EC", "Compare the byte in memory to the X register");
                         addCode("00", "Compare from this memory location");
                         addCode("00", "Break");
+//                        System.out.println("node.parent.value " + node.parent.value);
 
-                        if (node.parent.value.equals("!=")){
+                        if (node.parent.parent != null && node.parent.parent.value.equals("!=")){
                             generateInequalityOpCodes();
                         }
                         if(inWhile){
-                            generateWhileOpCodes();
+                            generateWhileOpCodes(null);
                         }
 
                         addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
@@ -1039,7 +1048,7 @@ public class CodeGen {
                         generateInequalityOpCodes();
                     }
                     if(inWhile){
-                        generateWhileOpCodes();
+                        generateWhileOpCodes(null);
                     }
 
                     addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
@@ -1048,6 +1057,7 @@ public class CodeGen {
                     if (inIf | inWhile){
                         tempJumpVariable = "J" + numJumps;
                     }
+
                 }
 
                 setFirstRegister = !setFirstRegister;
@@ -1066,8 +1076,9 @@ public class CodeGen {
                 QBFS(each);
             }
         }
+
         if (node.name.equals("intOp")){
-            System.out.println(complexIntExpr);
+//            System.out.println(complexIntExpr);
             if (complexIntExpr){
                 setFirstRegister = true;
             }
@@ -1397,21 +1408,38 @@ public class CodeGen {
     /**
      * Generates Op codes if in while loop to negate the equality or inequality
      */
-    public static void generateWhileOpCodes(){
-        addCode("A9", "Load the accumulator with a constant");
-        addCode("01", "Load it with integer 0 for false");
-        addCode("D0", "Branch n bytes if Z flag = 0");
-        addCode("02", "branch 2 bytes");
-        addCode("A9", "Load the accumulator with a constant");
-        addCode("00", "Load it with integer 1 for true");
-        addCode("A2", "Load the X register with a constant");
-        addCode("00", "Load it with integer 0 for false");
-        addCode("8D", "Store the accumulator in memory");
-        addCode("00", "Store it here");
-        addCode("00", "Break");
-        addCode("EC", "Compare a byte in memory to the X reg");
-        addCode("00", "memory to be compared withe the X reg");
-        addCode("00", "Break");
+    public static void generateWhileOpCodes(String where){
+        if (where != null && !where.equals("end")) {
+            addCode("A9", "Load the accumulator with a constant");
+            addCode("01", "Load it with integer 1 for true");
+            addCode("D0", "Branch n bytes if Z flag = 0");
+            addCode("02", "branch 2 bytes");
+            addCode("A9", "Load the accumulator with a constant");
+            addCode("00", "Load it with integer 0 for false");
+            addCode("A2", "Load the X register with a constant");
+            addCode("00", "Load it with integer 0 for false");
+            addCode("8D", "Store the accumulator in memory");
+            addCode("00", "Store it here");
+            addCode("00", "Break");
+            addCode("EC", "Compare a byte in memory to the X reg");
+            addCode("00", "memory to be compared withe the X reg");
+            addCode("00", "Break");
+        }
+        else{
+            addCode("A9", "Load the accumulator with a constant");
+            addCode("00", "Load it with integer 1 for true");
+            addCode("8D", "Store the accumulator in memory");
+            addCode("00", "Store it here");
+            addCode("00", "Break");
+            addCode("A2", "Load the X register with a constant");
+            addCode("01", "Load it with integer 1 for true");
+            addCode("EC", "Compare a byte in memory to the X reg");
+            addCode("00", "memory to be compared withe the X reg");
+            addCode("00", "Break");
+            addCode("D0", "Branch n bytes if z flag 0");
+            addCode(Integer.toHexString(255 - curIndex + startWhileIndex).toUpperCase(), "number of bytes to jump");
+
+        }
 
 
     }
