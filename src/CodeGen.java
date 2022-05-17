@@ -11,6 +11,7 @@ public class CodeGen {
     public static TreeST.ScopeNode currentScope = null;
     public static ArrayList<DataEntry> staticData = new ArrayList<>(); // Used to store the static data table as an arrayList
     public static ArrayList<JumpEntry> jumps = new ArrayList<>(); // Used to store the jumps for if statements
+    public static ArrayList<StringEntry> strings = new ArrayList<StringEntry>();
 
     public static int numTemps = 0;
     public static int numJumps = 0;
@@ -43,6 +44,9 @@ public class CodeGen {
     public static int startJumpIndex = 0;
     public static int jumpDifference = 0;
     public static String tempJumpVariable = null;
+    public static boolean inBoolExpr = false;
+
+
 
 
 
@@ -73,6 +77,7 @@ public class CodeGen {
         this.startJumpIndex = 0;
         this.jumpDifference = 0;
         this.tempJumpVariable = null;
+        this.inBoolExpr = false;
 
     }
 
@@ -243,6 +248,7 @@ public class CodeGen {
                         System.out.println("CODE GEN -------> Generating Op Codes for ASSIGNMENT STATEMENT on line " + id.token.line_number);
                     }
                     codeGenAssignment(node);
+                    inBoolExpr = false;
                     break;
 
                 case ("printStatement"):
@@ -250,6 +256,8 @@ public class CodeGen {
                         System.out.println("CODE GEN -------> Generating Op Codes for PRINT STATEMENT on line " + node.token.line_number);
                     }
                     codeGenPrint(node);
+                    inBoolExpr = false;
+
                     break;
 
                 case ("ifStatement"):
@@ -258,6 +266,7 @@ public class CodeGen {
                     }
                     codeGenIf(node);
                     startJumpIndex = curIndex;
+                    inBoolExpr = false;
                     break;
 
                 case ("whileStatement"):
@@ -265,6 +274,8 @@ public class CodeGen {
                         System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
                     }
                     codeGenWhile(node);
+                    inBoolExpr = false;
+
                     break;
 
                 default:
@@ -377,6 +388,9 @@ public class CodeGen {
         }
         heapIndex = index; // Reassign heapIndex for next String
 
+        StringEntry stringEntry = new StringEntry(newString, digitToHex(heapIndex));
+        strings.add(stringEntry); // add a string entry for later referral in boolean expressions and possibly other statements
+
     }
 
     /**
@@ -416,13 +430,18 @@ public class CodeGen {
             if (tempScope.hashTable.get(assignedID.value) != null) { // make sure the query from the hashtable isn't null
                 if (tempScope.hashTable.get(assignedID.value).type.equals("string")) { // if the id being assigned is of string type
                     idFound = true; // To get out of the while loop
-
-                    String tempAssignedExprValue = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
-                    addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
+                    if (findStringInMemory(assignedExpr.value) == null) { // Implies that the string being assigned is not in heap
+                        String tempAssignedExprValue = removeFirstandLast(assignedExpr.value); // remove the quotes from the string
+                        addInHeap(tempAssignedExprValue, heapIndex); // add the string into the heap
+                    }
 
                     addCode("A9", "Load the accumulator with a constant");
-                    addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
-
+                    if (findStringInMemory(assignedExpr.value) == null) { // Implies that the string being assigned is not in heap
+                        addCode(getLocationInHeap(heapIndex), "Memory Location in Heap"); // Get the location of the string in heap
+                    }
+                    else{
+                        addCode(findStringInMemory(assignedExpr.value), "Memory Location in Heap from previous string generation in heap"); // Get the location of the string in heap
+                    }
                     addCode("8D", "Store the accumulator in memory");
 
                     // Check for the assigned ID in static table of the temporary scope
@@ -660,6 +679,7 @@ public class CodeGen {
                 }
 
                 else if (node.parent.value.equals("==") | node.parent.value.equals("!=")){ // If have a boolean expression with boolean operators
+                    inBoolExpr = true;
                     /*
                      Pseudo Code:
                         1) Load two registers and assign the values from both sides of the operator
@@ -668,6 +688,7 @@ public class CodeGen {
                         4) Branch n bytes if z flag == 0, so skip the accumulator from being assigned something else
                         5) Store the accumulator in memory at Ti 00
                      */
+                    //TODO: may put QBFS() here
 
                     // Check what register to assign value to
                     if (!secondPass) { // second pass tells the program whether to use a different register for comparison,
@@ -801,7 +822,12 @@ public class CodeGen {
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for ID in boolean expression on line " + id.token.line_number);
                 }
-//                codeGenVarDecal(node);
+
+                queryMemoryFromID(node); // Generates op codes that finds the static memory for the ID
+                addCode("EC", "Compare the byte in memory to the X register");
+                addCode("00", "Compare from this memory location");
+                addCode("00", "Break");
+
                 break;
 
             case ("stringExpr"):
@@ -809,6 +835,7 @@ public class CodeGen {
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for string expression in boolean expression on line " + id.token.line_number);
                 }
+                findStringInMemory(node.value);
 //                codeGenAssignment(node);
                 break;
 
@@ -842,8 +869,12 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void queryMemoryFromID(Node node){
-
-        addCode("AD", "Load the accumulator from memory");
+        if (inIf){
+            addCode("AE", "Load the X register from memory"); // for comparisons with the x register
+        }
+        else{
+            addCode("AD", "Load the accumulator from memory");
+        }
 
         // Check for the assigned ID in static table of the current scope to assign temp value
         String temp = null;
@@ -1088,6 +1119,20 @@ public class CodeGen {
      */
     public static String digitToHex(int digit){
         return "0" + Integer.toHexString(digit).toUpperCase();
+    }
+
+    /**
+     * Searches for string in the arraylist
+     * @param target the target string
+     * @return memory location or null
+     */
+    public static String findStringInMemory(String target){
+        for (StringEntry entry: strings){
+            if (target.equals(entry.string)){
+                return entry.memory; // returns the memory location of the target string
+            }
+        }
+        return null; // if didn't find any location
     }
 
 }
