@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- boolean statements compatable with boolean expressions (not embedded) (commutativity holds for all simple cases)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +104,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00153" summary="- Fixed some structure in the AST when boolean expressions are nested">
-      <created>1649885016613</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1649885016613</updated>
     </task>
     <task id="LOCAL-00154" summary="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java">
       <created>1649887636610</created>
@@ -451,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652771548193</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion">
+      <created>1652778064349</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1652778064349</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +476,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Completely redid assignment op codes&#10;- Needs more dubugging&#10;- The following now works:&#10;{&#10; string a&#10; {&#10;     a = &quot;string&quot;&#10; }&#10; }$" />
     <MESSAGE value="- About to completely redo the depth first post-order traversal method, POT()" />
     <MESSAGE value="- Now about to completely redo the depth first post-order traversal method, POT()&#10;- Made significant edits in print to allow for literals&#10;- Added meaningful verbose mode" />
     <MESSAGE value="- Now about to completely redo the depth first post-order traversal method, POT()&#10;- Significant progress in embedded blocks with differing declarations and assignments with print statements&#10;- Working on more complicated assignments and boolean expressions" />
@@ -504,6 +500,7 @@
     <MESSAGE value="- About to add in QBFS()&#10;- Rollback if horrible here" />
     <MESSAGE value="- Starting to perform better" />
     <MESSAGE value="- boolean statements compatable with boolean expressions (not embedded) (commutativity holds for all simple cases)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- boolean statements compatable with boolean expressions (not embedded) (commutativity holds for all simple cases)" />
+    <MESSAGE value="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion" />
   </component>
 </project>

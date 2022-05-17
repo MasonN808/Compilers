@@ -318,8 +318,8 @@ print(a)
 /* Should print 3*/
 {
 int a
-a = 4
-if (1+2 == a){
+a = 3
+if (a == 1+2){
 print(a)
 }
 }$
