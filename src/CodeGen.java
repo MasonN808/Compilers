@@ -899,7 +899,7 @@ public class CodeGen {
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for int expression in boolean expression");
                 }
-                if (!setFirstRegister) { // e.g. 3 == a
+                if (!setFirstRegister) { // e.g. 3 == a //TODO work on int expressions with operators
                     addCode("A2", "Load the X register with a constant");
                     // convert the int to hex and load it to register
                     addCode(digitToHex(Integer.parseInt(node.value)), "Constant to be loaded to X register");
@@ -931,6 +931,40 @@ public class CodeGen {
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for boolean expression in boolean expression");
                 }
+                if (!setFirstRegister) { // e.g. false == a
+                    addCode("A2", "Load the X register with a constant");
+                    // check if false or true to apply correct memory location
+                    if (node.value.equals("false")) {
+                        addCode(FALSE_LOCATION, "Memory Location of false string in Heap");
+                    } else if (node.value.equals("true")) {
+                        addCode(TRUE_LOCATION, "Memory Location of true string in Heap");
+                    }
+
+                }
+                else { // e.g. a == false
+                    addCode("A9", "Load the accumulator with a constant");
+                    // check if false or true to apply correct memory location
+                    if (node.value.equals("false")) {
+                        addCode(FALSE_LOCATION, "Memory Location of false string in Heap");
+                    } else if (node.value.equals("true")) {
+                        addCode(TRUE_LOCATION, "Memory Location of true string in Heap");
+                    }
+                    addCode("8D", "Store the accumulator in memory");
+                    addCode("00", "Store the accumulator here");
+                    addCode("00", "Break");
+                    addCode("EC", "Compare the byte in memory to the X register");
+                    addCode("00", "Compare from this memory location");
+                    addCode("00", "Break");
+
+                    addCode("D0", "Branch n bytes if Z flag = 0 (e.g., false)");
+                    addCode("J" + numJumps, "Branch n bytes if Z flag = 0");
+
+                    if (inIf){
+                        tempJumpVariable = "J" + numJumps;
+                    }
+                }
+
+                setFirstRegister = !setFirstRegister;
                 break;
 
             default:

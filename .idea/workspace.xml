@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00151" summary="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line">
-      <created>1649809992691</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1649809992691</updated>
     </task>
     <task id="LOCAL-00152" summary="- Trying to fix issues with AST">
       <created>1649825659998</created>
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652752460764</updated>
     </task>
-    <option name="localTasksCounter" value="200" />
+    <task id="LOCAL-00200" summary="- Starting to perform better">
+      <created>1652770867384</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1652770867384</updated>
+    </task>
+    <option name="localTasksCounter" value="201" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +479,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added check heap overflow when assigining Op codes&#10;- Still on plane&#10;- Finishing at home" />
     <MESSAGE value="- Made own method for backpatching&#10;- Edited the heapoverflow in vardecals" />
     <MESSAGE value="- Completely redid assignment op codes&#10;- Needs more dubugging&#10;- The following now works:&#10;{&#10; string a&#10; {&#10;     a = &quot;string&quot;&#10; }&#10; }$" />
     <MESSAGE value="- About to completely redo the depth first post-order traversal method, POT()" />
@@ -504,6 +503,18 @@
     <MESSAGE value="- Added more code for the stringExpr" />
     <MESSAGE value="- About to add in QBFS()&#10;- Rollback if horrible" />
     <MESSAGE value="- About to add in QBFS()&#10;- Rollback if horrible here" />
-    <option name="LAST_COMMIT_MESSAGE" value="- About to add in QBFS()&#10;- Rollback if horrible here" />
+    <MESSAGE value="- Starting to perform better" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Starting to perform better" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/CodeGen.java</url>
+          <line>901</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
