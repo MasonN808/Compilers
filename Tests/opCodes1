@@ -36,12 +36,19 @@ string a
 print(a)
 }$
 
+
+
+
 /* WORKS verified with JUICE*/
 /* Simple int variable declaration and assignment */
 {
 int a
 a = 1
 }$
+
+
+
+
 
 /* WORKS verified with JUICE*/
 /* Embedded blocks */
@@ -59,6 +66,8 @@ a = "string"
     }
 print(a)
 }$
+
+
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* Embedded blocks */
@@ -360,22 +369,15 @@ while (a != 9){
     a = true
     if (a != false){
         print(a)
-        int b
     }
     {
         if (false != true){
             print("entered")
-            int c
         }
-
-        int d
 
         if (a == true){
             print("a is true")
-            int e
         }
-
-        int f
 
         {
             int g
@@ -383,7 +385,6 @@ while (a != 9){
             while ( g != 5){
                g = 1 + g
                print(g)
-               int h
             }
         }
     }

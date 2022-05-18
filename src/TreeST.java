@@ -40,6 +40,8 @@ public class TreeST {
         public int scope;
         public ScopeNode prev = null; // Make pointers to see next scope or previous scope for checking symbol out of valid scope
         public ScopeNode next = null;
+//        public boolean traversed = false;
+        public int childIndex = 0; // For code gen when traversing symbol tree
 
         public ScopeNode(Hashtable<String, idDetails> hashTable) {
             this.hashTable = hashTable;
@@ -456,7 +458,6 @@ public class TreeST {
                 String[] row = new String[]{key, v.hashTable.get(key).type, Boolean.toString(v.hashTable.get(key).isInitialized),
                         Boolean.toString(v.hashTable.get(key).isUsed), Integer.toString(v.scope),
                         Integer.toString(v.hashTable.get(key).token.line_number),  (v.hashTable.get(key).value)};
-                // TODO: assign values in hashtable for code gen. and debug
                 System.out.format("%4s%10s%20s%15s%15s%15s%15s%n", row);
             }
 

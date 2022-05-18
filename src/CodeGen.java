@@ -212,6 +212,7 @@ public class CodeGen {
         }
     }
 
+
     /**
      * Processes each node in the AST that are either blocks, varDecals, assignments,
      * if statements, or while statements
@@ -227,22 +228,22 @@ public class CodeGen {
                     // first block instance
                     if (currentScope == null) {
                         currentScope = symbolTable.root;
-                    } else {
-                        // Get the scope for the current block
-//                        System.out.println("TEST:" + currentScope.scope);
-//                        for (TreeST.ScopeNode i: currentScope.children){
-//                            System.out.println(i.scope);
-//                        }
-                        try {
-                            currentScope = currentScope.children.get(childIndex);
-                            System.out.println("TEST:" + currentScope.scope);
+//                        System.out.println("CURRENT SCOPE:" + currentScope.scope);
 
+                    } else { // try to go down the scope tree
+                        try {
+                            currentScope = currentScope.children.get(currentScope.childIndex);
+                            currentScope.prev.childIndex += 1;
+                            System.out.println("TEST:" + currentScope.scope);
                         } catch (Exception e) {
 //                            e.printStackTrace();
                         }
                     }
                     if (verbose) {
+                        System.out.println("------------------------------------------------------------");
                         System.out.println("CODE GEN -------> Current Scope: " + currentScope.scope);
+                        System.out.println("------------------------------------------------------------");
+
                     }
 
                     break;
@@ -293,25 +294,28 @@ public class CodeGen {
                         System.out.println("CODE GEN -------> Generating Op Codes for WHILE STATEMENT on line " + node.token.line_number);
                     }
                     startWhileIndex = curIndex;
+                    setFirstRegister = false;
+
                     codeGenWhile(node);
                     inBoolExpr = false;
                     startJumpIndex = curIndex;
-                    setFirstRegister = false;
                     break;
 
                 default:
                     //Everything else that needs nothing
             }
 
+
             // If not known already --> doing a Pseudo-breadth-first traversal
             //                          (pseudo since we go deeper in the tree for every block node)
             for (Node each : node.children) {
                 processNode(each);
-                if (each.name.equals("block")) {
+                if (node.name.equals("block")) {
                     //Go to next child
-                    System.out.println("childIndex " + childIndex);
-                    childIndex += 1;
+//                    System.out.println("childIndex " + childIndex);
+//                    childIndex += 1;
                 }
+
             }
             if (node.parent != null) {
                 if ((node.name.equals("block") & (node.parent.name.equals("ifStatement")) | (node.name.equals("block") & node.parent.name.equals("whileStatement")))) {
@@ -335,12 +339,18 @@ public class CodeGen {
             }
 
             if (node.name.equals("block")) {
+
 //                System.out.println(currentScope.scope);
                 // Go back up the tree at outer scope
-                if (currentScope.prev != null) { // if you hit the root
+//                if (currentScope.prev != null) { // if you hit the root
+//                while (currentScope.traversed) {
                     currentScope = currentScope.prev;
-                }
-                childIndex = 0; // reset the child index
+//                }
+//                    childIndex += 1;
+//                }
+//                if (currentScope.children.size() <= childIndex + 1){
+//                    childIndex = 0; // reset the child index
+//                }
             }
         }
     }
@@ -832,7 +842,8 @@ public class CodeGen {
                     }
                 }
 
-            } else if (!node.name.equals("intOp") & !node.name.equals("boolOp")){ //Since we do nothing if intOp is traversed
+            }
+            else if (!node.name.equals("intOp") & !node.name.equals("boolOp")){ //Since we do nothing if intOp is traversed
                     System.out.println(node.name + " " + node.value);
                 OpCode opCode1 = new OpCode();
                 if (Integer.toHexString(Integer.parseInt(node.value)).length() == 1) { // Add a leading 0
