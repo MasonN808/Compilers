@@ -397,12 +397,14 @@ while (a != 9){
 {
     int g
     g = 1
-    while ( g != 9){
+    while ( g != 9+2){
        g = 1 + g
        while ( g != 9){
           g = 1 + g
           print(g)
        }
+       print(" ")
        print(g)
     }
+    print(" finished ")
 }$
