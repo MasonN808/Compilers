@@ -364,6 +364,9 @@ while (a != 9){
 }
 }$
 
+/* WORKS verified with JUICE and SVEG OS*/
+/* a lot of embedded scopes*/
+/* PRINT: trueentereda is true2345*/
 {
     boolean a
     a = true
@@ -387,5 +390,19 @@ while (a != 9){
                print(g)
             }
         }
+    }
+}$
+
+
+{
+    int g
+    g = 1
+    while ( g != 9){
+       g = 1 + g
+       while ( g != 9){
+          g = 1 + g
+          print(g)
+       }
+       print(g)
     }
 }$

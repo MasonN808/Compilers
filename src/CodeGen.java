@@ -644,7 +644,7 @@ public class CodeGen {
     public static void codeGenIf(Node node){
         inIf = true;
         Node expr = node.children.get(0);
-        numJumps += 1; // for number of jump variables
+//        numJumps += 1; // for number of jump variables
 //        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
         QBFS(node);
         inIf = false;
@@ -657,7 +657,7 @@ public class CodeGen {
      */
     public static void codeGenWhile(Node node){
         inWhile = true;
-        numJumps += 1; // for number of jump variables
+//        numJumps += 1; // for number of jump variables
 //        POT(expr, null); // Do a post order traversal on the boolean expression to see if we enter the block statement
         QBFS(node);
         inWhile = false;
