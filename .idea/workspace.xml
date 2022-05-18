@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00163" summary="-Added &quot;true&quot; and &quot;false&quot; into heap">
-      <created>1652400060887</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1652400060888</updated>
     </task>
     <task id="LOCAL-00164" summary="-Added backpatching (works)">
       <created>1652403350174</created>
@@ -452,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652835255930</updated>
     </task>
-    <option name="localTasksCounter" value="212" />
+    <task id="LOCAL-00212" summary="- Fixed the issue with embedded block statements&#10;- runs in console">
+      <created>1652851222682</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1652851222682</updated>
+    </task>
+    <option name="localTasksCounter" value="213" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Inequality operator is now recognized on simple boolean expressions" />
     <MESSAGE value="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing" />
     <MESSAGE value="- Simple if statement works&#10;- Issues with inequality operator in if statement" />
     <MESSAGE value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly" />
@@ -505,6 +502,7 @@
     <MESSAGE value="- Fixed the endless while loop issues by changing the jumps in the intermediate op codes&#10;- runs in console" />
     <MESSAGE value="- Now works for while loops in multiple scopes&#10;- runs in console" />
     <MESSAGE value="- Issues with more than one scope in another scope&#10;- runs in console" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Issues with more than one scope in another scope&#10;- runs in console" />
+    <MESSAGE value="- Fixed the issue with embedded block statements&#10;- runs in console" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed the issue with embedded block statements&#10;- runs in console" />
   </component>
 </project>

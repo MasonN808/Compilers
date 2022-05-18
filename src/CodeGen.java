@@ -320,7 +320,7 @@ public class CodeGen {
             if (node.parent != null) {
                 if ((node.name.equals("block") & (node.parent.name.equals("ifStatement")) | (node.name.equals("block") & node.parent.name.equals("whileStatement")))) {
 //                    System.out.println(startJumpIndex);
-//                    System.out.println(curIndex + "--" + startJumpIndex);
+                    System.out.println(curIndex + "--" + startJumpIndex);
                     if (node.parent.name.equals("whileStatement")){ // need to add the op codes that involve the loop around
                         jumpDifference = curIndex - startJumpIndex + 12;
                     }
@@ -552,7 +552,7 @@ public class CodeGen {
             }
             tempScope = tempScope.prev; // Go up a scope if didn't find it
         }
-        numJumps = 0; // reset pointer
+//        numJumps = 0; // reset pointer
     }
 
 
@@ -965,7 +965,7 @@ public class CodeGen {
                 setFirstRegister = !setFirstRegister;
                 break;
 
-            case ("intExpr"): // TODO : how to find inequality operator in this tree
+            case ("intExpr"):
 
                 if (verbose) {
                     System.out.println("CODE GEN -------> Generating Op Codes for int expression in boolean expression");
