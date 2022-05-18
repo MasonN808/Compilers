@@ -230,8 +230,13 @@ public class CodeGen {
                     } else {
                         // Get the scope for the current block
 //                        System.out.println("TEST:" + currentScope.scope);
+//                        for (TreeST.ScopeNode i: currentScope.children){
+//                            System.out.println(i.scope);
+//                        }
                         try {
                             currentScope = currentScope.children.get(childIndex);
+                            System.out.println("TEST:" + currentScope.scope);
+
                         } catch (Exception e) {
 //                            e.printStackTrace();
                         }
@@ -304,6 +309,7 @@ public class CodeGen {
                 processNode(each);
                 if (each.name.equals("block")) {
                     //Go to next child
+                    System.out.println("childIndex " + childIndex);
                     childIndex += 1;
                 }
             }

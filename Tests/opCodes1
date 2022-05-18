@@ -1,36 +1,20 @@
-{
-int a
-int d
-string c
-c = "fail"
-d = 1
-a = 1 + 2+ d
-print(d)
-}$
-
-{
-int a
-a = 2
-    {
-        int a
-        a = 1
-        print(a)
-    }
-}$
-
 /* WORKS verified with JUICE*/
 /* assigned and declared in different scopes */
+/* Print: stringstring*/
 {
 string a
 {
     a = "string"
+    print(a)
 }
+print(a)
 }$
 
 
 
 /* WORKS verified with JUICE*/
 /* Printing a string literal */
+/* PRINT: this should print */
 {
 string a
 {
@@ -43,6 +27,7 @@ print("this should print")
 
 /* WORKS verified with JUICE*/
 /* Printing an ID */
+/* PRINT: string */
 {
 string a
 {
@@ -77,7 +62,7 @@ print(a)
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* Embedded blocks */
-/* Should print "print this9string" */
+/* PRINT: print this9string */
 {
 string a
 a = "string"
@@ -118,7 +103,7 @@ print(a)
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* integer assignment with + operator on no IDs*/
-/* Should print 10*/
+/* PRINT: 10*/
 {
 int a
 a = 1+2+3+4
@@ -127,7 +112,7 @@ print(a)
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* integer assignment with + operator on one ID*/
-/* Should print 7*/
+/* PRINT: 7 */
 {
 int a
 int b
@@ -138,7 +123,7 @@ print(a)
 
 /* WORKS verified with JUICE and SVEG OS*/
 /* integer assignment with + operator on one ID in print statement*/
-/* Should print 7*/
+/* PRINT: 7 */
 {
 int b
 b = 2
@@ -336,18 +321,70 @@ print(a)
 
 /* Next cases: While statements*/
 
+
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* Should print 579*/
 {
 int a
 a = 3
 while (a != 9){
     a = 2 + a
     print(a)
+}$
+
+
+/* WORKS verified with JUICE and SVEG OS*/
+/* embedded scopes*/
+/* Should print 5 7 9 10 11 12 13 14 15*/
+{
+int a
+a = 3
+while (a != 9){
+    a = 2 + a
+    print(" ")
+    print(a)
 }
 
 {
     while (a != 9+6){
         a = 1 + a
+        print(" ")
         print(a)
     }
 }
+}$
+
+{
+    boolean a
+    a = true
+    if (a != false){
+        print(a)
+        int b
+    }
+    {
+        if (false != true){
+            print("entered")
+            int c
+        }
+
+        int d
+
+        if (a == true){
+            print("a is true")
+            int e
+        }
+
+        int f
+
+        {
+            int g
+            g = 1
+            while ( g != 5){
+               g = 1 + g
+               print(g)
+               int h
+            }
+        }
+    }
 }$

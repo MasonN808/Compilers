@@ -108,13 +108,6 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00161" summary="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)">
-      <created>1649913134541</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1649913134541</updated>
-    </task>
     <task id="LOCAL-00162" summary="-Created sack overflow error&#10;-added a method to add strings into the heap">
       <created>1652399349554</created>
       <option name="number" value="00162" />
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652826708705</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="- Now works for while loops in multiple scopes&#10;- runs in console">
+      <created>1652829785152</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1652829785152</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +479,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)" />
     <MESSAGE value="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values" />
     <MESSAGE value="- Inequality operator is now recognized on simple boolean expressions" />
     <MESSAGE value="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing" />
@@ -504,6 +503,7 @@
     <MESSAGE value="- Got the while loop to loop back but opcodes are wrong in the loop (fixing)&#10;- runs in console" />
     <MESSAGE value="- While loop fixed!  however endless loop continues&#10;- runs in console" />
     <MESSAGE value="- Fixed the endless while loop issues by changing the jumps in the intermediate op codes&#10;- runs in console" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed the endless while loop issues by changing the jumps in the intermediate op codes&#10;- runs in console" />
+    <MESSAGE value="- Now works for while loops in multiple scopes&#10;- runs in console" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Now works for while loops in multiple scopes&#10;- runs in console" />
   </component>
 </project>
