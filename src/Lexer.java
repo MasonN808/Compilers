@@ -584,11 +584,21 @@ public class Lexer {
                             // For BFS input
                             discovered = new boolean[treeST.scopeNum]; //make sure all values are false
                             // Header of table
-                            String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope", "Line Number"};
-                            System.out.format("%4s%10s%20s%15s%15s%15s%n", row);
+                            String[] row = new String[] {"Name", "Type", "isInitialized?", "isUsed?", "Scope", "Line Number", "Value"};
+                            System.out.format("%4s%10s%20s%15s%15s%15s%15s%n", row);
                             // Do a Breadth first search on symbol tree
                             treeST.BFS(treeST, treeST.root, discovered);
+
+                            // Code Gen
                             System.out.println("------------------------------------------------------------");
+                            System.out.println("Beginning CODE GEN for Program " + program_num);
+                            // make another ast for code gen since semantic messes with the ast
+                            AbstractSyntaxTree abstractST1 = new AbstractSyntaxTree(tokenStream, verbose);
+                            abstractST.parseProgram();
+//                            System.out.println(abstractST1.ast.traverse(abstractST1.ast.root, 0, ""));
+
+                            CodeGen codeGen = new CodeGen(treeST, abstractST1.ast, true); //TODO: change true back to verbose
+                            codeGen.generateOpCodes();
                         }
                     }
                     else {

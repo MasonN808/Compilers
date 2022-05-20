@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- Final Commit (5/19/2022)&#10;- Issues in the following:&#10;    - Embedded While loops: pointer to beginning of while loop is getting overwritten&#10;    - Embedded booleans: working on this&#10;    - And certain test cases:">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/semanticTests" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/semanticTests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TreeST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreeST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +47,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -103,350 +108,350 @@
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
     </task>
-    <task id="LOCAL-00113" summary="- Edits to SymbolTable&#10;- Initialized Node class and Tree class for symbol table specifically">
-      <created>1649282405351</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
+    <task id="LOCAL-00167" summary="Fixed pointer from heap: had to fix indexing issue">
+      <created>1652409599003</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
       <option name="project" value="LOCAL" />
-      <updated>1649282405351</updated>
+      <updated>1652409599003</updated>
     </task>
-    <task id="LOCAL-00114" summary="- Made idDetails for Hashtable of ids in symbol table/tree">
-      <created>1649292273785</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
+    <task id="LOCAL-00168" summary="Making assignment op code generator more dynamic&#10;-checking ids in int expressions now">
+      <created>1652414453937</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
       <option name="project" value="LOCAL" />
-      <updated>1649292273785</updated>
+      <updated>1652414453937</updated>
     </task>
-    <task id="LOCAL-00115" summary="- Created hashtable attribute&#10;- Changed token from type Compiler808.Grammar to Token type">
-      <created>1649292393289</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
+    <task id="LOCAL-00169" summary="-int exprs work without ids implementing that now">
+      <created>1652421414465</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
       <option name="project" value="LOCAL" />
-      <updated>1649292393289</updated>
+      <updated>1652421414465</updated>
     </task>
-    <task id="LOCAL-00116" summary="- Creating a tree from the AST for the symbol table">
-      <created>1649292447338</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
+    <task id="LOCAL-00170" summary="-More">
+      <created>1652431456966</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
       <option name="project" value="LOCAL" />
-      <updated>1649292447338</updated>
+      <updated>1652431456966</updated>
     </task>
-    <task id="LOCAL-00117" summary="- Minor initializations of files">
-      <created>1649292471165</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
+    <task id="LOCAL-00171" summary="-More">
+      <created>1652434603996</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
       <option name="project" value="LOCAL" />
-      <updated>1649292471165</updated>
+      <updated>1652434603996</updated>
     </task>
-    <task id="LOCAL-00118" summary="- Getting symbol table tree to work">
-      <created>1649293357174</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
+    <task id="LOCAL-00172" summary="-More">
+      <created>1652435499441</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
       <option name="project" value="LOCAL" />
-      <updated>1649293357174</updated>
+      <updated>1652435499441</updated>
     </task>
-    <task id="LOCAL-00119" summary="- Deleted commented section">
-      <created>1649293834545</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
+    <task id="LOCAL-00173" summary="-Added print statements for verbose mode&#10;-On an airplane">
+      <created>1652557482006</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
       <option name="project" value="LOCAL" />
-      <updated>1649293834545</updated>
+      <updated>1652557482007</updated>
     </task>
-    <task id="LOCAL-00120" summary="- More edits">
-      <created>1649293846484</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
+    <task id="LOCAL-00174" summary="- Added method information&#10;- implemented the stack overflow error">
+      <created>1652559683342</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
       <option name="project" value="LOCAL" />
-      <updated>1649293846484</updated>
+      <updated>1652559683342</updated>
     </task>
-    <task id="LOCAL-00121" summary="- More additions to populating the symbol table (not looking too good)">
-      <created>1649307241813</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
+    <task id="LOCAL-00175" summary="- Added more method information">
+      <created>1652561026421</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
       <option name="project" value="LOCAL" />
-      <updated>1649307241813</updated>
+      <updated>1652561026422</updated>
     </task>
-    <task id="LOCAL-00122" summary="- More additions to populating the symbol table (looking better)">
-      <created>1649379007422</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
+    <task id="LOCAL-00176" summary="- Added check heap overflow when assigining Op codes&#10;- Still on plane&#10;- Finishing at home">
+      <created>1652562041022</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
       <option name="project" value="LOCAL" />
-      <updated>1649379007422</updated>
+      <updated>1652562041022</updated>
     </task>
-    <task id="LOCAL-00123" summary="- Redid branch and leaf for boolean expression of ifStatement and whileStatement (working)">
-      <created>1649476025845</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
+    <task id="LOCAL-00177" summary="- Made own method for backpatching&#10;- Edited the heapoverflow in vardecals">
+      <created>1652594115152</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
       <option name="project" value="LOCAL" />
-      <updated>1649476025845</updated>
+      <updated>1652594115152</updated>
     </task>
-    <task id="LOCAL-00124" summary="- Edits to print of booleanExpr">
-      <created>1649476122238</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
+    <task id="LOCAL-00178" summary="- Completely redid assignment op codes&#10;- Needs more dubugging&#10;- The following now works:&#10;{&#10; string a&#10; {&#10;     a = &quot;string&quot;&#10; }&#10; }$">
+      <created>1652600174930</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
       <option name="project" value="LOCAL" />
-      <updated>1649476122238</updated>
+      <updated>1652600174930</updated>
     </task>
-    <task id="LOCAL-00125" summary="- Redoing symbol tree implementation">
-      <created>1649477466530</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
+    <task id="LOCAL-00179" summary="- About to completely redo the depth first post-order traversal method, POT()">
+      <created>1652600870497</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
       <option name="project" value="LOCAL" />
-      <updated>1649477466530</updated>
+      <updated>1652600870497</updated>
     </task>
-    <task id="LOCAL-00126" summary="- Symbol Tree is looking better">
-      <created>1649478155799</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
+    <task id="LOCAL-00180" summary="- Now about to completely redo the depth first post-order traversal method, POT()&#10;- Made significant edits in print to allow for literals&#10;- Added meaningful verbose mode">
+      <created>1652604155084</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
       <option name="project" value="LOCAL" />
-      <updated>1649478155799</updated>
+      <updated>1652604155085</updated>
     </task>
-    <task id="LOCAL-00127" summary="- Significant edits to symbol table using hashtable that allows collisions (i.e. no doublyLinkedList)&#10;- In progress">
-      <created>1649540822330</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
+    <task id="LOCAL-00181" summary="- Now about to completely redo the depth first post-order traversal method, POT()&#10;- Significant progress in embedded blocks with differing declarations and assignments with print statements&#10;- Working on more complicated assignments and boolean expressions">
+      <created>1652608022341</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
       <option name="project" value="LOCAL" />
-      <updated>1649540822330</updated>
+      <updated>1652608022341</updated>
     </task>
-    <task id="LOCAL-00128" summary="- Added more error exceptions">
-      <created>1649547193821</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
+    <task id="LOCAL-00182" summary="- Working on assignment of digits with ids in intexpression&#10;- Next is boolean ops">
+      <created>1652612694206</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
       <option name="project" value="LOCAL" />
-      <updated>1649547193821</updated>
+      <updated>1652612694206</updated>
     </task>
-    <task id="LOCAL-00129" summary="- Start of debugging">
-      <created>1649549208493</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
+    <task id="LOCAL-00183" summary="- assignment of digits with ids in intexpression works now&#10;- Now is boolean ops">
+      <created>1652640570091</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
       <option name="project" value="LOCAL" />
-      <updated>1649549208493</updated>
+      <updated>1652640570091</updated>
     </task>
-    <task id="LOCAL-00130" summary="- Working out nullpointer bugs">
-      <created>1649564566798</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
+    <task id="LOCAL-00184" summary="- refactored POT&#10;- Now working on boolean ops">
+      <created>1652641598392</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
       <option name="project" value="LOCAL" />
-      <updated>1649564566798</updated>
+      <updated>1652641598392</updated>
     </task>
-    <task id="LOCAL-00131" summary="- Added token attribute to node in AST for expressions">
-      <created>1649602961914</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
+    <task id="LOCAL-00185" summary="- Takes into account simple boolean assignments">
+      <created>1652645276690</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
       <option name="project" value="LOCAL" />
-      <updated>1649602961915</updated>
+      <updated>1652645276690</updated>
     </task>
-    <task id="LOCAL-00132" summary="- solved null pointer exception be changing tempCurrentScope.prev to tempCurrentScope and rearranging some lines in the block">
-      <created>1649603020596</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
+    <task id="LOCAL-00186" summary="- Can now print simple boolean assignments referenced from ID or boolean literal (not embedded booleans yet)">
+      <created>1652646514454</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
       <option name="project" value="LOCAL" />
-      <updated>1649603020596</updated>
+      <updated>1652646514454</updated>
     </task>
-    <task id="LOCAL-00133" summary="- Fixed checkAssignmentTypes when checking if value is an integer (Need to test the other cases)">
-      <created>1649618269636</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
+    <task id="LOCAL-00187" summary="- recognizes boolean expression assignments with boolean operator, equality, not yet inequality but easy fix&#10;- Added constructor for JumpEntry&#10;- Added backpropogation for jump entries&#10;- Added setter methods for incrementing indexes of jump and jump values">
+      <created>1652666504607</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
       <option name="project" value="LOCAL" />
-      <updated>1649618269636</updated>
+      <updated>1652666504607</updated>
     </task>
-    <task id="LOCAL-00134" summary="- Added some comments">
-      <created>1649618282234</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
+    <task id="LOCAL-00188" summary="- Inequality operator is now recognized on simple boolean expressions">
+      <created>1652667723513</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
       <option name="project" value="LOCAL" />
-      <updated>1649618282234</updated>
+      <updated>1652667723513</updated>
     </task>
-    <task id="LOCAL-00135" summary="- Implemented children attribute for ScopeNodes&#10;- Implemented a BFS to traverse symbol tree (Still in the works)">
-      <created>1649619970205</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
+    <task id="LOCAL-00189" summary="- Major edits to print statements of boolean literals and int expressions with no ID at end&#10;- Had to change from A9 to A0 to pull from Y register for printing">
+      <created>1652672452832</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
       <option name="project" value="LOCAL" />
-      <updated>1649619970205</updated>
+      <updated>1652672452832</updated>
     </task>
-    <task id="LOCAL-00136" summary="- Implemented and testing BFS on treeST">
-      <created>1649619994742</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
+    <task id="LOCAL-00190" summary="- Simple if statement works&#10;- Issues with inequality operator in if statement">
+      <created>1652688635371</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
       <option name="project" value="LOCAL" />
-      <updated>1649619994742</updated>
+      <updated>1652688635371</updated>
     </task>
-    <task id="LOCAL-00137" summary="- Able to kind of print out all hashtable keys and associated key details&#10;- Issues with isUsed()">
-      <created>1649620593071</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
+    <task id="LOCAL-00191" summary="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly">
+      <created>1652689262556</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
       <option name="project" value="LOCAL" />
-      <updated>1649620593071</updated>
+      <updated>1652689262556</updated>
     </task>
-    <task id="LOCAL-00138" summary="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant">
-      <created>1649631933075</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
+    <task id="LOCAL-00192" summary="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly&#10;- Will continue to work on the bugs until graded">
+      <created>1652690021950</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
       <option name="project" value="LOCAL" />
-      <updated>1649631933075</updated>
+      <updated>1652690021950</updated>
     </task>
-    <task id="LOCAL-00139" summary="- Created warning system&#10;- May need to add more warnings">
-      <created>1649633178504</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
+    <task id="LOCAL-00193" summary="- Working on bugs in string comparisons">
+      <created>1652732153281</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
       <option name="project" value="LOCAL" />
-      <updated>1649633178504</updated>
+      <updated>1652732153281</updated>
     </task>
-    <task id="LOCAL-00140" summary="- Added line number column to symbol table">
-      <created>1649633529497</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
+    <task id="LOCAL-00194" summary="- About to do some major refactoring to reduce complexity of code for better dubugging">
+      <created>1652733215520</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
       <option name="project" value="LOCAL" />
-      <updated>1649633529497</updated>
+      <updated>1652733215520</updated>
     </task>
-    <task id="LOCAL-00141" summary="- Added warning for declared but uninitialized">
-      <created>1649633713327</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
+    <task id="LOCAL-00195" summary="- Completely refactored code and logic reducing 500 lines">
+      <created>1652737027908</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
       <option name="project" value="LOCAL" />
-      <updated>1649633713327</updated>
+      <updated>1652737027908</updated>
     </task>
-    <task id="LOCAL-00142" summary="- Deleted a ton of nonworking commented out code">
-      <created>1649633917333</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
+    <task id="LOCAL-00196" summary="- Initialized Quasi Breadth first in order traversal for embedded boolean expressions">
+      <created>1652741075892</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
       <option name="project" value="LOCAL" />
-      <updated>1649633917333</updated>
+      <updated>1652741075892</updated>
     </task>
-    <task id="LOCAL-00143" summary="- Debugging Line separator issue for MacOS">
-      <created>1649634672936</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
+    <task id="LOCAL-00197" summary="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)">
+      <created>1652746506549</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
       <option name="project" value="LOCAL" />
-      <updated>1649634672936</updated>
+      <updated>1652746506549</updated>
     </task>
-    <task id="LOCAL-00144" summary="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done">
-      <created>1649639419333</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
+    <task id="LOCAL-00198" summary="- Added more code for the stringExpr">
+      <created>1652747188820</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
       <option name="project" value="LOCAL" />
-      <updated>1649639419333</updated>
+      <updated>1652747188820</updated>
     </task>
-    <task id="LOCAL-00145" summary="- Edited to take in integer expressions with operator&#10;- Added more test cases">
-      <created>1649645940800</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
+    <task id="LOCAL-00199" summary="- About to add in QBFS()&#10;- Rollback if horrible here">
+      <created>1652752460764</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
       <option name="project" value="LOCAL" />
-      <updated>1649645940800</updated>
+      <updated>1652752460764</updated>
     </task>
-    <task id="LOCAL-00146" summary="- A lot more edits based on test cases">
-      <created>1649649561459</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
+    <task id="LOCAL-00200" summary="- Starting to perform better">
+      <created>1652770867384</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
       <option name="project" value="LOCAL" />
-      <updated>1649649561459</updated>
+      <updated>1652770867384</updated>
     </task>
-    <task id="LOCAL-00147" summary="- Able to check type mismatches on any expressions, not just IDs">
-      <created>1649650762584</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
+    <task id="LOCAL-00201" summary="- boolean statements compatable with boolean expressions (not embedded) (commutativity holds for all simple cases)">
+      <created>1652771548193</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
       <option name="project" value="LOCAL" />
-      <updated>1649650762584</updated>
+      <updated>1652771548193</updated>
     </task>
-    <task id="LOCAL-00148" summary="- Added a type mismatch error for assigned expression in assignmentStatement">
-      <created>1649652444680</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
+    <task id="LOCAL-00202" summary="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion">
+      <created>1652778064349</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
       <option name="project" value="LOCAL" />
-      <updated>1649652444680</updated>
+      <updated>1652778064349</updated>
     </task>
-    <task id="LOCAL-00149" summary="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now">
-      <created>1649798881927</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
+    <task id="LOCAL-00203" summary="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator">
+      <created>1652778182091</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
       <option name="project" value="LOCAL" />
-      <updated>1649798881927</updated>
+      <updated>1652778182091</updated>
     </task>
-    <task id="LOCAL-00150" summary="- Edited more detailed error messages">
-      <created>1649806685169</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
+    <task id="LOCAL-00204" summary="- ISSUE FIXED only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator&#10;- Moving onto while loops">
+      <created>1652778663584</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
       <option name="project" value="LOCAL" />
-      <updated>1649806685169</updated>
+      <updated>1652778663584</updated>
     </task>
-    <task id="LOCAL-00151" summary="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line">
-      <created>1649809992691</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
+    <task id="LOCAL-00205" summary="- Added more test cases&#10;- some issues in jumping in while loop">
+      <created>1652782930157</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
       <option name="project" value="LOCAL" />
-      <updated>1649809992691</updated>
+      <updated>1652782930157</updated>
     </task>
-    <task id="LOCAL-00152" summary="- Trying to fix issues with AST">
-      <created>1649825659998</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
+    <task id="LOCAL-00206" summary="- Fixed POTFirstDigit pointer that conintually did carry in other statements">
+      <created>1652822677036</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
       <option name="project" value="LOCAL" />
-      <updated>1649825659998</updated>
+      <updated>1652822677037</updated>
     </task>
-    <task id="LOCAL-00153" summary="- Fixed some structure in the AST when boolean expressions are nested">
-      <created>1649885016613</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
+    <task id="LOCAL-00207" summary="- Got the while loop to loop back but opcodes are wrong in the loop (fixing)&#10;- runs in console">
+      <created>1652825433391</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
       <option name="project" value="LOCAL" />
-      <updated>1649885016613</updated>
+      <updated>1652825433392</updated>
     </task>
-    <task id="LOCAL-00154" summary="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java">
-      <created>1649887636610</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
+    <task id="LOCAL-00208" summary="- While loop fixed!  however endless loop continues&#10;- runs in console">
+      <created>1652826244510</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
       <option name="project" value="LOCAL" />
-      <updated>1649887636610</updated>
+      <updated>1652826244510</updated>
     </task>
-    <task id="LOCAL-00155" summary="- Edits to subtree search for mixedExpr">
-      <created>1649889055185</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
+    <task id="LOCAL-00209" summary="- Fixed the endless while loop issues by changing the jumps in the intermediate op codes&#10;- runs in console">
+      <created>1652826708705</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
       <option name="project" value="LOCAL" />
-      <updated>1649889055185</updated>
+      <updated>1652826708705</updated>
     </task>
-    <task id="LOCAL-00156" summary="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST">
-      <created>1649898662309</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
+    <task id="LOCAL-00210" summary="- Now works for while loops in multiple scopes&#10;- runs in console">
+      <created>1652829785152</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
       <option name="project" value="LOCAL" />
-      <updated>1649898662309</updated>
+      <updated>1652829785152</updated>
     </task>
-    <task id="LOCAL-00157" summary="- postOrderFindIsMixed in TreeST IS WORKING">
-      <created>1649902534157</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
+    <task id="LOCAL-00211" summary="- Issues with more than one scope in another scope&#10;- runs in console">
+      <created>1652835255930</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
       <option name="project" value="LOCAL" />
-      <updated>1649902534157</updated>
+      <updated>1652835255930</updated>
     </task>
-    <task id="LOCAL-00158" summary="- Fixed bug where start of boolean expression with ID as first token becomes a branch instead of a leaf under the boolOp">
-      <created>1649903489257</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
+    <task id="LOCAL-00212" summary="- Fixed the issue with embedded block statements&#10;- runs in console">
+      <created>1652851222682</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
       <option name="project" value="LOCAL" />
-      <updated>1649903489257</updated>
+      <updated>1652851222682</updated>
     </task>
-    <task id="LOCAL-00159" summary="- Fixed AST for assignmentStatement">
-      <created>1649905985258</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
+    <task id="LOCAL-00213" summary="- Fixed the issue with infinite while loop involving an assignment statement in it&#10;- runs in console">
+      <created>1652852507660</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
       <option name="project" value="LOCAL" />
-      <updated>1649905985258</updated>
+      <updated>1652852507660</updated>
     </task>
-    <task id="LOCAL-00160" summary="- More Major edits for error and bugs (e.g. added breaks to switch statements)">
-      <created>1649909074132</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
+    <task id="LOCAL-00214" summary="- Fixed issue with temporary jump variables that were being incremented unwisely&#10;- runs in console">
+      <created>1652852945203</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
       <option name="project" value="LOCAL" />
-      <updated>1649909074132</updated>
+      <updated>1652852945203</updated>
     </task>
-    <task id="LOCAL-00161" summary="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)">
-      <created>1649913134541</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
+    <task id="LOCAL-00215" summary="- Embedded While loops are an issue: pointer to beginning of while loop is getting overwritten&#10;- Embedded booleans are also an issue: working on this&#10;- runs in console">
+      <created>1652853308982</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
       <option name="project" value="LOCAL" />
-      <updated>1649913134541</updated>
+      <updated>1652853308982</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <option name="localTasksCounter" value="216" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -460,7 +465,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/semantic_analysis" />
+                        <option value="code_gen" />
                       </list>
                     </value>
                   </entry>
@@ -474,31 +479,31 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Edits some logic in symbol tree&#10;- Reinitialized some attributes in constructor (caused some problems)&#10;- Added more test cases&#10;- Made symbol table more elegant" />
-    <MESSAGE value="- Created warning system&#10;- May need to add more warnings" />
-    <MESSAGE value="- Added line number column to symbol table" />
-    <MESSAGE value="- Added warning for declared but uninitialized" />
-    <MESSAGE value="- Deleted a ton of nonworking commented out code" />
-    <MESSAGE value="- Debugging Line separator issue for MacOS" />
-    <MESSAGE value="- Edits using other computer with MacOS" />
-    <MESSAGE value="- Edits using other computer with MacOS (FIXED issues with lineseperator)&#10;- Project 4 almost done" />
-    <MESSAGE value="- Edited to take in integer expressions with operator&#10;- Added more test cases" />
-    <MESSAGE value="- A lot more edits based on test cases" />
-    <MESSAGE value="- Able to check type mismatches on any expressions, not just IDs" />
-    <MESSAGE value="- Added a type mismatch error for assigned expression in assignmentStatement" />
-    <MESSAGE value="- Refactored some files and deleted lines causing issues with type mismatch in AbstractSyntaxTree.java&#10;- Should work now" />
-    <MESSAGE value="- Edited more detailed error messages" />
-    <MESSAGE value="- Placed resetPointers() which fixed issue of identifying an identifier that is not an identifier&#10;- Works on command line" />
-    <MESSAGE value="- Trying to fix issues with AST" />
-    <MESSAGE value="- Fixed some structure in the AST when boolean expressions are nested" />
-    <MESSAGE value="- Finally fixed AST structure of nested booleans expressions for the most part&#10;- Got rid of rearrange tree&#10;- Made lots of edits to AbstractSyntaxTree.java" />
-    <MESSAGE value="- Edits to subtree search for mixedExpr" />
-    <MESSAGE value="- Got rid of typechecking when developing AST (very bad)&#10;- Working on postOrderFindIsMixed in TreeST" />
-    <MESSAGE value="- postOrderFindIsMixed in TreeST IS WORKING" />
-    <MESSAGE value="- Fixed bug where start of boolean expression with ID as first token becomes a branch instead of a leaf under the boolOp" />
-    <MESSAGE value="- Fixed AST for assignmentStatement" />
-    <MESSAGE value="- More Major edits for error and bugs (e.g. added breaks to switch statements)" />
-    <MESSAGE value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- More Major edits&#10;-- refactored some methods&#10;-- add more stuff to assignment statement (looks good)" />
+    <MESSAGE value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly&#10;- Will continue to work on the bugs until graded" />
+    <MESSAGE value="- Working on bugs in string comparisons" />
+    <MESSAGE value="- About to do some major refactoring to reduce complexity of code for better dubugging" />
+    <MESSAGE value="- Completely refactored code and logic reducing 500 lines" />
+    <MESSAGE value="- Initialized Quasi Breadth first in order traversal for embedded boolean expressions" />
+    <MESSAGE value="- Added method and implemented it to find strings in memory that have already been declared to reduce memory usage in heap (probably an optimization)" />
+    <MESSAGE value="- Added more code for the stringExpr" />
+    <MESSAGE value="- About to add in QBFS()&#10;- Rollback if horrible" />
+    <MESSAGE value="- About to add in QBFS()&#10;- Rollback if horrible here" />
+    <MESSAGE value="- Starting to perform better" />
+    <MESSAGE value="- boolean statements compatable with boolean expressions (not embedded) (commutativity holds for all simple cases)" />
+    <MESSAGE value="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion" />
+    <MESSAGE value="- Took into account inequalities&#10;- only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator" />
+    <MESSAGE value="- ISSUE FIXED only issue lies in the ast where the tree structure is not optimal for recursion (more specifically --&gt; complex integer expression on the left-hand side of a boolean operator&#10;- Moving onto while loops" />
+    <MESSAGE value="- Added more test cases&#10;- some issues in jumping in while loop" />
+    <MESSAGE value="- Fixed POTFirstDigit pointer that conintually did carry in other statements" />
+    <MESSAGE value="- Got the while loop to loop back but opcodes are wrong in the loop (fixing)&#10;- runs in console" />
+    <MESSAGE value="- While loop fixed!  however endless loop continues&#10;- runs in console" />
+    <MESSAGE value="- Fixed the endless while loop issues by changing the jumps in the intermediate op codes&#10;- runs in console" />
+    <MESSAGE value="- Now works for while loops in multiple scopes&#10;- runs in console" />
+    <MESSAGE value="- Issues with more than one scope in another scope&#10;- runs in console" />
+    <MESSAGE value="- Fixed the issue with embedded block statements&#10;- runs in console" />
+    <MESSAGE value="- Fixed the issue with infinite while loop involving an assignment statement in it&#10;- runs in console" />
+    <MESSAGE value="- Fixed issue with temporary jump variables that were being incremented unwisely&#10;- runs in console" />
+    <MESSAGE value="- Embedded While loops are an issue: pointer to beginning of while loop is getting overwritten&#10;- Embedded booleans are also an issue: working on this&#10;- runs in console" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Embedded While loops are an issue: pointer to beginning of while loop is getting overwritten&#10;- Embedded booleans are also an issue: working on this&#10;- runs in console" />
   </component>
 </project>

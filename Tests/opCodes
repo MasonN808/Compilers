@@ -1,0 +1,85 @@
+
+{
+    int a
+    a = 3
+    int b
+    b = 4
+    a = b
+    print(a)
+    if (a == b){
+        print(a)
+    }
+}$
+
+
+
+
+{
+    int a
+    a = 1
+    {
+        int a
+        a = 2
+        print(a)
+    }
+    string b
+    b = "alan"
+    if (a == 1) {
+        print(b)
+    }
+}$
+
+{
+    int a
+    a = 1
+    {
+        int a
+        a = 2
+        print(a)
+        {
+            int d
+            d = 2
+            print(d)
+            {
+                int a
+                a = 2 + d
+                print(d)
+            }
+        }
+        int b
+        b = 2
+        print(b)
+    }
+    string b
+    b = "alan"
+    if (a == 1) {
+        int c
+        c = 3
+        print(b)
+    }
+}$
+
+/* works */
+{
+string a
+a = "test"
+}$
+
+{
+int a
+a = 1 + 2+ 3
+}$
+
+{
+boolean a
+a = (false == ((2 == 4) != true))
+print(a)
+}$
+
+{
+    string a
+    a = "hi"
+    if ( a == "hi"){
+        print(a)
+    }
+}$
