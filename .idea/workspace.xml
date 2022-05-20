@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="">
+    <list default="true" id="09be2472-735e-40a3-8730-a06afab31e7f" name="Default Changelist" comment="- Final Commit (5/19/2022)&#10;- Issues in the following:&#10;    - Embedded While loops: pointer to beginning of while loop is getting overwritten&#10;    - Embedded booleans: working on this&#10;    - And certain test cases:">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/opCodes1" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/opCodes1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeGen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler808.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler808.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644291092254</updated>
-    </task>
-    <task id="LOCAL-00166" summary="I think the pointers from heap works now">
-      <created>1652408994199</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1652408994199</updated>
     </task>
     <task id="LOCAL-00167" summary="Fixed pointer from heap: had to fix indexing issue">
       <created>1652409599003</created>
@@ -449,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652852945203</updated>
     </task>
-    <option name="localTasksCounter" value="215" />
+    <task id="LOCAL-00215" summary="- Embedded While loops are an issue: pointer to beginning of while loop is getting overwritten&#10;- Embedded booleans are also an issue: working on this&#10;- runs in console">
+      <created>1652853308982</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1652853308982</updated>
+    </task>
+    <option name="localTasksCounter" value="216" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +479,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly" />
     <MESSAGE value="- If statement works with correct jumps, however I need to redo the way boolean expressions are generated.  If I can fix that, my if and while statements will generate properly&#10;- Will continue to work on the bugs until graded" />
     <MESSAGE value="- Working on bugs in string comparisons" />
     <MESSAGE value="- About to do some major refactoring to reduce complexity of code for better dubugging" />
@@ -502,6 +503,7 @@
     <MESSAGE value="- Fixed the issue with embedded block statements&#10;- runs in console" />
     <MESSAGE value="- Fixed the issue with infinite while loop involving an assignment statement in it&#10;- runs in console" />
     <MESSAGE value="- Fixed issue with temporary jump variables that were being incremented unwisely&#10;- runs in console" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed issue with temporary jump variables that were being incremented unwisely&#10;- runs in console" />
+    <MESSAGE value="- Embedded While loops are an issue: pointer to beginning of while loop is getting overwritten&#10;- Embedded booleans are also an issue: working on this&#10;- runs in console" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Embedded While loops are an issue: pointer to beginning of while loop is getting overwritten&#10;- Embedded booleans are also an issue: working on this&#10;- runs in console" />
   </component>
 </project>

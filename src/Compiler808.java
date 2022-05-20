@@ -12,28 +12,39 @@ public class Compiler808 {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        File inFile = null;
-        boolean is_verbose = true;
-        if (0 < args.length) {
-            inFile = new File(args[0]);
-        }
-        if (1 < args.length) {
-            if (args[1].equals("notVerbose")){
-                is_verbose = false;
-            }
-        }
-        String content = new Scanner(inFile).useDelimiter("\\Z").next();
-        Lexer lexer = new Lexer();
-        lexer.get_token_stream(content, is_verbose);
-
-
-//        boolean is_verbose = false;
-//        File inFile = new File("Tests/opCodes1");
-//
+//        File inFile = null;
+//        boolean is_verbose = true;
+//        if (0 < args.length) {
+//            inFile = new File(args[0]);
+//        }
+//        if (1 < args.length) {
+//            if (args[1].equals("notVerbose")){
+//                is_verbose = false;
+//            }
+//        }
 //        String content = new Scanner(inFile).useDelimiter("\\Z").next();
 //        Lexer lexer = new Lexer();
 //        lexer.get_token_stream(content, is_verbose);
 
 
+        boolean is_verbose = false;
+        File inFile = new File("Tests/opCodes1");
+
+        String content = new Scanner(inFile).useDelimiter("\\Z").next();
+        Lexer lexer = new Lexer();
+        lexer.get_token_stream(content, is_verbose);
+
+//        int g;
+//        g = 1;
+//        while ( g != 9+2){
+//            g = 1 + g;
+//            while ( g != 9){
+//                g = 1 + g;
+//                System.out.println(g);
+//            }
+//            System.out.println(" ");
+//            System.out.print(g);
+//        }
+//        System.out.print(" finished ");
     }
 }

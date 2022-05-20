@@ -862,7 +862,7 @@ public class CodeGen {
      * @param node The current node in the AST
      */
     public static void QBFS(Node node){
-//        System.out.println("IN QBFS node.name is "+ node.name + " " + node.value);
+//        System.out.println("IN QBFS: "+ node.name + " " + node.value);
         /*
             Pseudo Code:
                 1) Do QBFS on boolean expression

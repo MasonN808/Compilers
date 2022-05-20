@@ -393,7 +393,9 @@ while (a != 9){
     }
 }$
 
-
+/* NOT WORKING*/
+/* embedded while loops */
+/* PRINT: ....*/
 {
     int g
     g = 1
@@ -407,4 +409,14 @@ while (a != 9){
        print(g)
     }
     print(" finished ")
+}$
+
+/* embedded booleans */
+
+
+{
+boolean a
+a = (false != (true == false))
+a = (false == ((2 == 4) != true))
+print(a)
 }$
